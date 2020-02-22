@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Pagination - Translate (EN)
+    | Pagination - Translate (PT-BR)
     |--------------------------------------------------------------------------
     |
     | The following language lines are used by the paginator library to build
@@ -13,7 +13,6 @@ return [
     |
     */
 
-    'previous' => '&laquo; Previous',
-    'next'     => 'Next &raquo;',
-
+    'previous' => '&laquo; Anterior',
+    'next'     => 'Próxima &raquo;',
 ];
