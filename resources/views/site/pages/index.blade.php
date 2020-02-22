@@ -57,7 +57,7 @@
     <body>
         <div class="flex-center position-ref full-height">
 			<div class="top-right">
-				<a href="" class="links">Login</a>
+				<a href="{!! route('login') !!}" class="links">Login</a>
 			</div>
             <div class="content">
                 <div class="image">

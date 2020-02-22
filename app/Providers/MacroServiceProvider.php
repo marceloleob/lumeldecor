@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
+use Collective\Html\HtmlServiceProvider;
 use App\Helpers\Macros;
-use Illuminate\Support\ServiceProvider;
 
-class MacroServiceProvider extends ServiceProvider
+class MacroServiceProvider extends HtmlServiceProvider
 {
     /**
      * Register services.
@@ -16,7 +16,10 @@ class MacroServiceProvider extends ServiceProvider
     {
 		parent::register();
 
-		$this->registerAlertBuilder();
+		$this->app->singleton('form', function ($app) {
+			$form = new Macros($app['html'], $app['url'], $app['view'], $app['session.store']->token());
+			return $form->setSessionStore($app['session.store']);
+		});
     }
 
     /**
@@ -27,19 +30,5 @@ class MacroServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-	}
-
-	/**
-	 * Register the alert builder instance.
-	 *
-	 * @return void
-	 */
-	protected function registerAlertBuilder()
-	{
-		$this->app->singleton('form', function ($app) {
-			$form = new Macros($app['html'], $app['url'], $app['view'], $app['session.store']->token());
-
-			return $form->setSessionStore($app['session.store']);
-		});
 	}
 }

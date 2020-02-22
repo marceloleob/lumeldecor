@@ -185,7 +185,6 @@ return [
 		/*
          * Package Service Providers...
          */
-		Collective\Html\HtmlServiceProvider::class,
 		Waavi\Sanitizer\Laravel\SanitizerServiceProvider::class,
 
 		/*
