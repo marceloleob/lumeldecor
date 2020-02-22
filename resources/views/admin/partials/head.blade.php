@@ -24,17 +24,17 @@
 	<link rel="shortcut icon" href="{!! asset('favicon.ico') !!}">
 
 	{{-- Reseta CSS --}}
-	{!! Html::style('admin/css/reset.css') !!}
+	{!! Html::style('assets/admin/css/reset.css') !!}
 
 	{{-- CSS LIBS --}}
-	{!! Html::style('admin/css/libs/bootstrap-4.1.3.min.css') !!}
-	{!! Html::style('admin/css/libs/bootstrap-select.min.css') !!}
-	{!! Html::style('admin/css/libs/fontawesome-all-5.5.0.min.css') !!}
+	{!! Html::style('assets/admin/css/libs/bootstrap-4.1.3.min.css') !!}
+	{!! Html::style('assets/admin/css/libs/bootstrap-select.min.css') !!}
+	{!! Html::style('assets/admin/css/libs/fontawesome-all-5.5.0.min.css') !!}
 
 	{{-- CSS CUSTOM --}}
-	{!! Html::style('admin/css/style.css') !!}
+	{!! Html::style('assets/admin/css/style.css') !!}
 
 	{{-- CSS LIBS --}}
-    {!! Html::style('admin/css/color/lilac.css') !!}
+    {!! Html::style('assets/admin/css/color/lilac.css') !!}
 
 </head>

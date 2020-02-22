@@ -31,13 +31,19 @@ Route::group(['namespace' => 'Site'], function ()
 	// Route::get('email-customer', 'ContactController@testCustomer');
 });
 
+
 /**
  * Rotas protegidas do Admin
  */
-Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
+Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin'], function ()
+{
 	// Home
 	Route::get('/', 'DashboardController@index')->name('dashboard');
 
+
 });
 
+/**
+ * Rotas de Acesso
+ */
 Auth::routes();
