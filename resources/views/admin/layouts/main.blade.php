@@ -10,7 +10,7 @@
         {{-- HEADER --}}
         @include('admin.partials.header')
 
-        <section class="full_row pt_40 pb_80 bg_gray header_margin">
+        <section class="full_row pb_80 bg_gray header_margin">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">

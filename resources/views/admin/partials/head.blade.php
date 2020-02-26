@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8" />
 	{{-- RESPONSIVE TAG --}}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>{!! Config::get('app.name') !!}</title>
@@ -15,26 +15,20 @@
 	<link rel="icon" href="{!! asset('favicon.ico') !!}" type="image/x-icon">
 	<link rel="icon" sizes="16x16" href="{!! asset('favicon-16.png') !!}" type="image/png">
 	<link rel="icon" sizes="32x32" href="{!! asset('favicon-32.png') !!}" type="image/jpeg">
-
 	<link rel="apple-touch-icon" sizes="57x57" href="{!! asset('favicon-32.png') !!}">
 	<link rel="apple-touch-icon" sizes="72x72" href="{!! asset('favicon-72.png') !!}">
 	<link rel="apple-touch-icon" sizes="114x114" href="{!! asset('favicon-114.png') !!}">
-
 	<link rel="shortcut icon" href="{!! asset('favicon.ico') !!}" type="image/x-icon">
 	<link rel="shortcut icon" href="{!! asset('favicon.ico') !!}">
 
 	{{-- Reseta CSS --}}
-	{!! Html::style('assets/admin/css/reset.css') !!}
-
+	{!! Html::style('css/reset.css') !!}
 	{{-- CSS LIBS --}}
-	{!! Html::style('assets/admin/css/libs/bootstrap-4.1.3.min.css') !!}
-	{!! Html::style('assets/admin/css/libs/bootstrap-select.min.css') !!}
-	{!! Html::style('assets/admin/css/libs/fontawesome-all-5.5.0.min.css') !!}
-
+	{!! Html::style('vendor/fontawesome/css/all.min.css') !!}
+	{!! Html::style('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i') !!}
+	{{-- CSS FRAMEWORK --}}
+	{!! Html::style('css/admin/sb-admin-2.css') !!}
 	{{-- CSS CUSTOM --}}
-	{!! Html::style('assets/admin/css/style.css') !!}
-
-	{{-- CSS LIBS --}}
-    {!! Html::style('assets/admin/css/color/lilac.css') !!}
+    {!! Html::style('css/custom.css') !!}
 
 </head>

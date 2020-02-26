@@ -3,29 +3,23 @@
 
 @include('admin.partials.head')
 
-<body>
+<body class="bg-gradient-primary">
 
-<div id="page_wrapper" class="container-fluid">
-    <div class="row">
-        {{-- HEADER --}}
-        @include('admin.partials.header')
-
-        <section class="full_row bg_gray header_margin">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="mt_md_50">
-                            {{-- CONTENT --}}
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {{-- FOOTER --}}
-        @include('admin.partials.footer')
-    </div>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-xl-10 col-lg-12 col-md-9">
+			<div class="card o-hidden border-0 shadow-lg my-10">
+				<div class="card-body p-0">
+					{{-- CONTENT --}}
+					<div class="mt_md_50">
+						@yield('content')
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{-- FOOTER --}}
+	@include('admin.partials.footer')
 </div>
 
 {{-- SCRIPTS --}}

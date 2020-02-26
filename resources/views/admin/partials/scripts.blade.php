@@ -1,13 +1,10 @@
 
 {{-- JS LIBS / JQUERY --}}
-{!! Html::script('assets/admin/js/libs/jquery.min.js', ['defer' => 'defer']) !!}
-
+{!! Html::script('vendor/jquery/jquery.min.js', ['defer' => 'defer']) !!}
 {{-- JS LIBS / BOOTSTRAP --}}
-{!! Html::script('assets/admin/js/libs/bootstrap.min.js', ['defer' => 'defer']) !!}
-{!! Html::script('assets/admin/js/libs/bootstrap-select.min.js', ['defer' => 'defer']) !!}
-
-{{-- JS SCRIPTS --}}
-{!! Html::script('assets/admin/js/script.js', ['defer' => 'defer']) !!}
-
+{!! Html::script('vendor/bootstrap/js/bootstrap.bundle.min.js', ['defer' => 'defer']) !!}
+{!! Html::script('vendor/bootstrap-select/js/bootstrap-select.min.js', ['defer' => 'defer']) !!}
+{{-- JS TEMPLATE --}}
+{!! Html::script('js/admin/sb-admin-2.min.js', ['defer' => 'defer']) !!}
 {{-- JS CUSTOM --}}
 @yield('js-custom')
