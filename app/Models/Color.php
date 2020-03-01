@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Base;
 
-class ProductPrice extends Base
+class Color extends Base
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,17 +20,8 @@ class ProductPrice extends Base
 	 */
 	protected $fillable = [
 		'id',
-		'product_dimension_id',
-		'price',
+		'name',
+		'hexa',
+		'status',
 	];
-
-	/**
-	 * Get the info about this product (price)
-	 *
-	 * @return ProductInfo
-	 */
-	public function info()
-	{
-		return $this->hasOne('App\Models\ProductInfo');
-	}
 }

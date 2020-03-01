@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\ProductDimension;
+use App\Models\Color;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ProductDimensionsTableSeeder extends Seeder
+class ColorsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class ProductDimensionsTableSeeder extends Seeder
     public function run()
     {
 		// limpa a tabela
-		DB::table('product_dimensions')->delete();
+		DB::table('colors')->delete();
     }
 }

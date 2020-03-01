@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Base;
 
-class ProductDimension extends Base
+class ProductInfo extends Base
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -21,15 +21,17 @@ class ProductDimension extends Base
 	protected $fillable = [
 		'id',
 		'product_id',
-		'weight',
+		'color_id',
+		'amount',
 		'size',
+		'weight',
 		'height',
 		'width',
 		'length',
 	];
 
 	/**
-	 * Get the product about this dimensions
+	 * Get the product about this info
 	 *
 	 * @return Product
 	 */

@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
 			CategoriesTableSeeder::class,
 			MaterialsTableSeeder::class,
 
-			ProductDimensionsTableSeeder::class,
+			ProductInfosTableSeeder::class,
 			ProductPhotosTableSeeder::class,
 			ProductPricesTableSeeder::class,
 			ProductsTableSeeder::class,

@@ -16,7 +16,6 @@ class CreateProductPricesTable extends Migration
         Schema::create('product_prices', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->bigInteger('product_dimension_id')->unsigned();
-			$table->bigInteger('amount');
 			$table->decimal('price', 7, 2);
         });
     }

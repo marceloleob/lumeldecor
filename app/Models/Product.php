@@ -22,6 +22,7 @@ class Product extends Base
 		'id',
 		'supplier_id',
 		'category_id',
+		'code',
 		'name',
 		'description',
 		'status',
@@ -40,7 +41,7 @@ class Product extends Base
 	/**
 	 * Get the category about this product
 	 *
-	 * @return ProductCategory
+	 * @return category
 	 */
 	public function category()
 	{
@@ -48,19 +49,19 @@ class Product extends Base
 	}
 
 	/**
-	 * Get the dimensions about this product
+	 * Get the infos about this product
 	 *
-	 * @return ProductDimension
+	 * @return ProductInfo
 	 */
-	public function dimensions()
+	public function infos()
 	{
-		return $this->hasMany('App\Models\ProductDimension');
+		return $this->hasMany('App\Models\ProductInfo');
 	}
 
 	/**
 	 * Get the photos about this product
 	 *
-	 * @return ProductPhoto
+	 * @return photos
 	 */
 	public function photos()
 	{

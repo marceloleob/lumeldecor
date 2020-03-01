@@ -89,5 +89,6 @@ class CategoriesTableSeeder extends Seeder
 		Category::create(['material_id' => 10, 'name' => 'Minie', 'status' => 1]);
 		// VIDROS
 		Category::create(['material_id' => 10, 'name' => 'Enfeites', 'status' => 1]);
+		Category::create(['material_id' => 10, 'name' => 'Vasos', 'status' => 1]);
     }
 }
