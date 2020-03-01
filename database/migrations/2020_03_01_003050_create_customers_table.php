@@ -15,7 +15,18 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+			$table->bigInteger('user_id')->unsigned()->nullable();
+			$table->bigInteger('city_id')->unsigned();
+			$table->string('document', 11)->unique();
+			$table->string('telephone', 14)->nullable();
+			$table->string('cellphone', 15);
+			$table->string('address', 100);
+			$table->string('number', 10)->nullable();
+			$table->string('comp', 20)->nullable();
+			$table->string('neighborhood', 100);
+			$table->string('zipcode', 8);
+			$table->boolean('status')->default(0);
+			$table->timestamps();
         });
     }
 

@@ -15,7 +15,12 @@ class CreateSupplierContactsTable extends Migration
     {
         Schema::create('supplier_contacts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+			$table->bigInteger('supplier_id')->unsigned();
+			$table->string('name', 100);
+			$table->string('email', 100);
+			$table->string('telephone', 14)->nullable();
+			$table->string('cellphone', 15);
+			$table->string('position', 100);
         });
     }
 

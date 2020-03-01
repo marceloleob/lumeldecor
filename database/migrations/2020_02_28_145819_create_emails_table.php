@@ -15,7 +15,13 @@ class CreateEmailsTable extends Migration
     {
         Schema::create('emails', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+			$table->string('name');
+			$table->string('email')->unique();
+			$table->string('phone', 15);
+			$table->string('subject', 100);
+			$table->text('text');
+			$table->boolean('read')->default(0);
+			$table->timestamps();
         });
     }
 

@@ -15,7 +15,20 @@ class CreateSuppliersTable extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+			$table->bigInteger('city_id')->unsigned();
+			$table->string('code', 10);
+			$table->enum('kind', ['F', 'J']);
+			$table->string('document', 14)->unique();
+			$table->string('company', 100);
+			$table->string('phone', 20)->nullable(); // 0800
+			$table->string('email', 100);
+			$table->string('address', 100);
+			$table->string('number', 10)->nullable();
+			$table->string('comp', 20)->nullable();
+			$table->string('neighborhood', 100);
+			$table->string('zipcode', 8);
+			$table->string('site', 50)->nullable();
+			$table->boolean('status')->default(1);
         });
     }
 

@@ -15,7 +15,11 @@ class CreateProductPhotosTable extends Migration
     {
         Schema::create('product_photos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+			$table->bigInteger('product_id')->unsigned();
+			$table->string('photo', 100);
+			$table->string('extension', 5);
+			$table->decimal('size', 7, 2);
+			$table->enum('position', ['V', 'H']);
         });
     }
 
