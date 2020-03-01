@@ -29,7 +29,7 @@ class SuppliersTableSeeder extends Seeder
 			'comp'         => 'galpão',
 			'neighborhood' => 'Bairro Teste',
 			'zipcode'      => '30330000',
-			'site'         => 'www.fornecedorteste.com.br',
+			'website'      => 'www.fornecedorteste.com.br',
 			'status'       => 1,
 		]);
     }

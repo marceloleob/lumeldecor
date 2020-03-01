@@ -32,7 +32,7 @@ class Supplier extends Base
 		'comp',
 		'neighborhood',
 		'zipcode',
-		'site',
+		'website',
 		'status',
 	];
 

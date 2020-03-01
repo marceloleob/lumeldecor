@@ -21,7 +21,6 @@ class Product extends Base
 	protected $fillable = [
 		'id',
 		'supplier_id',
-		'material_id',
 		'category_id',
 		'name',
 		'description',
@@ -39,16 +38,6 @@ class Product extends Base
 	}
 
 	/**
-	 * Get the material about this product
-	 *
-	 * @return Material
-	 */
-	public function material()
-	{
-		return $this->hasOne('App\Models\Material');
-	}
-
-	/**
 	 * Get the category about this product
 	 *
 	 * @return ProductCategory
@@ -63,7 +52,7 @@ class Product extends Base
 	 *
 	 * @return ProductDimension
 	 */
-	public function productDimension()
+	public function dimensions()
 	{
 		return $this->hasMany('App\Models\ProductDimension');
 	}
@@ -73,7 +62,7 @@ class Product extends Base
 	 *
 	 * @return ProductPhoto
 	 */
-	public function photo()
+	public function photos()
 	{
 		return $this->hasMany('App\Models\ProductPhoto');
 	}

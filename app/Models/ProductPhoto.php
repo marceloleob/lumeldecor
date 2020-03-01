@@ -21,7 +21,7 @@ class ProductPhoto extends Base
 	protected $fillable = [
 		'id',
 		'product_id',
-		'photo',
+		'name',
 		'extension',
 		'size',
 		'position',

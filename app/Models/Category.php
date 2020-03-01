@@ -34,14 +34,4 @@ class Category extends Base
 	{
 		return $this->belongsTo('App\Models\Material', 'material.name AS material');
 	}
-
-	/**
-	 * Get the product about this category
-	 *
-	 * @return Product
-	 */
-	public function product()
-	{
-		return $this->belongsTo('App\Models\Product');
-	}
 }

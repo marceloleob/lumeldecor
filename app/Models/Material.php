@@ -25,16 +25,6 @@ class Material extends Base
 	];
 
 	/**
-	 * Get the product about this material
-	 *
-	 * @return Product
-	 */
-	public function product()
-	{
-		return $this->belongsTo('App\Models\Product');
-	}
-
-	/**
 	 * Get the category about this material
 	 *
 	 * @return Category

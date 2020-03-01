@@ -28,10 +28,10 @@ class ProductPrice extends Base
 	/**
 	 * Get the product (dimension) about this product (price)
 	 *
-	 * @return ProductPrice
+	 * @return ProductDimension
 	 */
-	public function productPrice()
+	public function dimensions()
 	{
-		return $this->hasOne('App\Models\ProductPrice');
+		return $this->hasOne('App\Models\ProductDimension');
 	}
 }
