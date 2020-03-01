@@ -13,12 +13,16 @@ class CreateColorsTable extends Migration
      */
     public function up()
     {
+		// CRIA A TABELA
         Schema::create('colors', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->string('name', 100);
 			$table->string('hexa', 10);
 			$table->boolean('status')->default(1);
         });
+
+		// ADICIONA OS RELACIONAMENTOS
+		// --
     }
 
     /**
@@ -28,6 +32,10 @@ class CreateColorsTable extends Migration
      */
     public function down()
     {
+		// REMOVE OS RELACIONAMENTOS
+		// --
+
+		// EXCLUI A TABELA
         Schema::dropIfExists('colors');
     }
 }

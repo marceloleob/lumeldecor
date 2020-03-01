@@ -13,6 +13,7 @@ class CreateProductPhotosTable extends Migration
      */
     public function up()
     {
+		// CRIA A TABELA
         Schema::create('product_photos', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->bigInteger('product_id')->unsigned();
@@ -21,6 +22,11 @@ class CreateProductPhotosTable extends Migration
 			$table->decimal('size', 7, 2);
 			$table->enum('position', ['V', 'H']);
         });
+
+		// ADICIONA OS RELACIONAMENTOS
+		Schema::table('product_photos', function (Blueprint $table) {
+			$table->foreign('product_id')->references('id')->on('products')->onDelete('no action')->onUpdate('no action');
+		});
     }
 
     /**
@@ -30,6 +36,13 @@ class CreateProductPhotosTable extends Migration
      */
     public function down()
     {
+		// REMOVE OS RELACIONAMENTOS
+		Schema::table('product_photos', function (Blueprint $table) {
+			$table->dropForeign('product_photos_product_id_foreign');
+			$table->dropColumn('product_id');
+		});
+
+		// EXCLUI A TABELA
         Schema::dropIfExists('product_photos');
     }
 }

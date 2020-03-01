@@ -13,6 +13,7 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
+		// CRIA A TABELA
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->bigInteger('user_id')->unsigned()->nullable();
@@ -28,6 +29,12 @@ class CreateCustomersTable extends Migration
 			$table->boolean('status')->default(0);
 			$table->timestamps();
         });
+
+		// ADICIONA OS RELACIONAMENTOS
+		Schema::table('customers', function (Blueprint $table) {
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('city_id')->references('id')->on('cities')->onDelete('no action')->onUpdate('no action');
+		});
     }
 
     /**
@@ -37,6 +44,16 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
+		// REMOVE OS RELACIONAMENTOS
+		Schema::table('customers', function (Blueprint $table) {
+			$table->dropForeign('customers_user_id_foreign');
+			$table->dropColumn('user_id');
+
+			$table->dropForeign('customers_city_id_foreign');
+			$table->dropColumn('city_id');
+		});
+
+		// EXCLUI A TABELA
         Schema::dropIfExists('customers');
     }
 }

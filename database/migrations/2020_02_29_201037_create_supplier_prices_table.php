@@ -13,13 +13,20 @@ class CreateSupplierPricesTable extends Migration
      */
     public function up()
     {
+		// CRIA A TABELA
         Schema::create('supplier_prices', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->bigInteger('supplier_id')->unsigned();
-			$table->bigInteger('product_dimension_id')->unsigned();
+			$table->bigInteger('product_info_id')->unsigned();
 			$table->decimal('price', 7, 2);
 			$table->timestamps();
         });
+
+		// ADICIONA OS RELACIONAMENTOS
+		Schema::table('supplier_prices', function (Blueprint $table) {
+			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('product_info_id')->references('id')->on('product_infos')->onDelete('no action')->onUpdate('no action');
+		});
     }
 
     /**
@@ -29,6 +36,16 @@ class CreateSupplierPricesTable extends Migration
      */
     public function down()
     {
+		// REMOVE OS RELACIONAMENTOS
+		Schema::table('supplier_prices', function (Blueprint $table) {
+			$table->dropForeign('supplier_prices_supplier_id_foreign');
+			$table->dropColumn('supplier_id');
+
+			$table->dropForeign('supplier_prices_product_info_id_foreign');
+			$table->dropColumn('product_info_id');
+		});
+
+		// EXCLUI A TABELA
         Schema::dropIfExists('supplier_prices');
     }
 }
