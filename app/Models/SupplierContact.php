@@ -23,7 +23,7 @@ class SupplierContact extends Base
 		'supplier_id',
 		'name',
 		'email',
-		'phone',
+		'telephone',
 		'cellphone',
 		'position',
 	];

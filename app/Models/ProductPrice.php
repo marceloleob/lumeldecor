@@ -20,7 +20,7 @@ class ProductPrice extends Base
 	 */
 	protected $fillable = [
 		'id',
-		'productdimension_id',
+		'product_dimension_id',
 		'amount',
 		'price',
 	];

@@ -21,7 +21,7 @@ class SupplierPrice extends Base
 	protected $fillable = [
 		'id',
 		'supplier_id',
-		'productdimension_id',
+		'product_dimension_id',
 		'price',
 	];
 
