@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
 
 			EmailsTableSeeder::class,
 			UsersTableSeeder::class,
-			CustomersTableSeeder::class,
+			CustomersTableSeeder::class
 		);
     }
 }
