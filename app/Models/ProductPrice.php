@@ -11,7 +11,7 @@ class ProductPrice extends Base
 	 *
 	 * @var bool
 	 */
-	public $timestamps = false;
+	public $timestamps = true;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -20,7 +20,7 @@ class ProductPrice extends Base
 	 */
 	protected $fillable = [
 		'id',
-		'product_dimension_id',
+		'product_info_id',
 		'price',
 	];
 

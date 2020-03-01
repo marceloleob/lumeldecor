@@ -21,7 +21,7 @@ class SupplierPrice extends Base
 	protected $fillable = [
 		'id',
 		'supplier_id',
-		'product_dimension_id',
+		'product_info_id',
 		'price',
 	];
 
@@ -36,7 +36,7 @@ class SupplierPrice extends Base
 	}
 
 	/**
-	 * Get the product (dimension) about this product (price)
+	 * Get the info about this product (price)
 	 *
 	 * @return ProductPrice
 	 */
