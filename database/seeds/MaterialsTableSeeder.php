@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Material;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class MaterialsTableSeeder extends Seeder
 {
@@ -11,6 +13,19 @@ class MaterialsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+		// limpa a tabela
+		DB::table('materials')->delete();
+		// cria os registros
+		Material::create(['name' => 'Cartonagem', 'status' => 1]);
+		Material::create(['name' => 'Cerâmicas', 'status' => 1]);
+		Material::create(['name' => 'Enfeites', 'status' => 1]);
+		Material::create(['name' => 'Louças', 'status' => 1]);
+		Material::create(['name' => 'Luminosos', 'status' => 1]);
+		Material::create(['name' => 'MDF', 'status' => 1]);
+		Material::create(['name' => 'Metais', 'status' => 1]);
+		Material::create(['name' => 'Plásticos', 'status' => 1]);
+		Material::create(['name' => 'Porcelanas', 'status' => 1]);
+		Material::create(['name' => 'Pelúcias', 'status' => 1]);
+		Material::create(['name' => 'Vidros', 'status' => 1]);
     }
 }

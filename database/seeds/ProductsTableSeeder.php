@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -11,6 +13,7 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+		// limpa a tabela
+		DB::table('products')->delete();
     }
 }

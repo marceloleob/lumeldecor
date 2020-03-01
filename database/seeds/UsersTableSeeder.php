@@ -20,7 +20,6 @@ class UsersTableSeeder extends Seeder
 			'name'      => 'Marcelo Leopold',
 			'email'     => 'marceloleob@gmail.com',
 			'password'  => bcrypt('marcelo06'),
-			'cpf'       => '015.793.366-04',
 			'rule'      => 1,
 			'status'    => 1,
 		]);
@@ -28,7 +27,6 @@ class UsersTableSeeder extends Seeder
 			'name'      => 'Lílian Silveira',
 			'email'     => 'contato@lumeldecor.com.br',
 			'password'  => bcrypt('123456'),
-			'cpf'       => '',
 			'rule'      => 1,
 			'status'    => 1,
 		]);
@@ -36,7 +34,6 @@ class UsersTableSeeder extends Seeder
 			'name'      => 'Ricardo Silveira',
 			'email'     => 'ricardo@lumeldecor.com.br',
 			'password'  => bcrypt('123456'),
-			'cpf'       => '',
 			'rule'      => 1,
 			'status'    => 1,
 		]);

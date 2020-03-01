@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Email;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class EmailsTableSeeder extends Seeder
 {
@@ -11,6 +13,7 @@ class EmailsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+		// limpa a tabela
+		DB::table('emails')->delete();
     }
 }
