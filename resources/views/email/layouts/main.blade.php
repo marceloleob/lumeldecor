@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html" />
 
 	{{-- CSS --}}
-	@include('emails.partials.style')
+	@include('email.partials.style')
 </head>
 
 <body class="">
