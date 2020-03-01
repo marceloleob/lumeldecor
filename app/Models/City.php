@@ -44,4 +44,14 @@ class City extends Base
 	{
 		return $this->belongsTo('App\Models\Supplier');
 	}
+
+	/**
+	 * Get the customer about this city
+	 *
+	 * @return Customer
+	 */
+	public function customer()
+	{
+		return $this->belongsTo('App\Models\Customer');
+	}
 }
