@@ -26,5 +26,30 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+	protected $redirectTo = RouteServiceProvider::HOME;
+
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->middleware('guest');
+	}
+
+	/**
+	 * Get the validation rules that apply to the request.
+	 *
+	 * @return array
+	 */
+	public function rules()
+	{
+		return [
+			'token'                 => 'required',
+			'email'                 => 'required|email',
+			'password'              => 'required|min:6|max:20',
+			'password_confirmation'  => 'required|same:password',
+		];
+	}
 }

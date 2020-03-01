@@ -31,6 +31,19 @@ Route::group(['namespace' => 'Site'], function ()
 	// Route::get('email-customer', 'ContactController@testCustomer');
 });
 
+/**
+ * Rotas AJAX
+ */
+Route::group(['middleware' => 'auth', 'namespace' => 'Ajax', 'prefix' => 'ajax'], function ()
+{
+	// // Carrega combos AJAX
+	// Route::post('combo-categorias', 'CategoryController@loadCombo');
+
+	// // Validacoes AJAX
+	// Route::post('check-email', 'AjaxController@checkEmail');
+	// Route::post('check-cpf', 'AjaxController@checkCpf');
+	// Route::post('check-url', 'AjaxController@checkUrl');
+});
 
 /**
  * Rotas protegidas do Admin
@@ -44,6 +57,30 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 });
 
 /**
- * Rotas de Acesso
+ * Rotas de Autenticacao
  */
-Auth::routes();
+Auth::routes(
+	[
+		'register' => false,
+	]
+);
+/*
+Route::group(['namespace' => 'Auth'], function()
+{
+    Route::get('login', 'LoginController@showLoginForm')->name('login');
+    Route::post('login', 'LoginController@login');
+    Route::post('logout', 'LoginController@logout')->name('logout');
+
+    // Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+    // Route::post('register', 'RegisterController@register');
+
+    Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'ResetPasswordController@reset')->name('password.update');
+
+    Route::get('email/verify', 'VerificationController@show')->name('verification.notice');
+    Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
+    Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
+});
+*/
