@@ -23,12 +23,6 @@ class CreateProductsTable extends Migration
 			$table->text('description');
 			$table->boolean('status')->default(1);
         });
-
-		// ADICIONA OS RELACIONAMENTOS
-		Schema::table('products', function (Blueprint $table) {
-			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('no action')->onUpdate('no action');
-			$table->foreign('category_id')->references('id')->on('categories')->onDelete('no action')->onUpdate('no action');
-		});
 	}
 
     /**
@@ -38,15 +32,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		Schema::table('products', function (Blueprint $table) {
-			$table->dropForeign('products_supplier_id_foreign');
-			$table->dropColumn('supplier_id');
-
-			$table->dropForeign('products_category_id_foreign');
-			$table->dropColumn('category_id');
-		});
-
 		// EXCLUI A TABELA
         Schema::dropIfExists('products');
     }

@@ -24,9 +24,6 @@ class CreateEmailsTable extends Migration
 			$table->boolean('read')->default(0);
 			$table->timestamps();
         });
-
-		// ADICIONA OS RELACIONAMENTOS
-		// --
     }
 
     /**
@@ -36,9 +33,6 @@ class CreateEmailsTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		// --
-
 		// EXCLUI A TABELA
         Schema::dropIfExists('emails');
     }

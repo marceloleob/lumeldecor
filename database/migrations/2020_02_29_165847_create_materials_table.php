@@ -19,9 +19,6 @@ class CreateMaterialsTable extends Migration
 			$table->string('name', 100);
 			$table->boolean('status')->default(1);
         });
-
-		// ADICIONA OS RELACIONAMENTOS
-		// --
     }
 
     /**
@@ -31,9 +28,6 @@ class CreateMaterialsTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		// --
-
 		// EXCLUI A TABELA
         Schema::dropIfExists('materials');
     }

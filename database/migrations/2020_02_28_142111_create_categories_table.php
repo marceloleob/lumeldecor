@@ -20,11 +20,6 @@ class CreateCategoriesTable extends Migration
 			$table->string('name', 100);
 			$table->boolean('status')->default(1);
 		});
-
-		// ADICIONA OS RELACIONAMENTOS
-		Schema::table('categories', function (Blueprint $table) {
-			$table->foreign('material_id')->references('id')->on('materials')->onDelete('no action')->onUpdate('no action');
-		});
     }
 
     /**
@@ -34,12 +29,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		Schema::table('categories', function (Blueprint $table) {
-			$table->dropForeign('categories_material_id_foreign');
-			$table->dropColumn('material_id');
-		});
-
 		// EXCLUI A TABELA
 		Schema::dropIfExists('categories');
     }

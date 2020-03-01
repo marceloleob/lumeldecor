@@ -19,9 +19,6 @@ class CreateStatesTable extends Migration
 			$table->string('uf', 2);
 			$table->string('name', 100);
         });
-
-		// ADICIONA OS RELACIONAMENTOS
-		// --
     }
 
     /**
@@ -31,9 +28,6 @@ class CreateStatesTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		// --
-
 		// EXCLUI A TABELA
         Schema::dropIfExists('states');
     }

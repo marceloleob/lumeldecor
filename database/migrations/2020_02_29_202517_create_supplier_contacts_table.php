@@ -23,11 +23,6 @@ class CreateSupplierContactsTable extends Migration
 			$table->string('cellphone', 15);
 			$table->string('position', 100);
         });
-
-		// ADICIONA OS RELACIONAMENTOS
-		Schema::table('supplier_contacts', function (Blueprint $table) {
-			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('no action')->onUpdate('no action');
-		});
     }
 
     /**
@@ -37,12 +32,6 @@ class CreateSupplierContactsTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		Schema::table('supplier_contacts', function (Blueprint $table) {
-			$table->dropForeign('supplier_contacts_supplier_id_foreign');
-			$table->dropColumn('supplier_id');
-		});
-
 		// EXCLUI A TABELA
         Schema::dropIfExists('supplier_contacts');
     }

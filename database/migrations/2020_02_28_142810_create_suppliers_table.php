@@ -31,11 +31,6 @@ class CreateSuppliersTable extends Migration
 			$table->string('website', 100)->nullable();
 			$table->boolean('status')->default(1);
         });
-
-		// ADICIONA OS RELACIONAMENTOS
-		Schema::table('suppliers', function (Blueprint $table) {
-			$table->foreign('city_id')->references('id')->on('cities')->onDelete('no action')->onUpdate('no action');
-		});
     }
 
     /**
@@ -45,12 +40,6 @@ class CreateSuppliersTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		Schema::table('suppliers', function (Blueprint $table) {
-			$table->dropForeign('suppliers_city_id_foreign');
-			$table->dropColumn('city_id');
-		});
-
 		// EXCLUI A TABELA
         Schema::dropIfExists('suppliers');
     }

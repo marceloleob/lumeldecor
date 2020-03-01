@@ -20,11 +20,6 @@ class CreateProductPricesTable extends Migration
 			$table->decimal('price', 7, 2);
 			$table->timestamps();
         });
-
-		// ADICIONA OS RELACIONAMENTOS
-		Schema::table('product_prices', function (Blueprint $table) {
-			$table->foreign('product_info_id')->references('id')->on('product_infos')->onDelete('no action')->onUpdate('no action');
-		});
     }
 
     /**
@@ -34,12 +29,6 @@ class CreateProductPricesTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		Schema::table('product_prices', function (Blueprint $table) {
-			$table->dropForeign('product_prices_product_info_id_foreign');
-			$table->dropColumn('product_info_id');
-		});
-
 		// EXCLUI A TABELA
         Schema::dropIfExists('product_prices');
     }

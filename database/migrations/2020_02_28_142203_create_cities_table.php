@@ -20,11 +20,6 @@ class CreateCitiesTable extends Migration
 			$table->string('name', 100);
 			$table->boolean('capital')->default(0);
         });
-
-		// ADICIONA OS RELACIONAMENTOS
-		Schema::table('cities', function (Blueprint $table) {
-			$table->foreign('state_id')->references('id')->on('states')->onDelete('no action')->onUpdate('no action');
-		});
 	}
 
     /**
@@ -34,12 +29,6 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		Schema::table('cities', function (Blueprint $table) {
-			$table->dropForeign('cities_state_id_foreign');
-			$table->dropColumn('state_id');
-		});
-
 		// EXCLUI A TABELA
         Schema::dropIfExists('cities');
     }

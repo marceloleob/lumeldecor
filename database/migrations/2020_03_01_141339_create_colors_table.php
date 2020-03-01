@@ -20,9 +20,6 @@ class CreateColorsTable extends Migration
 			$table->string('hexa', 10);
 			$table->boolean('status')->default(1);
         });
-
-		// ADICIONA OS RELACIONAMENTOS
-		// --
     }
 
     /**
@@ -32,9 +29,6 @@ class CreateColorsTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		// --
-
 		// EXCLUI A TABELA
         Schema::dropIfExists('colors');
     }

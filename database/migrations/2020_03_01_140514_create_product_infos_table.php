@@ -25,12 +25,6 @@ class CreateProductInfosTable extends Migration
 			$table->decimal('width', 4, 2)->nullable();
 			$table->decimal('length', 4, 2)->nullable();
         });
-
-		// ADICIONA OS RELACIONAMENTOS
-		Schema::table('product_infos', function (Blueprint $table) {
-			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict')->onUpdate('restrict');
-			$table->foreign('color_id')->references('id')->on('colors')->onDelete('no action')->onUpdate('no action');
-		});
     }
 
     /**
@@ -40,15 +34,6 @@ class CreateProductInfosTable extends Migration
      */
     public function down()
     {
-		// REMOVE OS RELACIONAMENTOS
-		Schema::table('product_infos', function (Blueprint $table) {
-			$table->dropForeign('product_infos_product_id_foreign');
-			$table->dropColumn('product_id');
-
-			$table->dropForeign('product_infos_color_id_foreign');
-			$table->dropColumn('color_id');
-		});
-
 		// EXCLUI A TABELA
         Schema::dropIfExists('product_infos');
     }
