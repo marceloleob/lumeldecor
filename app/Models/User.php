@@ -53,4 +53,13 @@ class User extends Authenticatable
 	{
 		$this->notify(new ResetPassword($token));
 	}
+
+	/**
+	 * Get the customer about this user.
+	 *
+	 */
+	public function customer()
+	{
+		return $this->hasOne('App\Models\Customer');
+	}
 }

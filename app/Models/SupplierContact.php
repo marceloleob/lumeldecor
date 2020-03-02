@@ -31,10 +31,9 @@ class SupplierContact extends Base
 	/**
 	 * Get the supplier about this contact
 	 *
-	 * @return Supplier
 	 */
 	public function supplier()
 	{
-		return $this->HasOne('App\Models\Supplier');
+		return $this->belongsTo('App\Models\Supplier');
 	}
 }

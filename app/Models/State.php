@@ -25,7 +25,7 @@ class State extends Base
 	];
 
 	/**
-	 * Get the city about this state
+	 * Get the city about this state.
 	 *
 	 * @return City
 	 */

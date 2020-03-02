@@ -26,12 +26,20 @@ class Category extends Base
 	];
 
 	/**
-	 * Get the material about this category
+	 * Get the material that owns the category.
 	 *
-	 * @return Material
 	 */
 	public function material()
 	{
-		return $this->belongsTo('App\Models\Material', 'material.name AS material');
+		return $this->belongsTo('App\Models\Material');
+	}
+
+	/**
+	 * Get the products about this category.
+	 *
+	 */
+	public function product()
+	{
+		return $this->hasMany('App\Models\Product');
 	}
 }

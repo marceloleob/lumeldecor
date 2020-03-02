@@ -26,22 +26,20 @@ class SupplierPrice extends Base
 	];
 
 	/**
-	 * Get the supplier about this price
+	 * Get the supplier that owns the supplier price.
 	 *
-	 * @return Supplier
 	 */
 	public function supplier()
 	{
-		return $this->HasOne('App\Models\Supplier');
+		return $this->belongsTo('App\Models\Supplier');
 	}
 
 	/**
-	 * Get the info about this product (price)
+	 * Get the product that owns the supplier price.
 	 *
-	 * @return ProductPrice
 	 */
-	public function productPrice()
+	public function product()
 	{
-		return $this->HasOne('App\Models\ProductPrice');
+		return $this->belongsTo('App\Models\ProductInfo');
 	}
 }

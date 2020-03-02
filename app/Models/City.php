@@ -20,38 +20,38 @@ class City extends Base
 	 */
 	protected $fillable = [
 		'id',
-		'states_id',
+		'state_id',
 		'name',
 		'capital',
 	];
 
 	/**
-	 * Get the states about this city
+	 * Get the state that owns the city.
 	 *
 	 * @return States
 	 */
 	public function state()
 	{
-		return $this->HasOne('App\Models\States');
+		return $this->belongsTo('App\Models\States');
 	}
 
 	/**
-	 * Get the supplier about this city
+	 * Get the supplier about this city.
 	 *
 	 * @return Supplier
 	 */
 	public function supplier()
 	{
-		return $this->belongsTo('App\Models\Supplier');
+		return $this->hasMany('App\Models\Supplier');
 	}
 
 	/**
-	 * Get the customer about this city
+	 * Get the customer about this city.
 	 *
 	 * @return Customer
 	 */
 	public function customer()
 	{
-		return $this->belongsTo('App\Models\Customer');
+		return $this->hasMany('App\Models\Customer');
 	}
 }

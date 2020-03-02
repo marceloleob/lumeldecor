@@ -31,12 +31,39 @@ class ProductInfo extends Base
 	];
 
 	/**
-	 * Get the product about this info
+	 * Get the product that owns the product info.
 	 *
 	 * @return Product
 	 */
 	public function product()
 	{
-		return $this->hasOne('App\Models\Product');
+		return $this->belongsTo('App\Models\Product');
+	}
+
+	/**
+	 * Get the color that owns the product info.
+	 *
+	 */
+	public function color()
+	{
+		return $this->belongsTo('App\Models\Color');
+	}
+
+	/**
+	 * Get the product price about this product.
+	 *
+	 */
+	public function productPrice()
+	{
+		return $this->hasOne('App\Models\ProductPrice');
+	}
+
+	/**
+	 * Get the supplier price about this product.
+	 *
+	 */
+	public function supplierPrice()
+	{
+		return $this->hasOne('App\Models\SupplierPrice');
 	}
 }

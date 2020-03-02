@@ -28,12 +28,11 @@ class ProductPhoto extends Base
 	];
 
 	/**
-	 * Get the product about this photos
+	 * Get the product that owns the photo.
 	 *
-	 * @return Product
 	 */
 	public function product()
 	{
-		return $this->hasOne('App\Models\Product');
+		return $this->belongsTo('App\Models\Product');
 	}
 }

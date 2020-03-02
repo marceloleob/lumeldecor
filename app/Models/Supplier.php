@@ -37,32 +37,38 @@ class Supplier extends Base
 	];
 
 	/**
-	 * Get the city about this supplier
+	 * Get the city that owns the supplier.
 	 *
-	 * @return City
 	 */
 	public function city()
 	{
-		return $this->hasOne('App\Models\City');
+		return $this->belongsTo('App\Models\City');
 	}
 
 	/**
-	 * Get the product about this supplier
+	 * Get the contact about this supplier.
 	 *
-	 * @return Product
+	 */
+	public function contact()
+	{
+		return $this->hasMany('App\Models\SupplierContact');
+	}
+
+	/**
+	 * Get the product about this supplier.
+	 *
 	 */
 	public function product()
 	{
-		return $this->belongsTo('App\Models\Product');
+		return $this->hasMany('App\Models\Product');
 	}
 
 	/**
-	 * Get the contacts about this supplier
+	 * Get the price about this supplier.
 	 *
-	 * @return SupplierContact
 	 */
-	public function supplierContact()
+	public function supplierPrice()
 	{
-		return $this->hasMany('App\Models\SupplierContact');
+		return $this->hasMany('App\Models\SupplierPrice');
 	}
 }

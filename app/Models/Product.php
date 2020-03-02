@@ -29,29 +29,26 @@ class Product extends Base
 	];
 
 	/**
-	 * Get the supplier about this product
+	 * Get the supplier that owns the product.
 	 *
-	 * @return Supplier
 	 */
 	public function supplier()
 	{
-		return $this->HasOne('App\Models\Supplier');
+		return $this->belongsTo('App\Models\Supplier');
 	}
 
 	/**
-	 * Get the category about this product
+	 * Get the category that owns the product.
 	 *
-	 * @return category
 	 */
 	public function category()
 	{
-		return $this->hasOne('App\Models\Category');
+		return $this->belongsTo('App\Models\Category');
 	}
 
 	/**
-	 * Get the infos about this product
+	 * Get the infos about this product.
 	 *
-	 * @return ProductInfo
 	 */
 	public function infos()
 	{
@@ -59,7 +56,7 @@ class Product extends Base
 	}
 
 	/**
-	 * Get the photos about this product
+	 * Get the photos about this product.
 	 *
 	 * @return photos
 	 */

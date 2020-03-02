@@ -25,12 +25,11 @@ class Material extends Base
 	];
 
 	/**
-	 * Get the category about this material
+	 * Get the category for the material.
 	 *
-	 * @return Category
 	 */
 	public function category()
 	{
-		return $this->belongsTo('App\Models\Category');
+		return $this->hasMany('App\Models\Category');
 	}
 }

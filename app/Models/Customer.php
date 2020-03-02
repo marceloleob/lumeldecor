@@ -34,22 +34,20 @@ class Customer extends Base
 	];
 
 	/**
-	 * Get the user about this customer
+	 * Get the user that owns the customer.
 	 *
-	 * @return User
 	 */
 	public function user()
 	{
-		return $this->hasOne('App\Models\User');
+		return $this->belongsTo('App\Models\User');
 	}
 
 	/**
-	 * Get the city about this customer
+	 * Get the city that owns the customer.
 	 *
-	 * @return City
 	 */
 	public function city()
 	{
-		return $this->hasOne('App\Models\City');
+		return $this->belongsTo('App\Models\City');
 	}
 }

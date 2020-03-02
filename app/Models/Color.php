@@ -24,4 +24,13 @@ class Color extends Base
 		'hexa',
 		'status',
 	];
+
+	/**
+	 * Get the product about this color.
+	 *
+	 */
+	public function product()
+	{
+		return $this->hasMany('App\Models\ProductInfo');
+	}
 }
