@@ -20,7 +20,7 @@ class SupplierContactsTableSeeder extends Seeder
 			'supplier_id' => 1,
 			'name'        => 'Paula Braga',
 			'email'       => 'paula@fornecedorteste.com.br',
-			'phone'       => '(11) 3333-3333',
+			'telephone'   => '(11) 3333-3333',
 			'cellphone'   => '(11) 99999-9999',
 			'position'    => 'Proprietário',
 		]);
