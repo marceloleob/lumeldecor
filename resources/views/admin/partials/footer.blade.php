@@ -34,3 +34,7 @@
 		</div>
 	</div>
 </div>
+
+{!! Form::open(['id' => 'form-logout', 'route' => 'logout', 'method' => 'POST', 'style' => 'display: none;']) !!}
+	{!! csrf_field() !!}
+{!! Form::close() !!}

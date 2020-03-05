@@ -79,20 +79,20 @@
 
 			<li class="app-sidebar__heading">CLIENTES</li>
 			<li>
-				<a href="#" target="_blank"><i class="metismenu-icon pe-7s-graph2"></i> Todos</a>
+				<a href="#"><i class="metismenu-icon pe-7s-graph2"></i> Todos</a>
 			</li>
 
 			<li class="app-sidebar__heading">FORNECEDORES</li>
 			<li>
-				<a href="#" target="_blank"><i class="metismenu-icon pe-7s-graph2"></i> Todos</a>
+				<a href="#"><i class="metismenu-icon pe-7s-graph2"></i> Todos</a>
 			</li>
 
 			<li class="app-sidebar__heading">CONFIGURAÇÕES</li>
 			<li>
-				<a href="#" target="_blank"><i class="metismenu-icon pe-7s-graph2"></i> Minhas Informações</a>
+				<a href="#"><i class="metismenu-icon pe-7s-graph2"></i> Minhas Informações</a>
 			</li>
 			<li>
-				<a href="#" target="_blank"><i class="metismenu-icon fas fa-sign-out-alt"></i> Sair</a>
+				<a href="javascript:void(0);" class="logout"><i class="metismenu-icon fas fa-sign-out-alt"></i> Sair</a>
 			</li>
 		</ul>
 	</div>

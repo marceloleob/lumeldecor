@@ -26,7 +26,7 @@
 			</div>
 			{{-- FOOTER --}}
 			<div class="app-wrapper-footer">
-				{{-- @include('admin.partials.footer') --}}
+				@include('admin.partials.footer')
 			</div>
 		</div>
 	</div>

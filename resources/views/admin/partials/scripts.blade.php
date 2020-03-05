@@ -7,4 +7,5 @@
 {{-- JS TEMPLATE --}}
 {!! Html::script('js/admin/architect-ui.js', ['defer' => 'defer']) !!}
 {{-- JS CUSTOM --}}
+{!! Html::script('js/admin/scripts.js', ['defer' => 'defer']) !!}
 @yield('js-custom')

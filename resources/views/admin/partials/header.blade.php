@@ -54,7 +54,7 @@
 							</div>
 						</div>
 						<div class="widget-content-right header-user-info ml-3">
-							<button type="button" class="btn-shadow p-1 btn btn-danger btn-sm">
+							<button type="button" class="btn-shadow p-1 btn btn-danger btn-sm logout">
 								<i class="fas fa-sign-out-alt text-white pr-2 pl-2"></i>
 							</button>
 						</div>
