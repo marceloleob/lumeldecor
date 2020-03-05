@@ -35,29 +35,29 @@
 
 			<li class="app-sidebar__heading">PAINEL DE CONTROLES</li>
 			<li>
-				<a href="#" class="mm-active"><i class="metismenu-icon pe-7s-rocket"></i> Início</a>
+				<a href="#" class="mm-active"><i class="metismenu-icon fas fa-chart-line"></i> Início</a>
 			</li>
 
 			<li class="app-sidebar__heading">PRODUTOS</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-rocket"></i> Materiais</a>
+				<a href="#"><i class="metismenu-icon fas fa-dolly-flatbed"></i> Materiais</a>
 			</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-rocket"></i> Categorias</a>
+				<a href="#"><i class="metismenu-icon fas fa-store"></i> Categorias</a>
 			</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-rocket"></i> Temas</a>
+				<a href="#"><i class="metismenu-icon far fa-star"></i> Temas</a>
 			</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-rocket"></i> Cores</a>
+				<a href="#"><i class="metismenu-icon fas fa-palette"></i> Cores</a>
 			</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-rocket"></i> Produtos</a>
+				<a href="#"><i class="metismenu-icon fas fa-cubes"></i> Produtos</a>
 			</li>
 
 			<li class="app-sidebar__heading">LOJA</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-diamond"></i> Ofertas <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+				<a href="#"><i class="metismenu-icon fas fa-search-dollar"></i> Ofertas <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
 				<ul>
 					<li>
 						<a href="elements-buttons-standard.html"><i class="metismenu-icon"></i> Descontos</a>
@@ -68,28 +68,28 @@
 				</ul>
 			</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-rocket"></i> Encomendas</a>
+				<a href="#"><i class="metismenu-icon fas fa-dolly"></i> Encomendas</a>
 			</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-rocket"></i> Estoques</a>
+				<a href="#"><i class="metismenu-icon fas fa-warehouse"></i> Estoques</a>
 			</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-rocket"></i> Mensagens</a>
+				<a href="#"><i class="metismenu-icon fas fa-envelope"></i> Mensagens</a>
 			</li>
 
 			<li class="app-sidebar__heading">CLIENTES</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-graph2"></i> Todos</a>
+				<a href="#"><i class="metismenu-icon fas fa-users"></i> Todos</a>
 			</li>
 
 			<li class="app-sidebar__heading">FORNECEDORES</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-graph2"></i> Todos</a>
+				<a href="#"><i class="metismenu-icon fas fa-user-tie"></i> Todos</a>
 			</li>
 
 			<li class="app-sidebar__heading">CONFIGURAÇÕES</li>
 			<li>
-				<a href="#"><i class="metismenu-icon pe-7s-graph2"></i> Minhas Informações</a>
+				<a href="#"><i class="metismenu-icon fas fa-user-cog"></i> Minhas Informações</a>
 			</li>
 			<li>
 				<a href="javascript:void(0);" class="logout"><i class="metismenu-icon fas fa-sign-out-alt"></i> Sair</a>

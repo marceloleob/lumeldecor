@@ -6,7 +6,7 @@
 		<div class="page-title-wrapper">
 			<div class="page-title-heading">
 				<div class="page-title-icon">
-					<i class="pe-7s-science icon-gradient bg-mean-fruit">
+					<i class="fas fa-chart-line icon-gradient bg-ripe-malin">
 					</i>
 				</div>
 				<div>Resumos Administrativos
