@@ -5,31 +5,31 @@
 
 <body>
 
-<div id="page_wrapper" class="container-fluid">
-    <div class="row">
-        {{-- HEADER --}}
-        @include('admin.partials.header')
+<div class="app-container app-theme-white body-tabs-shadow fixed-header">
+	{{-- HEADER --}}
+	<div class="app-header header-shadow">
+	{{-- <div class="app-header header-shadow bg-danger header-text-light"> --}}
+	{{-- <div class="app-header header-shadow bg-alternate header-text-light"> --}}
+		@include('admin.partials.header')
+	</div>
 
-        <section class="full_row pb_80 bg_gray header_margin">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        {{-- MENU --}}
-                        @include('admin.partials.menu')
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="mt_md_50">
-                            {{-- CONTENT --}}
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+	<div class="app-main">
+		{{-- MENU --}}
+		<div class="app-sidebar sidebar-shadow">
+			@include('admin.partials.menu')
+		</div>
 
-        {{-- FOOTER --}}
-        @include('admin.partials.footer')
-    </div>
+		<div class="app-main__outer">
+			{{-- CONTENT --}}
+			<div class="app-main__inner">
+				@yield('content')
+			</div>
+			{{-- FOOTER --}}
+			<div class="app-wrapper-footer">
+				{{-- @include('admin.partials.footer') --}}
+			</div>
+		</div>
+	</div>
 </div>
 
 {{-- SCRIPTS --}}
