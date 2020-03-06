@@ -6,7 +6,7 @@
 	<div class="page-title-wrapper">
 		<div class="page-title-heading">
 			<div class="page-title-icon">
-				<i class="fas fa-store icon-gradient bg-plum-plate"></i>
+				<i class="fas fa-dolly-flatbed icon-gradient bg-plum-plate"></i>
 			</div>
 			<div>
 				Materiais
