@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use App\Services\CategoryService;
-
 class BaseService
 {
     /**
@@ -108,7 +106,7 @@ class BaseService
 			case 'customer':
 				return CategoryService::class;
 			case 'material':
-				return CategoryService::class;
+				return MaterialService::class;
 			case 'product':
 				return CategoryService::class;
 			case 'supplier':

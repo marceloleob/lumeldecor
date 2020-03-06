@@ -54,17 +54,18 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 {
 	// Home
 	Route::get('/', 'DashboardController@index')->name('dashboard');
+	Route::get('painel', 'DashboardController@index')->name('dashboard');
 	// Products
 	Route::get('materiais', 'MaterialController@index')->name('materials');
+	Route::post('materiais', 'MaterialController@index')->name('materials-search');
+	Route::get('editar-material/{id}/{page}', 'MaterialController@edit')->name('material-form');
 
 	Route::get('categorias', 'CategoryController@index')->name('categories');
 	Route::post('categorias', 'CategoryController@index')->name('categories-search');
-
 	Route::get('editar-categoria/{id}/{page}', 'CategoryController@edit')->name('category-form');
-	Route::get('desativar-categoria/{id}/{page}', 'CategoryController@destroy')->name('category-destroy');
 
 	Route::get('temas', 'ThemeController@index')->name('themes');
-	Route::get('colores', 'ColorController@index')->name('colors');
+	Route::get('cores', 'ColorController@index')->name('colors');
 	Route::get('produtos', 'ProductController@index')->name('products');
 	// Store
 	Route::get('descontos', 'DiscountController@index')->name('discounts');
