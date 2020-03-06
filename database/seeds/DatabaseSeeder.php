@@ -22,11 +22,14 @@ class DatabaseSeeder extends Seeder
 			MaterialsTableSeeder::class,
 			CategoriesTableSeeder::class,
 			ColorsTableSeeder::class,
+			ThemesTableSeeder::class,
 
 			ProductsTableSeeder::class,
 			ProductInfosTableSeeder::class,
-			ProductPhotosTableSeeder::class,
 			ProductPricesTableSeeder::class,
+			ProductPhotosTableSeeder::class,
+			ProductColorsTableSeeder::class,
+			ProductThemesTableSeeder::class,
 
 			SuppliersTableSeeder::class,
 			SupplierContactsTableSeeder::class,

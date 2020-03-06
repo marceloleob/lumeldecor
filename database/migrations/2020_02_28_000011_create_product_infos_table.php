@@ -19,7 +19,6 @@ class CreateProductInfosTable extends Migration
 			$table->bigInteger('product_id')->unsigned();
 			$table->char('size', 3);
 			$table->decimal('weight', 4, 2)->nullable();
-			$table->integer('amount');
 			$table->decimal('height', 4, 2)->nullable();
 			$table->decimal('width', 4, 2)->nullable();
 			$table->decimal('length', 4, 2)->nullable();

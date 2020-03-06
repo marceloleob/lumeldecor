@@ -21,6 +21,7 @@ class MaterialsTableSeeder extends Seeder
 		Material::create(['name' => 'Enfeites', 'status' => 1]);
 		Material::create(['name' => 'Louças', 'status' => 1]);
 		Material::create(['name' => 'Luminosos', 'status' => 1]);
+		Material::create(['name' => 'Madeiras', 'status' => 1]);
 		Material::create(['name' => 'MDF', 'status' => 1]);
 		Material::create(['name' => 'Metais', 'status' => 1]);
 		Material::create(['name' => 'Plásticos', 'status' => 1]);

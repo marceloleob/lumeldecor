@@ -41,14 +41,27 @@ class CreateForeignKeys extends Migration
 		});
 
 		// ADICIONA OS RELACIONAMENTOS
+		Schema::table('product_prices', function (Blueprint $table) {
+			$table->foreign('product_info_id')->references('id')->on('product_infos')->onDelete('no action')->onUpdate('no action');
+		});
+
+		// ADICIONA OS RELACIONAMENTOS
 		Schema::table('product_photos', function (Blueprint $table) {
 			$table->foreign('product_info_id')->references('id')->on('product_infos')->onDelete('no action')->onUpdate('no action');
+		});
+
+		// ADICIONA OS RELACIONAMENTOS
+		Schema::table('product_colors', function (Blueprint $table) {
+			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('product_info_id')->references('id')->on('product_infos')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('product_photo_id')->references('id')->on('product_photos')->onDelete('no action')->onUpdate('no action');
 			$table->foreign('color_id')->references('id')->on('colors')->onDelete('no action')->onUpdate('no action');
 		});
 
 		// ADICIONA OS RELACIONAMENTOS
-		Schema::table('product_prices', function (Blueprint $table) {
-			$table->foreign('product_info_id')->references('id')->on('product_infos')->onDelete('no action')->onUpdate('no action');
+		Schema::table('product_themes', function (Blueprint $table) {
+			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict')->onUpdate('no action');
+			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('no action')->onUpdate('no action');
 		});
 
 		// ADICIONA OS RELACIONAMENTOS
@@ -105,6 +118,12 @@ class CreateForeignKeys extends Migration
 		});
 
 		// REMOVE OS RELACIONAMENTOS
+		Schema::table('product_prices', function (Blueprint $table) {
+			$table->dropForeign('product_prices_product_info_id_foreign');
+			$table->dropColumn('product_info_id');
+		});
+
+		// REMOVE OS RELACIONAMENTOS
 		Schema::table('product_photos', function (Blueprint $table) {
 			$table->dropForeign('product_photos_product_info_id_foreign');
 			$table->dropColumn('product_info_id');
@@ -113,9 +132,23 @@ class CreateForeignKeys extends Migration
 		});
 
 		// REMOVE OS RELACIONAMENTOS
-		Schema::table('product_prices', function (Blueprint $table) {
-			$table->dropForeign('product_prices_product_info_id_foreign');
+		Schema::table('product_colors', function (Blueprint $table) {
+			$table->dropForeign('product_colors_product_id_foreign');
+			$table->dropColumn('product_id');
+			$table->dropForeign('product_colors_product_info_id_foreign');
 			$table->dropColumn('product_info_id');
+			$table->dropForeign('product_colors_product_photo_id_foreign');
+			$table->dropColumn('product_photo_id');
+			$table->dropForeign('product_colors_color_id_foreign');
+			$table->dropColumn('color_id');
+		});
+
+		// REMOVE OS RELACIONAMENTOS
+		Schema::table('product_themes', function (Blueprint $table) {
+			$table->dropForeign('product_themes_product_id_foreign');
+			$table->dropColumn('product_id');
+			$table->dropForeign('product_themes_theme_id_foreign');
+			$table->dropColumn('theme_id');
 		});
 
 		// REMOVE OS RELACIONAMENTOS

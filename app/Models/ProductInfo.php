@@ -23,7 +23,6 @@ class ProductInfo extends Base
 		'product_id',
 		'size',
 		'weight',
-		'amount',
 		'height',
 		'width',
 		'length',
@@ -40,17 +39,17 @@ class ProductInfo extends Base
 	}
 
 	/**
-	 * Get the photos about this product.
+	 * Get the photos about this product info.
 	 *
 	 * @return photos
 	 */
-	public function photos()
+	public function productPhoto()
 	{
 		return $this->hasMany('App\Models\ProductPhoto');
 	}
 
 	/**
-	 * Get the product price about this product.
+	 * Get the product price about this product info.
 	 *
 	 */
 	public function productPrice()
@@ -59,7 +58,16 @@ class ProductInfo extends Base
 	}
 
 	/**
-	 * Get the supplier price about this product.
+	 * Get the product color about this product info.
+	 *
+	 */
+	public function productColor()
+	{
+		return $this->hasMany('App\Models\ProductColor');
+	}
+
+	/**
+	 * Get the supplier price about this product info.
 	 *
 	 */
 	public function supplierPrice()

@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->bigIncrements('id');
 			$table->bigInteger('user_id')->unsigned()->nullable();
 			$table->bigInteger('city_id')->unsigned();
-			$table->string('document', 11)->unique();
+			$table->string('document', 14)->unique();
 			$table->string('telephone', 14)->nullable();
 			$table->string('cellphone', 15);
 			$table->string('address', 100);

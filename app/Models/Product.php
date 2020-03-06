@@ -54,4 +54,13 @@ class Product extends Base
 	{
 		return $this->hasMany('App\Models\ProductInfo');
 	}
+
+	/**
+	 * Get the product color about this product.
+	 *
+	 */
+	public function productColor()
+	{
+		return $this->hasMany('App\Models\ProductColor');
+	}
 }

@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
     {
 		// limpa a tabela
 		DB::table('users')->delete();
-		// adiciona os primeiros registros
+		// cria os registros
 		User::create([
 			'name'      => 'Marcelo Leopold',
 			'email'     => 'marceloleob@gmail.com',
@@ -35,6 +35,13 @@ class UsersTableSeeder extends Seeder
 			'email'     => 'ricardo@lumeldecor.com.br',
 			'password'  => bcrypt('123456'),
 			'rule'      => 1,
+			'status'    => 1,
+		]);
+		User::create([
+			'name'      => 'Paula Silveira Braga',
+			'email'     => 'paulinhasb06@hotmail.com',
+			'password'  => bcrypt('paulinha06'),
+			'rule'      => 2,
 			'status'    => 1,
 		]);
     }
