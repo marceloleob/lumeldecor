@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Exception;
 
 class Base extends Model
@@ -15,6 +16,9 @@ class Base extends Model
 	 */
 	public static function store($data = [])
 	{
+		// inicia o acoplamento de uma transacao
+		DB::beginTransaction();
+
 		try {
 			// verifica qual acao
 			if (!empty($data['id'])) {
@@ -22,13 +26,47 @@ class Base extends Model
 				$entity = self::find($data['id']);
 				// realiza o update
 				$entity->update($data);
+
+				// efetiva a transacao
+				DB::commit();
 				// retorna a entidade atualizada
 				return $entity;
+
 			} else {
 				// realiza o save e retorna o objeto
 				return self::create($data);
 			}
 		} catch (Exception $exception) {
+			// descarta a transacao
+			DB::rollback();
+			// retorna o erro
+			throw new Exception($exception);
+		}
+	}
+
+	/**
+	 * Altera o status do registro
+	 *
+	 * @param int $id
+	 * @return array
+	 */
+	public static function toggleStatus($id)
+	{
+		// inicia o acoplamento de uma transacao
+		DB::beginTransaction();
+
+		try {
+			$entity = self::find($id);
+			$entity->status = !$entity->status;
+			$entity->save();
+			// efetiva a transacao
+			DB::commit();
+			// retorna a entidade atualizada
+			return $entity;
+
+		} catch (Exception $exception) {
+			// descarta a transacao
+			DB::rollback();
 			// retorna o erro
 			throw new Exception($exception);
 		}
