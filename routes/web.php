@@ -36,6 +36,8 @@ Route::group(['namespace' => 'Site'], function ()
  */
 Route::group(['middleware' => 'auth', 'namespace' => 'Ajax', 'prefix' => 'ajax'], function ()
 {
+	// Toggle Status
+	Route::post('toggle-status', 'ToggleController@status');
 	// // Carrega combos AJAX
 	// Route::post('combo-categorias', 'CategoryController@loadCombo');
 
@@ -52,7 +54,30 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 {
 	// Home
 	Route::get('/', 'DashboardController@index')->name('dashboard');
+	// Products
+	Route::get('materiais', 'MaterialController@index')->name('materials');
 
+	Route::get('categorias', 'CategoryController@index')->name('categories');
+	Route::post('categorias', 'CategoryController@index')->name('categories-search');
+
+	Route::get('editar-categoria/{id}/{page}', 'CategoryController@edit')->name('category-form');
+	Route::get('desativar-categoria/{id}/{page}', 'CategoryController@destroy')->name('category-destroy');
+
+	Route::get('temas', 'ThemeController@index')->name('themes');
+	Route::get('colores', 'ColorController@index')->name('colors');
+	Route::get('produtos', 'ProductController@index')->name('products');
+	// Store
+	Route::get('descontos', 'DiscountController@index')->name('discounts');
+	Route::get('promocoes', 'PromotionController@index')->name('promotions');
+	Route::get('encomendas', 'OrderController@index')->name('orders');
+	Route::get('estoques', 'StockController@index')->name('stocks');
+	Route::get('mensagens', 'PostController@index')->name('posts');
+	// Client
+	Route::get('clientes', 'ClientController@index')->name('clients');
+	// Suppliers
+	Route::get('fornecedores', 'SupplierController@index')->name('suppliers');
+	// Config
+	Route::get('informacoes', 'InfoController@index')->name('infos');
 
 });
 

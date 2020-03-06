@@ -13,14 +13,14 @@ class Macros extends FormBuilder
 	 * @param Collection $errors
 	 * @return void
 	 */
-	public static function boxMessage($errors)
+	public static function boxNotification($errors)
 	{
 		// verifica o tipo do erro
 		if ($errors->any()) {
 			return self::requestErrors($errors);
 		}
 
-		return self::flashErrors();
+		return self::flashMessage();
 	}
 
 	/**
@@ -28,7 +28,7 @@ class Macros extends FormBuilder
 	 *
 	 * @return HTML
 	 */
-	public static function flashErrors()
+	public static function flashMessage()
 	{
 		// seta os alertas
 		$alerts = [];
