@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Services\CategoryService;
+
 class BaseService
 {
     /**
@@ -81,10 +83,38 @@ class BaseService
 			if ($array->status == config('constants.ACTIVE')) {
                 // seta ativo como default
                 $array->status = ['class' => 'success', 'label' => 'Ativo'];
+                $array->trash  = ['class' => 'btn-outline-danger', 'label' => 'fa-trash-alt'];
 			} else {
                 // seta inativo como default
 				$array->status = ['class' => 'danger', 'label' => 'Inativo'];
+				$array->trash  = ['class' => 'btn-outline-success', 'label' => 'fa-check'];
             }
 		});
+	}
+
+	/**
+	 * Retorna uma instancia do Servico solicitado
+	 *
+	 * @param string $model
+	 * @return string
+	 */
+	public static function getService($model)
+	{
+		switch ($model) {
+			case 'category':
+				return CategoryService::class;
+			case 'color':
+				return CategoryService::class;
+			case 'customer':
+				return CategoryService::class;
+			case 'material':
+				return CategoryService::class;
+			case 'product':
+				return CategoryService::class;
+			case 'supplier':
+				return CategoryService::class;
+			default:
+				return false;
+		}
 	}
 }
