@@ -38,7 +38,7 @@ class SupplierPrice extends Base
 	 * Get the product that owns the supplier price.
 	 *
 	 */
-	public function product()
+	public function productInfo()
 	{
 		return $this->belongsTo('App\Models\ProductInfo');
 	}

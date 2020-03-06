@@ -15,5 +15,7 @@ class ColorsTableSeeder extends Seeder
     {
 		// limpa a tabela
 		DB::table('colors')->delete();
+		// cria os registros
+		Color::create(['name' => '', 'hexa' => '', 'status' => 1]);
     }
 }

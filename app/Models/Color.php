@@ -26,11 +26,11 @@ class Color extends Base
 	];
 
 	/**
-	 * Get the product about this color.
+	 * Get the product photo about this color.
 	 *
 	 */
-	public function product()
+	public function productPhoto()
 	{
-		return $this->hasMany('App\Models\ProductInfo');
+		return $this->hasMany('App\Models\ProductPhoto');
 	}
 }

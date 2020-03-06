@@ -21,10 +21,9 @@ class ProductInfo extends Base
 	protected $fillable = [
 		'id',
 		'product_id',
-		'color_id',
-		'amount',
 		'size',
 		'weight',
+		'amount',
 		'height',
 		'width',
 		'length',
@@ -41,12 +40,13 @@ class ProductInfo extends Base
 	}
 
 	/**
-	 * Get the color that owns the product info.
+	 * Get the photos about this product.
 	 *
+	 * @return photos
 	 */
-	public function color()
+	public function photos()
 	{
-		return $this->belongsTo('App\Models\Color');
+		return $this->hasMany('App\Models\ProductPhoto');
 	}
 
 	/**

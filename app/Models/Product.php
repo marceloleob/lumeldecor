@@ -54,14 +54,4 @@ class Product extends Base
 	{
 		return $this->hasMany('App\Models\ProductInfo');
 	}
-
-	/**
-	 * Get the photos about this product.
-	 *
-	 * @return photos
-	 */
-	public function photos()
-	{
-		return $this->hasMany('App\Models\ProductPhoto');
-	}
 }

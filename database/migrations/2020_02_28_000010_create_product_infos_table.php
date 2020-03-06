@@ -17,10 +17,9 @@ class CreateProductInfosTable extends Migration
         Schema::create('product_infos', function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->bigInteger('product_id')->unsigned();
-			$table->bigInteger('color_id')->unsigned();
-			$table->integer('amount');
 			$table->char('size', 3);
 			$table->decimal('weight', 4, 2)->nullable();
+			$table->integer('amount');
 			$table->decimal('height', 4, 2)->nullable();
 			$table->decimal('width', 4, 2)->nullable();
 			$table->decimal('length', 4, 2)->nullable();

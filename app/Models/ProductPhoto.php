@@ -20,19 +20,30 @@ class ProductPhoto extends Base
 	 */
 	protected $fillable = [
 		'id',
-		'product_id',
+		'product_info_id',
+		'color_id',
 		'name',
 		'extension',
 		'size',
 		'position',
+		'aumont',
 	];
 
 	/**
-	 * Get the product that owns the photo.
+	 * Get the product info that owns the photo.
 	 *
 	 */
-	public function product()
+	public function productInfo()
 	{
-		return $this->belongsTo('App\Models\Product');
+		return $this->belongsTo('App\Models\ProductInfo');
+	}
+
+	/**
+	 * Get the color that owns the photo.
+	 *
+	 */
+	public function color()
+	{
+		return $this->belongsTo('App\Models\Color');
 	}
 }
