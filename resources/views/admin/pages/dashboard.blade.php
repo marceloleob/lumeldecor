@@ -9,7 +9,8 @@
 					<i class="fas fa-chart-line icon-gradient bg-ripe-malin">
 					</i>
 				</div>
-				<div>Resumos Administrativos
+				<div>
+					Resumos Administrativos
 					<div class="page-title-subheading">Este painel mostra os resumos da empresa LuMel Decor.</div>
 				</div>
 			</div>
