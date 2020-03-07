@@ -2,33 +2,31 @@
 
 namespace App\Services;
 
-use App\Models\Category;
+use App\Models\User;
 use App\Services\BaseService;
 use Exception;
 
-class CategoryService extends BaseService
+class UserService extends BaseService
 {
-    /**
-     * Monta a lista com paginacao
-     *
-     * @return array
-     */
-    public static function list($request)
-    {
+	/**
+	 * Monta a lista com paginacao
+	 *
+	 * @return array
+	 */
+	public static function list($request)
+	{
 		// retorna a query para a busca do grid
-		$query = Category::with(['material' => function ($subQuery) {
-			$subQuery->orderBy('name', 'ASC');
-		}]);
+		$query = User::orderBy('name', 'ASC');
 
 		// verifica se buscou algum item especifico
 		if (!empty($request['search'])) {
 			$query->where('name', 'LIKE', '%' . $request['search'] . '%');
 		}
 
-        // cria uma collection com pagination para montar o grid
-        parent::handlePagination($query);
-        // efetua o tratamento no collection
-        static::customCollection();
+		// cria uma collection com pagination para montar o grid
+		parent::handlePagination($query);
+		// efetua o tratamento no collection
+		static::customCollection();
 
 		return [
 			'data'     => parent::$collection,
@@ -45,13 +43,20 @@ class CategoryService extends BaseService
 	public static function toggleStatus($id)
 	{
 		try {
+			// busca o usuario
+			$user = User::find($id);
+			// verifica se ele e um administrador
+			if ($user->rule == User::$rules['ADMIN']) {
+				throw new Exception('Este usuário não pode ser desativado!');
+			}
+
 			// executa a acao direto do Model
-			$entity = Category::toggleStatus($id);
+			$entity = User::toggleStatus($id);
 
 			// retorna a entidade criada ou atualizada
 			return [
 				'type'    => 'success',
-				'message' => 'A categoria ' . $entity->name . ' foi ' . ($entity->status == true) ? 'ativada' : 'desativada!',
+				'message' => 'O usuário ' . $entity->name . ' foi ' . ($entity->status == true) ? 'ativado' : 'desativado!',
 				'current' => $entity->status,
 				'error'   => '',
 			];
@@ -60,10 +65,9 @@ class CategoryService extends BaseService
 			// retorna a entidade criada ou atualizada
 			return [
 				'type'    => 'error',
-				'message' => 'Erro ao ativar/desativar a categoria ' . $id,
+				'message' => 'Erro ao ativar/desativar o usuário ' . $id,
 				'error'   => $exception,
 			];
 		}
 	}
-
 }

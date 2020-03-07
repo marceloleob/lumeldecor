@@ -58,7 +58,7 @@ class MaterialService extends BaseService
 			// retorna a entidade criada ou atualizada
 			return [
 				'type'    => 'error',
-				'message' => 'Erro ao desativar o material ' . $id,
+				'message' => 'Erro ao ativar/desativar o material ' . $id,
 				'error'   => $exception,
 			];
 		}

@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Services\BaseService;
 
-class ToggleService extends BaseService
+class AjaxService extends BaseService
 {
 	/**
 	 * Encontrar o servico responsavel pelo registro que sera alterado

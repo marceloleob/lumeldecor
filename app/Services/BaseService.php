@@ -102,15 +102,25 @@ class BaseService
 			case 'category':
 				return CategoryService::class;
 			case 'color':
-				return CategoryService::class;
+				return ColorService::class;
 			case 'customer':
-				return CategoryService::class;
+				return CustomerService::class;
+			case 'email':
+				return EmailService::class;
 			case 'material':
 				return MaterialService::class;
+			case 'offer-coupon':
+				return OfferCouponService::class;
+			case 'offer-promotion':
+				return OfferPromotionService::class;
 			case 'product':
-				return CategoryService::class;
+				return ProductService::class;
 			case 'supplier':
-				return CategoryService::class;
+				return SupplierService::class;
+			case 'theme':
+				return ThemeService::class;
+			case 'user':
+				return UserService::class;
 			default:
 				return false;
 		}
