@@ -25,7 +25,7 @@ class CreateCustomersTable extends Migration
 			$table->string('number', 10)->nullable();
 			$table->string('comp', 20)->nullable();
 			$table->string('neighborhood', 100);
-			$table->string('zipcode', 8);
+			$table->string('zipcode', 9);
 			$table->boolean('status')->default(0);
 			$table->timestamps();
         });

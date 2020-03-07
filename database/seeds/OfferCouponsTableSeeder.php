@@ -19,8 +19,8 @@ class OfferCouponsTableSeeder extends Seeder
 		OfferCoupon::create([
 			'name'       => 'Cupom de Teste',
 			'code'       => 'TESTE123',
-			'start_date' => '03-01-2020',
-			'finish_date' => '03-31-2020',
+			'start_date' => '2020-03-01',
+			'finish_date' => '2020-03-31',
 			'status'     => 1
 		]);
     }

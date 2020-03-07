@@ -23,8 +23,8 @@ class OfferPromotionsTableSeeder extends Seeder
 			'product_id'  => '',
 			'kind'        => 'P',
 			'value'       => '10',
-			'start_date'  => '03-01-2020',
-			'finish_date'  => '03-31-2020',
+			'start_date'  => '2020-03-01',
+			'finish_date'  => '2020-03-31',
 			'status'      => 1
 		]);
     }
