@@ -15,10 +15,10 @@ class CreateOfferPromotionsTable extends Migration
     {
         Schema::create('offer_promotions', function (Blueprint $table) {
 			$table->bigIncrements('id');
-			$table->bigInteger('material_id')->unsigned()->nullable();
-			$table->bigInteger('category_id')->unsigned()->nullable();
-			$table->bigInteger('theme_id')->unsigned()->nullable();
-			$table->bigInteger('product_id')->unsigned()->nullable();
+			$table->bigInteger('material_id')->nullable()->unsigned();
+			$table->bigInteger('category_id')->nullable()->unsigned();
+			$table->bigInteger('theme_id')->nullable()->unsigned();
+			$table->bigInteger('product_id')->nullable()->unsigned();
 			$table->enum('kind', ['V', 'P']);
 			$table->decimal('value', 7, 2);
 			$table->date('start_date');

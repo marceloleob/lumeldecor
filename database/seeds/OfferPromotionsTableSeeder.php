@@ -17,10 +17,10 @@ class OfferPromotionsTableSeeder extends Seeder
 		DB::table('offer_promotions')->delete();
 		// cria os registros
 		OfferPromotion::create([
-			'material_id' => '',
-			'category_id' => '',
+			'material_id' => null,
+			'category_id' => null,
 			'theme_id'    => 12,
-			'product_id'  => '',
+			'product_id'  => null,
 			'kind'        => 'P',
 			'value'       => '10',
 			'start_date'  => '2020-03-01',
