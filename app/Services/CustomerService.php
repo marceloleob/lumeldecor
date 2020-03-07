@@ -16,12 +16,13 @@ class CustomerService extends BaseService
 	public static function list($request)
 	{
 		// retorna a query para a busca do grid
-		$query = Customer::orderBy('name', 'ASC');
-
-		// verifica se buscou algum item especifico
-		if (!empty($request['search'])) {
-			$query->where('name', 'LIKE', '%' . $request['search'] . '%');
-		}
+		$query = Customer::with(['user' => function ($subQuery) use ($request) {
+			$subQuery->orderBy('name', 'ASC');
+			// verifica se buscou algum item especifico
+			if (!empty($request['search'])) {
+				$subQuery->where('name', 'LIKE', '%' . $request['search'] . '%');
+			}
+		}]);
 
 		// cria uma collection com pagination para montar o grid
 		parent::handlePagination($query);
