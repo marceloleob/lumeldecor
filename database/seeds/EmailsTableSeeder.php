@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Email;
+use App\Models\Post;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class EmailsTableSeeder extends Seeder
+class PostsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class EmailsTableSeeder extends Seeder
     public function run()
     {
 		// limpa a tabela
-		DB::table('emails')->delete();
+		DB::table('posts')->delete();
     }
 }

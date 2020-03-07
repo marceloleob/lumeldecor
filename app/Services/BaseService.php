@@ -105,16 +105,20 @@ class BaseService
 				return ColorService::class;
 			case 'customer':
 				return CustomerService::class;
-			case 'email':
-				return EmailService::class;
+			case 'post':
+				return PostService::class;
 			case 'material':
 				return MaterialService::class;
 			case 'offer-coupon':
 				return OfferCouponService::class;
 			case 'offer-promotion':
 				return OfferPromotionService::class;
+			case 'order':
+				return OrderService::class;
 			case 'product':
 				return ProductService::class;
+			case 'stock':
+				return StockService::class;
 			case 'supplier':
 				return SupplierService::class;
 			case 'theme':

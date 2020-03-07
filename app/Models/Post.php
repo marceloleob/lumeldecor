@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Base;
 
-class Email extends Base
+class Post extends Base
 {
 	/**
 	 * Indicates if the model should be timestamped.

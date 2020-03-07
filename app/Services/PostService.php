@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\Email;
+use App\Models\Post;
 use App\Services\BaseService;
 use Exception;
 
-class EmailService extends BaseService
+class PostService extends BaseService
 {
 	/**
 	 * Monta a lista com paginacao
@@ -16,7 +16,7 @@ class EmailService extends BaseService
 	public static function list($request)
 	{
 		// retorna a query para a busca do grid
-		$query = Email::orderBy('name', 'ASC');
+		$query = Post::orderBy('name', 'ASC');
 
 		// verifica se buscou algum item especifico
 		if (!empty($request['search'])) {
