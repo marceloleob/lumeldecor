@@ -29,3 +29,25 @@ span.help-block {
 	margin-top: 10px;
 	color: #bd362f;
 }
+
+/* =========================================================================
+CUSTOMERS
+=========================================================================*/
+.card-no-records {
+	display: flex;
+	align-items: center;
+	border-bottom-width: 1px;
+	border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+	height: 10rem;
+	justify-content: center;
+	text-transform: uppercase;
+	color: rgba(13, 27, 62, 0.7);
+	font-weight: bold;
+	font-size: .88rem;
+}
+.swatch-holder-md {
+	width: 38px;
+	height: 38px;
+	line-height: 38px;
+	border: 2px solid #444054;
+}

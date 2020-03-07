@@ -55,28 +55,61 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	// Home
 	Route::get('/', 'DashboardController@index')->name('dashboard');
 	Route::get('painel', 'DashboardController@index')->name('dashboard');
-	// Products
+	// Materials
 	Route::get('materiais', 'MaterialController@index')->name('materials');
 	Route::post('materiais', 'MaterialController@index')->name('materials-search');
-	Route::get('editar-material/{id}/{page}', 'MaterialController@edit')->name('material-form');
-
+	Route::get('cadastrar-material', 'MaterialController@create')->name('material-form');
+	Route::post('cadastrar-material', 'MaterialController@store')->name('material-store');
+	Route::get('editar-material/{id}/{page}', 'MaterialController@edit')->name('material-edit');
+	// Categories
 	Route::get('categorias', 'CategoryController@index')->name('categories');
 	Route::post('categorias', 'CategoryController@index')->name('categories-search');
-	Route::get('editar-categoria/{id}/{page}', 'CategoryController@edit')->name('category-form');
-
+	Route::get('cadastrar-categoria', 'CategoryController@create')->name('category-form');
+	Route::post('cadastrar-categoria', 'CategoryController@store')->name('category-store');
+	Route::get('editar-categoria/{id}/{page}', 'CategoryController@edit')->name('category-edit');
+	// Themes
 	Route::get('temas', 'ThemeController@index')->name('themes');
+	Route::post('temas', 'ThemeController@index')->name('themes-search');
+	Route::get('cadastrar-tema', 'ThemeController@create')->name('theme-form');
+	Route::post('cadastrar-tema', 'ThemeController@store')->name('theme-store');
+	Route::get('editar-tema/{id}/{page}', 'ThemeController@edit')->name('theme-edit');
+	// Colors
 	Route::get('cores', 'ColorController@index')->name('colors');
+	Route::post('cores', 'ColorController@index')->name('colors-search');
+	Route::get('cadastrar-cor', 'ColorController@create')->name('color-form');
+	Route::post('cadastrar-cor', 'ColorController@store')->name('color-store');
+	Route::get('editar-cor/{id}/{page}', 'ColorController@edit')->name('color-edit');
+	// Products
 	Route::get('produtos', 'ProductController@index')->name('products');
-	// Store
-	Route::get('descontos', 'DiscountController@index')->name('discounts');
+	Route::post('produtos', 'ProductController@index')->name('products-search');
+	Route::get('cadastrar-produto', 'ProductController@create')->name('product-form');
+	Route::post('cadastrar-produto', 'ProductController@store')->name('product-store');
+	Route::get('editar-produto/{id}/{page}', 'ProductController@edit')->name('product-edit');
+
+
+	// Offer Coupons
+	Route::get('cupons', 'DiscountController@index')->name('coupons');
+	// Offer Promotions
 	Route::get('promocoes', 'PromotionController@index')->name('promotions');
+	// Orders
 	Route::get('encomendas', 'OrderController@index')->name('orders');
+	// Stocks
 	Route::get('estoques', 'StockController@index')->name('stocks');
+	// Posts
 	Route::get('mensagens', 'PostController@index')->name('posts');
-	// Client
-	Route::get('clientes', 'ClientController@index')->name('clients');
+
+	// Customrs
+	Route::get('clientes', 'CustomerController@index')->name('customers');
+	Route::post('clientes', 'CustomerController@index')->name('customers-search');
+	Route::get('cadastrar-cliente', 'CustomerController@create')->name('customer-form');
+	Route::post('cadastrar-cliente', 'CustomerController@store')->name('customer-store');
+	Route::get('editar-cliente/{id}/{page}', 'CustomerController@edit')->name('customer-edit');
 	// Suppliers
 	Route::get('fornecedores', 'SupplierController@index')->name('suppliers');
+	Route::post('fornecedores', 'SupplierController@index')->name('suppliers-search');
+	Route::get('cadastrar-fornecedor', 'SupplierController@create')->name('supplier-form');
+	Route::post('cadastrar-fornecedor', 'SupplierController@store')->name('supplier-store');
+	Route::get('editar-fornecedor/{id}/{page}', 'SupplierController@edit')->name('supplier-edit');
 	// Config
 	Route::get('informacoes', 'InfoController@index')->name('infos');
 
