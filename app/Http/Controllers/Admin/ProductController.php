@@ -3,19 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-		return view('admin.pages.product-list');
-    }
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index(Request $request)
+	{
+		$params = ProductService::list($request);
+
+		return view('admin.pages.product-list')->with($params);
+	}
 
     /**
      * Show the form for creating a new resource.
