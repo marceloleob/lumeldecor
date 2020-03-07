@@ -60,7 +60,7 @@
 				<a href="javascript:void(0);"><i class="metismenu-icon fas fa-search-dollar"></i> Ofertas <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
 				<ul>
 					<li>
-						<a href="{!! route('discounts') !!}" class="{!! (request()->is('admin/descontos')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Cupons de Descontos</a>
+						<a href="{!! route('coupons') !!}" class="{!! (request()->is('admin/cupons')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Cupons de Descontos</a>
 					</li>
 					<li>
 						<a href="{!! route('promotions') !!}" class="{!! (request()->is('admin/promocoes')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Promoções</a>
@@ -79,7 +79,7 @@
 
 			<li class="app-sidebar__heading">CLIENTES</li>
 			<li>
-				<a href="{!! route('clients') !!}" class="{!! (request()->is('admin/clientes')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users"></i> Todos</a>
+				<a href="{!! route('customers') !!}" class="{!! (request()->is('admin/clientes')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users"></i> Todos</a>
 			</li>
 
 			<li class="app-sidebar__heading">FORNECEDORES</li>
