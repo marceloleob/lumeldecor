@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
 			UsersTableSeeder::class,
 			CustomersTableSeeder::class,
-			EmailsTableSeeder::class,
+			PostsTableSeeder::class,
 
 			MaterialsTableSeeder::class,
 			CategoriesTableSeeder::class,

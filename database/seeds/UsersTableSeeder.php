@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
 			'name'      => 'Paula Silveira Braga',
 			'email'     => 'paulinhasb06@hotmail.com',
 			'password'  => bcrypt('paulinha06'),
-			'rule'      => 2,
+			'rule'      => 4,
 			'status'    => 1,
 		]);
     }
