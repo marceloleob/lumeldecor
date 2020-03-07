@@ -45,9 +45,9 @@
 			<li>
 				<a href="{!! route('categories') !!}" class="{!! (request()->is('admin/categorias')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-store"></i> Categorias</a>
 			</li>
-			{{-- <li>
+			<li>
 				<a href="{!! route('themes') !!}" class="{!! (request()->is('admin/temas')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-star"></i> Temas</a>
-			</li> --}}
+			</li>
 			<li>
 				<a href="{!! route('colors') !!}" class="{!! (request()->is('admin/cores')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-palette"></i> Cores</a>
 			</li>
@@ -60,7 +60,7 @@
 				<a href="javascript:void(0);"><i class="metismenu-icon fas fa-search-dollar"></i> Ofertas <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
 				<ul>
 					<li>
-						<a href="{!! route('discounts') !!}" class="{!! (request()->is('admin/descontos')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Descontos</a>
+						<a href="{!! route('discounts') !!}" class="{!! (request()->is('admin/descontos')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Cupons de Descontos</a>
 					</li>
 					<li>
 						<a href="{!! route('promotions') !!}" class="{!! (request()->is('admin/promocoes')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Promoções</a>

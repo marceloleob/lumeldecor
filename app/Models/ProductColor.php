@@ -27,7 +27,7 @@ class ProductColor extends Base
 	];
 
 	/**
-	 * Get the product that owns the product info.
+	 * Get the product that owns the product color.
 	 *
 	 * @return Product
 	 */
@@ -37,7 +37,7 @@ class ProductColor extends Base
 	}
 
 	/**
-	 * Get the product info that owns the photo.
+	 * Get the product info that owns the product color.
 	 *
 	 */
 	public function productInfo()
@@ -46,7 +46,7 @@ class ProductColor extends Base
 	}
 
 	/**
-	 * Get the product photo that owns the photo.
+	 * Get the product photo that owns the product color.
 	 *
 	 */
 	public function productPhoto()
@@ -55,7 +55,7 @@ class ProductColor extends Base
 	}
 
 	/**
-	 * Get the color that owns the photo.
+	 * Get the color that owns the product color.
 	 *
 	 */
 	public function color()

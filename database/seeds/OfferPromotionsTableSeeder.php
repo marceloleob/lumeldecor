@@ -1,0 +1,31 @@
+<?php
+
+use App\Models\OfferPromotion;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class OfferPromotionsTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+		// limpa a tabela
+		DB::table('offer_promotions')->delete();
+		// cria os registros
+		OfferPromotion::create([
+			'material_id' => '',
+			'category_id' => '',
+			'theme_id'    => 12,
+			'product_id'  => '',
+			'kind'        => 'P',
+			'value'       => '10',
+			'start_date'  => '03-01-2020',
+			'finish_date'  => '03-31-2020',
+			'status'      => 1
+		]);
+    }
+}

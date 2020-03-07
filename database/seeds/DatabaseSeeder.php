@@ -34,6 +34,9 @@ class DatabaseSeeder extends Seeder
 			SuppliersTableSeeder::class,
 			SupplierContactsTableSeeder::class,
 			SupplierPricesTableSeeder::class,
+
+			OfferCouponsTableSeeder::class,
+			OfferPromotionsTableSeeder::class,
 		]);
     }
 }

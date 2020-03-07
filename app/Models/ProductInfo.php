@@ -39,6 +39,15 @@ class ProductInfo extends Base
 	}
 
 	/**
+	 * Get the price about this product info.
+	 *
+	 */
+	public function productPrice()
+	{
+		return $this->hasOne('App\Models\ProductPrice');
+	}
+
+	/**
 	 * Get the photos about this product info.
 	 *
 	 * @return photos
@@ -49,16 +58,7 @@ class ProductInfo extends Base
 	}
 
 	/**
-	 * Get the product price about this product info.
-	 *
-	 */
-	public function productPrice()
-	{
-		return $this->hasOne('App\Models\ProductPrice');
-	}
-
-	/**
-	 * Get the product color about this product info.
+	 * Get the color about this product info.
 	 *
 	 */
 	public function productColor()

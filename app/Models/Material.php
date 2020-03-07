@@ -25,11 +25,20 @@ class Material extends Base
 	];
 
 	/**
-	 * Get the category for the material.
+	 * Get the category about this material.
 	 *
 	 */
 	public function category()
 	{
 		return $this->hasMany('App\Models\Category');
+	}
+
+	/**
+	 * Get the promotion about this material.
+	 *
+	 */
+	public function promotion()
+	{
+		return $this->hasMany('App\Models\OfferPromotion');
 	}
 }

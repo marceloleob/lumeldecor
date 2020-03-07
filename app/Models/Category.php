@@ -42,4 +42,13 @@ class Category extends Base
 	{
 		return $this->hasMany('App\Models\Product');
 	}
+
+	/**
+	 * Get the promotion about this category.
+	 *
+	 */
+	public function promotion()
+	{
+		return $this->hasMany('App\Models\OfferPromotion');
+	}
 }

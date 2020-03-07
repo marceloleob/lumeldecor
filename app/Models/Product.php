@@ -56,11 +56,29 @@ class Product extends Base
 	}
 
 	/**
-	 * Get the product color about this product.
+	 * Get the colors about this product.
 	 *
 	 */
-	public function productColor()
+	public function colors()
 	{
 		return $this->hasMany('App\Models\ProductColor');
+	}
+
+	/**
+	 * Get the themes about this product.
+	 *
+	 */
+	public function themes()
+	{
+		return $this->hasMany('App\Models\ProductTheme');
+	}
+
+	/**
+	 * Get the promotion about this product.
+	 *
+	 */
+	public function promotion()
+	{
+		return $this->hasMany('App\Models\OfferPromotion');
 	}
 }

@@ -29,7 +29,7 @@ class SupplierContact extends Base
 	];
 
 	/**
-	 * Get the supplier about this contact
+	 * Get the supplier that owns the contact.
 	 *
 	 */
 	public function supplier()

@@ -29,7 +29,7 @@ class ProductPhoto extends Base
 	];
 
 	/**
-	 * Get the product info that owns the photo.
+	 * Get the product info that owns the product photo.
 	 *
 	 */
 	public function productInfo()

@@ -4,14 +4,14 @@ namespace App\Models;
 
 use App\Models\Base;
 
-class Color extends Base
+class OfferCoupon extends Base
 {
 	/**
 	 * Indicates if the model should be timestamped.
 	 *
 	 * @var bool
 	 */
-	public $timestamps = false;
+	public $timestamps = true;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -21,16 +21,9 @@ class Color extends Base
 	protected $fillable = [
 		'id',
 		'name',
-		'hexa',
+		'code',
+		'start_date',
+		'finish_date',
 		'status',
 	];
-
-	/**
-	 * Get the product color about this color.
-	 *
-	 */
-	public function productColor()
-	{
-		return $this->hasMany('App\Models\ProductColor');
-	}
 }
