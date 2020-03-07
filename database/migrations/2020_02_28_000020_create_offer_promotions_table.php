@@ -19,6 +19,7 @@ class CreateOfferPromotionsTable extends Migration
 			$table->bigInteger('category_id')->nullable()->unsigned();
 			$table->bigInteger('theme_id')->nullable()->unsigned();
 			$table->bigInteger('product_id')->nullable()->unsigned();
+			$table->string('name', 100);
 			$table->enum('kind', ['V', 'P']);
 			$table->decimal('value', 7, 2);
 			$table->date('start_date');

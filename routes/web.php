@@ -88,9 +88,17 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 
 
 	// Offer Coupons
-	Route::get('cupons', 'DiscountController@index')->name('coupons');
+	Route::get('cupons', 'OfferCouponController@index')->name('coupons');
+	Route::post('cupons', 'OfferCouponController@index')->name('coupons-search');
+	Route::get('cadastrar-cupom', 'OfferCouponController@create')->name('coupon-form');
+	Route::post('cadastrar-cupom', 'OfferCouponController@store')->name('coupon-store');
+	Route::get('editar-cupom/{id}/{page}', 'OfferCouponController@edit')->name('coupon-edit');
 	// Offer Promotions
-	Route::get('promocoes', 'PromotionController@index')->name('promotions');
+	Route::get('promocoes', 'OfferPromotionController@index')->name('promotions');
+	Route::post('promocoes', 'OfferPromotionController@index')->name('promotions-search');
+	Route::get('cadastrar-promocao', 'OfferPromotionController@create')->name('promotion-form');
+	Route::post('cadastrar-promocao', 'OfferPromotionController@store')->name('promotion-store');
+	Route::get('editar-promocao/{id}/{page}', 'OfferPromotionController@edit')->name('promotion-edit');
 	// Orders
 	Route::get('encomendas', 'OrderController@index')->name('orders');
 	// Stocks
@@ -98,7 +106,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	// Posts
 	Route::get('mensagens', 'PostController@index')->name('posts');
 
-	// Customrs
+	// Customers
 	Route::get('clientes', 'CustomerController@index')->name('customers');
 	Route::post('clientes', 'CustomerController@index')->name('customers-search');
 	Route::get('cadastrar-cliente', 'CustomerController@create')->name('customer-form');

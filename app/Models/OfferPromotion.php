@@ -24,6 +24,7 @@ class OfferPromotion extends Base
 		'category_id',
 		'theme_id',
 		'product_id',
+		'name',
 		'kind',
 		'value',
 		'start_date',

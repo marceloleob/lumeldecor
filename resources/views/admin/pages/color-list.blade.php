@@ -53,9 +53,9 @@
 						<thead>
 							<tr>
 								<th width="10%" class="text-center"><b>Código</b></th>
-								<th width="10%" class="text-center"><b>Cor</b></th>
-								<th width="50%" class="text-left"><b>nome</b></th>
-								<th width="15%" class="text-center"><b>Status</b></th>
+								<th width="5%" class="text-center"><b>Cor</b></th>
+								<th width="60%" class="text-left"><b>Nome</b></th>
+								<th width="10%" class="text-center"><b>Status</b></th>
 								<th width="15%" class="text-center"><b>Ações</b></th>
 							</tr>
 						</thead>
@@ -64,7 +64,7 @@
 							<tr>
 								<td class="text-center text-muted">{!! $item->id !!}</td>
 								<td class="text-center">
-									<div class="swatch-holder swatch-holder-md" style="background-color: {!! $item->hexa !!}"></div>
+									<div class="swatch-holder-md" style="background-color: {!! $item->hexa !!}"></div>
 								</td>
 								<td class="text-left">{!! $item->name !!}</td>
 								<td class="text-center">

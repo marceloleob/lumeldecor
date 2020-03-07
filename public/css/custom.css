@@ -50,4 +50,6 @@ CUSTOMERS
 	height: 38px;
 	line-height: 38px;
 	border: 2px solid #444054;
+	border-radius: 30px;
+	opacity: 1;
 }
