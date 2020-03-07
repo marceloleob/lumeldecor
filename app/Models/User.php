@@ -62,4 +62,16 @@ class User extends Authenticatable
 	{
 		return $this->hasOne('App\Models\Customer');
 	}
+
+	/**
+	 * The attributes that should be rules.
+	 *
+	 * @var array
+	 */
+	public static $rules = [
+		'ADMIN'    => 1, // ADMINISTRATOR
+		'SELLER'   => 2, // VENDEDOR
+		'SUPPLIER' => 3, // VENDEDOR
+		'CUSTOMER' => 4, // CLIENTE
+	];
 }
