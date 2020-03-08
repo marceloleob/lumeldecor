@@ -19,7 +19,7 @@ class CustomersTableSeeder extends Seeder
 		Customer::create([
 			'user_id'      => 6,      // Luana
 			'city_id'      => 1403,   // Belo Horizonte
-			'document'     => '111.713.846-10',
+			'document'     => '251.844.352-55',
 			'telephone'    => '',
 			'cellphone'    => '(31) 99999-9999',
 			'address'      => 'Rua Senhora do Porto',
