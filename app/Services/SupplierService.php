@@ -16,7 +16,7 @@ class SupplierService extends BaseService
 	public static function list($request)
 	{
 		// retorna a query para a busca do grid
-		$query = Supplier::with(['contact' => function ($subQuery) use ($request) {
+		$query = Supplier::with(['contacts' => function ($subQuery) use ($request) {
 			$subQuery->orderBy('name', 'ASC')->first();
 			// verifica se buscou algum item especifico
 			if (!empty($request['search'])) {
@@ -50,7 +50,7 @@ class SupplierService extends BaseService
 			// retorna a entidade criada ou atualizada
 			return [
 				'type'    => 'success',
-				'message' => 'O fornecedor ' . $entity->name . ' foi ' . ($entity->status == true) ? 'ativado' : 'desativado!',
+				'message' => 'O fornecedor ' . $entity->name . ' foi ' . (($entity->status == true) ? 'ativado' : 'desativado!'),
 				'current' => $entity->status,
 				'error'   => '',
 			];

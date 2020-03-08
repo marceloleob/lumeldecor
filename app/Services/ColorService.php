@@ -49,7 +49,7 @@ class ColorService extends BaseService
 			// retorna a entidade criada ou atualizada
 			return [
 				'type'    => 'success',
-				'message' => 'A cor ' . $entity->name . ' foi ' . ($entity->status == true) ? 'ativada' : 'desativada!',
+				'message' => 'A cor ' . $entity->name . ' foi ' . (($entity->status == true) ? 'ativada' : 'desativada!'),
 				'current' => $entity->status,
 				'error'   => '',
 			];

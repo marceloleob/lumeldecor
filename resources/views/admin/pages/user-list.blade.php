@@ -6,7 +6,7 @@
 	<div class="page-title-wrapper">
 		<div class="page-title-heading">
 			<div class="page-title-icon">
-				<i class="fas fa-palette icon-gradient bg-plum-plate"></i>
+				<i class="fas fa-users-cog icon-gradient bg-plum-plate"></i>
 			</div>
 			<div>
 				Usuários
@@ -63,7 +63,7 @@
 							@foreach ($data as $item)
 							<tr>
 								<td class="text-center text-muted">{!! $item->id !!}</td>
-								<td class="text-left">{!! $item->name !!}</td>
+								<td class="text-left">{!! $item->rules->name !!}</td>
 								<td class="text-left">{!! $item->name !!}</td>
 								<td class="text-center">
 									<div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div>

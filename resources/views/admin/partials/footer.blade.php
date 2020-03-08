@@ -17,3 +17,11 @@
 {!! Form::open(['id' => 'form-logout', 'route' => 'logout', 'method' => 'POST', 'style' => 'display: none;']) !!}
 	{!! csrf_field() !!}
 {!! Form::close() !!}
+
+<div id="toast-container" class="toast-top-right">
+	<div class="toast toast-error" aria-live="assertive" style="">
+		<button type="button" class="toast-close-button" role="button">×</button>
+		<div class="toast-title">Erro</div>
+		<div class="toast-message" id="toast-message"></div>
+	</div>
+</div>

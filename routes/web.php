@@ -124,6 +124,8 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('cadastrar-usuario', 'UserController@create')->name('user-form');
 	Route::post('cadastrar-usuario', 'UserController@store')->name('user-store');
 	Route::get('editar-usuario/{id}/{page}', 'UserController@edit')->name('user-edit');
+	// Profile
+	Route::get('meus-dados', 'UserController@index')->name('profile');
 
 });
 

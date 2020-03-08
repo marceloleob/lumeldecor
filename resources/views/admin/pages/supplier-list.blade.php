@@ -66,9 +66,9 @@
 							<tr>
 								<td class="text-center text-muted">{!! $item->code !!}</td>
 								<td class="text-left">{!! $item->company !!}</td>
-								<td class="text-left">{!! $item->contact[0]->name !!}</td>
-								<td class="text-left">{!! $item->contact[0]->email !!}</td>
-								<td class="text-center">{!! $item->contact[0]->cellphone !!}</td>
+								<td class="text-left">{!! $item->contacts[0]->name !!}</td>
+								<td class="text-left">{!! $item->contacts[0]->email !!}</td>
+								<td class="text-center">{!! $item->contacts[0]->cellphone !!}</td>
 								<td class="text-center">
 									<div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div>
 								</td>

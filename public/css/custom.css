@@ -70,3 +70,7 @@ CUSTOMERS
 	text-decoration: none !important;
 	outline: none;
 }
+#toast-container {
+	display: none;
+	top: 70px;
+}

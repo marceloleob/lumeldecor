@@ -19,9 +19,25 @@ $(document).ready(function () {
 	}, 5000).fadeOut('slow');
 
 	/**
+	 * Mostra a mensagem de retorno por 5 segundos
+	 */
+	$('#toast-container').animate({
+		opacity: 1.0
+	}, 5000).fadeOut('slow');
+
+	/**
 	 * Fecha a mensagem caso seja clicada
 	 */
 	$('.alert .close').click(function (e) {
+		e.preventDefault();
+		$(this).parent().parent().fadeOut('slow');
+		return false;
+	});
+
+	/**
+	 * Fecha a mensagem caso seja clicada
+	 */
+	$('.toast-close-button').click(function (e) {
 		e.preventDefault();
 		$(this).parent().parent().fadeOut('slow');
 		return false;
@@ -57,10 +73,6 @@ $(document).ready(function () {
 		var code = element.data('id');
 		var model = element.data('model');
 
-
-
-		//console.log(element.children);
-		//console.log(element);
 		$.ajax({
 			url: '/ajax/toggle-status',
 			type: 'POST',
@@ -71,8 +83,10 @@ $(document).ready(function () {
 			},
 			success: function (response)
 			{
+				// mostra a mensagem
+				showToast(response);
+				// verifica se foi sucesso
 				if (response.type == 'success') {
-					//element.next('i').slideToggle('500');
 					// Altera o icone da lixeira
 					element.toggleClass('btn-outline-danger btn-outline-success');
 					element.find('i').toggleClass('fa-trash-alt fa-check');
@@ -84,4 +98,13 @@ $(document).ready(function () {
 		});
 	}
 
+	function showToast(response)
+	{
+		console.log(response);
+		// verifica se foi sucesso
+		if (response.type == 'error') {
+			document.getElementById('toast-message').innerHTML = response.error;
+			$('#toast-container').show();
+		}
+	}
 });

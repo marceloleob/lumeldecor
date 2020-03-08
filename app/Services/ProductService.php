@@ -49,7 +49,7 @@ class ProductService extends BaseService
 			// retorna a entidade criada ou atualizada
 			return [
 				'type'    => 'success',
-				'message' => 'O produto ' . $entity->name . ' foi ' . ($entity->status == true) ? 'ativado' : 'desativado!',
+				'message' => 'O produto ' . $entity->name . ' foi ' . (($entity->status == true) ? 'ativado' : 'desativado!'),
 				'current' => $entity->status,
 				'error'   => '',
 			];

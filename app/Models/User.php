@@ -6,6 +6,8 @@ use App\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 class User extends Authenticatable
 {
@@ -58,9 +60,9 @@ class User extends Authenticatable
 	 * Get the rule that owns the user.
 	 *
 	 */
-	public function rule()
+	public function rules()
 	{
-		return $this->belongsTo('App\Models\UserRule');
+		return $this->belongsTo('App\Models\UserRule', 'user_rule_id');
 	}
 
 	/**
@@ -70,5 +72,32 @@ class User extends Authenticatable
 	public function customer()
 	{
 		return $this->hasOne('App\Models\Customer');
+	}
+
+	/**
+	 * Altera o status do registro
+	 *
+	 * @param int $id
+	 * @return array
+	 */
+	public static function toggleStatus($id)
+	{
+		// inicia o acoplamento de uma transacao
+		DB::beginTransaction();
+
+		try {
+			$entity = self::find($id);
+			$entity->status = !$entity->status;
+			$entity->save();
+			// efetiva a transacao
+			DB::commit();
+			// retorna a entidade atualizada
+			return $entity;
+		} catch (Exception $exception) {
+			// descarta a transacao
+			DB::rollback();
+			// retorna o erro
+			throw new Exception($exception);
+		}
 	}
 }

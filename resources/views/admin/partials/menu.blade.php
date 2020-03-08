@@ -87,12 +87,14 @@
 				<a href="{!! route('suppliers') !!}" class="{!! (request()->is('admin/fornecedores')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-tie"></i> Todos</a>
 			</li>
 
+			<li class="app-sidebar__heading">USUÁRIOS</li>
+			<li>
+				<a href="{!! route('users') !!}" class="{!! (request()->is('admin/usuarios')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users-cog"></i> Todos</a>
+			</li>
+
 			<li class="app-sidebar__heading">CONFIGURAÇÕES</li>
 			<li>
-				<a href="{!! route('users') !!}" class="{!! (request()->is('admin/usuarios')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-cog"></i> Gerenciar Usuários</a>
-			</li>
-			<li>
-				<a href="{!! route('users') !!}" class="{!! (request()->is('admin/usuarios')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-cog"></i> Minhas Informações</a>
+				<a href="{!! route('profile') !!}" class="{!! (request()->is('admin/meus-dados')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-cog"></i> Meus dados</a>
 			</li>
 			<li>
 				<a href="javascript:void(0);" class="logout"><i class="metismenu-icon fas fa-sign-out-alt"></i> Sair</a>
