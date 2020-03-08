@@ -25,24 +25,32 @@ class ProductPhoto extends Base
 		'extension',
 		'size',
 		'position',
-		'aumont',
 	];
 
 	/**
-	 * Get the product info that owns the product photo.
+	 * Get the info that owns the photo.
 	 *
 	 */
-	public function productInfo()
+	public function info()
 	{
 		return $this->belongsTo('App\Models\ProductInfo');
 	}
 
 	/**
-	 * Get the product color about this product photo.
+	 * Get the colors about this photo.
 	 *
 	 */
-	public function productColor()
+	public function colors()
 	{
 		return $this->hasMany('App\Models\ProductColor');
+	}
+
+	/**
+	 * Get the items about this photo.
+	 *
+	 */
+	public function items()
+	{
+		return $this->hasMany('App\Models\ProductItem');
 	}
 }

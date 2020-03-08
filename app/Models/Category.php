@@ -38,16 +38,16 @@ class Category extends Base
 	 * Get the products about this category.
 	 *
 	 */
-	public function product()
+	public function products()
 	{
 		return $this->hasMany('App\Models\Product');
 	}
 
 	/**
-	 * Get the promotion about this category.
+	 * Get the promotions about this category.
 	 *
 	 */
-	public function promotion()
+	public function promotions()
 	{
 		return $this->hasMany('App\Models\OfferPromotion');
 	}

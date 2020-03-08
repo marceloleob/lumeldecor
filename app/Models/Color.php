@@ -29,7 +29,7 @@ class Color extends Base
 	 * Get the product color about this color.
 	 *
 	 */
-	public function productColor()
+	public function colors()
 	{
 		return $this->hasMany('App\Models\ProductColor');
 	}

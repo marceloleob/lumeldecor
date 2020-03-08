@@ -46,28 +46,28 @@ class Supplier extends Base
 	}
 
 	/**
-	 * Get the contact about this supplier.
+	 * Get the contacts about this supplier.
 	 *
 	 */
-	public function contact()
+	public function contacts()
 	{
 		return $this->hasMany('App\Models\SupplierContact');
 	}
 
 	/**
-	 * Get the product about this supplier.
+	 * Get the products about this supplier.
 	 *
 	 */
-	public function product()
+	public function products()
 	{
 		return $this->hasMany('App\Models\Product');
 	}
 
 	/**
-	 * Get the price about this supplier.
+	 * Get the prices about this supplier.
 	 *
 	 */
-	public function supplierPrice()
+	public function supplierPrices()
 	{
 		return $this->hasMany('App\Models\SupplierPrice');
 	}

@@ -28,7 +28,6 @@ class City extends Base
 	/**
 	 * Get the state that owns the city.
 	 *
-	 * @return States
 	 */
 	public function state()
 	{
@@ -38,9 +37,8 @@ class City extends Base
 	/**
 	 * Get the supplier about this city.
 	 *
-	 * @return Supplier
 	 */
-	public function supplier()
+	public function suppliers()
 	{
 		return $this->hasMany('App\Models\Supplier');
 	}
@@ -48,9 +46,8 @@ class City extends Base
 	/**
 	 * Get the customer about this city.
 	 *
-	 * @return Customer
 	 */
-	public function customer()
+	public function customers()
 	{
 		return $this->hasMany('App\Models\Customer');
 	}

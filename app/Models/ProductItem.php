@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Base;
 
-class ProductColor extends Base
+class ProductItem extends Base
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -23,11 +23,11 @@ class ProductColor extends Base
 		'product_id',
 		'product_info_id',
 		'product_photo_id',
-		'color_id',
+		'amount',
 	];
 
 	/**
-	 * Get the product that owns the color.
+	 * Get the product that owns the item.
 	 *
 	 * @return Product
 	 */
@@ -37,7 +37,7 @@ class ProductColor extends Base
 	}
 
 	/**
-	 * Get the info that owns the color.
+	 * Get the info that owns the item.
 	 *
 	 */
 	public function info()
@@ -46,20 +46,11 @@ class ProductColor extends Base
 	}
 
 	/**
-	 * Get the photo that owns the color.
+	 * Get the photo that owns the item.
 	 *
 	 */
 	public function photo()
 	{
 		return $this->belongsTo('App\Models\ProductPhoto');
-	}
-
-	/**
-	 * Get the color that owns the color.
-	 *
-	 */
-	public function color()
-	{
-		return $this->belongsTo('App\Models\Color');
 	}
 }

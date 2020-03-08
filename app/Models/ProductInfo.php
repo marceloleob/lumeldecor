@@ -29,7 +29,7 @@ class ProductInfo extends Base
 	];
 
 	/**
-	 * Get the product that owns the product info.
+	 * Get the product that owns the info.
 	 *
 	 * @return Product
 	 */
@@ -39,7 +39,35 @@ class ProductInfo extends Base
 	}
 
 	/**
-	 * Get the price about this product info.
+	 * Get the photos about this info.
+	 *
+	 * @return photos
+	 */
+	public function photos()
+	{
+		return $this->hasMany('App\Models\ProductPhoto');
+	}
+
+	/**
+	 * Get the colors about this info.
+	 *
+	 */
+	public function colors()
+	{
+		return $this->hasMany('App\Models\ProductColor');
+	}
+
+	/**
+	 * Get the items about this info.
+	 *
+	 */
+	public function items()
+	{
+		return $this->hasMany('App\Models\ProductItem');
+	}
+
+	/**
+	 * Get the product price about this info.
 	 *
 	 */
 	public function productPrice()
@@ -48,26 +76,7 @@ class ProductInfo extends Base
 	}
 
 	/**
-	 * Get the photos about this product info.
-	 *
-	 * @return photos
-	 */
-	public function productPhoto()
-	{
-		return $this->hasMany('App\Models\ProductPhoto');
-	}
-
-	/**
-	 * Get the color about this product info.
-	 *
-	 */
-	public function productColor()
-	{
-		return $this->hasMany('App\Models\ProductColor');
-	}
-
-	/**
-	 * Get the supplier price about this product info.
+	 * Get the supplier price about this info.
 	 *
 	 */
 	public function supplierPrice()

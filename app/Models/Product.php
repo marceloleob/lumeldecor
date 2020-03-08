@@ -65,6 +65,15 @@ class Product extends Base
 	}
 
 	/**
+	 * Get the items about this product.
+	 *
+	 */
+	public function items()
+	{
+		return $this->hasMany('App\Models\ProductItem');
+	}
+
+	/**
 	 * Get the themes about this product.
 	 *
 	 */
@@ -74,10 +83,10 @@ class Product extends Base
 	}
 
 	/**
-	 * Get the promotion about this product.
+	 * Get the promotions about this product.
 	 *
 	 */
-	public function promotion()
+	public function promotions()
 	{
 		return $this->hasMany('App\Models\OfferPromotion');
 	}

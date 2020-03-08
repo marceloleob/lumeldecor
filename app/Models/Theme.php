@@ -32,16 +32,16 @@ class Theme extends Base
 	 * Get the product theme about this theme.
 	 *
 	 */
-	public function productTheme()
+	public function productThemes()
 	{
 		return $this->hasMany('App\Models\ProductTheme');
 	}
 
 	/**
-	 * Get the promotion about this theme.
+	 * Get the promotions about this theme.
 	 *
 	 */
-	public function promotion()
+	public function promotions()
 	{
 		return $this->hasMany('App\Models\OfferPromotion');
 	}

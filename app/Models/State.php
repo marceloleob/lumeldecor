@@ -25,11 +25,10 @@ class State extends Base
 	];
 
 	/**
-	 * Get the city about this state.
+	 * Get the cities about this state.
 	 *
-	 * @return City
 	 */
-	public function city()
+	public function cities()
 	{
 		return $this->hasMany('App\Models\City');
 	}

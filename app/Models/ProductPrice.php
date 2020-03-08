@@ -25,10 +25,10 @@ class ProductPrice extends Base
 	];
 
 	/**
-	 * Get the product info that owns the product price.
+	 * Get the info that owns the price.
 	 *
 	 */
-	public function productInfo()
+	public function info()
 	{
 		return $this->belongsTo('App\Models\ProductInfo');
 	}

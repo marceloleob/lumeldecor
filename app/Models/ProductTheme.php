@@ -25,7 +25,7 @@ class ProductTheme extends Base
 	];
 
 	/**
-	 * Get the product that owns the product theme.
+	 * Get the product that owns the theme.
 	 *
 	 */
 	public function product()
@@ -34,7 +34,7 @@ class ProductTheme extends Base
 	}
 
 	/**
-	 * Get the theme that owns the product theme.
+	 * Get the theme that owns the theme.
 	 *
 	 */
 	public function theme()
