@@ -94,6 +94,11 @@ class CreateForeignKeys extends Migration
 			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('no action')->onUpdate('no action');
 			$table->foreign('product_info_id')->references('id')->on('product_infos')->onDelete('no action')->onUpdate('no action');
 		});
+
+		// ADICIONA OS RELACIONAMENTOS
+		Schema::table('users', function (Blueprint $table) {
+			$table->foreign('user_rule_id')->references('id')->on('user_rules')->onDelete('no action')->onUpdate('no action');
+		});
     }
 
 	public function down()
@@ -206,6 +211,12 @@ class CreateForeignKeys extends Migration
 			$table->dropColumn('supplier_id');
 			$table->dropForeign('supplier_prices_product_info_id_foreign');
 			$table->dropColumn('product_info_id');
+		});
+
+		// REMOVE OS RELACIONAMENTOS
+		Schema::table('users', function (Blueprint $table) {
+			$table->dropForeign('users_user_rule_id_foreign');
+			$table->dropColumn('user_rule_id');
 		});
     }
 }

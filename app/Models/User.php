@@ -17,10 +17,10 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
+		'user_rule_id',
 		'name',
 		'email',
 		'password',
-		'rule',
 		'status',
 	];
 
@@ -55,6 +55,15 @@ class User extends Authenticatable
 	}
 
 	/**
+	 * Get the rule that owns the user.
+	 *
+	 */
+	public function rule()
+	{
+		return $this->belongsTo('App\Models\UserRule');
+	}
+
+	/**
 	 * Get the customer about this user.
 	 *
 	 */
@@ -62,16 +71,4 @@ class User extends Authenticatable
 	{
 		return $this->hasOne('App\Models\Customer');
 	}
-
-	/**
-	 * The attributes that should be rules.
-	 *
-	 * @var array
-	 */
-	public static $rules = [
-		'ADMIN'    => 1, // ADMINISTRATOR
-		'SELLER'   => 2, // VENDEDOR
-		'SUPPLIER' => 3, // VENDEDOR
-		'CUSTOMER' => 4, // CLIENTE
-	];
 }

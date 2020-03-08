@@ -89,7 +89,10 @@
 
 			<li class="app-sidebar__heading">CONFIGURAÇÕES</li>
 			<li>
-				<a href="{!! route('infos') !!}" class="{!! (request()->is('admin/informacoes')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-cog"></i> Minhas Informações</a>
+				<a href="{!! route('users') !!}" class="{!! (request()->is('admin/usuarios')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-cog"></i> Gerenciar Usuários</a>
+			</li>
+			<li>
+				<a href="{!! route('users') !!}" class="{!! (request()->is('admin/usuarios')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-cog"></i> Minhas Informações</a>
 			</li>
 			<li>
 				<a href="javascript:void(0);" class="logout"><i class="metismenu-icon fas fa-sign-out-alt"></i> Sair</a>

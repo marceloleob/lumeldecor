@@ -44,9 +44,9 @@ class UserService extends BaseService
 	{
 		try {
 			// busca o usuario
-			$user = User::find($id);
+			$checkAdministrator = User::where('id', '=', $id)->where('user_rule_id', '!=', 1)->firstOrFail();
 			// verifica se ele e um administrador
-			if ($user->rule == User::$rules['ADMIN']) {
+			if (false === $checkAdministrator) {
 				throw new Exception('Este usuário não pode ser desativado!');
 			}
 

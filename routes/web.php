@@ -118,8 +118,12 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('cadastrar-fornecedor', 'SupplierController@create')->name('supplier-form');
 	Route::post('cadastrar-fornecedor', 'SupplierController@store')->name('supplier-store');
 	Route::get('editar-fornecedor/{id}/{page}', 'SupplierController@edit')->name('supplier-edit');
-	// Config
-	Route::get('informacoes', 'InfoController@index')->name('infos');
+	// Users
+	Route::get('usuarios', 'UserController@index')->name('users');
+	Route::post('usuarios', 'UserController@index')->name('users-search');
+	Route::get('cadastrar-usuario', 'UserController@create')->name('user-form');
+	Route::post('cadastrar-usuario', 'UserController@store')->name('user-store');
+	Route::get('editar-usuario/{id}/{page}', 'UserController@edit')->name('user-edit');
 
 });
 

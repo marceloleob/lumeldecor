@@ -53,3 +53,20 @@ CUSTOMERS
 	border-radius: 30px;
 	opacity: 1;
 }
+.app-footer-center {
+	display: block;
+	padding: 20px;
+	background: #fafbfc;
+}
+.app-footer-center .company {
+	text-transform: uppercase;
+}
+.app-footer-center a.turnupweb {
+	color: #3f6ad8;
+	padding-left: 2px;
+}
+.app-footer-center a.turnupweb:hover {
+	font-weight: bold;
+	text-decoration: none !important;
+	outline: none;
+}

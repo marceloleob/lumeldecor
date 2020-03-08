@@ -1,36 +1,15 @@
 
 <div class="app-footer">
-	<div class="app-footer__inner">
-		<div class="app-footer-left">
-			<ul class="nav">
-				<li class="nav-item">
-					<a href="javascript:void(0);" class="nav-link">
-						Footer Link 1
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="javascript:void(0);" class="nav-link">
-						Footer Link 2
-					</a>
-				</li>
-			</ul>
-		</div>
-		<div class="app-footer-right">
-			<ul class="nav">
-				<li class="nav-item">
-					<a href="javascript:void(0);" class="nav-link">
-						Footer Link 3
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="javascript:void(0);" class="nav-link">
-						<div class="badge badge-success mr-1 ml-0">
-							<small>NEW</small>
-						</div>
-						Footer Link 4
-					</a>
-				</li>
-			</ul>
+	<div class="app-footer-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 py-1">
+					<span class="text-center d-block"><i class="far fa-copyright"></i> Copyright {!! date('Y') !!} - <span class="company">{!! Config::get('app.name') !!}</span> - Todos os direitos reservados</span>
+				</div>
+				<div class="col-lg-12 col-sm-12 py-1">
+					<span class="text-center d-block">Site criado por <a href="https://www.turnupweb.com" class="turnupweb" target="_blank">TurnUP Web</a></span>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

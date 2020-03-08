@@ -17,32 +17,53 @@ class UsersTableSeeder extends Seeder
 		DB::table('users')->delete();
 		// cria os registros
 		User::create([
-			'name'      => 'Marcelo Leopold',
-			'email'     => 'marceloleob@gmail.com',
-			'password'  => bcrypt('marcelo06'),
-			'rule'      => 1,
-			'status'    => 1,
+			'user_rule_id' => 1,
+			'name'         => 'Marcelo Leopold',
+			'email'        => 'marceloleob@gmail.com',
+			'password'     => bcrypt('marcelo06'),
+			'status'       => 1,
 		]);
 		User::create([
-			'name'      => 'Lílian Silveira',
-			'email'     => 'contato@lumeldecor.com.br',
-			'password'  => bcrypt('123456'),
-			'rule'      => 1,
-			'status'    => 1,
+			'user_rule_id' => 1,
+			'name'         => 'Lílian Silveira',
+			'email'        => 'contato@lumeldecor.com.br',
+			'password'     => bcrypt('123456'),
+			'status'       => 1,
 		]);
 		User::create([
-			'name'      => 'Ricardo Silveira',
-			'email'     => 'ricardo@lumeldecor.com.br',
-			'password'  => bcrypt('123456'),
-			'rule'      => 1,
-			'status'    => 1,
+			'user_rule_id' => 1,
+			'name'         => 'Ricardo Silveira',
+			'email'        => 'ricardo@lumeldecor.com.br',
+			'password'     => bcrypt('123456'),
+			'status'       => 1,
 		]);
 		User::create([
-			'name'      => 'Paula Silveira Braga',
-			'email'     => 'paulinhasb06@hotmail.com',
-			'password'  => bcrypt('paulinha06'),
-			'rule'      => 4,
-			'status'    => 1,
+			'user_rule_id' => 2,
+			'name'         => 'Melissa de Souza Silveira',
+			'email'        => 'melissa@decoradora.com.br',
+			'password'     => bcrypt('123456'),
+			'status'       => 1,
+		]);
+		User::create([
+			'user_rule_id' => 3,
+			'name'         => 'Lucy Silveira Braga',
+			'email'        => 'lucy@fornecedorteste.com.br',
+			'password'     => bcrypt('123456'),
+			'status'       => 1,
+		]);
+		User::create([
+			'user_rule_id' => 4,
+			'name'         => 'Luana de Souza Silveira',
+			'email'        => 'luana@decoradora.com.br',
+			'password'     => bcrypt('123456'),
+			'status'       => 1,
+		]);
+		User::create([
+			'user_rule_id' => 5,
+			'name'         => 'Paula Silveira Braga',
+			'email'        => 'paulinhasb06@hotmail.com',
+			'password'     => bcrypt('paulinha06'),
+			'status'       => 1,
 		]);
     }
 }
