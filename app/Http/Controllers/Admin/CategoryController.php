@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\CategoryService;
+use App\Services\MaterialService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -28,7 +29,12 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+		$params = [
+			'data'            => CategoryService::find(),
+			'optionsmaterial' => MaterialService::options(),
+		];
+
+		return view('admin.pages.category-form')->with($params);
     }
 
     /**

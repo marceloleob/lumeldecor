@@ -8,6 +8,18 @@ use Exception;
 
 class CategoryService extends BaseService
 {
+	/**
+	 * Monta as opcoes do select box
+	 *
+	 * @return array
+	 */
+	public static function options()
+	{
+		return Category::orderBy('name', 'ASC')
+			->where('status', '=', config('constants.ACTIVE'))
+			->get();
+	}
+
     /**
      * Monta a lista com paginacao
      *
@@ -66,4 +78,19 @@ class CategoryService extends BaseService
 		}
 	}
 
+	/**
+	 * Retorna os dados referente a este modelo
+	 *
+	 * @param integer $id
+	 * @return Category
+	 */
+	public static function find($id = null)
+	{
+		//verifica se foi informado o id
+		if (empty($id)) {
+			return new Category;
+		}
+
+		return Category::with('material')->find($id)->first();
+	}
 }

@@ -28,7 +28,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+		return view('admin.pages.order-form');
     }
 
     /**

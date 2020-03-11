@@ -8,6 +8,20 @@ use Exception;
 
 class MaterialService extends BaseService
 {
+	/**
+	 * Monta as opcoes do select box
+	 *
+	 * @return array
+	 */
+	public static function options()
+	{
+		$options = Material::orderBy('name', 'ASC')
+			->where('status', '=', config('constants.ACTIVE'))
+			->pluck('name', 'id');
+		// retorna o combobox pronto
+		return $options->prepend('Selecione', '');
+	}
+
     /**
      * Monta a lista com paginacao
      *

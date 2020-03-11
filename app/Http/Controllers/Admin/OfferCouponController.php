@@ -28,7 +28,7 @@ class OfferCouponController extends Controller
      */
     public function create()
     {
-        //
+		return view('admin.pages.offer-coupon-form');
     }
 
     /**

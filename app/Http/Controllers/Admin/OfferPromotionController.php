@@ -28,7 +28,7 @@ class OfferPromotionController extends Controller
 	 */
 	public function create()
 	{
-		//
+		return view('admin.pages.offer-promotion-form');
 	}
 
 	/**

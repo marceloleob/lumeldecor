@@ -15,9 +15,9 @@
 		</div>
 		<div class="page-title-actions">
 			<div class="d-inline-block dropdown">
-				<button type="button" class="btn-shadow btn btn-info">
+				<a href="{!! route('product-form') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-primary">
 					<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-plus-circle fa-w-20"></i></span> Adicionar
-				</button>
+				</a>
 			</div>
 		</div>
 	</div>

@@ -28,7 +28,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        //
+		return view('admin.pages.color-form');
     }
 
     /**

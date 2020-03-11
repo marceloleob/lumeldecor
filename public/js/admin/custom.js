@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
 	/**
 	 * Habilita a opcao de tooltips
 	 */
@@ -10,6 +10,11 @@ $(document).ready(function () {
 	$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 		return jqXHR.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
 	});
+
+    /**
+     * Bootstrap selectpiker
+     */
+    $('select').selectpicker();
 
 	/**
 	 * Mostra a mensagem de retorno por 4 segundos
