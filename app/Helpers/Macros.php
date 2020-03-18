@@ -93,5 +93,4 @@ class Macros extends FormBuilder
 
 		return $errors->first($name, $html);
 	}
-
 }

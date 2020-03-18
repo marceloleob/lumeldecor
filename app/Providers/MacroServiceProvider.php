@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Collective\Html\HtmlServiceProvider;
+use Illuminate\Support\ServiceProvider;
 use App\Helpers\Macros;
 
-class MacroServiceProvider extends HtmlServiceProvider
+class MacroServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -30,5 +30,5 @@ class MacroServiceProvider extends HtmlServiceProvider
     public function boot()
     {
         //
-	}
+    }
 }

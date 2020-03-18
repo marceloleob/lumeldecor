@@ -41,16 +41,6 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-	/**
-	 * Show the application registration form.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function showRegistrationForm()
-	{
-		return view('auth.pages.register');
-	}
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -66,12 +56,12 @@ class RegisterController extends Controller
         ]);
     }
 
-	/**
-	 * Create a new user instance after a valid registration.
-	 *
-	 * @param  array  $data
-	 * @return \App\Models\User
-	 */
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\Models\User
+     */
     protected function create(array $data)
     {
         return User::create([
