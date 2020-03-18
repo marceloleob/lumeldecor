@@ -17,41 +17,24 @@ use Illuminate\Support\Facades\Route;
 /**
  * Rotas do Site
  */
-Route::group(['namespace' => 'Site'], function ()
-{
+Route::group(['namespace' => 'Site'], function () {
 	// Home
 	Route::get('/', 'HomeController@index')->name('home');
-	Route::get('home', 'HomeController@index');
-	// About
-	Route::get('about', 'AboutController@index')->name('about');
-	// Contact
-	Route::get('contact', 'ContactController@index')->name('contact');
-	Route::post('contact', 'ContactController@send')->name('contact');
-	// Route::get('email-company', 'ContactController@testCompany');
-	// Route::get('email-customer', 'ContactController@testCustomer');
 });
+
 
 /**
  * Rotas AJAX
  */
-Route::group(['middleware' => 'auth', 'namespace' => 'Ajax', 'prefix' => 'ajax'], function ()
-{
-	// Toggle Status
-	Route::post('toggle-status', 'ToggleController@status');
-	// // Carrega combos AJAX
-	// Route::post('combo-categorias', 'CategoryController@loadCombo');
+Route::group(['namespace' => 'Ajax', 'middleware' => 'auth', 'prefix' => 'ajax'], function () {
 
-	// // Validacoes AJAX
-	// Route::post('check-email', 'AjaxController@checkEmail');
-	// Route::post('check-cpf', 'AjaxController@checkCpf');
-	// Route::post('check-url', 'AjaxController@checkUrl');
 });
+
 
 /**
  * Rotas protegidas do Admin
  */
-Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin'], function ()
-{
+Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
 	// Home
 	Route::get('/', 'DashboardController@index')->name('dashboard');
 	Route::get('painel', 'DashboardController@index')->name('dashboard');
@@ -126,8 +109,8 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('editar-usuario/{id}/{page}', 'UserController@edit')->name('user-edit');
 	// Profile
 	Route::get('meus-dados', 'UserController@index')->name('profile');
-
 });
+
 
 /**
  * Rotas de Autenticacao
@@ -137,23 +120,3 @@ Auth::routes(
 		'register' => false,
 	]
 );
-/*
-Route::group(['namespace' => 'Auth'], function()
-{
-    Route::get('login', 'LoginController@showLoginForm')->name('login');
-    Route::post('login', 'LoginController@login');
-    Route::post('logout', 'LoginController@logout')->name('logout');
-
-    // Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
-    // Route::post('register', 'RegisterController@register');
-
-    Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('password/reset', 'ResetPasswordController@reset')->name('password.update');
-
-    Route::get('email/verify', 'VerificationController@show')->name('verification.notice');
-    Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
-    Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
-});
-*/

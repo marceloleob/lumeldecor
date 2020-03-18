@@ -31,7 +31,7 @@
 </div>
 <div class="scrollbar-sidebar">
 	<div class="app-sidebar__inner">
-		<ul class="vertical-nav-menu">
+		<ul id="metismenu" class="vertical-nav-menu">
 
 			<li class="app-sidebar__heading">PAINEL DE CONTROLES</li>
 			<li>
@@ -57,7 +57,7 @@
 
 			<li class="app-sidebar__heading">LOJA</li>
 			<li>
-				<a href="javascript:void(0);" aria-expanded="{!! (request()->is('admin/cupons')) || (request()->is('admin/promocoes')) ? 'true' : 'false' !!}"><i class="metismenu-icon fas fa-search-dollar"></i> Ofertas <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a>
+				<a href="javascript:void(0);" aria-expanded="{!! (request()->is('admin/cupons')) || (request()->is('admin/promocoes')) ? 'true' : 'false' !!}"><i class="metismenu-icon fas fa-search-dollar"></i> Ofertas <i class="metismenu-state-icon fas fa-angle-down caret-left"></i></a>
 				<ul class="{!! (request()->is('admin/cupons')) || (request()->is('admin/promocoes')) ? 'mm-collapse mm-show' : '' !!}">
 					<li>
 						<a href="{!! route('coupons') !!}" class="{!! (request()->is('admin/cupons')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Cupons de Descontos</a>

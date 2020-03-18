@@ -18,7 +18,6 @@ class Filters
 			if (strpos($value, ',') !== false) {
 				// hidrata para entrar no BD
 				return str_replace(',', '.', $value);
-
 			} else {
 				// hidrata para renderizar na VIEW
 				return number_format($value, 2, ',', '.');
@@ -40,7 +39,7 @@ class Filters
 		if (empty($value)) {
 			return null;
 		}
-        // retorna a data formatada
+		// retorna a data formatada
 		return implode('/', array_reverse(preg_split("[/.-]", $value)));
 	}
 
@@ -70,20 +69,20 @@ class Filters
 		$sufixo  = substr($numero, $qtde);
 		// retorna o telefone formatado
 		return '(' . $ddd . ') ' . $prefixo . '-' . $sufixo;
-    }
+	}
 
-    /**
-     * Formata o CEP
-     *
-     * @param string $value
-     * @return void
-     */
-    public static function zipcode($value)
-    {
+	/**
+	 * Formata o CEP
+	 *
+	 * @param string $value
+	 * @return void
+	 */
+	public static function zipcode($value)
+	{
 		// separa o numero
 		$prefixo = substr($value, 0, 5);
-        $sufixo  = substr($value, 5);
-        // retorna o cep formatado
-        return $prefixo . '-' . $sufixo;
-    }
+		$sufixo  = substr($value, 5);
+		// retorna o cep formatado
+		return $prefixo . '-' . $sufixo;
+	}
 }

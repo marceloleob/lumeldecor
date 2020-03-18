@@ -23,11 +23,11 @@
 	</div>
 </div>
 
-<div class="row">
+{{-- <div class="row">
 	<div class="col-md-12">
 		{!! Form::boxNotification($errors) !!}
 	</div>
-</div>
+</div> --}}
 
 @if (count($data))
 	<div class="row">

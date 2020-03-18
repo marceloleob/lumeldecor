@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('js-custom')
+{!! Html::script('js/admin/canvas.js', ['defer' => 'defer']) !!}
+@stop
+
 @section('content')
 
 	<div class="app-page-title">
@@ -138,7 +142,7 @@
 					<div class="tab-pane fade active show" id="tab-eg-55">
 						<div class="widget-chart p-3">
 							<div style="height: 350px">
-								<canvas id="line-chart"></canvas>
+								<canvas id="chartContainer"></canvas>
 							</div>
 							<div class="widget-chart-content text-center mt-5">
 								<div class="widget-description mt-0 text-warning">
@@ -148,6 +152,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="pt-2 card-body">
 							<div class="row">
 								<div class="col-md-6">
