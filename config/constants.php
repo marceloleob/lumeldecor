@@ -9,10 +9,10 @@ return [
     'DEVELOPER_EMAIL'        => 'marceloleob@gmail.com',
 
     // COMPANY INFORMATION
-    'COMPANY_NAME'           => Config::get('app.name'),
+    'COMPANY_NAME'           => "Lumel Decor",
     'COMPANY_EMAIL'          => 'contato@lumeldecor.com.br',
     'COMPANY_SUBJECT_TO'     => 'Você recebeu um contato do site!',
-    'COMPANY_SUBJECT_FROM'   => Config::get('app.name'),
+    'COMPANY_SUBJECT_FROM'   => "Lumel Decor",
 
     // PAGINATION
     'TOTAL_PAGE'             => 10,
