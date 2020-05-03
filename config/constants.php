@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Config;
-
 return [
 
     // DEVELOPER INFORMATION
@@ -9,10 +7,10 @@ return [
     'DEVELOPER_EMAIL'        => 'marceloleob@gmail.com',
 
     // COMPANY INFORMATION
-    'COMPANY_NAME'           => "Lumel Decor",
+    'COMPANY_NAME'           => config('app.name'),
     'COMPANY_EMAIL'          => 'contato@lumeldecor.com.br',
     'COMPANY_SUBJECT_TO'     => 'Você recebeu um contato do site!',
-    'COMPANY_SUBJECT_FROM'   => "Lumel Decor",
+    'COMPANY_SUBJECT_FROM'   => config('app.name'),
 
     // PAGINATION
     'TOTAL_PAGE'             => 10,
