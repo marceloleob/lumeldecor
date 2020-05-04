@@ -27,7 +27,8 @@
 	{{-- APP --}}
 	{!! Html::style('css/app.css') !!}
 	{{-- ADMIN --}}
-	{!! Html::style('css/admin.css') !!}
+	{!! Html::style('css/admin/app.css') !!}
+    {!! Html::style('css/admin.css') !!}
 
 	{{-- CUSTOM --}}
 	@yield('css-custom')
