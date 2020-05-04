@@ -32,4 +32,3 @@ return [
     'CAPTCHA_WEBSITE_KEY'    => '',
 
 ];
-

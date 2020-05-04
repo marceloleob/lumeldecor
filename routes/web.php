@@ -113,4 +113,4 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 /**
  * Rotas de Autenticacao
  */
-// Auth::routes(['register' => false]);
+Auth::routes(['register' => false]);
