@@ -15,7 +15,7 @@
 </div>
 
 {!! Form::open(['id' => 'form-logout', 'route' => 'logout', 'method' => 'POST', 'style' => 'display: none;']) !!}
-	{!! csrf_field() !!}
+    @csrf
 {!! Form::close() !!}
 
 <div id="toast-container" class="toast-top-right">

@@ -16,7 +16,7 @@ class OfferPromotionController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = OfferPromotionService::list($request);
+		$params = OfferPromotionService::list($request->search);
 
 		return view('admin.pages.offer-promotion-list')->with($params);
 	}
@@ -28,7 +28,11 @@ class OfferPromotionController extends AdminController
 	 */
 	public function create()
 	{
-		return view('admin.pages.offer-promotion-form');
+		$params = [
+			'data' => OfferPromotionService::find(),
+		];
+
+		return view('admin.pages.offer-promotion-form')->with($params);
 	}
 
 	/**
@@ -39,18 +43,8 @@ class OfferPromotionController extends AdminController
 	 */
 	public function store(Request $request)
 	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show($id)
-	{
-		//
+		// redirect to list
+		return redirect()->route('offer-promotion.list');
 	}
 
 	/**
@@ -64,26 +58,16 @@ class OfferPromotionController extends AdminController
 		//
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, $id)
-	{
-		//
-	}
+    /**
+     * Toggle the status storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function toggle($id)
+    {
+        $response = OfferPromotionService::toggleStatus($id);
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+        return redirect()->route('offer-promotion.list')->with($response);
+    }
 }

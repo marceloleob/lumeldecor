@@ -1,6 +1,9 @@
 {
     "/js/admin/app.js": "/js/admin/app.js",
+    "/js/admin/app.js.map": "/js/admin/app.js.map",
     "/js/site/app.js": "/js/site/app.js",
     "/css/site/app.css": "/css/site/app.css",
-    "/css/admin/app.css": "/css/admin/app.css"
+    "/css/admin/app.css": "/css/admin/app.css",
+    "/css/admin/custom.css": "/css/admin/custom.css",
+    "/js/site/app.js.map": "/js/site/app.js.map"
 }

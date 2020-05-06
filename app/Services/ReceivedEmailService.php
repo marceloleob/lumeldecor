@@ -2,11 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Product;
+use App\Models\ReceivedEmail;
 use App\Services\BaseService;
-use Exception;
 
-class StockService extends BaseService
+class ReceivedEmailService extends BaseService
 {
     /**
      * Monta a lista com paginacao
@@ -14,10 +13,10 @@ class StockService extends BaseService
      * @param string $search
      * @return array
      */
-    public static function list($search = '')
+	public static function list($search = '')
 	{
 		// retorna a query para a busca do grid
-		$query = Product::orderBy('name', 'ASC');
+		$query = ReceivedEmail::orderBy('name', 'ASC');
 
         // verifica se buscou algum item especifico
         if (!empty($search)) {

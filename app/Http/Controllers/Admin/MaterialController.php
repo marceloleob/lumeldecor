@@ -16,7 +16,7 @@ class MaterialController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = MaterialService::list($request);
+		$params = MaterialService::list($request->search);
 
 		return view('admin.pages.material-list')->with($params);
 	}
@@ -28,7 +28,11 @@ class MaterialController extends AdminController
      */
     public function create()
     {
-		return view('admin.pages.material-form');
+		$params = [
+			'data' => MaterialService::find(),
+		];
+
+		return view('admin.pages.material-form')->with($params);
     }
 
     /**
@@ -39,7 +43,8 @@ class MaterialController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+		// redirect to list
+		return redirect()->route('material.list');
     }
 
     /**
@@ -51,5 +56,18 @@ class MaterialController extends AdminController
     public function edit($id)
     {
         //
+	}
+
+    /**
+     * Toggle the status storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function toggle($id)
+    {
+        $response = MaterialService::toggleStatus($id);
+
+        return redirect()->route('material.list')->with($response);
     }
 }

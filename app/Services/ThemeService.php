@@ -63,4 +63,20 @@ class ThemeService extends BaseService
 			];
 		}
 	}
+
+	/**
+	 * Retorna os dados referente a este modelo
+	 *
+	 * @param integer $id
+	 * @return Category
+	 */
+	public static function find($id = null)
+	{
+		//verifica se foi informado o id
+		if (empty($id)) {
+			return new Theme;
+		}
+
+		return Theme::find($id)->first();
+	}
 }

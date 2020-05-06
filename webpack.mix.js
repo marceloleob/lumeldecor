@@ -19,4 +19,6 @@ const mix = require('laravel-mix');
     // CSS SITE
     .sass('resources/sass/site/app.scss', 'public/css/site')
     // CSS ADMIN
-    .sass('resources/sass/admin/app.scss', 'public/css/admin');
+    .sass('resources/sass/admin/app.scss', 'public/css/admin')
+    // CSS ADMIN CUSTOM
+    .sass('resources/sass/admin/custom.scss', 'public/css/admin');

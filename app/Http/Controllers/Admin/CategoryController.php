@@ -45,7 +45,8 @@ class CategoryController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+		// redirect to list
+		return redirect()->route('category.list');
     }
 
     /**

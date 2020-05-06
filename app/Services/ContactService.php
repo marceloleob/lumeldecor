@@ -2,39 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\Contact;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\Mail;
 use Exception;
 
 class ContactService extends BaseService
 {
-	/**
-	 * Monta a lista com paginacao
-	 *
-	 * @return array
-	 */
-	public static function list($request)
-	{
-		// retorna a query para a busca do grid
-		$query = Contact::orderBy('name', 'ASC');
-
-		// verifica se buscou algum item especifico
-		if (!empty($request['search'])) {
-			$query->where('name', 'LIKE', '%' . $request['search'] . '%');
-		}
-
-		// cria uma collection com pagination para montar o grid
-		parent::handlePagination($query);
-		// efetua o tratamento no collection
-		static::customCollection();
-
-		return [
-			'data'     => parent::$collection,
-			'paginate' => parent::$paginate,
-		];
-	}
-
 	/**
 	 * Send emails (company and customer) from Contact Page
 	 *

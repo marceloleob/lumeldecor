@@ -4,35 +4,31 @@ namespace App\Services;
 
 use App\Models\Supplier;
 use App\Services\BaseService;
-use Exception;
 
 class SupplierService extends BaseService
 {
-	/**
-	 * Monta a lista com paginacao
-	 *
-	 * @return array
-	 */
-	public static function list($request)
+    /**
+     * Monta a lista com paginacao
+     *
+     * @param string $search
+     * @return array
+     */
+    public static function list($search = '')
 	{
 		// retorna a query para a busca do grid
-		$query = Supplier::with(['contacts' => function ($subQuery) use ($request) {
+		$query = Supplier::with(['contacts' => function ($subQuery) use ($search) {
 			$subQuery->orderBy('name', 'ASC')->first();
 			// verifica se buscou algum item especifico
-			if (!empty($request['search'])) {
-				$subQuery->where('name', 'LIKE', '%' . $request['search'] . '%');
+			if (!empty($search)) {
+				// armazena o valor da busca
+				parent::$search = $search;
+				// executa a busca
+				$subQuery->where('name', 'LIKE', '%' . $search . '%');
 			}
 		}]);
 
-		// cria uma collection com pagination para montar o grid
-		parent::handlePagination($query);
-		// efetua o tratamento no collection
-		static::customCollection();
-
-		return [
-			'data'     => parent::$collection,
-			'paginate' => parent::$paginate,
-		];
+        // cria uma collection com paginacao para montar o grid
+        return parent::handlePagination($query);
 	}
 
 	/**
@@ -43,25 +39,37 @@ class SupplierService extends BaseService
 	 */
 	public static function toggleStatus($id)
 	{
-		try {
-			// executa a acao direto do Model
-			$entity = Supplier::toggleStatus($id);
+		// retorna a entidade criada ou atualizada
+		return parent::handleToggleStatus((new Supplier()), $id);
+	}
 
-			// retorna a entidade criada ou atualizada
-			return [
-				'type'    => 'success',
-				'message' => 'O fornecedor ' . $entity->name . ' foi ' . (($entity->status == true) ? 'ativado' : 'desativado!'),
-				'current' => $entity->status,
-				'error'   => '',
-			];
-		} catch (Exception $exception) {
-
-			// retorna a entidade criada ou atualizada
-			return [
-				'type'    => 'error',
-				'message' => 'Erro ao ativar/desativar o fornecedor ' . $id,
-				'error'   => $exception,
-			];
+	/**
+	 * Retorna os dados referente a este modelo
+	 *
+	 * @param integer $id
+	 * @return Supplier
+	 */
+	public static function find($id = null)
+	{
+		//verifica se foi informado o id
+		if (empty($id)) {
+			return new Supplier;
 		}
+
+		return Supplier::find($id)->first();
+	}
+
+	/**
+	 * Monta as opcoes do select box
+	 *
+	 * @return array
+	 */
+	public static function options()
+	{
+		$options = Supplier::orderBy('name', 'ASC')
+			->where('status', '=', config('constants.ACTIVE'))
+			->pluck('name', 'id');
+		// retorna o combobox pronto
+		return $options->prepend('Selecione', '');
 	}
 }

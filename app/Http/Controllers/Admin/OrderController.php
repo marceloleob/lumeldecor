@@ -16,7 +16,7 @@ class OrderController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = OrderService::list($request);
+		$params = OrderService::list($request->search);
 
 		return view('admin.pages.order-list')->with($params);
 	}
@@ -28,7 +28,7 @@ class OrderController extends AdminController
      */
     public function create()
     {
-		return view('admin.pages.order-form');
+		//
     }
 
     /**
@@ -38,17 +38,6 @@ class OrderController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
     {
         //
     }

@@ -38,6 +38,7 @@
                     </div>
                     <div class="col-md-6 right">
                         {!! Form::open(['route' => 'contact-form', 'method' => 'POST', 'role' => 'form']) !!}
+                            @csrf
                             {!! Form::hidden('id', $data->id) !!}
                             {!! Form::hidden('read', false) !!}
                             {!! Form::hidden('page', $page) !!}

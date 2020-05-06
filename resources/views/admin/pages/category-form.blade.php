@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('css-custom')
-{!! Html::style('vendor/bootstrap-select/css/bootstrap-select.min.css') !!}
+{{-- {!! Html::style('vendor/bootstrap-select/css/bootstrap-select.min.css') !!} --}}
 @stop
 
 {{-- @section('js-custom')
@@ -46,23 +46,30 @@
 	<div class="col-md-12">
 		<div class="main-card mb-3 card">
 			<div class="card-body"><h5 class="card-title">Preencha o formulário</h5>
-				{!! Form::open(['id' => 'form-category', 'route' => 'category.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
-					<div class="position-relative form-group">
-						{!! Form::label('material_id', 'Material') !!}
-						{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker']) !!}
-						{!! Form::notification('material_id', $errors) !!}
-					</div>
-					<div class="position-relative form-group">
-						{!! Form::label('name', 'Nome da Categoria') !!}
-						{!! Form::text('name', old('name', $data->name), ['class' => 'form-control text']) !!}
-						{!! Form::notification('name', $errors) !!}
-					</div>
+				<div class="row">
+					<div class="col-md-8">
 
-					@if (isset($data->id))
-						{!! Form::hidden('id', $data->id, ['id' => 'id']) !!}
-					@endif
-					{!! Form::button('<i class="fas fa-cloud-upload-alt"></i> &nbsp; Salvar', ['type' => 'submit', 'class' => 'btn btn-success mb-2 mr-2']) !!}
-				{!! Form::close() !!}
+						{!! Form::open(['id' => 'form-category', 'route' => 'category.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
+							<div class="position-relative form-group">
+								{!! Form::label('material_id', 'Material') !!}
+								{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker show-tick', 'data-size' => '6']) !!}
+								{!! Form::notification('material_id', $errors) !!}
+							</div>
+							<div class="position-relative form-group">
+								{!! Form::label('name', 'Nome da Categoria') !!}
+								{!! Form::text('name', old('name', $data->name), ['class' => 'form-control text']) !!}
+								{!! Form::notification('name', $errors) !!}
+							</div>
+
+							@if (isset($data->id))
+								{!! Form::hidden('id', $data->id, ['id' => 'id']) !!}
+							@endif
+							{!! Form::button('<i class="fas fa-cloud-upload-alt"></i> &nbsp; Salvar', ['type' => 'submit', 'class' => 'btn btn-success mb-2 mr-2']) !!}
+						{!! Form::close() !!}
+
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>

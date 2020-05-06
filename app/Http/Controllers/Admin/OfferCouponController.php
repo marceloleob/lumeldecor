@@ -16,7 +16,7 @@ class OfferCouponController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = OfferCouponService::list($request);
+		$params = OfferCouponService::list($request->search);
 
 		return view('admin.pages.offer-coupon-list')->with($params);
 	}
@@ -28,7 +28,11 @@ class OfferCouponController extends AdminController
      */
     public function create()
     {
-		return view('admin.pages.offer-coupon-form');
+		$params = [
+			'data' => OfferCouponService::find(),
+		];
+
+		return view('admin.pages.offer-coupon-form')->with($params);
     }
 
     /**
@@ -39,18 +43,8 @@ class OfferCouponController extends AdminController
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+		// redirect to list
+		return redirect()->route('offer-coupon.list');
     }
 
     /**
@@ -65,25 +59,15 @@ class OfferCouponController extends AdminController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Toggle the status storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function update(Request $request, $id)
+    public function toggle($id)
     {
-        //
-    }
+        $response = OfferCouponService::toggleStatus($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('offer-coupon.list')->with($response);
     }
 }

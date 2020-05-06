@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Exception;
+
 class BaseService
 {
     /**
@@ -26,42 +28,6 @@ class BaseService
     public static $search = null;
 
     /**
-     * Handler find first data
-     *
-     * @param Builder $query
-     * @return void
-     */
-	public static function handleFirst($query)
-	{
-		// efetiva a busca no BD
-        self::$collection = $query->first();
-    }
-
-    /**
-     * Handler find all data
-     *
-     * @param Builder $query
-     * @return void
-     */
-	public static function handleAll($query)
-	{
-		// efetiva a busca no BD
-        self::$collection = $query->get();
-    }
-
-    /**
-     * Handler find all data
-     *
-     * @param Builder $query
-     * @return void
-     */
-	public static function handleAlltoArray($query)
-	{
-		// efetiva a busca no BD
-        self::$collection = $query->get()->toArray();
-    }
-
-    /**
      * Handler paginator
      *
      * @param Builder $query
@@ -77,7 +43,17 @@ class BaseService
         if (!empty(self::$search)) {
             // constroi os links da paginacao
             self::$paginate = $data->appends(['search' => self::$search])->links();
-        }
+		}
+
+        // efetua o tratamento no collection
+        static::customCollection();
+
+		// retorna a entidade com paginacao e busca (se existir)
+		return [
+            'data'     => self::$collection,
+            'search'   => self::$search,
+			'paginate' => self::$paginate,
+		];
     }
 
 	/**
@@ -100,5 +76,33 @@ class BaseService
 				$array->trash  = ['class' => 'btn-outline-success', 'label' => 'fa-recycle'];
             }
 		});
+	}
+
+	/**
+	 * Altera o status do registro (ativo ou inativo)
+	 *
+	 * @param Illuminate\Database\Eloquent\Model $model
+	 * @param int $id
+	 * @return array
+	 */
+	public static function handleToggleStatus($model, $id)
+	{
+		try {
+			// executa a acao direto do Model
+			$entity = $model::toggleStatus($id);
+
+			// retorna a entidade criada ou atualizada
+			return [
+				'success'   => 'O registro "<strong>' . $entity->name . '</strong>" foi ' . (($entity->status == true) ? 'ativado' : 'desativado!'),
+				'exception' => '',
+			];
+		} catch (Exception $exception) {
+
+			// retorna a entidade criada ou atualizada
+			return [
+				'danger'    => 'Erro ao ativar/desativar o registro de código ' . $id,
+				'exception' => $exception,
+			];
+		}
 	}
 }

@@ -1,0 +1,14 @@
+
+/**
+ * Corrigido estilo do SelectPicker
+ */
+.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+	color: #495057 !important;
+}
+.btn-light {
+	background-color: #FFF !important;
+	border: 1px solid #ced4da;
+}
+.btn {
+	line-height: 2;
+}

@@ -4,34 +4,30 @@ namespace App\Services;
 
 use App\Models\OfferCoupon;
 use App\Services\BaseService;
-use Exception;
 
 class OfferCouponService extends BaseService
 {
-	/**
-	 * Monta a lista com paginacao
-	 *
-	 * @return array
-	 */
-	public static function list($request)
+    /**
+     * Monta a lista com paginacao
+     *
+     * @param string $search
+     * @return array
+     */
+    public static function list($search = '')
 	{
 		// retorna a query para a busca do grid
 		$query = OfferCoupon::orderBy('name', 'ASC');
 
-		// verifica se buscou algum item especifico
-		if (!empty($request['search'])) {
-			$query->where('name', 'LIKE', '%' . $request['search'] . '%');
-		}
+        // verifica se buscou algum item especifico
+        if (!empty($search)) {
+            // armazena o valor da busca
+            parent::$search = $search;
+            // executa a busca
+            $query->where('name', 'LIKE', '%' . $search . '%');
+        }
 
-		// cria uma collection com pagination para montar o grid
-		parent::handlePagination($query);
-		// efetua o tratamento no collection
-		static::customCollection();
-
-		return [
-			'data'     => parent::$collection,
-			'paginate' => parent::$paginate,
-		];
+        // cria uma collection com paginacao para montar o grid
+        return parent::handlePagination($query);
 	}
 
 	/**
@@ -42,25 +38,23 @@ class OfferCouponService extends BaseService
 	 */
 	public static function toggleStatus($id)
 	{
-		try {
-			// executa a acao direto do Model
-			$entity = OfferCoupon::toggleStatus($id);
+		// retorna a entidade criada ou atualizada
+		return parent::handleToggleStatus((new OfferCoupon()), $id);
+	}
 
-			// retorna a entidade criada ou atualizada
-			return [
-				'type'    => 'success',
-				'message' => 'O cupom ' . $entity->name . ' foi ' . (($entity->status == true) ? 'ativado' : 'desativado!'),
-				'current' => $entity->status,
-				'error'   => '',
-			];
-		} catch (Exception $exception) {
-
-			// retorna a entidade criada ou atualizada
-			return [
-				'type'    => 'error',
-				'message' => 'Erro ao ativar/desativar o cupom ' . $id,
-				'error'   => $exception,
-			];
+	/**
+	 * Retorna os dados referente a este modelo
+	 *
+	 * @param integer $id
+	 * @return OfferCoupon
+	 */
+	public static function find($id = null)
+	{
+		//verifica se foi informado o id
+		if (empty($id)) {
+			return new OfferCoupon;
 		}
+
+		return OfferCoupon::find($id)->first();
 	}
 }

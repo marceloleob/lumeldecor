@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Color;
 use App\Services\BaseService;
-use Exception;
 
 class ColorService extends BaseService
 {
@@ -13,25 +12,21 @@ class ColorService extends BaseService
 	 *
 	 * @return array
 	 */
-	public static function list($request)
+	public static function list($search = '')
 	{
 		// retorna a query para a busca do grid
 		$query = Color::orderBy('name', 'ASC');
 
-		// verifica se buscou algum item especifico
-		if (!empty($request['search'])) {
-			$query->where('name', 'LIKE', '%' . $request['search'] . '%');
-		}
+        // verifica se buscou algum item especifico
+        if (!empty($search)) {
+            // armazena o valor da busca
+            parent::$search = $search;
+            // executa a busca
+            $query->where('name', 'LIKE', '%' . $search . '%');
+        }
 
-		// cria uma collection com pagination para montar o grid
-		parent::handlePagination($query);
-		// efetua o tratamento no collection
-		static::customCollection();
-
-		return [
-			'data'     => parent::$collection,
-			'paginate' => parent::$paginate,
-		];
+        // cria uma collection com paginacao para montar o grid
+        return parent::handlePagination($query);
 	}
 
 	/**
@@ -42,25 +37,23 @@ class ColorService extends BaseService
 	 */
 	public static function toggleStatus($id)
 	{
-		try {
-			// executa a acao direto do Model
-			$entity = Color::toggleStatus($id);
+		// retorna a entidade criada ou atualizada
+		return parent::handleToggleStatus((new Color()), $id);
+	}
 
-			// retorna a entidade criada ou atualizada
-			return [
-				'type'    => 'success',
-				'message' => 'A cor ' . $entity->name . ' foi ' . (($entity->status == true) ? 'ativada' : 'desativada!'),
-				'current' => $entity->status,
-				'error'   => '',
-			];
-		} catch (Exception $exception) {
-
-			// retorna a entidade criada ou atualizada
-			return [
-				'type'    => 'error',
-				'message' => 'Erro ao ativar/desativar a cor ' . $id,
-				'error'   => $exception,
-			];
+	/**
+	 * Retorna os dados referente a este modelo
+	 *
+	 * @param integer $id
+	 * @return Color
+	 */
+	public static function find($id = null)
+	{
+		//verifica se foi informado o id
+		if (empty($id)) {
+			return new Color;
 		}
+
+		return Color::find($id)->first();
 	}
 }

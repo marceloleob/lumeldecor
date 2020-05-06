@@ -1,0 +1,34 @@
+
+/* =========================================================================
+CUSTOMS
+=========================================================================*/
+
+/**
+ * Corrigido estilo do SelectPicker
+ */
+ .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+	color: #495057 !important;
+}
+.btn-light {
+	background-color: #FFF !important;
+	border: 1px solid #ced4da;
+}
+.btn {
+	line-height: 1.8;
+}
+
+/**
+ * Listas sem registros
+ */
+ .card-no-records {
+    display: flex;
+    align-items: center;
+    border-bottom-width: 1px;
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    height: 10rem;
+    justify-content: center;
+    text-transform: uppercase;
+    color: rgba(13, 27, 62, 0.7);
+    font-weight: bold;
+    font-size: .88rem;
+}

@@ -4,34 +4,30 @@ namespace App\Services;
 
 use App\Models\OfferPromotion;
 use App\Services\BaseService;
-use Exception;
 
 class OfferPromotionService extends BaseService
 {
-	/**
-	 * Monta a lista com paginacao
-	 *
-	 * @return array
-	 */
-	public static function list($request)
+    /**
+     * Monta a lista com paginacao
+     *
+     * @param string $search
+     * @return array
+     */
+    public static function list($search = '')
 	{
 		// retorna a query para a busca do grid
 		$query = OfferPromotion::orderBy('name', 'ASC');
 
-		// verifica se buscou algum item especifico
-		if (!empty($request['search'])) {
-			$query->where('name', 'LIKE', '%' . $request['search'] . '%');
-		}
+        // verifica se buscou algum item especifico
+        if (!empty($search)) {
+            // armazena o valor da busca
+            parent::$search = $search;
+            // executa a busca
+            $query->where('name', 'LIKE', '%' . $search . '%');
+        }
 
-		// cria uma collection com pagination para montar o grid
-		parent::handlePagination($query);
-		// efetua o tratamento no collection
-		static::customCollection();
-
-		return [
-			'data'     => parent::$collection,
-			'paginate' => parent::$paginate,
-		];
+        // cria uma collection com paginacao para montar o grid
+        return parent::handlePagination($query);
 	}
 
 	/**
@@ -42,25 +38,23 @@ class OfferPromotionService extends BaseService
 	 */
 	public static function toggleStatus($id)
 	{
-		try {
-			// executa a acao direto do Model
-			$entity = OfferPromotion::toggleStatus($id);
+		// retorna a entidade criada ou atualizada
+		return parent::handleToggleStatus((new OfferPromotion()), $id);
+	}
 
-			// retorna a entidade criada ou atualizada
-			return [
-				'type'    => 'success',
-				'message' => 'A promoção ' . $entity->name . ' foi ' . (($entity->status == true) ? 'ativada' : 'desativada!'),
-				'current' => $entity->status,
-				'error'   => '',
-			];
-		} catch (Exception $exception) {
-
-			// retorna a entidade criada ou atualizada
-			return [
-				'type'    => 'error',
-				'message' => 'Erro ao ativar/desativar a promoção ' . $id,
-				'error'   => $exception,
-			];
+	/**
+	 * Retorna os dados referente a este modelo
+	 *
+	 * @param integer $id
+	 * @return OfferPromotion
+	 */
+	public static function find($id = null)
+	{
+		//verifica se foi informado o id
+		if (empty($id)) {
+			return new OfferPromotion;
 		}
+
+		return OfferPromotion::find($id)->first();
 	}
 }

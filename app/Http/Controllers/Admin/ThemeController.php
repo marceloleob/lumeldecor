@@ -16,7 +16,7 @@ class ThemeController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = ThemeService::list($request);
+		$params = ThemeService::list($request->search);
 
 		return view('admin.pages.theme-list')->with($params);
 	}
@@ -28,7 +28,11 @@ class ThemeController extends AdminController
      */
     public function create()
     {
-		return view('admin.pages.theme-form');
+		$params = [
+			'data' => ThemeService::find(),
+		];
+
+		return view('admin.pages.theme-form')->with($params);
     }
 
     /**
@@ -39,18 +43,8 @@ class ThemeController extends AdminController
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+		// redirect to list
+		return redirect()->route('theme.list');
     }
 
     /**
@@ -65,25 +59,15 @@ class ThemeController extends AdminController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Toggle the status storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function update(Request $request, $id)
+    public function toggle($id)
     {
-        //
-    }
+        $response = ThemeService::toggleStatus($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('theme.list')->with($response);
     }
 }

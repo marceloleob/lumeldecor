@@ -4,25 +4,13 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Services\BaseService;
-use Exception;
 
 class CategoryService extends BaseService
 {
-	/**
-	 * Monta as opcoes do select box
-	 *
-	 * @return array
-	 */
-	public static function options()
-	{
-		return Category::orderBy('name', 'ASC')
-			->where('status', '=', config('constants.ACTIVE'))
-			->get();
-	}
-
     /**
      * Monta a lista com paginacao
      *
+     * @param string $search
      * @return array
      */
     public static function list($search = '')
@@ -40,15 +28,8 @@ class CategoryService extends BaseService
             $query->where('name', 'LIKE', '%' . $search . '%');
         }
 
-        // cria uma collection com pagination para montar o grid
-        parent::handlePagination($query);
-        // efetua o tratamento no collection
-        static::customCollection();
-
-		return [
-			'data'     => parent::$collection,
-			'paginate' => parent::$paginate,
-		];
+        // cria uma collection com paginacao para montar o grid
+        return parent::handlePagination($query);
 	}
 
 	/**
@@ -59,23 +40,8 @@ class CategoryService extends BaseService
 	 */
 	public static function toggleStatus($id)
 	{
-		try {
-			// executa a acao direto do Model
-			$entity = Category::toggleStatus($id);
-
-			// retorna a entidade criada ou atualizada
-			return [
-				'success'   => 'A categoria "<strong>' . $entity->name . '</strong>" foi ' . (($entity->status == true) ? 'ativada' : 'desativada!'),
-				'exception' => '',
-			];
-		} catch (Exception $exception) {
-
-			// retorna a entidade criada ou atualizada
-			return [
-				'danger'    => 'Erro ao ativar/desativar a categoria ' . $id,
-				'exception' => $exception,
-			];
-		}
+		// retorna a entidade criada ou atualizada
+		return parent::handleToggleStatus((new Category()), $id);
 	}
 
 	/**
@@ -92,5 +58,19 @@ class CategoryService extends BaseService
 		}
 
 		return Category::with('material')->find($id)->first();
+	}
+
+	/**
+	 * Monta as opcoes do select box
+	 *
+	 * @return array
+	 */
+	public static function options()
+	{
+		$options = Category::orderBy('name', 'ASC')
+			->where('status', '=', config('constants.ACTIVE'))
+			->pluck('name', 'id');
+		// retorna o combobox pronto
+		return $options->prepend('Selecione', '');
 	}
 }

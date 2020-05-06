@@ -16,7 +16,7 @@ class ProductController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = ProductService::list($request);
+		$params = ProductService::list($request->search);
 
 		return view('admin.pages.product-list')->with($params);
 	}
@@ -28,7 +28,11 @@ class ProductController extends AdminController
      */
     public function create()
     {
-		return view('admin.pages.product-form');
+		$params = [
+			'data' => ProductService::find(),
+		];
+
+		return view('admin.pages.product-form')->with($params);
     }
 
     /**
@@ -76,14 +80,16 @@ class ProductController extends AdminController
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
+	/**
+     * Toggle the status storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function destroy($id)
+    public function toggle($id)
     {
-        //
+        $response = ProductService::toggleStatus($id);
+
+        return redirect()->route('product.list')->with($response);
     }
 }

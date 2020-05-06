@@ -1,5 +1,8 @@
 require('../bootstrap');
 
+// Selectpicker
+require('../../../node_modules/bootstrap-select/dist/js/bootstrap-select');
+
 $(document).ready(function ()
 {
 	/**
@@ -14,6 +17,11 @@ $(document).ready(function ()
      * Habilita a opcao de tooltips
      */
     $('[data-toggle="tooltip"]').tooltip();
+
+    /**
+     * To style all selects
+     */
+    $('select').selectpicker();
 
     /**
      * Posta o token do form toda fez que for ativado um post por ajax
@@ -36,15 +44,7 @@ $(document).ready(function ()
         e.preventDefault();
         $(this).parent().parent().fadeOut('slow');
         return false;
-    });
+	});
 
-    $('.clear-search').click(function (e) {
-        e.preventDefault();
-        console.log('teste');
-        $('input[name="search"]').val('');
-        $('#form-search').submit();
-        // document.getElementById('form-search').reset();
-        //document.getElementById('form-search').submit();
-    });
 });
 
