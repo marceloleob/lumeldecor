@@ -25,11 +25,11 @@
 
 <div class="row">
 	<div class="col-md-12">
-		{{-- {!! Form::boxNotification($errors) !!} --}}
+		{!! Form::boxNotification($errors) !!}
 	</div>
 </div>
 
-@if (count($data))
+@if (count($data) || $search)
 	<div class="row">
 		<div class="col-md-12">
 			<div class="main-card mb-3 card">
@@ -42,42 +42,46 @@
 									<div class="input-group-append mr-2">
 										{!! Form::button('<i class="fas fa-search pr-2 pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-focus']) !!}
 									</div>
-									{!! Form::button('<i class="fas fa-backspace pr-2 pl-2"></i> Limpar a busca', ['type' => 'submit', 'class' => 'btn btn-focus']) !!}
+									<a href="{!! route('customer.list') !!}" class="btn btn-focus"><i class="fas fa-backspace pr-2 pl-2"></i> Limpar a busca</a>
 								</div>
 							{!! Form::close() !!}
 						</div>
 					</div>
 				</div>
 				<div class="table-responsive">
-					<table class="align-middle mb-0 table table-borderless table-striped table-hover">
-						<thead>
-							<tr>
-								<th width="10%" class="text-center"><b>Código</b></th>
-								<th width="30%" class="text-left"><b>Cliente</b></th>
-								<th width="20%" class="text-left"><b>E-mail</b></th>
-								<th width="15%" class="text-center"><b>Celular</b></th>
-								<th width="10%" class="text-center"><b>Status</b></th>
-								<th width="15%" class="text-center"><b>Ações</b></th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($data as $item)
-							<tr>
-								<td class="text-center text-muted">{!! $item->id !!}</td>
-								<td class="text-left">{!! $item->user->name !!}</td>
-								<td class="text-left">{!! $item->user->email !!}</td>
-								<td class="text-center">{!! $item->cellphone !!}</td>
-								<td class="text-center">
-									<div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div>
-								</td>
-								<td class="text-center">
-									<a href="{!! route('customer.edit', [$item->id, $data->currentPage()]) !!}" class="btn btn-primary btn-sm">Editar</a>
-									<button id="toggle-status" data-id="{!! $item->id !!}" data-model="customer" class="border-0 btn-transition btn {!! $item->trash['class'] !!}"><i class="fas {!! $item->trash['label'] !!}"></i></button>
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
+					@if (count($data))
+						<table class="align-middle mb-0 table table-borderless table-striped table-hover">
+							<thead>
+								<tr>
+									<th width="10%" class="text-center"><b>Código</b></th>
+									<th width="30%" class="text-left"><b>Cliente</b></th>
+									<th width="20%" class="text-left"><b>E-mail</b></th>
+									<th width="15%" class="text-center"><b>Celular</b></th>
+									<th width="10%" class="text-center"><b>Status</b></th>
+									<th width="15%" class="text-center"><b>Ações</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ($data as $item)
+								<tr>
+									<td class="text-center text-muted">{!! $item->id !!}</td>
+									<td class="text-left">{!! $item->user->name !!}</td>
+									<td class="text-left">{!! $item->user->email !!}</td>
+									<td class="text-center">{!! $item->cellphone !!}</td>
+									<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
+									<td class="text-center">
+										<a href="{!! route('customer.edit', [$item->id, $data->currentPage()]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
+										<a href="{!! route('customer.toggle', $item->id) !!}" class="border-0 btn-transition btn {!! $item->trash['class'] !!}"><i class="fas {!! $item->trash['label'] !!}"></i></a>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					@else
+						<div class="card-no-records">
+							Nenhum registro encontrado com a palavra: "{!! $search !!}".
+						</div>
+					@endif
 				</div>
 				<div class="card-footer">
 					<div class="col-md-12 pt-3">
@@ -93,7 +97,7 @@
 		<div class="col-md-12">
 			<div class="main-card mb-3 card">
 				<div class="card-no-records">
-					Nenhum registro encontrado!
+					Ainda não existe nenhum "Cliente" cadastrado.
 				</div>
 			</div>
 		</div>

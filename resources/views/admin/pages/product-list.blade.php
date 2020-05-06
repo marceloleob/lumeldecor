@@ -25,53 +25,59 @@
 
 <div class="row">
 	<div class="col-md-12">
-		{{-- {!! Form::boxNotification($errors) !!} --}}
+		{!! Form::boxNotification($errors) !!}
 	</div>
 </div>
 
-@if (count($data))
+@if (count($data) || $search)
 	<div class="row">
 		<div class="col-md-12">
 			<div class="main-card mb-3 card">
 				<div class="card-header">Lista
 					<div class="btn-actions-pane-right search">
 						<div role="group" class="btn-group-sm btn-group">
-							{!! Form::open(['id' => 'form-search', 'route' => 'theme.search', 'method' => 'POST', 'role' => 'group']) !!}
+							{!! Form::open(['id' => 'form-search', 'route' => 'product.search', 'method' => 'POST', 'role' => 'group']) !!}
 								<div class="custom-control custom-control-inline input-group">
-									{!! Form::text('search', ($search ?? ''), ['class' => 'form-control', 'placeholder' => 'Procurar por produto']) !!}
+									{!! Form::text('search', ($search ?? ''), ['class' => 'form-control', 'placeholder' => 'Procurar por nome']) !!}
 									<div class="input-group-append mr-2">
 										{!! Form::button('<i class="fas fa-search pr-2 pl-2"></i>', ['type' => 'submit', 'class' => 'btn btn-focus']) !!}
 									</div>
-									{!! Form::button('<i class="fas fa-backspace pr-2 pl-2"></i> Limpar a busca', ['type' => 'submit', 'class' => 'btn btn-focus']) !!}
+									<a href="{!! route('product.list') !!}" class="btn btn-focus"><i class="fas fa-backspace pr-2 pl-2"></i> Limpar a busca</a>
 								</div>
 							{!! Form::close() !!}
 						</div>
 					</div>
 				</div>
 				<div class="table-responsive">
-					<table class="align-middle mb-0 table table-borderless table-striped table-hover">
-						<thead>
-							<tr>
-								<th width="10%" class="text-center"><b>Código</b></th>
-								<th width="60%" class="text-left"><b>Produto</b></th>
-								<th width="15%" class="text-center"><b>Status</b></th>
-								<th width="15%" class="text-center"><b>Ações</b></th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($data as $item)
-							<tr>
-								<td class="text-center text-muted">{!! $item->id !!}</td>
-								<td class="text-left">{!! $item->name !!}</td>
-								<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
-								<td class="text-center">
-									<a href="{!! route('product.edit', [$item->id, $data->currentPage()]) !!}" class="btn btn-primary btn-sm">Editar</a>
-									<button id="toggle-status" data-id="{!! $item->id !!}" data-model="product" class="border-0 btn-transition btn {!! $item->trash['class'] !!}"><i class="fas {!! $item->trash['label'] !!}"></i></button>
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
+					@if (count($data))
+						<table class="align-middle mb-0 table table-borderless table-striped table-hover">
+							<thead>
+								<tr>
+									<th width="10%" class="text-center"><b>Código</b></th>
+									<th width="60%" class="text-left"><b>Produto</b></th>
+									<th width="15%" class="text-center"><b>Status</b></th>
+									<th width="15%" class="text-center"><b>Ações</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ($data as $item)
+								<tr>
+									<td class="text-center text-muted">{!! $item->id !!}</td>
+									<td class="text-left">{!! $item->name !!}</td>
+									<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
+									<td class="text-center">
+										<a href="{!! route('product.edit', [$item->id, $data->currentPage()]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
+										<a href="{!! route('product.toggle', $item->id) !!}" class="border-0 btn-transition btn {!! $item->trash['class'] !!}"><i class="fas {!! $item->trash['label'] !!}"></i></a>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					@else
+						<div class="card-no-records">
+							Nenhum registro encontrado com a palavra: "{!! $search !!}".
+						</div>
+					@endif
 				</div>
 				<div class="card-footer">
 					<div class="col-md-12 pt-3">
@@ -87,7 +93,7 @@
 		<div class="col-md-12">
 			<div class="main-card mb-3 card">
 				<div class="card-no-records">
-					Nenhum registro encontrado!
+					Ainda não existe nenhum "Produto" cadastrado.
 				</div>
 			</div>
 		</div>

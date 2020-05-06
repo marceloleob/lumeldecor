@@ -68,6 +68,6 @@ class ColorController extends AdminController
     {
         $response = ColorService::toggleStatus($id);
 
-        return redirect()->route('category.list')->with($response);
+        return redirect()->route('color.list')->with($response);
     }
 }

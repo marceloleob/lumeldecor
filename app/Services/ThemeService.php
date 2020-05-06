@@ -8,30 +8,27 @@ use Exception;
 
 class ThemeService extends BaseService
 {
-	/**
-	 * Monta a lista com paginacao
-	 *
-	 * @return array
-	 */
-	public static function list($request)
+    /**
+     * Monta a lista com paginacao
+     *
+     * @param string $search
+     * @return array
+     */
+    public static function list($search = '')
 	{
 		// retorna a query para a busca do grid
 		$query = Theme::orderBy('name', 'ASC');
 
-		// verifica se buscou algum item especifico
-		if (!empty($request['search'])) {
-			$query->where('name', 'LIKE', '%' . $request['search'] . '%');
-		}
+        // verifica se buscou algum item especifico
+        if (!empty($search)) {
+            // armazena o valor da busca
+            parent::$search = $search;
+            // executa a busca
+            $query->where('name', 'LIKE', '%' . $search . '%');
+        }
 
-		// cria uma collection com pagination para montar o grid
-		parent::handlePagination($query);
-		// efetua o tratamento no collection
-		static::customCollection();
-
-		return [
-			'data'     => parent::$collection,
-			'paginate' => parent::$paginate,
-		];
+        // cria uma collection com paginacao para montar o grid
+        return parent::handlePagination($query);
 	}
 
 	/**
@@ -42,33 +39,15 @@ class ThemeService extends BaseService
 	 */
 	public static function toggleStatus($id)
 	{
-		try {
-			// executa a acao direto do Model
-			$entity = Theme::toggleStatus($id);
-
-			// retorna a entidade criada ou atualizada
-			return [
-				'type'    => 'success',
-				'message' => 'O tema ' . $entity->name . ' foi ' . (($entity->status == true) ? 'ativado' : 'desativado!'),
-				'current' => $entity->status,
-				'error'   => '',
-			];
-		} catch (Exception $exception) {
-
-			// retorna a entidade criada ou atualizada
-			return [
-				'type'    => 'error',
-				'message' => 'Erro ao ativar/desativar o tema ' . $id,
-				'error'   => $exception,
-			];
-		}
+		// retorna a entidade criada ou atualizada
+		return parent::handleToggleStatus((new Theme()), $id);
 	}
 
 	/**
 	 * Retorna os dados referente a este modelo
 	 *
 	 * @param integer $id
-	 * @return Category
+	 * @return Theme
 	 */
 	public static function find($id = null)
 	{
@@ -78,5 +57,19 @@ class ThemeService extends BaseService
 		}
 
 		return Theme::find($id)->first();
+	}
+
+	/**
+	 * Monta as opcoes do select box
+	 *
+	 * @return array
+	 */
+	public static function options()
+	{
+		$options = Theme::orderBy('name', 'ASC')
+			->where('status', '=', config('constants.ACTIVE'))
+			->pluck('name', 'id');
+		// retorna o combobox pronto
+		return $options->prepend('Selecione', '');
 	}
 }

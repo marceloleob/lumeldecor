@@ -44,7 +44,7 @@ class OfferCouponController extends AdminController
     public function store(Request $request)
     {
 		// redirect to list
-		return redirect()->route('offer-coupon.list');
+		return redirect()->route('coupon.list');
     }
 
     /**
@@ -68,6 +68,6 @@ class OfferCouponController extends AdminController
     {
         $response = OfferCouponService::toggleStatus($id);
 
-        return redirect()->route('offer-coupon.list')->with($response);
+        return redirect()->route('coupon.list')->with($response);
     }
 }
