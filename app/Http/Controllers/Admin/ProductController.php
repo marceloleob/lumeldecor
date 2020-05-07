@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
+use App\Services\CategoryService;
+use App\Services\MaterialService;
 use App\Services\ProductService;
+use App\Services\SupplierService;
 use Illuminate\Http\Request;
 
 class ProductController extends AdminController
@@ -29,7 +32,10 @@ class ProductController extends AdminController
     public function create()
     {
 		$params = [
-			'data' => ProductService::find(),
+			'data'            => ProductService::find(),
+			'optionssupplier' => SupplierService::options(),
+			'optionsmaterial' => MaterialService::options(),
+			'optionscategory' => CategoryService::options(),
 		];
 
 		return view('admin.pages.product-form')->with($params);

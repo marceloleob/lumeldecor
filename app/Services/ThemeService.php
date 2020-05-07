@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Theme;
 use App\Services\BaseService;
-use Exception;
+use Carbon\Carbon;
 
 class ThemeService extends BaseService
 {
@@ -71,5 +71,34 @@ class ThemeService extends BaseService
 			->pluck('name', 'id');
 		// retorna o combobox pronto
 		return $options->prepend('Selecione', '');
+	}
+
+	/**
+	 * Percorre a Collection e customiza dados para imprimir na view
+	 *
+	 * @return Collection
+	 */
+	public static function customCollection()
+	{
+		// Percorre toda a Collection
+		self::$collection->map(function ($array) {
+			// monta o periodo
+			$today  = Carbon::now();
+			$start  = Carbon::createFromDate(null, $array->start_month, $array->start_day);
+			$finish  = Carbon::createFromDate(null, $array->finish_month, $array->finish_day);
+			$period = $start->format('d/m') . ' até ' . $finish->format('d/m');
+			// verifica os temas que ja venceram
+			if ($today > $finish) {
+				$period = '<span class="text-warning">' . $period . '</span>';
+			}
+			// verifica os temas que estao ativos hoje
+			if ($today < $finish && $today > $start) {
+				$period = '<span class="text-primary">' . $period . '</span>';
+			}
+			$array->period = $period;
+		});
+
+		// Executa a customizacao padrao
+		parent::customCollection();
 	}
 }
