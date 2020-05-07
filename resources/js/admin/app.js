@@ -2,6 +2,7 @@ require('../bootstrap');
 
 // Selectpicker
 require('../../../node_modules/bootstrap-select/dist/js/bootstrap-select');
+require('../../../node_modules/jquery-validation/dist/jquery.validate.min.js');
 
 $(document).ready(function ()
 {
@@ -46,5 +47,40 @@ $(document).ready(function ()
         return false;
 	});
 
-});
+	/**
+	 * -------------------------------------------------------------------------
+	 * VALIDACOES DE FORMULARIOS
+	 * -------------------------------------------------------------------------
+	 */
 
+	// Formulario de Categoria
+	if ($('#form-category').length) {
+		// validation
+		$('#form-category').validate({
+			rules: {
+				material_id: {
+					required: true,
+				},
+				name: {
+					required: true,
+					minlength: 2,
+					maxlength: 100,
+				},
+			}
+		});
+	}
+
+	// Formulario de Material
+	if ($('#form-material').length) {
+		// validation
+		$('#form-material').validate({
+			rules: {
+				name: {
+					required: true,
+					minlength: 2,
+					maxlength: 100,
+				},
+			}
+		});
+    }
+});

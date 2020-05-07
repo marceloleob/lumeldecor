@@ -1,12 +1,44 @@
-
-/* =========================================================================
-CUSTOMS
-=========================================================================*/
+/**
+ * -----------------------------------------------------------------------------
+ * MESSAGE FEEDBACK
+ * -----------------------------------------------------------------------------
+ */
+ .help-block {
+	display: block;
+	margin-top: 2px;
+    color: #bd362f;
+    font-size: 13px;
+}
+.has-error input,
+.has-error textarea,
+.has-error select {
+    border: 1px solid #bd362f !important;
+}
+.has-error .input-group-addon {
+    border: 1px solid #bd362f;
+}
+.has-success input,
+.has-success textarea,
+.has-success select {
+    border: 1px solid #6E8847 !important;
+}
+.has-success .input-group-addon {
+    border: 1px solid #6E8847;
+}
 
 /**
- * Corrigido estilo do SelectPicker
+ * -----------------------------------------------------------------------------
+ * PAGES
+ * -----------------------------------------------------------------------------
  */
- .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+
+ // Tamanho da fonte dentro dos inputs
+.form-control {
+	font-size: 0.8rem !important;
+}
+
+// Corrigido estilo do SelectPicker
+.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
 	color: #495057 !important;
 }
 .btn-light {
@@ -17,9 +49,7 @@ CUSTOMS
 	line-height: 1.8;
 }
 
-/**
- * Listas sem registros
- */
+// Listas sem registros
  .card-no-records {
     display: flex;
     align-items: center;
@@ -31,4 +61,11 @@ CUSTOMS
     color: rgba(13, 27, 62, 0.7);
     font-weight: bold;
     font-size: .88rem;
+}
+
+// Mostra as cores na lista de cores
+.swatch-holder-md {
+    height: 30px;
+    border-radius: 8px;
+    opacity: 1;
 }
