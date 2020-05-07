@@ -15,13 +15,13 @@
 				<i class="fas fa-store icon-gradient bg-plum-plate"></i>
 			</div>
 			<div>
-				Categorias
-				<div class="page-title-subheading">Formulário para cadastrar as categorias de produtos.</div>
+				Materiais
+				<div class="page-title-subheading">Formulário para cadastrar os materiais.</div>
 			</div>
 		</div>
 		<div class="page-title-actions">
 			<div class="d-inline-block dropdown">
-				<a href="{!! route('category.list') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-focus">
+				<a href="{!! route('material.list') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-focus">
 					<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-arrow-circle-left fa-w-20"></i></span>
 					Voltar
 				</a>
@@ -42,14 +42,10 @@
 			<div class="card-body"><h5 class="card-title">Preencha o formulário</h5>
 				<div class="row">
 					<div class="col-md-8">
-						{!! Form::open(['id' => 'form-category', 'route' => 'category.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
+						{!! Form::open(['id' => 'form-material', 'route' => 'material.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
+
 							<div class="position-relative form-group">
-								{!! Form::label('material_id', 'Material*') !!}
-								{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker show-tick', 'data-size' => '6']) !!}
-								{!! Form::notification('material_id', $errors) !!}
-							</div>
-							<div class="position-relative form-group">
-								{!! Form::label('name', 'Nome da Categoria*') !!}
+								{!! Form::label('name', 'Nome do Material*') !!}
 								{!! Form::text('name', old('name', $data->name), ['class' => 'form-control text']) !!}
 								{!! Form::notification('name', $errors) !!}
 							</div>

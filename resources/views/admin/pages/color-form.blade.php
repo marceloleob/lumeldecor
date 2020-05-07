@@ -15,13 +15,13 @@
 				<i class="fas fa-store icon-gradient bg-plum-plate"></i>
 			</div>
 			<div>
-				Categorias
-				<div class="page-title-subheading">Formulário para cadastrar as categorias de produtos.</div>
+				Cores
+				<div class="page-title-subheading">Formulário para cadastrar as cores dos produtos.</div>
 			</div>
 		</div>
 		<div class="page-title-actions">
 			<div class="d-inline-block dropdown">
-				<a href="{!! route('category.list') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-focus">
+				<a href="{!! route('color.list') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-focus">
 					<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-arrow-circle-left fa-w-20"></i></span>
 					Voltar
 				</a>
@@ -42,15 +42,15 @@
 			<div class="card-body"><h5 class="card-title">Preencha o formulário</h5>
 				<div class="row">
 					<div class="col-md-8">
-						{!! Form::open(['id' => 'form-category', 'route' => 'category.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
+						{!! Form::open(['id' => 'form-color', 'route' => 'color.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
 							<div class="position-relative form-group">
-								{!! Form::label('material_id', 'Material*') !!}
-								{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker show-tick', 'data-size' => '6']) !!}
-								{!! Form::notification('material_id', $errors) !!}
+								{!! Form::label('name', 'Nome da Cor*') !!}
+								{!! Form::text('name', old('name', $data->name), ['class' => 'form-control text']) !!}
+								{!! Form::notification('name', $errors) !!}
 							</div>
 							<div class="position-relative form-group">
-								{!! Form::label('name', 'Nome da Categoria*') !!}
-								{!! Form::text('name', old('name', $data->name), ['class' => 'form-control text']) !!}
+								{!! Form::label('hexa', 'Hexadecimal*') !!}
+								{!! Form::text('hexa', old('hexa', $data->hexa), ['class' => 'form-control text']) !!}
 								{!! Form::notification('name', $errors) !!}
 							</div>
 

@@ -53,12 +53,12 @@
 						<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 							<thead>
 								<tr>
-									<th width="10%" class="text-center"><b>Código</b></th>
-									<th width="30%" class="text-left"><b>Cliente</b></th>
-									<th width="20%" class="text-left"><b>E-mail</b></th>
-									<th width="15%" class="text-center"><b>Celular</b></th>
-									<th width="10%" class="text-center"><b>Status</b></th>
-									<th width="15%" class="text-center"><b>Ações</b></th>
+									<th width="10%" class="text-center">Código</th>
+									<th width="25%" class="text-left">Cliente</th>
+									<th width="20%" class="text-left">E-mail</th>
+									<th width="15%" class="text-center">Celular</th>
+									<th width="15%" class="text-center">Status</th>
+									<th width="15%" class="text-center">Ações</th>
 								</tr>
 							</thead>
 							<tbody>

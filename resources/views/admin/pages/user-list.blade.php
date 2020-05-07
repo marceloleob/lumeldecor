@@ -53,11 +53,11 @@
 						<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 							<thead>
 								<tr>
-									<th width="10%" class="text-center"><b>Código</b></th>
-									<th width="10%" class="text-center"><b>Tipo</b></th>
-									<th width="55%" class="text-left"><b>Nome</b></th>
-									<th width="10%" class="text-center"><b>Status</b></th>
-									<th width="15%" class="text-center"><b>Ações</b></th>
+									<th width="10%" class="text-center">Código</th>
+									<th width="10%" class="text-center">Tipo</th>
+									<th width="55%" class="text-left">Nome</th>
+									<th width="10%" class="text-center">Status</th>
+									<th width="15%" class="text-center">Ações</th>
 								</tr>
 							</thead>
 							<tbody>
