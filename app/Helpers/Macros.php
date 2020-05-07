@@ -93,4 +93,46 @@ class Macros extends FormBuilder
 
         return $errors->first($name, $html);
     }
+
+    /**
+     * Create a select day field.
+     *
+     * @param  string $name
+     * @param  string $selected
+     * @param  array  $options
+     * @param  string $format
+     *
+     * @return \Illuminate\Support\HtmlString
+     */
+    public function selectDay($name, $selected = null, $options = [], $format = '%d')
+    {
+        $days = [];
+
+        foreach (range(1, 31) as $day) {
+            $days[$day] = strftime($format, mktime(0, 0, 0, 0, $day));
+        }
+
+        return $this->select($name, $days, $selected, $options);
+	}
+
+    /**
+     * Create a select month field.
+     *
+     * @param  string $name
+     * @param  string $selected
+     * @param  array  $options
+     * @param  string $format
+     *
+     * @return \Illuminate\Support\HtmlString
+     */
+    public function selectMonth($name, $selected = null, $options = [], $format = '%m')
+    {
+        $months = [];
+
+        foreach (range(1, 12) as $month) {
+            $months[$month] = trans('date.month.' . strftime($format, mktime(0, 0, 0, $month, 1)));
+        }
+
+        return $this->select($name, $months, $selected, $options);
+    }
 }
