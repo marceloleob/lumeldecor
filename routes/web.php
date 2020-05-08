@@ -90,10 +90,20 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('promocao/status/{id}', 'OfferPromotionController@toggle')->name('promotion.toggle');
 	// Orders
 	Route::get('encomendas', 'OrderController@index')->name('order.list');
+	Route::any('encomendas', 'OrderController@index')->name('order.search');
+	Route::get('encomenda/nova', 'OrderController@index')->name('order.form');
+	Route::post('encomenda/salvar', 'OrderController@store')->name('order.store');
+	Route::get('encomenda/editar/{id}/{page}', 'OrderController@edit')->name('order.edit');
+	Route::get('encomenda/status/{id}', 'OrderController@toggle')->name('order.toggle');
 	// Stocks
 	Route::get('estoques', 'StockController@index')->name('stock.list');
+	Route::any('estoques', 'StockController@index')->name('stock.search');
+	Route::get('estoque/novo', 'StockController@index')->name('stock.form');
+	Route::post('estoque/salvar', 'StockController@store')->name('stock.store');
+	Route::get('estoque/editar/{id}/{page}', 'StockController@edit')->name('stock.edit');
+	Route::get('estoque/status/{id}', 'StockController@toggle')->name('stock.toggle');
 	// Posts
-	Route::get('contatos', 'ContactController@index')->name('contact.list');
+	Route::get('emails-recebidos', 'ReceivedEmailController@index')->name('contact.list');
 	// Customers
 	Route::get('clientes', 'CustomerController@index')->name('customer.list');
 	Route::any('clientes', 'CustomerController@index')->name('customer.search');

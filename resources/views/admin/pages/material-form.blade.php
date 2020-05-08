@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('admin.layouts.app')
 
 @section('js-custom')
 {!! Html::script('js/forms/jquery.validate.' . $locale . '.js', ['defer' => 'defer']) !!}

@@ -25,6 +25,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
         "bootstrap-select": "^1.13.16",
-        "jquery-validation": "^1.19.1"
+        "jquery-validation": "^1.19.1",
+        "metismenu": "^3.0.6"
     }
 }

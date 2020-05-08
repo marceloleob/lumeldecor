@@ -3,19 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
+use App\Services\StockService;
 use Illuminate\Http\Request;
 
 class StockController extends AdminController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-		//
-    }
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index(Request $request)
+	{
+		$params = StockService::list($request->search);
+
+		return view('admin.pages.stock-list')->with($params);
+	}
 
     /**
      * Show the form for creating a new resource.

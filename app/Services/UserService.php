@@ -19,7 +19,8 @@ class UserService extends BaseService
 		// retorna a query para a busca do grid
 		$query = User::with(['rules' => function ($subQuery) {
 			$subQuery->orderBy('name', 'ASC');
-		}]);
+		}])
+		->where('id', '<>', 1);
 
         // verifica se buscou algum item especifico
         if (!empty($search)) {

@@ -17,8 +17,19 @@ const mix = require('laravel-mix');
     // CSS SITE
 	.sass('resources/sass/site/app.scss', 'public/css/site')
 
-    // JS ADMIN
+
+    // JS ADMIN DEPENDENCIAS
 	.js('resources/js/admin/app.js', 'public/js/admin')
+    // JS ADMIN CUSTOM
+	.js('resources/js/admin/custom.js', 'public/js/admin')
+    // JS ADMIN TEMPLATE
+    .copy('resources/js/admin/architect-ui.min.js', 'public/js/admin')
+	// JS FORMS VALIDATE
+	.js('resources/js/forms/jquery.masks.en.js', 'public/js/forms')
+	.js('resources/js/forms/jquery.masks.pt-br.js', 'public/js/forms')
+	.js('resources/js/forms/jquery.masks.min.js', 'public/js/forms')
+	.js('resources/js/forms/jquery.validate.en.js', 'public/js/forms')
+	.js('resources/js/forms/jquery.validate.pt-br.js', 'public/js/forms')
 	// JS ADMIN PAGES
 	.js([
 		'resources/js/admin/pages/category.js',
@@ -35,12 +46,6 @@ const mix = require('laravel-mix');
 		// 'resources/js/admin/pages/theme.js',
 		// 'resources/js/admin/pages/user.js',
 	], 'public/js/admin/pages.js')
-	// JS FORMS
-	.js('resources/js/forms/jquery.masks.en.js', 'public/js/forms')
-	.js('resources/js/forms/jquery.masks.pt-br.js', 'public/js/forms')
-	.js('resources/js/forms/jquery.masks.min.js', 'public/js/forms')
-	.js('resources/js/forms/jquery.validate.en.js', 'public/js/forms')
-	.js('resources/js/forms/jquery.validate.pt-br.js', 'public/js/forms')
 
 
     // CSS ADMIN

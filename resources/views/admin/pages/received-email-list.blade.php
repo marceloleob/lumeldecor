@@ -1,6 +1,33 @@
-@extends('admin.layouts.main')
+@extends('admin.layouts.app')
 
 @section('content')
+
+<div class="app-page-title">
+	<div class="page-title-wrapper">
+		<div class="page-title-heading">
+			<div class="page-title-icon">
+				<i class="fas fa-envelope icon-gradient bg-plum-plate"></i>
+			</div>
+			<div>
+				Mensagens
+				<div class="page-title-subheading">Mensagens recebidas do Site.</div>
+			</div>
+		</div>
+		<div class="page-title-actions">
+			<div class="d-inline-block dropdown">
+				<a href="{!! route('category.form') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-primary">
+					<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-plus-circle fa-w-20"></i></span> Adicionar
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		{!! Form::boxNotification($errors) !!}
+	</div>
+</div>
 
     <div class="row">
         <div class="col-md-12">
