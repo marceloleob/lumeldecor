@@ -40,7 +40,7 @@
 {!! Form::open(['id' => 'form-product', 'route' => 'product.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
 	<div class="row">
 		<div class="col-md-12">
-			<div class="main-card mb-3 card">
+			<div class="main-card mb-3 card card-basic-info">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card-body"><h5 class="card-title">Informações Básicas</h5>
@@ -95,7 +95,7 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<div class="main-card mb-3 card">
+			<div class="main-card mb-3 card card-dimension">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card-body"><h5 class="card-title">Dimensões / Preços</h5>
@@ -125,9 +125,9 @@
 							<div class="form-row">
 								<div class="col-md-4">
 									<div class="position-relative form-group">
-										{!! Form::label('height', 'Altura*') !!}
-										{!! Form::text('height', old('height', $data->height), ['class' => 'form-control text']) !!}
-										{!! Form::notification('height', $errors) !!}
+										{!! Form::label('lenght', 'Comprimento*') !!}
+										{!! Form::text('lenght', old('lenght', $data->lenght), ['class' => 'form-control text']) !!}
+										{!! Form::notification('lenght', $errors) !!}
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -139,9 +139,9 @@
 								</div>
 								<div class="col-md-4">
 									<div class="position-relative form-group">
-										{!! Form::label('lenght', 'Comprimento*') !!}
-										{!! Form::text('lenght', old('lenght', $data->lenght), ['class' => 'form-control text']) !!}
-										{!! Form::notification('lenght', $errors) !!}
+										{!! Form::label('height', 'Altura*') !!}
+										{!! Form::text('height', old('height', $data->height), ['class' => 'form-control text']) !!}
+										{!! Form::notification('height', $errors) !!}
 									</div>
 								</div>
 							</div>
@@ -167,7 +167,7 @@
 						<div class="card-body"><h5 class="card-title">Exemplo</h5>
 							<div class="row">
 								<div class="col-md-12">
-									<div class="product-box">
+									<div class="card-box-example">
 										<img src="{!! asset('images/box.jpeg') !!}" alt="" />
 									</div>
 								</div>
@@ -181,8 +181,8 @@
 
 	<div class="row">
 		<div class="col-md-6">
-			<div class="main-card mb-3 card">
-				<div class="card-body card-body-product"><h5 class="card-title">Fotos</h5>
+			<div class="main-card mb-3 card card-photo">
+				<div class="card-body"><h5 class="card-title">Fotos</h5>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="position-relative form-group">
@@ -206,23 +206,23 @@
 			</div>
 		</div>
 		<div class="col-md-6">
-			<div class="main-card mb-3 card">
-				<div class="card-body card-body-product"><h5 class="card-title">Cores</h5>
+			<div class="main-card mb-3 card card-color">
+				<div class="card-body"><h5 class="card-title">Cores</h5>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="position-relative form-group">
 								{!! Form::label('color1', 'Cor Principal*') !!}
-								{!! Form::select('color1', $optionssupplier, old('color1', $data->color1), ['class' => 'form-control selectpicker']) !!}
+								{!! Form::select('color1', [], old('color1', $data->color1), ['class' => 'form-control selectpicker']) !!}
 								{!! Form::notification('color1', $errors) !!}
 							</div>
 							<div class="position-relative form-group">
 								{!! Form::label('color2', 'Cor Secundária') !!}
-								{!! Form::select('color2', $optionssupplier, old('color2', $data->color2), ['class' => 'form-control selectpicker']) !!}
+								{!! Form::select('color2', [], old('color2', $data->color2), ['class' => 'form-control selectpicker']) !!}
 								{!! Form::notification('color2', $errors) !!}
 							</div>
 							<div class="position-relative form-group">
-								{!! Form::label('color3', 'Cor Terceária') !!}
-								{!! Form::select('color3', $optionssupplier, old('color3', $data->color3), ['class' => 'form-control selectpicker']) !!}
+								{!! Form::label('color3', 'Cor Terciária') !!}
+								{!! Form::select('color3', [], old('color3', $data->color3), ['class' => 'form-control selectpicker']) !!}
 								{!! Form::notification('color3', $errors) !!}
 							</div>
 						</div>
@@ -235,18 +235,38 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="main-card mb-3 card">
-				<div class="card-body">
+				<div class="card-body"><h5 class="card-title">Caso queira adicionar um Produto similar</h5>
+					<div class="row">
+						<div class="col-md-12">
+							<ul class="check_submit">
+								<li>
+									{!! Form::checkbox('duplicar1', 1, (old('duplicar1', $data->duplicar1) ? true : false), ['id' => 'duplicar1', 'class' => 'hide check-card', 'data-card' => 'card-basic-info']) !!}
+									{!! Form::label('duplicar1', 'Replicar as "Informações Básicas e Detlahes" deste produto.') !!}
+								</li>
+								<li>
+									{!! Form::checkbox('duplicar2', 1, (old('duplicar2', $data->duplicar2) ? true : false), ['id' => 'duplicar2', 'class' => 'hide check-card', 'data-card' => 'card-dimension']) !!}
+									{!! Form::label('duplicar2', 'Replicar as "Dimensões / Preços" deste produto.') !!}
+								</li>
+								<li>
+									{!! Form::checkbox('duplicar3', 1, (old('duplicar3', $data->duplicar3) ? true : false), ['id' => 'duplicar3', 'class' => 'hide check-card', 'data-card' => 'card-photo']) !!}
+									{!! Form::label('duplicar3', 'Replicar as "Fotos" deste produto.') !!}
+								</li>
+								<li>
+									{!! Form::checkbox('duplicar4', 1, (old('duplicar4', $data->duplicar4) ? true : false), ['id' => 'duplicar4', 'class' => 'hide check-card', 'data-card' => 'card-color']) !!}
+									{!! Form::label('duplicar4', 'Replicar as "Cores" deste produto.') !!}
+								</li>
+							</ul>
 
-					<div class="position-relative form-group">
-						{!! Form::checkbox('duplicar', '1', false) !!}
-						{!! Form::label('duplicar', 'Depois de salvar, desejo cadastrar outro produto semelhante a este.') !!}
+							<div class="divider"></div>
+							@if (isset($data->id))
+								{!! Form::hidden('id', $data->id, ['id' => 'id']) !!}
+							@endif
+							{!! Form::button('<i class="fas fa-cloud-upload-alt fa-w-10"></i> &nbsp; Salvar &nbsp; &nbsp;', ['type' => 'submit', 'class' => 'btn btn-success mb-2 mr-2']) !!}
+							<a href="{!! route('product.list') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-focus">
+								<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-times-circle fa-w-10"></i></span> Cancelar
+							</a>
+						</div>
 					</div>
-
-					@if (isset($data->id))
-						{!! Form::hidden('id', $data->id, ['id' => 'id']) !!}
-					@endif
-					{!! Form::button('<i class="fas fa-cloud-upload-alt"></i> &nbsp; Salvar', ['type' => 'submit', 'class' => 'btn btn-success mb-2 mr-2']) !!}
-
 				</div>
 			</div>
 		</div>

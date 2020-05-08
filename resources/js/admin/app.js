@@ -48,4 +48,19 @@ $(document).ready(function ()
         $(this).parent().parent().fadeOut('slow');
         return false;
 	});
+
+
+	$('.check-card').click(function (e) {
+		// recupera o elemento clicado
+		let element = $(this).data('card');
+		// verifica se checou ou nao
+		if ($(this).is(':checked')) {
+			// adiciona background
+			$('.' + element).addClass('check-card');
+		} else {
+			// remove background
+			$('.' + element).removeClass('check-card');
+		}
+	})
+
 });

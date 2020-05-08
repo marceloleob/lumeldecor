@@ -42,7 +42,7 @@
 		<div class="main-card mb-3 card">
 			<div class="card-body"><h5 class="card-title">Preencha o formulário</h5>
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-md-6">
 						{!! Form::open(['id' => 'form-material', 'route' => 'material.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
 
 							<div class="position-relative form-group">
@@ -51,10 +51,14 @@
 								{!! Form::notification('name', $errors) !!}
 							</div>
 
+							<div class="divider"></div>
 							@if (isset($data->id))
 								{!! Form::hidden('id', $data->id, ['id' => 'id']) !!}
 							@endif
-							{!! Form::button('<i class="fas fa-cloud-upload-alt"></i> &nbsp; Salvar', ['type' => 'submit', 'class' => 'btn btn-success mb-2 mr-2']) !!}
+							{!! Form::button('<i class="fas fa-cloud-upload-alt fa-w-10"></i> &nbsp; Salvar &nbsp; &nbsp;', ['type' => 'submit', 'class' => 'btn btn-success mb-2 mr-2']) !!}
+							<a href="{!! route('material.list') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-focus">
+								<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-times-circle fa-w-10"></i></span> Cancelar
+							</a>
 						{!! Form::close() !!}
 					</div>
 				</div>

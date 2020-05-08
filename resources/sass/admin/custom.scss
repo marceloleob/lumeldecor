@@ -84,14 +84,65 @@
  * -----------------------------------------------------------------------------
  */
 
+.check-card {
+	background-color: #dad5ed;
+}
+
 .card-body-product {
 	height: 317px;
 }
-.product-box {
+.card-box-example {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 23px;
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
+}
+
+
+/**
+ * -----------------------------------------------------------------------------
+ * CHECKBOX
+ * -----------------------------------------------------------------------------
+ */
+ .check_submit .hide {
+	display: none
+}
+.check_submit li {
+	display: flex;
+	padding: 5px 0;
+}
+.check_submit li label {
+	position: relative;
+	font-family: "Montserrat", sans-serif;
+	font-size: 13px;
+	padding-left: 27px;
+	line-height: 24px;
+	cursor: pointer;
+}
+.check_submit li label::before {
+	position: absolute;
+	box-sizing: border-box;
+	content: "";
+	height: 19px;
+	width: 19px;
+	left: 0;
+	top: 3px;
+	border: 2px solid #7454ae; //#5d78ff;
+	transition: border-color 0.3s ease 0s;
+}
+.check_submit li input[type="checkbox"]:checked + label::before {
+	position: absolute;
+	content: "\f00c";
+	font-family: "Font Awesome 5 Free";
+	font-size: 12px;
+	font-weight: 900;
+	line-height: 17px;
+	text-align: center;
+	border: 1px solid transparent;
+}
+.check_submit li input[type="checkbox"]:checked + label::before { //, .checkbox input[type="checkbox"]:checked + .label-checkbox::before {
+	background-color: #f9f9f9;
+	color: #7454ae; //#5d78ff;
 }
