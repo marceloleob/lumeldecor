@@ -10,7 +10,7 @@
 			</div>
 			<div>
 				Promoções
-				<div class="page-title-subheading">Lista todos as promoções.</div>
+				<div class="page-title-subheading">Lista todas as promoções.</div>
 			</div>
 		</div>
 		<div class="page-title-actions">

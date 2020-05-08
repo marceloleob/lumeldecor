@@ -57,4 +57,27 @@ class ProductService extends BaseService
 
 		return Product::find($id)->first();
 	}
+
+	/**
+	 * Monta as opcoes do select box
+	 *
+	 * @return array
+	 */
+	public static function options()
+	{
+		$options = Product::orderBy('code', 'ASC')
+			->where('status', config('constants.ACTIVE'))
+			->pluck('code', 'id');
+		// $options = Product::with(['info' => function ($subQuery) {
+		// 		$subQuery->orderBy('name', 'ASC');
+		// 	}])
+		// 	->select([
+		// 		'product.id'        => 'id',
+		// 		'product_info.name' => 'name'
+		// 	])
+		// 	->where('status', config('constants.ACTIVE'))
+		// 	->pluck('name', 'id');
+		// retorna o combobox pronto
+		return $options->prepend('Selecione', '');
+	}
 }

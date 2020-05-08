@@ -9,8 +9,8 @@
 				<i class="fas fa-money-check-alt icon-gradient bg-plum-plate"></i>
 			</div>
 			<div>
-				Cupons de oferta
-				<div class="page-title-subheading">Lista todos os cupons.</div>
+				Cupons de Desconto
+				<div class="page-title-subheading">Lista todos os cupons de desconto.</div>
 			</div>
 		</div>
 		<div class="page-title-actions">

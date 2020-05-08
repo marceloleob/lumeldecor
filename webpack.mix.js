@@ -32,13 +32,14 @@ const mix = require('laravel-mix');
 	.js('resources/js/forms/jquery.validate.pt-br.js', 'public/js/forms')
 	// JS ADMIN PAGES
 	.js([
+		'resources/js/admin/pages/ajax-select.js',
 		'resources/js/admin/pages/category.js',
 		// 'resources/js/admin/pages/color.js',
 		// 'resources/js/admin/pages/customer.js',
 		// 'resources/js/admin/pages/dashboard.js',
 		'resources/js/admin/pages/material.js',
 		// 'resources/js/admin/pages/coupon.js',
-		// 'resources/js/admin/pages/promotion.js',
+		'resources/js/admin/pages/promotion.js',
 		'resources/js/admin/pages/product.js',
 		// 'resources/js/admin/pages/email.js',
 		// 'resources/js/admin/pages/stock.js',

@@ -57,4 +57,19 @@ class OfferPromotionService extends BaseService
 
 		return OfferPromotion::find($id)->first();
 	}
+
+	/**
+	 * Monta as opcoes do select box
+	 *
+	 * @return array
+	 */
+	public static function options()
+	{
+		// retorna o combobox pronto
+		return [
+			''  => 'Selecione',
+			'V' => 'Valor inteiro (R$)',
+			'P' => 'Porcentagem (%)',
+		];
+	}
 }

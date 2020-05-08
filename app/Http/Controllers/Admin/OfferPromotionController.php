@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
+use App\Services\CategoryService;
+use App\Services\MaterialService;
 use App\Services\OfferPromotionService;
+use App\Services\ProductService;
+use App\Services\ThemeService;
 use Illuminate\Http\Request;
 
 class OfferPromotionController extends AdminController
@@ -29,7 +33,12 @@ class OfferPromotionController extends AdminController
 	public function create()
 	{
 		$params = [
-			'data' => OfferPromotionService::find(),
+			'data'            => OfferPromotionService::find(),
+			'optionsmaterial' => MaterialService::options(),
+			'optionscategory' => CategoryService::options(),
+			'optionstheme'    => ThemeService::options(),
+			'optionsproduct'  => ProductService::options(),
+			'optionskind'     => OfferPromotionService::options(),
 		];
 
 		return view('admin.pages.offer-promotion-form')->with($params);
