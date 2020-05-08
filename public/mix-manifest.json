@@ -1,6 +1,8 @@
 {
     "/js/admin/app.js": "/js/admin/app.js",
     "/js/admin/app.js.map": "/js/admin/app.js.map",
+    "/js/admin/pages.js": "/js/admin/pages.js",
+    "/js/admin/pages.js.map": "/js/admin/pages.js.map",
     "/js/forms/jquery.masks.en.js": "/js/forms/jquery.masks.en.js",
     "/js/forms/jquery.masks.en.js.map": "/js/forms/jquery.masks.en.js.map",
     "/js/forms/jquery.masks.min.js": "/js/forms/jquery.masks.min.js",

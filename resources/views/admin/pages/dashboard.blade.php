@@ -82,11 +82,11 @@
 				<div class="widget-content-outer">
 					<div class="widget-content-wrapper">
 						<div class="widget-content-left">
-							<div class="widget-heading">Encomendas</div>
-							<div class="widget-subheading">Em aberto</div>
+							<div class="widget-heading">Vendas</div>
+							<div class="widget-subheading">Total do mês de maio</div>
 						</div>
 						<div class="widget-content-right">
-							<div class="widget-numbers text-success">85</div>
+							<div class="widget-numbers text-success">R$ 15.962,87</div>
 						</div>
 					</div>
 				</div>
@@ -97,11 +97,11 @@
 				<div class="widget-content-outer">
 					<div class="widget-content-wrapper">
 						<div class="widget-content-left">
-							<div class="widget-heading">Produtos</div>
-							<div class="widget-subheading">Cadastrados no Site</div>
+							<div class="widget-heading">Encomendas</div>
+							<div class="widget-subheading">Em aberto</div>
 						</div>
 						<div class="widget-content-right">
-							<div class="widget-numbers text-info">650</div>
+							<div class="widget-numbers text-info">85</div>
 						</div>
 					</div>
 				</div>
@@ -129,7 +129,7 @@
 			<div class="mb-3 card">
 				<div class="card-header-tab card-header">
 					<div class="card-header-title">
-						<i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i> Vendas
+						<i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i> Gráfico de Vendas
 					</div>
 					<div class="btn-actions-pane-right">
 						<div class="nav">

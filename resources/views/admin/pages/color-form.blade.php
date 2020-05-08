@@ -4,6 +4,7 @@
 {!! Html::script('js/forms/jquery.validate.' . $locale . '.js', ['defer' => 'defer']) !!}
 {!! Html::script('js/forms/jquery.masks.min.js', ['defer' => 'defer']) !!}
 {!! Html::script('js/forms/jquery.masks.' . $locale . '.js', ['defer' => 'defer']) !!}
+{!! Html::script('js/admin/pages.js', ['defer' => 'defer']) !!}
 @stop
 
 @section('content')
@@ -12,7 +13,7 @@
 	<div class="page-title-wrapper">
 		<div class="page-title-heading">
 			<div class="page-title-icon">
-				<i class="fas fa-store icon-gradient bg-plum-plate"></i>
+				<i class="fas fa-palette icon-gradient bg-plum-plate"></i>
 			</div>
 			<div>
 				Cores

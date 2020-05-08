@@ -30,9 +30,9 @@ $.validator.setDefaults(
  * Resolve o problema com o Select Picker
  *
  */
-$('select.selectpicker').on('change', function () {
-	$(this).valid();
-});
+// $('select.selectpicker').on('change', function () {
+// 	$(this).valid();
+// });
 
 /**
  * Seta um padrao para todas as mensagens de erro

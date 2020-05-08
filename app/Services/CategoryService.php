@@ -65,12 +65,35 @@ class CategoryService extends BaseService
 	 *
 	 * @return array
 	 */
-	public static function options()
+	public static function options($material = null)
 	{
-		$options = Category::orderBy('name', 'ASC')
-			->where('status', '=', config('constants.ACTIVE'))
+		// verifica se nao foi informado o material
+		if (empty($material)) {
+			return ['' => 'Selecione'];
+		}
+		// carrega os dados do banco
+		$categories = Category::with(['material' => function ($subQuery) {
+				$subQuery->orderBy('name', 'ASC');
+			}])
+			->orderBy('name', 'ASC')
+			->where('status', config('constants.ACTIVE'))
+			->where('material_id', $material)
 			->pluck('name', 'id');
-		// retorna o combobox pronto
-		return $options->prepend('Selecione', '');
+
+		// construindo as opcoes combobox
+		$options = '<option value="">Selecione</option>';
+		// percorre os tipos de imovel
+		foreach ($categories as $id => $name) {
+			// verifica se existe categoria
+			// if ($propertyTypeId == $id) {
+			// 	// monta o html
+			// 	$options .= '<option value="' . $id . '" selected>' . $name . '</option>';
+			// } else {
+				// monta o html
+				$options .= '<option value="' . $id . '">' . $name . '</option>';
+			// }
+        }
+        // retorna o combobox pronto
+		return $options;
 	}
 }

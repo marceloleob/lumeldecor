@@ -11,6 +11,7 @@ class Macros extends FormBuilder
      * Macro para renderizar mensagens de retorno
      *
      * @param Collection $errors
+	 *
      * @return void
      */
     public static function boxNotification($errors)
@@ -27,7 +28,8 @@ class Macros extends FormBuilder
      * Renderiza os erros retornados do request validate
      *
      * @param Collection $errors
-     * @return HTML
+	 *
+     * @return \Illuminate\Support\HtmlString
      */
     public static function requestErrors($errors)
     {
@@ -50,7 +52,7 @@ class Macros extends FormBuilder
     /**
      * Renderiza os erros gravados em sessao
      *
-     * @return HTML
+     * @return \Illuminate\Support\HtmlString
      */
     public static function flashMessage()
     {
@@ -81,9 +83,10 @@ class Macros extends FormBuilder
     /**
      * Mostra os erros dos campos do formulario
      *
-     * @var name string
-     * @var error object
-     * @return html
+     * @param string $name
+     * @param Collection $errors
+	 *
+     * @return \Illuminate\Support\HtmlString
      */
     public static function notification($name, $errors)
     {
@@ -134,5 +137,26 @@ class Macros extends FormBuilder
         }
 
         return $this->select($name, $months, $selected, $options);
+    }
+
+    /**
+     * Create a select size field.
+     *
+     * @param  string $name
+     * @param  string $selected
+     * @param  array  $options
+     *
+     * @return \Illuminate\Support\HtmlString
+     */
+    public function selectSize($name, $selected = null, $options = [])
+    {
+        $size = [
+			'P' => 'P',
+			'M' => 'M',
+			'G' => 'G',
+			'U' => 'Único'
+		];
+
+        return $this->select($name, $size, $selected, $options);
     }
 }

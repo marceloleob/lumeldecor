@@ -66,7 +66,7 @@ class MaterialService extends BaseService
 	public static function options()
 	{
 		$options = Material::orderBy('name', 'ASC')
-			->where('status', '=', config('constants.ACTIVE'))
+			->where('status', config('constants.ACTIVE'))
 			->pluck('name', 'id');
 		// retorna o combobox pronto
 		return $options->prepend('Selecione', '');

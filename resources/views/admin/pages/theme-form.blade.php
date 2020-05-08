@@ -4,6 +4,7 @@
 {!! Html::script('js/forms/jquery.validate.' . $locale . '.js', ['defer' => 'defer']) !!}
 {!! Html::script('js/forms/jquery.masks.min.js', ['defer' => 'defer']) !!}
 {!! Html::script('js/forms/jquery.masks.' . $locale . '.js', ['defer' => 'defer']) !!}
+{!! Html::script('js/admin/pages.js', ['defer' => 'defer']) !!}
 @stop
 
 @section('content')
@@ -12,7 +13,7 @@
 	<div class="page-title-wrapper">
 		<div class="page-title-heading">
 			<div class="page-title-icon">
-				<i class="fas fa-store icon-gradient bg-plum-plate"></i>
+				<i class="far fa-star icon-gradient bg-plum-plate"></i>
 			</div>
 			<div>
 				Temas
@@ -53,14 +54,14 @@
 								<div class="col-md-6">
 									<div class="position-relative form-group">
 										{!! Form::label('start_day', 'Dia inicial*') !!}
-										{!! Form::selectDay('start_day', old('start_day', $data->start_day), ['class' => 'form-control selectpicker show-tick', 'data-size' => '6']) !!}
+										{!! Form::selectDay('start_day', old('start_day', $data->start_day), ['class' => 'form-control selectpicker']) !!}
 										{!! Form::notification('start_day', $errors) !!}
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="position-relative form-group">
 										{!! Form::label('start_month', 'Mês inicial*') !!}
-										{!! Form::selectMonth('start_month', old('start_month', $data->start_month), ['class' => 'form-control selectpicker show-tick', 'data-size' => '6']) !!}
+										{!! Form::selectMonth('start_month', old('start_month', $data->start_month), ['class' => 'form-control selectpicker']) !!}
 										{!! Form::notification('start_month', $errors) !!}
 									</div>
 								</div>
@@ -69,14 +70,14 @@
 								<div class="col-md-6">
 									<div class="position-relative form-group">
 										{!! Form::label('finish_day', 'Dia final*') !!}
-										{!! Form::selectDay('finish_day', old('finish_day', $data->finish_day), ['class' => 'form-control selectpicker show-tick', 'data-size' => '6']) !!}
+										{!! Form::selectDay('finish_day', old('finish_day', $data->finish_day), ['class' => 'form-control selectpicker']) !!}
 										{!! Form::notification('finish_day', $errors) !!}
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="position-relative form-group">
 										{!! Form::label('finish_month', 'Mês final*') !!}
-										{!! Form::selectMonth('finish_month', old('finish_month', $data->finish_month), ['class' => 'form-control selectpicker show-tick', 'data-size' => '6']) !!}
+										{!! Form::selectMonth('finish_month', old('finish_month', $data->finish_month), ['class' => 'form-control selectpicker']) !!}
 										{!! Form::notification('finish_month', $errors) !!}
 									</div>
 								</div>

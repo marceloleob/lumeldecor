@@ -23,12 +23,13 @@ Route::group(['namespace' => 'Site'], function () {
 });
 
 
-/**
- * Rotas AJAX
- */
-Route::group(['namespace' => 'Ajax', 'middleware' => 'auth', 'prefix' => 'ajax'], function () {
-
-});
+// /**
+//  * Rotas AJAX
+//  */
+// Route::group(['namespace' => 'Ajax', 'middleware' => 'auth', 'prefix' => 'ajax'], function () {
+// 	// Combo que carrega as Categorias de um Material
+// 	Route::post('options/category', 'AjaxController@optionsCategory');
+// });
 
 
 /**
@@ -51,6 +52,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::post('categoria/salvar', 'CategoryController@store')->name('category.store');
 	Route::get('categoria/editar/{id}/{page}', 'CategoryController@edit')->name('category.edit');
 	Route::get('categoria/status/{id}', 'CategoryController@toggle')->name('category.toggle');
+	Route::post('options/category', 'CategoryController@options');
 	// Themes
 	Route::get('temas', 'ThemeController@index')->name('theme.list');
 	Route::any('temas', 'ThemeController@index')->name('theme.search');

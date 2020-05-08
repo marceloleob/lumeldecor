@@ -4,6 +4,7 @@
 {!! Html::script('js/forms/jquery.validate.' . $locale . '.js', ['defer' => 'defer']) !!}
 {!! Html::script('js/forms/jquery.masks.min.js', ['defer' => 'defer']) !!}
 {!! Html::script('js/forms/jquery.masks.' . $locale . '.js', ['defer' => 'defer']) !!}
+{!! Html::script('js/admin/pages.js', ['defer' => 'defer']) !!}
 @stop
 
 @section('content')
@@ -45,7 +46,7 @@
 						{!! Form::open(['id' => 'form-category', 'route' => 'category.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
 							<div class="position-relative form-group">
 								{!! Form::label('material_id', 'Material*') !!}
-								{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker show-tick', 'data-size' => '6']) !!}
+								{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker']) !!}
 								{!! Form::notification('material_id', $errors) !!}
 							</div>
 							<div class="position-relative form-group">

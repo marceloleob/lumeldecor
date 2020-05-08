@@ -6,6 +6,13 @@ require('../../../node_modules/jquery-validation/dist/jquery.validate.min.js');
 
 $(document).ready(function ()
 {
+    /**
+     * Posta o token do form toda fez que for ativado um post por ajax
+     */
+    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+        return jqXHR.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
+	});
+
 	/**
 	 * Desloga do sistema
 	 */
@@ -22,14 +29,9 @@ $(document).ready(function ()
     /**
      * To style all selects
      */
-    $('select').selectpicker();
-
-    /**
-     * Posta o token do form toda fez que for ativado um post por ajax
-     */
-    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-        return jqXHR.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
-    });
+    $('select').selectpicker({
+		size: 7
+	});
 
     /**
      * Mostra a mensagem de retorno por 4 segundos
@@ -46,41 +48,4 @@ $(document).ready(function ()
         $(this).parent().parent().fadeOut('slow');
         return false;
 	});
-
-	/**
-	 * -------------------------------------------------------------------------
-	 * VALIDACOES DE FORMULARIOS
-	 * -------------------------------------------------------------------------
-	 */
-
-	// Formulario de Categoria
-	if ($('#form-category').length) {
-		// validation
-		$('#form-category').validate({
-			rules: {
-				material_id: {
-					required: true,
-				},
-				name: {
-					required: true,
-					minlength: 2,
-					maxlength: 100,
-				},
-			}
-		});
-	}
-
-	// Formulario de Material
-	if ($('#form-material').length) {
-		// validation
-		$('#form-material').validate({
-			rules: {
-				name: {
-					required: true,
-					minlength: 2,
-					maxlength: 100,
-				},
-			}
-		});
-    }
 });

@@ -26,9 +26,28 @@
                 {{ config('app.name') }}
             </div>
 
-            <div class="links">
-                <a href="https://turnupweb.com" target="_blank">TurnUp Web</a>
-            </div>
+            <div class="social">
+				<ul class="social-color">
+					<li><a href="https://wa.me/553195140615" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+					<li><a href="https://www.facebook.com/lumelldecor" target="_blank"><i class="fab fa-facebook"></i></a></li>
+					<li><a href="https://www.instagram.com/lumeldecor" target="_blank"><i class="fab fa-instagram"></i></a></li>
+				</ul>
+			</div>
+
+			<div class="app-footer">
+				<div class="app-footer-center">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-sm-12 py-1">
+								<span class="text-center d-block"><i class="far fa-copyright"></i> Copyright {!! date('Y') !!} - <span class="company">{!! Config::get('app.name') !!}</span> - Todos os direitos reservados</span>
+							</div>
+							<div class="col-lg-12 col-sm-12 py-1">
+								<span class="text-center d-block">Site criado por <a href="https://www.turnupweb.com" class="turnupweb" target="_blank">TurnUP Web</a></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
         </div>
     </div>
 

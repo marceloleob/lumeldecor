@@ -35,24 +35,24 @@
 
 			<li class="app-sidebar__heading">PAINEL DE CONTROLES</li>
 			<li>
-				<a href="{!! route('dashboard') !!}" class="{!! (request()->is('admin')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-chart-line"></i> Início</a>
+				<a href="{!! route('dashboard') !!}" class="{!! (request()->is('admin')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-chart-line icon-gradient bg-ripe-malin"></i> Início</a>
 			</li>
 
-			<li class="app-sidebar__heading">PRODUTOS</li>
+			<li class="app-sidebar__heading">LOJA</li>
 			<li>
-				<a href="{!! route('material.list') !!}" class="{!! (request()->is('admin/materiais')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-dolly-flatbed"></i> Materiais</a>
+				<a href="{!! route('material.list') !!}" class="{!! (request()->is('admin/materiais')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-dolly-flatbed icon-gradient bg-plum-plate"></i> Materiais</a>
 			</li>
 			<li>
-				<a href="{!! route('category.list') !!}" class="{!! (request()->is('admin/categorias')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-store"></i> Categorias</a>
+				<a href="{!! route('category.list') !!}" class="{!! (request()->is('admin/categorias')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-store icon-gradient bg-plum-plate"></i> Categorias</a>
 			</li>
 			<li>
-				<a href="{!! route('theme.list') !!}" class="{!! (request()->is('admin/temas')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-star"></i> Temas</a>
+				<a href="{!! route('theme.list') !!}" class="{!! (request()->is('admin/temas')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-star icon-gradient bg-plum-plate"></i> Temas</a>
 			</li>
 			<li>
-				<a href="{!! route('color.list') !!}" class="{!! (request()->is('admin/cores')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-palette"></i> Cores</a>
+				<a href="{!! route('color.list') !!}" class="{!! (request()->is('admin/cores')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-palette icon-gradient bg-plum-plate"></i> Cores</a>
 			</li>
 			<li>
-				<a href="{!! route('product.list') !!}" class="{!! (request()->is('admin/produtos')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-cubes"></i> Produtos</a>
+				<a href="{!! route('product.list') !!}" class="{!! (request()->is('admin/produtos')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-cubes icon-gradient bg-plum-plate"></i> Produtos</a>
 			</li>
 
 			<li class="app-sidebar__heading">LOJA</li>

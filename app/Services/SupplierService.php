@@ -67,7 +67,7 @@ class SupplierService extends BaseService
 	public static function options()
 	{
 		$options = Supplier::orderBy('company', 'ASC')
-			->where('status', '=', config('constants.ACTIVE'))
+			->where('status', config('constants.ACTIVE'))
 			->pluck('company', 'id');
 		// retorna o combobox pronto
 		return $options->prepend('Selecione', '');

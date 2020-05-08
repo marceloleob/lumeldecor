@@ -31,5 +31,6 @@ class ColorsTableSeeder extends Seeder
 		Color::create(['name' => 'Dourado', 'hexa' => '#FFD700', 'status' => 1]);
 		Color::create(['name' => 'Cinza', 'hexa' => '#848484', 'status' => 1]);
 		Color::create(['name' => 'Marrom', 'hexa' => '#8A4B08', 'status' => 1]);
+		Color::create(['name' => 'Madeira', 'hexa' => '#EDDDBC', 'status' => 1]);
     }
 }

@@ -71,5 +71,19 @@ class CategoryController extends AdminController
         $response = CategoryService::toggleStatus($id);
 
         return redirect()->route('category.list')->with($response);
-    }
+	}
+
+	/**
+	 * Return select options of Category
+	 *
+	 * @param Request $request
+	 * @return array
+	 */
+	public function options(Request $request)
+	{
+		// verifica se foi informado o POST com o "material"
+		$material = $request->material;
+
+		return CategoryService::options($material);
+	}
 }

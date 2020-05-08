@@ -3,7 +3,7 @@
  * MESSAGE FEEDBACK
  * -----------------------------------------------------------------------------
  */
- .help-block {
+.help-block {
 	display: block;
 	margin-top: 2px;
     color: #bd362f;
@@ -26,17 +26,20 @@
     border: 1px solid #6E8847;
 }
 
+
 /**
  * -----------------------------------------------------------------------------
- * PAGES
+ * ARCHITECT CUSTOM
  * -----------------------------------------------------------------------------
  */
 
- // Tamanho da fonte dentro dos inputs
+.vertical-nav-menu i.metismenu-state-icon, .vertical-nav-menu i.metismenu-icon {
+	font-size: 1rem;
+}
+// Tamanho da fonte dentro dos inputs
 .form-control {
 	font-size: 0.8rem !important;
 }
-
 // Corrigido estilo do SelectPicker
 .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
 	color: #495057 !important;
@@ -48,9 +51,8 @@
 .btn {
 	line-height: 1.8;
 }
-
 // Listas sem registros
- .card-no-records {
+.card-no-records {
     display: flex;
     align-items: center;
     border-bottom-width: 1px;
@@ -62,10 +64,34 @@
     font-weight: bold;
     font-size: .88rem;
 }
-
 // Mostra as cores na lista de cores
 .swatch-holder-md {
     height: 30px;
     border-radius: 8px;
     opacity: 1;
+}
+.app-footer {
+	padding-top: 65px;
+}
+.row-footer {
+	padding: 20px;
+}
+
+
+/**
+ * -----------------------------------------------------------------------------
+ * PAGES
+ * -----------------------------------------------------------------------------
+ */
+
+.card-body-product {
+	height: 317px;
+}
+.product-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 23px;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
 }
