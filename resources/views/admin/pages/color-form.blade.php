@@ -49,6 +49,13 @@
 								{!! Form::text('name', old('name', $data->name), ['class' => 'form-control text']) !!}
 								{!! Form::notification('name', $errors) !!}
 							</div>
+
+
+							{{-- BOOTSTRAP COLORPICKER --}}
+
+
+
+
 							<div class="position-relative form-group">
 								{!! Form::label('hexa', 'Hexadecimal*') !!}
 								{!! Form::text('hexa', old('hexa', $data->hexa), ['class' => 'form-control text']) !!}

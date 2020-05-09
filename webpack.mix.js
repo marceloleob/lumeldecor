@@ -22,8 +22,6 @@ const mix = require('laravel-mix');
 	.js('resources/js/admin/app.js', 'public/js/admin')
     // JS ADMIN CUSTOM
 	.js('resources/js/admin/custom.js', 'public/js/admin')
-    // JS ADMIN TEMPLATE
-    .copy('resources/js/admin/architect-ui.min.js', 'public/js/admin')
 	// JS FORMS VALIDATE
 	.js('resources/js/forms/jquery.masks.en.js', 'public/js/forms')
 	.js('resources/js/forms/jquery.masks.pt-br.js', 'public/js/forms')
