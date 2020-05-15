@@ -86,7 +86,7 @@
 			</div>
 			<div class="main-card mb-3 card">
 				<div class="card-button">
-					{!! Form::buttons('category.list', $data->id) !!}
+					{!! Form::buttons('coupon.list', $data->id) !!}
 				</div>
 			</div>
 		{!! Form::close() !!}
