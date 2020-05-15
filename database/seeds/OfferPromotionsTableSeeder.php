@@ -23,9 +23,11 @@ class OfferPromotionsTableSeeder extends Seeder
 			'product_id'  => null,
 			'name'        => 'Promoção de Natal!',
 			'kind'        => 'P',
-			'value'       => '10',
-			'start_date'  => '2020-03-01',
-			'finish_date'  => '2020-03-31',
+			'amount'      => '10',
+			'start_day'   => '01',
+			'start_month' => '12',
+			'finish_day'   => '26',
+			'finish_month' => '12',
 			'status'      => 1
 		]);
     }

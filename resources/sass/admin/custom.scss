@@ -1,8 +1,8 @@
 /**
- * -----------------------------------------------------------------------------
- * MESSAGE FEEDBACK
- * -----------------------------------------------------------------------------
- */
+* -----------------------------------------------------------------------------
+* MESSAGE FEEDBACK
+* -----------------------------------------------------------------------------
+*/
 .help-block {
 	display: block;
 	margin-top: 2px;
@@ -28,17 +28,38 @@
 
 
 /**
- * -----------------------------------------------------------------------------
- * ARCHITECT CUSTOM
- * -----------------------------------------------------------------------------
- */
-
+* -----------------------------------------------------------------------------
+* ARCHITECT CUSTOM
+* -----------------------------------------------------------------------------
+*/
+.hide {
+	display: none
+}
+.main-card .table {
+	color: #495057;
+}
+a, a:hover, a:focus, a:visited {
+	text-decoration: none !important;
+	outline: none;
+}
 .vertical-nav-menu i.metismenu-state-icon, .vertical-nav-menu i.metismenu-icon {
 	font-size: 1rem;
+}
+.vertical-nav-menu a:hover, .dropdown-menu a:hover {
+	font-weight: 700;
+}
+.vertical-nav-menu li a:hover i.metismenu-icon, .vertical-nav-menu li a.mm-active i.metismenu-icon {
+	opacity: 1
+}
+.dropdown-menu .dropdown-item.active {
+	color: #FFF;
 }
 // Tamanho da fonte dentro dos inputs
 .form-control {
 	font-size: 0.8rem !important;
+}
+.form input.color {
+	padding: 1px 2px !important;
 }
 // Corrigido estilo do SelectPicker
 .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
@@ -64,64 +85,150 @@
     font-weight: bold;
     font-size: .88rem;
 }
-// Mostra as cores na lista de cores
-.swatch-holder-md {
-    height: 30px;
-    border-radius: 8px;
-    opacity: 1;
-}
 .app-footer {
 	padding-top: 65px;
 }
 .row-footer {
 	padding: 20px;
 }
+.card-button {
+    flex: 1 1 auto;
+    min-height: 1px;
+	padding: 1.25rem;
+	align-items: center;
+	justify-content: space-between;
+}
+.card-button .btn {
+	width: 120px;
+}
+.btn-success.btn-shadow {
+    box-shadow: 0 0.125rem 0.625rem rgba(58,196,125,0.4), 0 0.0625rem 0.125rem rgba(58,196,125,0.5);
+}
+.btn-hover-shine {
+    position: relative;
+}
+.btn-hover-shine:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255,255,255,0.4);
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+}
+.btn-action {
+	display: flex;
+	padding-top: 30px;
+}
+.input-group-text {
+	min-width: 46px;
+}
 
 
 /**
- * -----------------------------------------------------------------------------
- * PAGES
- * -----------------------------------------------------------------------------
- */
-
-.check-card {
-	background-color: #dad5ed;
-}
-
-.card-body-product {
-	height: 317px;
-}
+* -----------------------------------------------------------------------------
+* PAGES - PRODUCT
+* -----------------------------------------------------------------------------
+*/
 .card-box-example {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 23px;
+	// border: 1px solid #ced4da;
+	// border-radius: .25rem;
+}
+.card-box-example img {
+	width: 245px;
+}
+.card-piece {
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
+	// background-color: #faf7ff;
+}
+.card-button-add {
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+.custom-file-label {
+	font-size: 0.8rem;
+	margin-top: 30px !important;
+}
+.custom-file-label::after {
+	position: absolute;
+	content: "\f002";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	padding: 0.5rem .75rem;
+	background-color: #f0f9ff;
+}
+.custom-file-input {
+	cursor: pointer;
+}
+.featured ul.button-checkbox {
+	padding-top: 15px;
+	padding-inline-start: 4px !important;
+}
+.launch ul.button-checkbox {
+	padding-inline-start: 30px !important;
 }
 
 
 /**
- * -----------------------------------------------------------------------------
- * CHECKBOX
- * -----------------------------------------------------------------------------
- */
- .check_submit .hide {
-	display: none
+* -----------------------------------------------------------------------------
+* PAGES - COLORS
+* -----------------------------------------------------------------------------
+*/
+.table .td-color {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 }
-.check_submit li {
+// Mostra as cores na lista de cores
+.table .swatch-holder-md {
+	height: 30px;
+	width: 30px;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+
+/**
+* -----------------------------------------------------------------------------
+* PAGES - COUPON
+* -----------------------------------------------------------------------------
+*/
+.input-coupon {
+	text-transform: uppercase;
+}
+
+
+
+/**
+* -----------------------------------------------------------------------------
+* CHECKBOX
+* -----------------------------------------------------------------------------
+*/
+ul.button-checkbox {
+	padding-top: 30px;
+	padding-inline-start: 5px !important;
+}
+.button-checkbox li {
 	display: flex;
 	padding: 5px 0;
 }
-.check_submit li label {
+.button-checkbox li label {
 	position: relative;
 	font-family: "Montserrat", sans-serif;
 	font-size: 13px;
-	padding-left: 27px;
+	padding: 2px 0 0 27px;
 	line-height: 24px;
 	cursor: pointer;
 }
-.check_submit li label::before {
+.button-checkbox li label::before {
 	position: absolute;
 	box-sizing: border-box;
 	content: "";
@@ -129,10 +236,10 @@
 	width: 19px;
 	left: 0;
 	top: 3px;
-	border: 2px solid #7454ae; //#5d78ff;
+	border: 2px solid #7454ae;
 	transition: border-color 0.3s ease 0s;
 }
-.check_submit li input[type="checkbox"]:checked + label::before {
+.button-checkbox li input[type="checkbox"]:checked + label::before {
 	position: absolute;
 	content: "\f00c";
 	font-family: "Font Awesome 5 Free";
@@ -140,9 +247,77 @@
 	font-weight: 900;
 	line-height: 17px;
 	text-align: center;
-	border: 1px solid transparent;
-}
-.check_submit li input[type="checkbox"]:checked + label::before { //, .checkbox input[type="checkbox"]:checked + .label-checkbox::before {
+	border: 1px solid #7454ae;
 	background-color: #f9f9f9;
-	color: #7454ae; //#5d78ff;
+	color: #7454ae;
+}
+
+
+/**
+* -----------------------------------------------------------------------------
+* LIST EMAILS
+* -----------------------------------------------------------------------------
+*/
+.message_item:first-child {
+	padding-top: 0
+}
+.message_item a {
+	color: #495057;
+}
+.message_item a:hover {
+	font-weight: 400;
+	color: #0b5885;
+}
+// .message_item.new .new {
+// 	font-size: 12px;
+// 	left: -10px;
+// 	padding: 4px 8px;
+// 	position: absolute;
+// 	top: -6px;
+// }
+// .message_item.new .new::before {
+// 	border-style: solid;
+// 	border-width: 10px;
+// 	content: "";
+// 	position: absolute;
+// 	right: 0;
+// 	top: 14px;
+// 	border-color: transparent;
+// }
+// .message_item img {
+// 	border-radius: 100%;
+// 	float: left;
+// 	height: 55px;
+// 	margin-right: 20px;
+// 	width: 55px;
+// }
+
+.message_item .sender_name {
+	font-family: "Montserrat", sans-serif;
+}
+.message_item .sender_name_new {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+}
+.message_item p {
+	font-size: 13px;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.message_item .left {
+    display: block;
+}
+.message_item .datetime {
+	float: right;
+	display: table;
+	text-align: right;
+	font-family: "Montserrat", sans-serif;
+	font-size: 13px;
+    width: 20%;
+    padding: 4px;
+}
+.message_item .datetime span {
+	display: block
 }

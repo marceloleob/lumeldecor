@@ -54,8 +54,8 @@
 							<thead>
 								<tr>
 									<th width="10%" class="text-center">Código</th>
-									<th width="20%" class="text-center">Cor</th>
-									<th width="40%" class="text-left">Nome</th>
+									<th width="10%" class="text-center">Cores</th>
+									<th width="50%" class="text-left">Nome</th>
 									<th width="15%" class="text-center">Status</th>
 									<th width="15%" class="text-center">Ações</th>
 								</tr>
@@ -64,7 +64,7 @@
 								@foreach ($data as $item)
 								<tr>
 									<td class="text-center text-muted">{!! $item->id !!}</td>
-									<td class="text-center"><div class="swatch-holder-md" style="background-color: {!! $item->hexa !!}"></div></td>
+									<td class="text-center td-color"><div class="swatch-holder-md" style="background-color: {!! $item->hexa !!}"></div></td>
 									<td class="text-left">{!! $item->name !!}</td>
 									<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 									<td class="text-center">

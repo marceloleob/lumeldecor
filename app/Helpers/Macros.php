@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Collective\Html\FormBuilder;
+use Collective\Html\HtmlBuilder;
 use Illuminate\Support\Facades\Session;
 
 class Macros extends FormBuilder
@@ -98,6 +99,39 @@ class Macros extends FormBuilder
     }
 
     /**
+     * Cria os botoes para Salvar ou Cancelar um formulario
+     *
+     * @param string $link
+     * @param int    $id
+	 *
+     * @return \Illuminate\Support\HtmlString
+     */
+    public function buttons($link, $id = null)
+    {
+        $buttons = [];
+
+        $save = $this->button(
+            '<i class="fas fa-cloud-upload-alt fa-w-10 pr-2"></i> Salvar',
+            [
+                'type' => 'submit',
+                'class' => 'btn-hover-shine btn btn-shadow btn-success btn-save mr-4'
+            ]
+        );
+
+        // verifica se é um UPDATE
+        if (!empty($id)) {
+            array_push($buttons, $this->hidden('id', $id, ['id' => 'id']));
+        }
+
+        array_push($buttons, $save);
+        array_push($buttons, '<a href="' . route($link) . '" class="btn-transition btn btn-outline-focus btn-cancel">');
+        array_push($buttons, '    <i class="fas fa-times-circle fa-w-10 pr-2"></i> Cancelar');
+        array_push($buttons, '</a>');
+
+        return implode('', $buttons);
+    }
+
+    /**
      * Create a select day field.
      *
      * @param  string $name
@@ -151,6 +185,7 @@ class Macros extends FormBuilder
     public function selectSize($name, $selected = null, $options = [])
     {
         $size = [
+			''  => 'Selecione',
 			'P' => 'P',
 			'M' => 'M',
 			'G' => 'G',

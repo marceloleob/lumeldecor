@@ -34,7 +34,7 @@
                 <hr />
                 <div class="row msg_replay p-3">
                     <div class="col-md-6">
-                        <a href="{!! route('contact.list', ['page' => $page]) !!}" class="btn btn_primary"><i class="fas fa-mail-bulk"></i> &nbsp; Voltar</a>
+                        <a href="{!! route('emails.list', ['page' => $page]) !!}" class="btn btn_primary"><i class="fas fa-mail-bulk"></i> &nbsp; Voltar</a>
                     </div>
                     <div class="col-md-6 right">
                         {!! Form::open(['route' => 'contact-form', 'method' => 'POST', 'role' => 'form']) !!}

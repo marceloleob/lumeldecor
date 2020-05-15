@@ -21,9 +21,11 @@ class CreateOfferPromotionsTable extends Migration
 			$table->bigInteger('product_id')->nullable()->unsigned();
 			$table->string('name', 100);
 			$table->enum('kind', ['V', 'P']);
-			$table->decimal('value', 7, 2);
-			$table->date('start_date');
-			$table->date('finish_date');
+			$table->decimal('amount', 7, 2);
+			$table->smallInteger('start_day');
+			$table->smallInteger('start_month');
+			$table->smallInteger('finish_day');
+			$table->smallInteger('finish_month');
 			$table->boolean('status')->default(1);
             $table->timestamps();
         });

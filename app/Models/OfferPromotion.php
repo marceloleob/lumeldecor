@@ -26,9 +26,11 @@ class OfferPromotion extends Base
 		'product_id',
 		'name',
 		'kind',
-		'value',
-		'start_date',
-		'finish_date',
+		'amount',
+		'start_day',
+		'start_month',
+		'finish_day',
+		'finish_month',
 		'status',
 	];
 

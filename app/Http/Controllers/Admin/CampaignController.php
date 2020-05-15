@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Services\CategoryService;
 use App\Services\MaterialService;
 use App\Services\ThemeService;
 use Illuminate\Http\Request;
 
-class ThemeController extends AdminController
+class CampaignController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
@@ -20,7 +20,7 @@ class ThemeController extends AdminController
 	{
 		$params = ThemeService::list($request->search);
 
-		return view('admin.pages.theme-list')->with($params);
+		return view('admin.pages.campaign-list')->with($params);
 	}
 
 		/**
@@ -36,7 +36,7 @@ class ThemeController extends AdminController
                 'optionscategory' => CategoryService::options(),
 			];
 
-			return view('admin.pages.theme-form')->with($params);
+			return view('admin.pages.campaign-form')->with($params);
 		}
 
 		/**

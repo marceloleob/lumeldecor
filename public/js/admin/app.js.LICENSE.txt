@@ -36,6 +36,14 @@
  * Date: 2020-04-10T15:07Z
  */
 
+/*!
+* metismenu https://github.com/onokumus/metismenu#readme
+* A jQuery menu plugin
+* @version 3.0.6
+* @author Osman Nuri Okumus <onokumus@gmail.com> (https://github.com/onokumus)
+* @license: MIT 
+*/
+
 /*! jQuery Validation Plugin - v1.19.1 - 6/15/2019
  * https://jqueryvalidation.org/
  * Copyright (c) 2019 Jörn Zaefferer; Licensed MIT */

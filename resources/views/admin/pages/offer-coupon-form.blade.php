@@ -39,59 +39,57 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<div class="main-card mb-3 card">
-			<div class="card-body"><h5 class="card-title">Preencha o formulário</h5>
-				<div class="row">
-					<div class="col-md-6">
-						{!! Form::open(['id' => 'form-coupon', 'route' => 'coupon.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
-							<div class="row">
-								<div class="col-md-12">
-									<div class="position-relative form-group">
-										{!! Form::label('name', 'Nome para identificar o Cupom*') !!}
-										{!! Form::text('name', old('name', $data->name), ['class' => 'form-control text']) !!}
-										{!! Form::notification('name', $errors) !!}
-									</div>
-								</div>
+		{!! Form::open(['id' => 'form-coupon', 'route' => 'coupon.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
+			<div class="main-card mb-3 card">
+				<div class="card-body"><h5 class="card-title">Preencha o formulário</h5>
+					<div class="form-row">
+						<div class="col-md-6">
+							<div class="position-relative form-group">
+								{!! Form::label('name', 'Nome para identificar o Cupom*') !!}
+								{!! Form::text('name', old('name', $data->name), ['class' => 'form-control text']) !!}
+								{!! Form::notification('name', $errors) !!}
 							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="position-relative form-group">
-										{!! Form::label('code', 'Código do Cupom*') !!}
-										{!! Form::text('code', old('code', $data->code), ['class' => 'form-control text']) !!}
-										{!! Form::notification('code', $errors) !!}
-									</div>
-								</div>
+							<div class="position-relative form-group">
+								{!! Form::label('code', 'Código do Cupom*') !!}
+								{!! Form::text('code', old('code', $data->code), ['class' => 'form-control text input-coupon']) !!}
+								{!! Form::notification('code', $errors) !!}
 							</div>
-							<div class="row">
-								<div class="col-md-6">
+							<div class="form-row">
+								<div class="col-md-4">
 									<div class="position-relative form-group">
 										{!! Form::label('start_date', 'Data de Início*') !!}
 										{!! Form::text('start_date', old('start_date', $data->start_date), ['class' => 'form-control text']) !!}
 										{!! Form::notification('start_date', $errors) !!}
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="position-relative form-group">
 										{!! Form::label('finish_date', 'Data do Término*') !!}
 										{!! Form::text('finish_date', old('finish_date', $data->finish_date), ['class' => 'form-control text']) !!}
 										{!! Form::notification('finish_date', $errors) !!}
 									</div>
 								</div>
+								<div class="col-md-4">
+									<div class="position-relative form-group">
+										{!! Form::label('value', 'Valor do Cupom*') !!}
+										<div class="input-group">
+											{!! Form::number('value', old('value', $data->value), ['class' => 'form-control text']) !!}
+											<div class="input-group-append"><span class="input-group-text">%</span></div>
+										</div>
+										{!! Form::notification('value', $errors) !!}
+									</div>
+								</div>
 							</div>
-
-							<div class="divider"></div>
-							@if (isset($data->id))
-								{!! Form::hidden('id', $data->id, ['id' => 'id']) !!}
-							@endif
-							{!! Form::button('<i class="fas fa-cloud-upload-alt fa-w-10"></i> &nbsp; Salvar &nbsp; &nbsp;', ['type' => 'submit', 'class' => 'btn btn-success mb-2 mr-2']) !!}
-							<a href="{!! route('coupon.list') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-focus">
-								<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-times-circle fa-w-10"></i></span> Cancelar
-							</a>
-						{!! Form::close() !!}
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+			<div class="main-card mb-3 card">
+				<div class="card-button">
+					{!! Form::buttons('category.list', $data->id) !!}
+				</div>
+			</div>
+		{!! Form::close() !!}
 	</div>
 </div>
 
