@@ -23,7 +23,8 @@ $(document).ready(function ()
 	/**
 	 * To style all selects
 	 */
-	$('select').selectpicker({
+	$('.selectpicker').selectpicker({
+		noneSelectedText: 'Selecione',
 		size: 7
 	});
 
@@ -42,6 +43,11 @@ $(document).ready(function ()
 		$(this).parent().parent().fadeOut('slow');
 		return false;
 	});
+
+    /**
+     * Habilita o menu
+     */
+	$("#metismenu").metisMenu();
 
 	/**
 	 * Abre e fecha o menu clicando no Hamburger

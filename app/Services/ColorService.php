@@ -56,4 +56,18 @@ class ColorService extends BaseService
 
 		return Color::find($id)->first();
 	}
+
+	/**
+	 * Monta as opcoes do select box
+	 *
+	 * @return array
+	 */
+	public static function options()
+	{
+		$options = Color::orderBy('name', 'ASC')
+			->where('status', config('constants.ACTIVE'))
+			->pluck('name', 'id');
+		// retorna o combobox pronto
+		return $options->prepend('Selecione', '');
+	}
 }

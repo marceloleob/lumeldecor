@@ -39,42 +39,31 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<div class="main-card mb-3 card">
-			<div class="card-body"><h5 class="card-title">Preencha o formulário</h5>
-				<div class="row">
-					<div class="col-md-6">
-						{!! Form::open(['id' => 'form-color', 'route' => 'color.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
+		{!! Form::open(['id' => 'form-color', 'route' => 'color.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
+			<div class="main-card mb-3 card">
+				<div class="card-body"><h5 class="card-title">Preencha o formulário</h5>
+					<div class="form-row">
+						<div class="col-md-6">
 							<div class="position-relative form-group">
 								{!! Form::label('name', 'Nome da Cor*') !!}
 								{!! Form::text('name', old('name', $data->name), ['class' => 'form-control text']) !!}
 								{!! Form::notification('name', $errors) !!}
 							</div>
-
-
-							{{-- BOOTSTRAP COLORPICKER --}}
-
-
-
-
 							<div class="position-relative form-group">
-								{!! Form::label('hexa', 'Hexadecimal*') !!}
-								{!! Form::text('hexa', old('hexa', $data->hexa), ['class' => 'form-control text']) !!}
+								{!! Form::label('hexa', 'Cor*') !!}
+								{!! Form::color('hexa', old('hexa', $data->hexa), ['data-options' => 'pencil', 'class' => 'form-control color']) !!}
 								{!! Form::notification('name', $errors) !!}
 							</div>
-
-							<div class="divider"></div>
-							@if (isset($data->id))
-								{!! Form::hidden('id', $data->id, ['id' => 'id']) !!}
-							@endif
-							{!! Form::button('<i class="fas fa-cloud-upload-alt fa-w-10"></i> &nbsp; Salvar &nbsp; &nbsp;', ['type' => 'submit', 'class' => 'btn btn-success mb-2 mr-2']) !!}
-							<a href="{!! route('color.list') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-focus">
-								<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-times-circle fa-w-10"></i></span> Cancelar
-							</a>
-						{!! Form::close() !!}
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+			<div class="main-card mb-3 card">
+				<div class="card-button">
+					{!! Form::buttons('color.list', $data->id) !!}
+				</div>
+			</div>
+		{!! Form::close() !!}
 	</div>
 </div>
 

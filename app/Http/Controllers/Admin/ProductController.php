@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
 use App\Services\CategoryService;
+use App\Services\ColorService;
 use App\Services\MaterialService;
 use App\Services\ProductService;
 use App\Services\SupplierService;
@@ -35,7 +36,8 @@ class ProductController extends AdminController
 			'data'            => ProductService::find(),
 			'optionssupplier' => SupplierService::options(),
 			'optionsmaterial' => MaterialService::options(),
-			'optionscategory' => CategoryService::options(),
+            'optionscategory' => CategoryService::options(),
+            'optionscolor'    => ColorService::options(),
 		];
 
 		return view('admin.pages.product-form')->with($params);
