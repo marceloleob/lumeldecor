@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Item;
 use App\Models\Product;
 use App\Services\BaseService;
 
@@ -16,7 +17,9 @@ class ProductService extends BaseService
     public static function list($search = '')
 	{
 		// retorna a query para a busca do grid
-		$query = Product::orderBy('name', 'ASC');
+		$query = Item::with(['product' => function($subQuery) {
+			$subQuery->select('code');
+		}])->orderBy('name', 'ASC');
 
         // verifica se buscou algum item especifico
         if (!empty($search)) {

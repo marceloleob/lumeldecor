@@ -21,10 +21,7 @@ class Theme extends Base
 	protected $fillable = [
 		'id',
 		'name',
-		'start_day',
-		'start_month',
-		'finish_day',
-		'finish_month',
+		'show',
 		'status',
 	];
 
@@ -34,7 +31,7 @@ class Theme extends Base
 	 */
 	public function products()
 	{
-		return $this->hasMany(ProductTheme::class);
+		return $this->hasMany(ThemeProduct::class);
 	}
 
 	/**

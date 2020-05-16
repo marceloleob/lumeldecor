@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class ReceivedEmail extends Base
+class ContactMessage extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.

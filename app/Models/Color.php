@@ -26,11 +26,11 @@ class Color extends Base
 	];
 
 	/**
-	 * Get the product color about this color.
+	 * Get the products about this color.
 	 *
 	 */
-	public function colors()
+	public function products()
 	{
-		return $this->hasMany(ProductColor::class);
+		return $this->hasMany(ProductInfo::class);
 	}
 }

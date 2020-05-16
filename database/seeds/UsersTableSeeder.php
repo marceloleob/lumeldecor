@@ -62,7 +62,7 @@ class UsersTableSeeder extends Seeder
 			'user_rule_id' => 5,
 			'name'         => 'Paula Silveira Braga',
 			'email'        => 'paulinhasb06@hotmail.com',
-			'password'     => bcrypt('paulinha06'),
+			'password'     => bcrypt('123456'),
 			'status'       => 1,
 		]);
     }

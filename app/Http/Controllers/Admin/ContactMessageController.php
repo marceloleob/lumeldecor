@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
-use App\Services\ReceivedEmailService;
+use App\Services\ContactMessageService;
 use Illuminate\Http\Request;
 
-class ReceivedEmailController extends AdminController
+class ContactMessageController extends AdminController
 {
 	/**
 	 * Display a listing of the resource.
@@ -16,9 +16,9 @@ class ReceivedEmailController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = ReceivedEmailService::list($request->search);
+		$params = ContactMessageService::list($request->search);
 
-		return view('admin.pages.received-email-list')->with($params);
+		return view('admin.pages.contact-message-list')->with($params);
 	}
 
     /**

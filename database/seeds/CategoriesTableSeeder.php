@@ -19,13 +19,13 @@ class CategoriesTableSeeder extends Seeder
 	 *  8 - Metais
 	 *  9 - Plásticos
 	 * 10 - Porcelanas
-	 * 11 - Pelúcias
+	 * 11 - Personagens
 	 * 12 - Vidros
 	 *
 	 * @return void
 	 */
-    public function run()
-    {
+	public function run()
+	{
 		// limpa a tabela
 		DB::table('categories')->delete();
 		// CARTONAGEM
@@ -86,12 +86,13 @@ class CategoriesTableSeeder extends Seeder
 		Category::create(['material_id' => 10, 'name' => 'Pratos', 'status' => 1]);
 		Category::create(['material_id' => 10, 'name' => 'Redomas', 'status' => 1]);
 		Category::create(['material_id' => 10, 'name' => 'Vasos', 'status' => 1]);
-		// PELUCIAS
+		// PERSONAGENS
 		Category::create(['material_id' => 11, 'name' => 'Flamingos', 'status' => 1]);
 		Category::create(['material_id' => 11, 'name' => 'Mickey', 'status' => 1]);
 		Category::create(['material_id' => 11, 'name' => 'Minie', 'status' => 1]);
+		Category::create(['material_id' => 11, 'name' => 'Astronauta', 'status' => 1]);
 		// VIDROS
 		Category::create(['material_id' => 12, 'name' => 'Enfeites', 'status' => 1]);
 		Category::create(['material_id' => 12, 'name' => 'Vasos', 'status' => 1]);
-    }
+	}
 }

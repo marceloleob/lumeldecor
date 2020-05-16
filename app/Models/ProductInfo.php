@@ -21,10 +21,10 @@ class ProductInfo extends Base
 	protected $fillable = [
 		'id',
 		'product_id',
-		'supplier_id',
-		'name',
-		'hashtag',
-		'description',
+		'color_id',
+		'amount',
+		'image',
+		'launch',
 	];
 
 	/**
@@ -37,11 +37,11 @@ class ProductInfo extends Base
 	}
 
 	/**
-	 * Get the supplier that owns the product info.
+	 * Get the color that owns the product info.
 	 *
 	 */
-	public function supplier()
+	public function color()
 	{
-		return $this->belongsTo(Supplier::class);
+		return $this->belongsTo(Color::class);
 	}
 }

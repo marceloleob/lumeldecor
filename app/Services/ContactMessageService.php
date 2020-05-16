@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\ReceivedEmail;
+use App\Models\ContactMessage;
 use App\Services\BaseService;
 
-class ReceivedEmailService extends BaseService
+class ContactMessageService extends BaseService
 {
     /**
      * Monta a lista com paginacao
@@ -16,7 +16,7 @@ class ReceivedEmailService extends BaseService
 	public static function list($search = '')
 	{
 		// retorna a query para a busca do grid
-		$query = ReceivedEmail::orderBy('name', 'ASC');
+		$query = ContactMessage::orderBy('name', 'ASC');
 
         // verifica se buscou algum item especifico
         if (!empty($search)) {

@@ -82,20 +82,12 @@ class ThemeService extends BaseService
 	{
 		// Percorre toda a Collection
 		self::$collection->map(function ($array) {
-			// monta o periodo
-			$today  = Carbon::now();
-			$start  = Carbon::createFromDate(null, $array->start_month, $array->start_day);
-			$finish  = Carbon::createFromDate(null, $array->finish_month, $array->finish_day);
-			$period = $start->format('d/m') . ' até ' . $finish->format('d/m');
-			// verifica os temas que ja venceram
-			if ($today > $finish) {
-				$period = '<span class="text-warning">' . $period . '</span>';
+			// seta que vai aparecer na home
+			$array->show = 'Sim';
+			// verifica os temas vai aparecer na home
+			if ($array->show === 0) {
+				$array->show = '<span class="text-danger">Não</span>';
 			}
-			// verifica os temas que estao ativos hoje
-			if ($today < $finish && $today > $start) {
-				$period = '<span class="text-primary">' . $period . '</span>';
-			}
-			$array->period = $period;
 		});
 
 		// Executa a customizacao padrao

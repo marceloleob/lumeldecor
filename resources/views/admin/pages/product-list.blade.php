@@ -54,7 +54,8 @@
 							<thead>
 								<tr>
 									<th width="10%" class="text-center">Código</th>
-									<th width="60%" class="text-left">Produto</th>
+									<th width="10%" class="text-left">Code</th>
+									<th width="50%" class="text-left">Produto</th>
 									<th width="15%" class="text-center">Status</th>
 									<th width="15%" class="text-center">Ações</th>
 								</tr>
@@ -63,6 +64,7 @@
 								@foreach ($data as $item)
 								<tr>
 									<td class="text-center text-muted">{!! $item->id !!}</td>
+									<td class="text-left">{!! $item->code !!}</td>
 									<td class="text-left">{!! $item->name !!}</td>
 									<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 									<td class="text-center">

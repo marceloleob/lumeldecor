@@ -30,7 +30,7 @@ class Material extends Base
 	 */
 	public function categories()
 	{
-		return $this->hasMany('App\Models\Category');
+		return $this->hasMany(Category::class);
 	}
 
 	/**

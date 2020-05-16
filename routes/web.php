@@ -110,10 +110,10 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::post('estoque/salvar', 'StockController@store')->name('stock.store');
 	Route::get('estoque/editar/{id}/{page}', 'StockController@edit')->name('stock.edit');
 	Route::get('estoque/status/{id}', 'StockController@toggle')->name('stock.toggle');
-	// Received Emails
-	Route::get('mensagem/lista', 'ReceivedEmailController@index')->name('emails.list');
-	Route::get('mensagem/{id}/{page}', 'ReceivedEmailController@view')->name('emails.view');
-	Route::post('mensagem/nao-lida', 'ReceivedEmailController@read')->name('emails.read');
+	// Contact Message
+	Route::get('mensagem/lista', 'ContactMessageController@index')->name('message.list');
+	Route::get('mensagem/{id}/{page}', 'ContactMessageController@view')->name('message.view');
+	Route::post('mensagem/nao-lida', 'ContactMessageController@read')->name('message.read');
 	// Customers
 	Route::get('cliente/lista', 'CustomerController@index')->name('customer.list');
 	Route::any('cliente/busca', 'CustomerController@index')->name('customer.search');

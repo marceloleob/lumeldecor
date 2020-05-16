@@ -15,7 +15,7 @@
 		</div>
 		<div class="page-title-actions">
 			<div class="d-inline-block dropdown">
-				<a href="{!! route('emails.list') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-primary">
+				<a href="{!! route('message.list') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-primary">
 					<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-plus-circle fa-w-20"></i></span> Adicionar
 				</a>
 			</div>
@@ -39,7 +39,7 @@
 			@if (count($data))
 				@foreach ($data as $item)
 				<div class="message_item {!! ($item->read == 0) ? 'new' : '' !!}">
-					<a href="{!! route('emails.view', [$item->id, $data->currentPage()]) !!}">
+					<a href="{!! route('message.view', [$item->id, $data->currentPage()]) !!}">
 						{!! ($item->read == 0) ? '<span class="new">Não lida</span>' : '' !!}
 						<div class="left">
 							<span class="{!! ($item->read == 0) ? 'sender_name_new' : 'sender_name' !!}">{{ $item->name }}</span>
@@ -85,7 +85,7 @@
 									<td class="text-center">{!! ($item->read == 0) ? 'Nova' : '&nbsp;' !!}</td>
 									<td class="text-left">
 										<div class="message_item ">
-											<a href="{!! route('emails.view', [$item->id, $data->currentPage()]) !!}">
+											<a href="{!! route('message.view', [$item->id, $data->currentPage()]) !!}">
 												<div class="left">
 													<span class="{!! ($item->read == 0) ? 'sender_name_new' : 'sender_name' !!}">{{ $item->name }}</span>
 													<p>{{ Str::limit($item->text, 100, '..') }}</p>

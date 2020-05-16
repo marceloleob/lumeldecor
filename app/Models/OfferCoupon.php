@@ -22,6 +22,8 @@ class OfferCoupon extends Base
 		'id',
 		'name',
 		'code',
+		'kind',
+		'amount',
 		'start_date',
 		'finish_date',
 		'status',

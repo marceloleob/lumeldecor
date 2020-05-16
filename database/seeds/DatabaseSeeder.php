@@ -18,21 +18,25 @@ class DatabaseSeeder extends Seeder
 			UserRulesTableSeeder::class,
 			UsersTableSeeder::class,
 			CustomersTableSeeder::class,
-			ReceivedEmailsTableSeeder::class,
+			CustomerAddressesTableSeeder::class,
+			EmployeesTableSeeder::class,
+			SuppliersTableSeeder::class,
+			SupplierContactsTableSeeder::class,
+
+			ColorsTableSeeder::class,
+			ThemesTableSeeder::class,
+			CampaignsTableSeeder::class,
+			ContactMessagesTableSeeder::class,
 
 			MaterialsTableSeeder::class,
 			CategoriesTableSeeder::class,
-			ColorsTableSeeder::class,
-			ThemesTableSeeder::class,
 
+			ItemsTableSeeder::class,
 			ProductsTableSeeder::class,
-			ProductColorsTableSeeder::class,
 			ProductInfosTableSeeder::class,
-			ProductPhotosTableSeeder::class,
-			ProductThemesTableSeeder::class,
 
-			SuppliersTableSeeder::class,
-			SupplierContactsTableSeeder::class,
+			CampaignProductsTableSeeder::class,
+			ThemeProductsTableSeeder::class,
 
 			OfferCouponsTableSeeder::class,
 			OfferPromotionsTableSeeder::class,

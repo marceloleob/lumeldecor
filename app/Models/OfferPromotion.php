@@ -23,6 +23,8 @@ class OfferPromotion extends Base
 		'material_id',
 		'category_id',
 		'theme_id',
+		'campaign_id',
+		'item_id',
 		'product_id',
 		'name',
 		'kind',
@@ -59,6 +61,24 @@ class OfferPromotion extends Base
 	public function theme()
 	{
 		return $this->belongsTo(Theme::class);
+	}
+
+	/**
+	 * Get the campaign that owns the promotion.
+	 *
+	 */
+	public function campaign()
+	{
+		return $this->belongsTo(Campaign::class);
+	}
+
+	/**
+	 * Get the item that owns the promotion.
+	 *
+	 */
+	public function item()
+	{
+		return $this->belongsTo(Item::class);
 	}
 
 	/**

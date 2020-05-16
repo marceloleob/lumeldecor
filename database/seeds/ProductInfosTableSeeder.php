@@ -6,14 +6,22 @@ use Illuminate\Support\Facades\DB;
 
 class ProductInfosTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
 		// limpa a tabela
 		DB::table('product_infos')->delete();
-    }
+		// cria os registros
+		ProductInfo::create([
+			'product_id' => 1,
+			'color_id'   => 6,
+			'amount'     => 45,
+			'image'      => 'teste.jpg',
+			'launch'     => 1
+		]);
+	}
 }

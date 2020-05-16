@@ -20,53 +20,52 @@ class Product extends Base
 	 */
 	protected $fillable = [
 		'id',
-		'category_id',
+		'item_id',
+		'supplier_id',
 		'code',
 		'size',
 		'weight',
 		'height',
 		'width',
 		'length',
-		'amount',
-		'price_site',
-		'price_supp',
-		'status',
+		'p_price', // purchase price
+		's_price', // sale price
 	];
 
 	/**
-	 * Get the category that owns the product.
+	 * Get the item that owns the product.
 	 *
 	 */
-	public function category()
+	public function item()
 	{
-		return $this->belongsTo(Category::class);
+		return $this->belongsTo(Item::class);
 	}
 
 	/**
-	 * Get the colors about this product.
+	 * Get the supplier that owns the product.
 	 *
 	 */
-	public function colors()
+	public function supplier()
 	{
-		return $this->hasMany(ProductColor::class);
+		return $this->belongsTo(Supplier::class);
 	}
 
 	/**
-	 * Get the info about this product.
+	 * Get the campaigns about this product.
 	 *
 	 */
-	public function info()
+	public function campaign()
 	{
-		return $this->hasOne(ProductInfo::class);
+		return $this->hasMany(CampaignProduct::class);
 	}
 
 	/**
-	 * Get the photos about this product.
+	 * Get the infos about this product.
 	 *
 	 */
-	public function photos()
+	public function infos()
 	{
-		return $this->hasMany(ProductPhoto::class);
+		return $this->hasMany(ProductInfo::class);
 	}
 
 	/**
@@ -75,7 +74,7 @@ class Product extends Base
 	 */
 	public function themes()
 	{
-		return $this->hasMany(ProductTheme::class);
+		return $this->hasMany(ThemeProduct::class);
 	}
 
 	/**

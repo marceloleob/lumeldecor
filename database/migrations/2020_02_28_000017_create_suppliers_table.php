@@ -6,17 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSuppliersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-		// CRIA A TABELA
-        Schema::create('suppliers', function (Blueprint $table) {
-            $table->id();
-			$table->bigInteger('city_id')->unsigned();
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('suppliers', function (Blueprint $table) {
+			$table->id();
+			$table->foreignId('city_id');
 			$table->string('code', 10);
 			$table->enum('kind', ['F', 'J']);
 			$table->string('document', 14)->unique();
@@ -30,17 +29,16 @@ class CreateSuppliersTable extends Migration
 			$table->string('zipcode', 8);
 			$table->string('website', 100)->nullable();
 			$table->boolean('status')->default(1);
-        });
-    }
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-		// EXCLUI A TABELA
-        Schema::dropIfExists('suppliers');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('suppliers');
+	}
 }
