@@ -1,30 +1,45 @@
 $(document).ready(function ()
 {
-	// Validacao do formulario
-	if ($('#form-product').length) {
-		// validation
-		$('#form-product').validate({
-			rules: {
-				supplier_id: {
-					required: true,
-				},
-				material_id: {
-					required: true,
-				},
-				category_id: {
-					required: true,
-				},
-				name: {
-					required: true,
-					minlength: 2,
-					maxlength: 100,
-				},
-			}
-		});
-	}
+	/**
+	 * Validacao do formulario
+	 *
+	 */
+	// if ($('#form-product').length) {
+	// 	// validation
+	// 	$('#form-product').validate({
+	// 		// https://jqueryvalidation.org/documentation/
+	// 		rules: {
+	// 			size: {
+	// 				required: true,
+	// 			},
+	// 			weight: {
+	// 				required: true,
+	// 			},
+	// 			supplier_id: {
+	// 				required: true,
+	// 			},
+	// 			s_price: {
+	// 				required: true,
+	// 			},
+	// 			p_price: {
+	// 				required: true,
+	// 			},
+	// 			lenght: {
+	// 				required: true,
+	// 			},
+	// 			width: {
+	// 				required: true,
+	// 			},
+	// 			height: {
+	// 				required: true,
+	// 			},
+	// 			// 'color[]': 'allRequired',
+	// 		}
+	// 	});
+	// }
 
 	/**
-	 * Nome do input File
+	 * Customiza os input="file" - Nome do input File
 	 *
 	 */
 	$(".custom-file-input").on("change", function() {
@@ -44,7 +59,7 @@ $(document).ready(function ()
 		// recupera o elemento referente a este bloco
 		var $element = $buttonAdd.parent();
 		// faz um clone de todo o bloco
-		var $cloned = $buttonAdd.closest('.row-piece').clone(true);
+		var $cloned = $buttonAdd.closest('.row-color').clone(true);
 		// contador
 		var $counter = (parseInt($('#count-color').val()) + 1);
 
@@ -75,8 +90,13 @@ $(document).ready(function ()
 		var $inputs = $cloned.find('input');
 		// percorre os inputs
 		$inputs.each(function () {
-			if ($(this).prop('type') === 'text' || $(this).prop('type') === 'number' || $(this).prop('type') === 'file') {
+			// limpa os campos
+			if ($(this).prop('type') === 'text' || $(this).prop('type') === 'number') {
 				$(this).val('').end();
+			}
+			if ($(this).prop('type') === 'file') {
+				$(this).val('').end();
+				$(this).parent().find('.custom-file-label').html('');
 			}
 			if ($(this).prop('type') === 'checkbox') {
 				$(this).prop('checked', false);
@@ -90,7 +110,7 @@ $(document).ready(function ()
 		});
 
 		// adiciona o clone abaixo do bloco que ja existe
-		$buttonAdd.closest('.row-piece').after($cloned);
+		$buttonAdd.closest('.row-color').after($cloned);
 		// remove o botao de adicionar
 		$buttonAdd.remove();
 		// adiciona o botao de "remover"
@@ -106,9 +126,11 @@ $(document).ready(function ()
 	$('.remove-color').on('click', function (e) {
 		// Method cancels the event if it is cancelable
 		e.preventDefault();
-		// recupera o bloco referente a este bloco
-		var $element = $(this).parent().parent().parent();
+		// contador
+		var $counter = (parseInt($('#count-color').val()) - 1);
+		// remove um no contador
+		$('#count-color').val($counter);
 		// remove o bloco
-		$element.remove();
+		$(this).closest('.row-color').remove();
 	});
 });

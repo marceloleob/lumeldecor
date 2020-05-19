@@ -25,7 +25,15 @@
 .has-success .input-group-addon {
     border: 1px solid #6E8847;
 }
-
+.form .required::after {
+	position: absolute;
+	content: "\f069";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	font-size: 6px;
+	color: #bd362f;
+	padding: 3px;
+}
 
 /**
 * -----------------------------------------------------------------------------
@@ -98,9 +106,6 @@ a, a:hover, a:focus, a:visited {
 	align-items: center;
 	justify-content: space-between;
 }
-.card-button .btn {
-	width: 120px;
-}
 .btn-success.btn-shadow {
     box-shadow: 0 0.125rem 0.625rem rgba(58,196,125,0.4), 0 0.0625rem 0.125rem rgba(58,196,125,0.5);
 }
@@ -144,7 +149,7 @@ a, a:hover, a:focus, a:visited {
 	width: 245px;
 	padding-top: 2.5rem;
 }
-.card-piece {
+.card-color {
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
 	// background-color: #faf7ff;

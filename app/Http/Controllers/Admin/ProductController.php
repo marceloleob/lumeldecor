@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
-use App\Services\CategoryService;
+use App\Http\Requests\Admin\ProductRequest;
 use App\Services\ColorService;
-use App\Services\MaterialService;
+use App\Services\ItemService;
 use App\Services\ProductService;
 use App\Services\SupplierService;
+use App\Services\ThemeService;
 use Illuminate\Http\Request;
 
 class ProductController extends AdminController
@@ -28,16 +29,23 @@ class ProductController extends AdminController
     /**
      * Show the form for creating a new resource.
      *
+     * @param  int  $item
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($item = null)
     {
+        // caso nao tenha informado o item
+        if (empty($item)) {
+            //retorna para o formulario do item
+            return back()->withInput()->with(['danger' => 'Para acessar o formulário de produto (2ª parte) você precisa ter concluído a 1ª parte.']);
+        }
+
 		$params = [
 			'data'            => ProductService::find(),
+			'item'            => ItemService::find($item),
 			'optionssupplier' => SupplierService::options(),
-			'optionsmaterial' => MaterialService::options(),
-            'optionscategory' => CategoryService::options(),
             'optionscolor'    => ColorService::options(),
+            'optionstheme'    => ThemeService::options(),
 		];
 
 		return view('admin.pages.product-form')->with($params);
@@ -49,9 +57,17 @@ class ProductController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        // save
+        $response = ProductService::store($request);
+
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+        }
+
+        return redirect()->route('product.form')->with($response);
     }
 
     /**
@@ -88,16 +104,16 @@ class ProductController extends AdminController
         //
     }
 
-	/**
-     * Toggle the status storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function toggle($id)
-    {
-        $response = ProductService::toggleStatus($id);
+	// /**
+    //  * Toggle the status storage.
+    //  *
+    //  * @param  int  $id
+    //  * @return Response
+    //  */
+    // public function toggle($id)
+    // {
+    //     $response = ProductService::toggleStatus($id);
 
-        return redirect()->route('product.list')->with($response);
-    }
+    //     return redirect()->route('product.list')->with($response);
+    // }
 }

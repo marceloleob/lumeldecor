@@ -114,7 +114,7 @@ class Macros extends FormBuilder
             '<i class="fas fa-cloud-upload-alt fa-w-10 pr-2"></i> Salvar',
             [
                 'type' => 'submit',
-                'class' => 'btn-hover-shine btn btn-shadow btn-success btn-save mr-4'
+                'class' => 'btn-hover-shine btn btn-shadow btn-success btn-save mr-4 pr-4 pl-4'
             ]
         );
 
@@ -124,7 +124,7 @@ class Macros extends FormBuilder
         }
 
         array_push($buttons, $save);
-        array_push($buttons, '<a href="' . route($link) . '" class="btn-transition btn btn-outline-focus btn-cancel">');
+        array_push($buttons, '<a href="' . route($link) . '" class="btn-transition btn btn-outline-focus btn-cancel mr-4 pr-4 pl-4">');
         array_push($buttons, '    <i class="fas fa-times-circle fa-w-10 pr-2"></i> Cancelar');
         array_push($buttons, '</a>');
 

@@ -51,10 +51,10 @@ class User extends Authenticatable
 	 * @param  string  $token
 	 * @return void
 	 */
-	public function sendPasswordResetNotification($token)
-	{
-		$this->notify(new ResetPassword($token));
-	}
+	// public function sendPasswordResetNotification($token)
+	// {
+	// 	$this->notify(new ResetPassword($token));
+	// }
 
 	/**
 	 * Get the rule that owns the user.
@@ -80,24 +80,24 @@ class User extends Authenticatable
 	 * @param int $id
 	 * @return array
 	 */
-	public static function toggleStatus($id)
-	{
-		// inicia o acoplamento de uma transacao
-		DB::beginTransaction();
+	// public static function toggleStatus($id)
+	// {
+	// 	// inicia o acoplamento de uma transacao
+	// 	DB::beginTransaction();
 
-		try {
-			$entity = self::find($id);
-			$entity->status = !$entity->status;
-			$entity->save();
-			// efetiva a transacao
-			DB::commit();
-			// retorna a entidade atualizada
-			return $entity;
-		} catch (Exception $exception) {
-			// descarta a transacao
-			DB::rollback();
-			// retorna o erro
-			throw new Exception($exception);
-		}
-	}
+	// 	try {
+	// 		$entity = self::find($id);
+	// 		$entity->status = !$entity->status;
+	// 		$entity->save();
+	// 		// efetiva a transacao
+	// 		DB::commit();
+	// 		// retorna a entidade atualizada
+	// 		return $entity;
+	// 	} catch (Exception $exception) {
+	// 		// descarta a transacao
+	// 		DB::rollback();
+	// 		// retorna o erro
+	// 		throw new Exception($exception);
+	// 	}
+	// }
 }

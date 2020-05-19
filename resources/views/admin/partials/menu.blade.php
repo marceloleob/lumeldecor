@@ -57,9 +57,9 @@
 			<li>
 				<a href="{!! route('campaign.list') !!}" class="{!! (request()->is('admin/campanha/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-calendar-alt icon-gradient bg-plum-plate"></i> Campanhas</a>
 			</li>
-			{{-- <li>
+			<li>
 				<a href="{!! route('stock.list') !!}" class="{!! (request()->is('admin/estoques/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-warehouse icon-gradient bg-plum-plate"></i> Estoques</a>
-			</li> --}}
+			</li>
 
 			<li class="app-sidebar__heading">SITE</li>
 			<li>

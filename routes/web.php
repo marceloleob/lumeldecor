@@ -67,13 +67,32 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::post('cor/salvar', 'ColorController@store')->name('color.store');
 	Route::get('cor/editar/{id}/{page}', 'ColorController@edit')->name('color.edit');
 	Route::get('cor/status/{id}', 'ColorController@toggle')->name('color.toggle');
+	// Item
+	Route::get('item/lista', 'ItemController@index')->name('item.list');
+	Route::any('item/busca', 'ItemController@index')->name('item.search');
+	Route::get('item/novo', 'ItemController@create')->name('item.form');
+	Route::post('item/salvar', 'ItemController@store')->name('item.store');
+	Route::get('item/editar/{id}/{page}', 'ItemController@edit')->name('item.edit');
+	Route::get('item/status/{id}', 'ItemController@toggle')->name('item.toggle');
 	// Products
 	Route::get('produto/lista', 'ProductController@index')->name('product.list');
 	Route::any('produto/busca', 'ProductController@index')->name('product.search');
-	Route::get('produto/novo', 'ProductController@create')->name('product.form');
+	Route::get('produto/novo/{item?}', 'ProductController@create')->name('product.form');
 	Route::post('produto/salvar', 'ProductController@store')->name('product.store');
 	Route::get('produto/editar/{id}/{page}', 'ProductController@edit')->name('product.edit');
 	Route::get('produto/status/{id}', 'ProductController@toggle')->name('product.toggle');
+
+
+
+
+
+
+
+
+
+
+
+
 	// Campaign
 	Route::get('campanha/lista', 'CampaignController@index')->name('campaign.list');
 	Route::any('campanha/busca', 'CampaignController@index')->name('campaign.search');

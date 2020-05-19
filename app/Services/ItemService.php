@@ -3,11 +3,10 @@
 namespace App\Services;
 
 use App\Models\Item;
-use App\Models\Product;
 use App\Services\BaseService;
 use Exception;
 
-class ProductService extends BaseService
+class ItemService extends BaseService
 {
     /**
      * Monta a lista com paginacao
@@ -30,23 +29,53 @@ class ProductService extends BaseService
             $query->where('name', 'LIKE', '%' . $search . '%');
         }
 
+
+        // $entity = Item::orderBy('name')
+        //     ->where('status', config('constants.ACTIVE'))
+        //     ->where('id', $id)
+        //     ->with('category')
+        //     ->firstOrFail()
+        //     ->map(function ($item) {
+        //         return $this->format($item);
+        //     });
+
+
+
         // cria uma collection com paginacao para montar o grid
         return parent::handlePagination($query);
 	}
+
+	/**
+	 * Altera o status do registro
+	 *
+	 * @param int $id
+	 * @return array
+	 */
+	public static function toggleStatus($id)
+	{
+		return parent::handleToggleStatus((new Item()), $id);
+	}
+
 	/**
 	 * Retorna os dados referente a este modelo
 	 *
 	 * @param integer $id
-	 * @return Product
+	 * @return Item
 	 */
 	public static function find($id = null)
 	{
-		//verifica se foi informado o id
+		// verifica se foi informado o id
 		if (empty($id)) {
-			return new Product;
+			return new Item;
 		}
 
-		return Product::find($id)->first();
+        $entity = Item::orderBy('name')
+            ->where('status', config('constants.ACTIVE'))
+            ->where('id', $id)
+            ->with('category')
+            ->firstOrFail();
+
+        return self::format($entity);
 	}
 
     /**
@@ -59,11 +88,11 @@ class ProductService extends BaseService
     {
         try {
             // save or update
-            $entity = Product::store($request->all());
+            $entity = Item::store($request->all());
             // retorna a entidade criada ou atualizada
             return [
-                'success' => 'Produto ' . ((isset($request->id)) ? 'atualizado' : 'cadastrado') . ' com sucesso!',
-                'entity'  => $entity,
+                'success' => 'Informações Básicas do produto foram ' . ((isset($request->id)) ? 'atualizadas' : 'cadastradas') . ' com sucesso!',
+                'id'      => $entity->id,
             ];
         } catch (Exception $exception) {
             // retorna a entidade criada ou atualizada
@@ -72,5 +101,19 @@ class ProductService extends BaseService
                 'error'  => $exception,
             ];
         }
+    }
+
+    protected static function format($item)
+    {
+        return [
+            'id'          => $item->id,
+            'name'        => $item->name,
+            'hashtag'     => $item->hashtag,
+            'description' => $item->description,
+            'featured'    => $item->featured,
+            'status'      => $item->status,
+            'category'    => $item->category->name,
+            'material'    => $item->category->material->name,
+        ];
     }
 }

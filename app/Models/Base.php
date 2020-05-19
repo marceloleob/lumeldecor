@@ -14,35 +14,36 @@ class Base extends Model
 	 * @param array $data
 	 * @return $this
 	 */
-	public static function store($data = [])
-	{
-		// inicia o acoplamento de uma transacao
-		DB::beginTransaction();
+    public static function store($data = [])
+    {
+        // inicia o acoplamento de uma transacao
+        DB::beginTransaction();
 
-		try {
-			// verifica qual acao
-			if (!empty($data['id'])) {
-				// recupera a entidade
-				$entity = self::find($data['id']);
-				// realiza o update
+        try {
+            // verifica qual acao
+            if (!empty($data['id'])) {
+                // recupera a entidade
+                $entity = self::find($data['id']);
+                // realiza o update
 				$entity->update($data);
 
-				// efetiva a transacao
-				DB::commit();
-				// retorna a entidade atualizada
-				return $entity;
+            } else {
+                // realiza o save e retorna o objeto
+				$entity = self::create($data);
+            }
 
-			} else {
-				// realiza o save e retorna o objeto
-				return self::create($data);
-			}
-		} catch (Exception $exception) {
-			// descarta a transacao
-			DB::rollback();
-			// retorna o erro
-			throw new Exception($exception);
-		}
-	}
+            // efetiva a transacao
+            DB::commit();
+            // retorna a entidade
+            return $entity;
+
+        } catch (Exception $exception) {
+            // descarta a transacao
+            DB::rollback();
+            // retorna o erro
+            throw new Exception($exception);
+        }
+    }
 
 	/**
 	 * Altera o status do registro

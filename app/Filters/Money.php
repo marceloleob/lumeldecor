@@ -4,7 +4,7 @@ namespace App\Filters;
 
 use Waavi\Sanitizer\Contracts\Filter;
 
-class Amount implements Filter
+class Money implements Filter
 {
     /**
      *  Formata dinheiro removendo a moeda e retornando um float

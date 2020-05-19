@@ -18,7 +18,7 @@ $.validator.setDefaults(
     },
     errorPlacement: function(error, element)
     {
-        if (element.prop('type') === 'checkbox' || element.prop('type') === 'radio' || element.prop('type') === 'file' || element.prop('type') === 'select-one') {
+        if (element.prop('type') === 'checkbox' || element.prop('type') === 'radio' || element.prop('type') === 'file' || element.prop('type') === 'select-one' || element.parent().is('.input-group')) {
             error.insertAfter(element.parent());
         } else {
             error.insertAfter(element);
@@ -30,9 +30,9 @@ $.validator.setDefaults(
  * Resolve o problema com o Select Picker
  *
  */
-// $('select.selectpicker').on('change', function () {
-// 	$(this).valid();
-// });
+$('select.selectpicker').on('change', function () {
+	$(this).valid();
+});
 
 /**
  * Seta um padrao para todas as mensagens de erro
@@ -61,9 +61,21 @@ $.extend($.validator, {
     }
 });
 
-
 $(document).ready(function()
 {
+
+	// jQuery.validator.addMethod("allRequired", function(value, element){
+    //     // Use the name to get all the inputs and verify them
+	// 	var name = element.name;
+	// 	console.log(name, $('input[name="'+name+'"]'));
+    //     return  $('input[name="'+name+'"]').map(function(i,obj){
+	// 		console.log($(obj).val());
+	// 		return $(obj).val();
+	// 	}).get().every(function(v){ return v; });
+    // }, '<i class="fas fa-times pr-2 pl-2"></i> Campo obrigatório');
+
+	// https://stackoverflow.com/questions/24670447/how-to-validate-array-of-inputs-using-validate-plugin-jquery
+
 	/**
 	 * Bloqueia numeros
 	 */

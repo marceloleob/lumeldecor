@@ -12,6 +12,19 @@ $(document).ready(function()
 		});
     });
 
+	// binda o campo decimal
+	$(document).on('focus', '.weight', function(e) {
+		// adiciona mascara
+		$('.weight').maskMoney(
+		{
+            allowNegative: false,
+            thousands: '.',
+			decimal: ',',
+			precision: 3,
+            affixesStay: true
+		});
+    });
+
 	// binda o campo de moeda
 	$(document).on('focus', '.money', function(e) {
 		// adiciona mascara
@@ -52,27 +65,26 @@ $(document).ready(function()
 	// binda o campo de phone
 	$(document).on('focus', '.phone', function(e) {
 		// adiciona mascara
-		$('.phone').mask("(999) 999-9999")
-		// $('.phone')
-		// 	.mask("(99) 99999999?9")
-		// 	.focusin(function(event)
-		// 	{
-		// 		$(this).unmask();
-		// 		$(this).mask("(99) 99999999?9");
-		// 	})
-		// 	.focusout(function(event)
-		// 	{
-		// 		var phone, element;
-		// 		element = $(this);
-		// 		phone = element.val().replace(/\D/g, '');
-		// 		element.unmask();
+		$('.phone')
+			.mask("(99) 99999999?9")
+			.focusin(function(event)
+			{
+				$(this).unmask();
+				$(this).mask("(99) 99999999?9");
+			})
+			.focusout(function(event)
+			{
+				var phone, element;
+				element = $(this);
+				phone = element.val().replace(/\D/g, '');
+				element.unmask();
 
-		// 		if (phone.length > 10) {
-		// 			element.mask("(99) 99999-999?9");
-		// 		} else {
-		// 			element.mask("(99) 9999-9999?9");
-		// 		}
-		// 	}
-		// );
+				if (phone.length > 10) {
+					element.mask("(99) 99999-999?9");
+				} else {
+					element.mask("(99) 9999-9999?9");
+				}
+			}
+		);
 	});
 });

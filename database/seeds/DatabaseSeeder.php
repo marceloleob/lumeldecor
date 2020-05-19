@@ -34,9 +34,9 @@ class DatabaseSeeder extends Seeder
 			ItemsTableSeeder::class,
 			ProductsTableSeeder::class,
 			ProductInfosTableSeeder::class,
+			ProductInfoThemesTableSeeder::class,
 
 			CampaignProductsTableSeeder::class,
-			ThemeProductsTableSeeder::class,
 
 			OfferCouponsTableSeeder::class,
 			OfferPromotionsTableSeeder::class,

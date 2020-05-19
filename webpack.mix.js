@@ -25,7 +25,7 @@ const mix = require('laravel-mix');
 	// JS FORMS VALIDATE
 	.js('resources/js/forms/jquery.masks.en.js', 'public/js/forms')
 	.js('resources/js/forms/jquery.masks.pt-br.js', 'public/js/forms')
-	.js('resources/js/forms/jquery.masks.min.js', 'public/js/forms')
+	// .js('resources/js/forms/jquery.masks.min.js', 'public/js/forms')
 	.js('resources/js/forms/jquery.validate.en.js', 'public/js/forms')
 	.js('resources/js/forms/jquery.validate.pt-br.js', 'public/js/forms')
 	// JS ADMIN PAGES
@@ -34,6 +34,7 @@ const mix = require('laravel-mix');
 		'resources/js/admin/pages/category.js',
 		// 'resources/js/admin/pages/color.js',
 		// 'resources/js/admin/pages/customer.js',
+		'resources/js/admin/pages/item.js',
 		// 'resources/js/admin/pages/dashboard.js',
 		'resources/js/admin/pages/material.js',
 		// 'resources/js/admin/pages/coupon.js',

@@ -157,7 +157,7 @@ return [
         'username'              => 'usuário',
         'email'                 => 'e-mail',
         'password'              => 'senha',
-        'password_confirmation'  => 'confirmação da senha',
+        'password_confirmation' => 'confirmação da senha',
         'remember'              => 'lembrar-se de mim',
         // USER / CLIENT
         'name'                  => 'nome',
@@ -166,8 +166,8 @@ return [
         'age'                   => 'idade',
         'phone'                 => 'telefone',
         'mobile'                => 'celular',
-        'first_name'             => 'primeiro nome',
-        'firstname'              => 'primeiro nome',
+        'first_name'            => 'primeiro nome',
+        'firstname'             => 'primeiro nome',
         'last_name'             => 'sobrenome',
         'lastname'              => 'sobrenome',
         'gender'                => 'gênero',
@@ -202,8 +202,19 @@ return [
         // OTHERS
         'body'                  => 'conteúdo',
         'excerpt'               => 'resumo',
+        // DIMENSIONS
+        'size'                  => 'tamanho',
+        'weight'                => 'peso',
+        'lenght'                => 'comprimento',
+        'width'                 => 'largura',
+        'height'                => 'altura',
 
         // CUSTOM THIS SITE
+        'material_id'           => 'material',
+        'category_id'           => 'categoria',
+        'supplier_id'           => 'fornecedor',
+        's_price'               => 'preço no site',
+        'p_price'               => 'preço no fornecedor',
 
     ],
 ];

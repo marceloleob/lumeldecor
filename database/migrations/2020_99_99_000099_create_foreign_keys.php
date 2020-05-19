@@ -62,17 +62,17 @@ class CreateForeignKeys extends Migration
 			$table->foreign('color_id')->references('id')->on('colors')->onDelete('no action')->onUpdate('no action');
 		});
 
+		Schema::table('product_info_themes', function (Blueprint $table) {
+			$table->foreign('product_info_id')->references('id')->on('product_infos')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('restrict')->onUpdate('restrict');
+		});
+
 		Schema::table('suppliers', function (Blueprint $table) {
 			$table->foreign('city_id')->references('id')->on('cities')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('supplier_contacts', function (Blueprint $table) {
 			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('no action')->onUpdate('no action');
-		});
-
-		Schema::table('theme_products', function (Blueprint $table) {
-			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('restrict')->onUpdate('restrict');
-			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict')->onUpdate('restrict');
 		});
 
 		Schema::table('users', function (Blueprint $table) {
@@ -150,6 +150,13 @@ class CreateForeignKeys extends Migration
 			$table->dropColumn('color_id');
 		});
 
+		Schema::table('product_info_themes', function (Blueprint $table) {
+			$table->dropForeign('product_info_themes_product_info_id_foreign');
+			$table->dropColumn('product_info_id');
+			$table->dropForeign('product_info_themes_theme_id_foreign');
+			$table->dropColumn('theme_id');
+		});
+
 		Schema::table('suppliers', function (Blueprint $table) {
 			$table->dropForeign('suppliers_city_id_foreign');
 			$table->dropColumn('city_id');
@@ -158,13 +165,6 @@ class CreateForeignKeys extends Migration
 		Schema::table('supplier_contacts', function (Blueprint $table) {
 			$table->dropForeign('supplier_contacts_supplier_id_foreign');
 			$table->dropColumn('supplier_id');
-		});
-
-		Schema::table('theme_products', function (Blueprint $table) {
-			$table->dropForeign('theme_products_theme_id_foreign');
-			$table->dropColumn('theme_id');
-			$table->dropForeign('theme_products_product_id_foreign');
-			$table->dropColumn('product_id');
 		});
 
 		Schema::table('users', function (Blueprint $table) {

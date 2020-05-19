@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Base;
 
-class Item extends Model
+class Item extends Base
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -22,8 +22,8 @@ class Item extends Model
 		'id',
         'category_id',
 		'name',
-		'hashtag',
 		'description',
+		'hashtag',
 		'featured',
 		'status',
     ];
@@ -35,6 +35,15 @@ class Item extends Model
 	public function category()
 	{
 		return $this->belongsTo(Category::class);
+    }
+
+	/**
+	 * Get the category that owns the item.
+	 *
+	 */
+	public function material()
+	{
+		return $this->category()->with('material');
     }
 
 	/**

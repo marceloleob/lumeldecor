@@ -20,11 +20,10 @@ class CreateProductsTable extends Migration
 			$table->string('code', 50);           // MATERIAL (99) + CATEGORIA (99) + PRODUTO (99999) + COR (99) + TAMANHO (P,M,G)
 			$table->char('size', 5);              // Tamanho (P, M, G, Unico)
 			$table->decimal('weight', 4, 2);      // Peso (kg)
-			$table->smallInteger('height'); // Altura (cm)
-			$table->smallInteger('width');  // Largura (cm)
-			$table->smallInteger('length'); // Comprimento (cm)
-			$table->decimal('p_price', 7, 2);     // Preco no Fornecedor
-			$table->decimal('s_price', 7, 2);     // Preco no Site
+			$table->smallInteger('height');       // Altura (cm)
+			$table->smallInteger('width');        // Largura (cm)
+			$table->smallInteger('length');       // Comprimento (cm)
+			$table->double('price', 10, 2);       // Preco no Site
 		});
 	}
 

@@ -4,20 +4,17 @@ namespace App\Filters;
 
 use Waavi\Sanitizer\Contracts\Filter;
 
-class Nullable implements Filter
+class Decimal implements Filter
 {
     /**
      *  Formata dinheiro removendo a moeda e retornando um float
      *
      *  @param  string  $value
-     *  @return int
+     *  @return float
      */
     public function apply($value, $options = [])
     {
-        if (empty($value) || $value == '') {
-            return '';
-        }
-
-        return (int) $value;
+        // retorna formatado
+        return number_format((float) $value, (int) 2);
     }
 }
