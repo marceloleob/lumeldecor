@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class ProductInfo extends Base
+class ProductInfo extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,12 +20,13 @@ class ProductInfo extends Base
 	 */
 	protected $fillable = [
 		'id',
-		'product_id',
-		'color_id',
-		'amount',
-		'image',
-		'launch',
-	];
+        'product_id',
+		'name',
+		'description',
+		'hashtag',
+		'featured',
+		'status',
+    ];
 
 	/**
 	 * Get the product that owns the product info.
@@ -34,14 +35,5 @@ class ProductInfo extends Base
 	public function product()
 	{
 		return $this->belongsTo(Product::class);
-	}
-
-	/**
-	 * Get the color that owns the product info.
-	 *
-	 */
-	public function color()
-	{
-		return $this->belongsTo(Color::class);
-	}
+    }
 }

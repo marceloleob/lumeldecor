@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class Category extends Base
+class Category extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -40,7 +40,7 @@ class Category extends Base
 	 */
 	public function products()
 	{
-		return $this->hasMany(Product::class);
+		return $this->hasMany(CategoryProduct::class);
 	}
 
 	/**

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class Product extends Base
+class Product extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,61 +20,58 @@ class Product extends Base
 	 */
 	protected $fillable = [
 		'id',
-		'item_id',
-		'supplier_id',
 		'code',
 		'size',
 		'weight',
 		'height',
 		'width',
 		'length',
-		'p_price', // purchase price
-		's_price', // sale price
+		'price',
 	];
 
 	/**
-	 * Get the item that owns the product.
+	 * Get the items about this product.
 	 *
 	 */
-	public function item()
+	public function items()
 	{
-		return $this->belongsTo(Item::class);
+		return $this->hasMany(Item::class);
 	}
 
 	/**
-	 * Get the supplier that owns the product.
+	 * Get the info about this product.
 	 *
 	 */
-	public function supplier()
+	public function info()
 	{
-		return $this->belongsTo(Supplier::class);
+		return $this->hasOne(ProductInfo::class);
 	}
 
 	/**
-	 * Get the campaigns about this product.
+	 * Get the category about this product.
 	 *
 	 */
-	public function campaign()
+	public function category()
 	{
-		return $this->hasMany(CampaignProduct::class);
+		return $this->hasOne(CategoryProduct::class);
 	}
 
 	/**
-	 * Get the infos about this product.
+	 * Get the category about this product.
 	 *
 	 */
-	public function infos()
+	public function material()
 	{
-		return $this->hasMany(ProductInfo::class);
+		return $this->category()->with('category')->with('material');
 	}
 
 	/**
-	 * Get the themes about this product.
+	 * Get the stock about this product.
 	 *
 	 */
-	public function themes()
+	public function stock()
 	{
-		return $this->hasMany(ThemeProduct::class);
+		return $this->hasMany(Stock::class);
 	}
 
 	/**

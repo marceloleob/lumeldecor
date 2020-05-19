@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class OfferPromotion extends Base
+class OfferPromotion extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.

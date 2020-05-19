@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class CampaignProduct extends Base
+class CategoryProduct extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,25 +20,25 @@ class CampaignProduct extends Base
 	 */
 	protected $fillable = [
 		'id',
-		'campaign_id',
+		'category_id',
 		'product_id',
 	];
 
 	/**
-	 * Get the campaign that owns the campaign's product.
+	 * Get the category that owns the product.
 	 *
 	 */
-	public function campaign()
+	public function category()
 	{
-		return $this->belongsTo(Campaign::class);
-    }
+		return $this->belongsTo(Category::class);
+	}
 
 	/**
-	 * Get the product that owns the campaign's product.
+	 * Get the products that owns the category.
 	 *
 	 */
 	public function products()
 	{
 		return $this->belongsTo(Product::class);
-	}
+    }
 }

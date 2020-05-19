@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Base
+class Supplier extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -60,6 +60,6 @@ class Supplier extends Base
 	 */
 	public function products()
 	{
-		return $this->hasMany(ProductInfo::class);
+		return $this->hasMany(ProductSupplier::class);
 	}
 }

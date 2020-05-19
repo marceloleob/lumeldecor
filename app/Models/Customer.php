@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Base
+class Customer extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.

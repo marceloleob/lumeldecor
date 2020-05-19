@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class ProductInfoTheme extends Base
+class ItemTheme extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,24 +20,24 @@ class ProductInfoTheme extends Base
 	 */
 	protected $fillable = [
 		'id',
-		'product_info_id',
+		'item_id',
 		'theme_id',
 	];
 
 	/**
-	 * Get the product that owns the theme product.
+	 * Get the items that owns the theme.
 	 *
 	 */
-	public function product()
+	public function items()
 	{
-		return $this->belongsTo(ProductInfo::class);
+		return $this->belongsTo(Item::class);
 	}
 
 	/**
-	 * Get the theme that owns the theme product.
+	 * Get the themes that owns the item.
 	 *
 	 */
-	public function theme()
+	public function themes()
 	{
 		return $this->belongsTo(Theme::class);
     }

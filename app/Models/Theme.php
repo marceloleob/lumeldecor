@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class Theme extends Base
+class Theme extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -26,12 +26,21 @@ class Theme extends Base
 	];
 
 	/**
-	 * Get the products about this theme.
+	 * Get the items about this theme.
+	 *
+	 */
+	public function items()
+	{
+		return $this->hasMany(ItemTheme::class);
+	}
+
+	/**
+	 * Get the product about this theme.
 	 *
 	 */
 	public function products()
 	{
-		return $this->hasMany(ThemeProduct::class);
+		return $this->items()->with('product');
 	}
 
 	/**

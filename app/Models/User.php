@@ -75,6 +75,16 @@ class User extends Authenticatable
 	}
 
 	/**
+	 * Get the stock about this user.
+	 *
+	 */
+	public function stock()
+	{
+		return $this->hasMany(Stock::class);
+	}
+
+
+	/**
 	 * Altera o status do registro
 	 *
 	 * @param int $id

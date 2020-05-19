@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class Campaign extends Base
+class Campaign extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -29,12 +29,12 @@ class Campaign extends Base
 	];
 
 	/**
-	 * Get the products about this campaign.
+	 * Get the items about this campaign.
 	 *
 	 */
-	public function products()
+	public function items()
 	{
-		return $this->hasMany(CampaignProduct::class);
+		return $this->hasMany(CampaignItem::class);
 	}
 
 	/**

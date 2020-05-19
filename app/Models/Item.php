@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class Item extends Base
+class Item extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,47 +20,54 @@ class Item extends Base
 	 */
 	protected $fillable = [
 		'id',
-        'category_id',
-		'name',
-		'description',
-		'hashtag',
-		'featured',
-		'status',
-    ];
+		'product_id',
+		'color_id',
+		'image',
+		'launch',
+	];
 
 	/**
-	 * Get the category that owns the item.
-	 *
-	 */
-	public function category()
-	{
-		return $this->belongsTo(Category::class);
-    }
-
-	/**
-	 * Get the category that owns the item.
-	 *
-	 */
-	public function material()
-	{
-		return $this->category()->with('material');
-    }
-
-	/**
-	 * Get the product about this item.
+	 * Get the product that owns the item.
 	 *
 	 */
 	public function product()
 	{
-		return $this->hasOne(Product::class);
+		return $this->belongsTo(Product::class);
 	}
 
 	/**
-	 * Get the promotions about this item.
+	 * Get the color that owns the product info.
 	 *
 	 */
-	public function promotions()
+	public function color()
 	{
-		return $this->hasMany(OfferPromotion::class);
+		return $this->belongsTo(Color::class);
+	}
+
+	/**
+	 * Get the campaign about this item.
+	 *
+	 */
+	public function campaign()
+	{
+		return $this->hasOne(CampaignItem::class);
+	}
+
+	/**
+	 * Get the campaigns about this item.
+	 *
+	 */
+	public function themes()
+	{
+		return $this->hasMany(ItemTheme::class);
+	}
+
+	/**
+	 * Get the stock about this item.
+	 *
+	 */
+	public function stock()
+	{
+		return $this->hasMany(Stock::class);
 	}
 }

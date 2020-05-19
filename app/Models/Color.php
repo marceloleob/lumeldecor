@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Base;
+use Illuminate\Database\Eloquent\Model;
 
-class Color extends Base
+class Color extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -26,11 +26,11 @@ class Color extends Base
 	];
 
 	/**
-	 * Get the products about this color.
+	 * Get the items about this color.
 	 *
 	 */
-	public function products()
+	public function items()
 	{
-		return $this->hasMany(ProductInfo::class);
+		return $this->hasMany(Item::class);
 	}
 }

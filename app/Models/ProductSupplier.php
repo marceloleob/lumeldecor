@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SupplierContact extends Model
+class ProductSupplier extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
 	 *
 	 * @var bool
 	 */
-	public $timestamps = false;
+	public $timestamps = true;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -20,20 +20,26 @@ class SupplierContact extends Model
 	 */
 	protected $fillable = [
 		'id',
+		'item_id',
 		'supplier_id',
-		'name',
-		'email',
-		'telephone',
-		'cellphone',
-		'position',
-	];
+		'price',
+    ];
 
 	/**
-	 * Get the supplier that owns the contact.
+	 * Get the item that owns the product supplier.
+	 *
+	 */
+	public function item()
+	{
+		return $this->belongsTo(Item::class);
+    }
+
+	/**
+	 * Get the supplier that owns the product supplier.
 	 *
 	 */
 	public function supplier()
 	{
 		return $this->belongsTo(Supplier::class);
-	}
+    }
 }
