@@ -15,12 +15,10 @@ class CreateItemsTable extends Migration
 	{
 		Schema::create('items', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('category_id');
-			$table->string('name', 300);
-			$table->text('hashtag');
-			$table->text('description');
-			$table->boolean('featured')->default(0);
-			$table->boolean('status')->default(1);
+			$table->foreignId('product_id');
+			$table->foreignId('color_id');
+			$table->string('image', 255);
+			$table->boolean('launch')->default(0);
 		});
 	}
 

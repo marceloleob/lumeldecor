@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductInfoThemesTable extends Migration
+class CreateCategoryProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateProductInfoThemesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_info_themes', function (Blueprint $table) {
+        Schema::create('category_products', function (Blueprint $table) {
             $table->id();
-			$table->foreignId('product_info_id');
-			$table->foreignId('theme_id');
+            $table->foreignId('category_id');
+            $table->foreignId('product_id');
         });
     }
 
@@ -27,6 +27,6 @@ class CreateProductInfoThemesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_info_themes');
+        Schema::dropIfExists('category_products');
     }
 }

@@ -35,4 +35,13 @@ class Customer extends Model
 	{
 		return $this->belongsTo(User::class);
 	}
+
+	/**
+	 * Get the address about this customer.
+	 *
+	 */
+	public function address()
+	{
+		return $this->hasMany(CustomerAddress::class);
+	}
 }
