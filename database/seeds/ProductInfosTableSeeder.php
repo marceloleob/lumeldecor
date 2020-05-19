@@ -17,11 +17,12 @@ class ProductInfosTableSeeder extends Seeder
 		DB::table('product_infos')->delete();
 		// cria os registros
 		ProductInfo::create([
-			'product_id' => 1,
-			'color_id'   => 6,
-			'amount'     => 45,
-			'image'      => 'teste.jpg',
-			'launch'     => 1
+			'product_id'  => 1,
+			'name'        => 'Lisa',
+			'hashtag'     => 'teste',
+			'description' => 'Aqui vai a descrição do produto!',
+			'featured'    => 1,
+			'status'      => 1,
 		]);
 	}
 }

@@ -14,7 +14,7 @@ class UserRulesTableSeeder extends Seeder
 	public function run()
 	{
 		// limpa a tabela
-		DB::table('users')->delete();
+		DB::table('user_rules')->delete();
 		// cria os registros
 		UserRule::create(['name' => 'Administrador(a)', 'status' => 1,]);
 		UserRule::create(['name' => 'Vendedor(a)', 'status' => 1,]);

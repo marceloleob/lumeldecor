@@ -17,12 +17,10 @@ class ItemsTableSeeder extends Seeder
 		DB::table('items')->delete();
 		// cria os registros
 		Item::create([
-			'category_id' => 3,
-			'name'        => 'Lisa',
-			'hashtag'     => '',
-			'description' => 'Aqui vai a descrição do produto!',
-			'featured'    => 1,
-			'status'      => 1,
+			'product_id' => 1,
+			'color_id'   => 6,
+			'image'      => 'teste.jpg',
+			'launch'     => 1
 		]);
 	}
 }

@@ -22,21 +22,24 @@ class DatabaseSeeder extends Seeder
 			EmployeesTableSeeder::class,
 			SuppliersTableSeeder::class,
 			SupplierContactsTableSeeder::class,
+			ContactMessagesTableSeeder::class,
 
 			ColorsTableSeeder::class,
-			ThemesTableSeeder::class,
-			CampaignsTableSeeder::class,
-			ContactMessagesTableSeeder::class,
 
 			MaterialsTableSeeder::class,
 			CategoriesTableSeeder::class,
+			CategoryProductsTableSeeder::class,
 
-			ItemsTableSeeder::class,
 			ProductsTableSeeder::class,
+			ItemsTableSeeder::class,
 			ProductInfosTableSeeder::class,
-			ProductInfoThemesTableSeeder::class,
+			ProductSuppliersTableSeeder::class,
+			StocksTableSeeder::class,
 
-			CampaignProductsTableSeeder::class,
+			CampaignsTableSeeder::class,
+			CampaignItemsTableSeeder::class,
+			ThemesTableSeeder::class,
+			ItemThemesTableSeeder::class,
 
 			OfferCouponsTableSeeder::class,
 			OfferPromotionsTableSeeder::class,
