@@ -10,11 +10,11 @@ $.validator.setDefaults(
 
     highlight: function(element)
     {
-        $(element).closest('.form-group').addClass('has-error').removeClass('has-success');
+		$(element).closest('.form-group').addClass('has-error').removeClass('has-success');
     },
     unhighlight: function(element)
     {
-        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+		$(element).closest('.form-group').removeClass('has-error').addClass('has-success');
     },
     errorPlacement: function(error, element)
     {

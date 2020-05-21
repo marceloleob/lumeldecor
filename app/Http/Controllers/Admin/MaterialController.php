@@ -3,11 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
-use App\Services\MaterialService;
+use App\Http\Requests\Admin\MaterialRequest;
+use App\Repositories\MaterialRepository;
 use Illuminate\Http\Request;
 
 class MaterialController extends AdminController
 {
+	/**
+	 * @var MaterialRepository
+	 */
+	private $repository;
+
+	/**
+	 * Constructor
+	 *
+	 * @param \App\Repositories\MaterialRepository $repository
+	 */
+	public function __construct(MaterialRepository $repository)
+	{
+		$this->repository = $repository;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -16,7 +32,7 @@ class MaterialController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = MaterialService::list($request->search);
+		$params = $this->repository->all($request->search);
 
 		return view('admin.pages.material-list')->with($params);
 	}
@@ -29,7 +45,7 @@ class MaterialController extends AdminController
     public function create()
     {
 		$params = [
-			'data' => MaterialService::find(),
+			'data' => $this->repository->make(),
 		];
 
 		return view('admin.pages.material-form')->with($params);
@@ -41,10 +57,16 @@ class MaterialController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaterialRequest $request)
     {
-		// redirect to list
-		return redirect()->route('material.list');
+		// save
+		$response = $this->repository->store($request->all());
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+        }
+
+        return redirect()->route('material.list')->with($response);
     }
 
     /**
@@ -55,7 +77,11 @@ class MaterialController extends AdminController
      */
     public function edit($id)
     {
-        //
+		$params = [
+			'data' => $this->repository->findById($id),
+		];
+
+		return view('admin.pages.material-form')->with($params);
 	}
 
     /**
@@ -64,9 +90,9 @@ class MaterialController extends AdminController
      * @param  int  $id
      * @return Response
      */
-    public function toggle($id)
+    public function changeStatus($id)
     {
-        $response = MaterialService::toggleStatus($id);
+        $response = $this->repository->changeStatus($id);
 
         return redirect()->route('material.list')->with($response);
     }

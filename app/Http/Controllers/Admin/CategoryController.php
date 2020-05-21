@@ -3,12 +3,49 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
+use App\Repositories\CategoryRepository;
 use App\Services\CategoryService;
 use App\Services\MaterialService;
 use Illuminate\Http\Request;
 
 class CategoryController extends AdminController
 {
+	/**
+	 * @var CategoryRepository
+	 */
+	private $repository;
+
+	/**
+	 * Constructor
+	 *
+	 * @param \App\Repositories\CategoryRepository $repository
+	 */
+	public function __construct(CategoryRepository $repository)
+	{
+		$this->repository = $repository;
+	}
+
+	// public function teste()
+	// {
+	// 	$teste = $this->repository->all();
+
+	// 	return $teste;
+	// }
+
+	// public function testeFind($categoryId)
+	// {
+	// 	$teste = $this->repository->findById($categoryId);
+
+	// 	return $teste;
+	// }
+
+	// public function testeUpdate($categoryId, Request $request)
+	// {
+	// 	$teste = $this->repository->update($categoryId, $request);
+
+	// 	return redirect('/teste/find/' . $categoryId);
+	// }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -17,7 +54,8 @@ class CategoryController extends AdminController
 	 */
     public function index(Request $request)
     {
-		$params = CategoryService::list($request->search);
+		// $params = CategoryService::list($request->search);
+		$params = $this->repository->all();
 
         return view('admin.pages.category-list')->with($params);
     }

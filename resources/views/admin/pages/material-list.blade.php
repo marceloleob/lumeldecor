@@ -15,7 +15,7 @@
 		</div>
 		<div class="page-title-actions">
 			<div class="d-inline-block dropdown">
-				<a href="{!! route('material.form') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-primary">
+				<a href="{!! route('material.create') !!}" class="mb-2 mr-2 btn-transition btn btn-outline-primary">
 					<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-plus-circle fa-w-20"></i></span> Adicionar
 				</a>
 			</div>
@@ -66,8 +66,8 @@
 									<td class="text-left">{!! $item->name !!}</td>
 									<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 									<td class="text-center">
-										<a href="{!! route('material.edit', [$item->id, $data->currentPage()]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
-										<a href="{!! route('material.toggle', $item->id) !!}" class="border-0 btn-transition btn {!! $item->trash['class'] !!}"><i class="fas {!! $item->trash['label'] !!}"></i></a>
+										<a href="{!! route('material.edit', $item->id) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
+										<a href="{!! route('material.status', $item->id) !!}" class="border-0 btn-transition btn {!! $item->styles['class'] !!}"><i class="{!! $item->styles['label'] !!}"></i></a>
 									</td>
 								</tr>
 								@endforeach

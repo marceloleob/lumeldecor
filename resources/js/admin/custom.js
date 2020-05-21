@@ -44,6 +44,21 @@ $(document).ready(function ()
 		return false;
 	});
 
+	/**
+	 * Caso o backend retorne erro, este bloco faz o tratamento
+	 */
+	if ($('.help-block').length) {
+		// recupera o form-group do erro
+		var $group = $('.help-block').parent();
+		// remove o erro caso seja atualizado
+		$('input', $group).keyup(function(){
+			$(this).removeClass('is-invalid').addClass('is-valid');
+			$('.help-block').remove();
+		});
+		// adiciona o erro no input correspondente
+		$('input', $group).addClass('is-invalid');
+	}
+
     /**
      * Habilita o menu
      */

@@ -16,7 +16,8 @@ class MaterialService extends BaseService
     public static function list($search = '')
     {
 		// retorna a query para a busca do grid
-		$query = Material::orderBy('name', 'ASC');
+		$query = Material::orderBy('name')
+			->where('status', config('constants.ACTIVE'));
 
         // verifica se buscou algum item especifico
         if (!empty($search)) {

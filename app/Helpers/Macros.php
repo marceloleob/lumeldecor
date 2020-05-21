@@ -37,7 +37,7 @@ class Macros extends FormBuilder
         // seta os alertas
         $alerts = [];
 
-        array_push($alerts, '<div class="feedback alert alert-danger fade in">');
+        array_push($alerts, '<div class="feedback alert alert-danger">'); // fade in
         array_push($alerts, '    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>');
         array_push($alerts, '    <i class="fas fa-times-circle"></i> &nbsp; Erros encontrados: ');
         array_push($alerts, '    <ul>');
@@ -120,13 +120,14 @@ class Macros extends FormBuilder
 
         // verifica se é um UPDATE
         if (!empty($id)) {
+			// array_push($buttons, $this->hidden('_method', 'PUT'));
             array_push($buttons, $this->hidden('id', $id, ['id' => 'id']));
         }
 
-        array_push($buttons, $save);
-        array_push($buttons, '<a href="' . route($link) . '" class="btn-transition btn btn-outline-focus btn-cancel mr-4 pr-4 pl-4">');
+        array_push($buttons, '<a href="' . route($link) . '" class="btn-transition btn btn-outline-focus btn-cancel mr-4 pr-3 pl-3">');
         array_push($buttons, '    <i class="fas fa-times-circle fa-w-10 pr-2"></i> Cancelar');
         array_push($buttons, '</a>');
+        array_push($buttons, $save);
 
         return implode('', $buttons);
     }
