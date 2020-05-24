@@ -17,7 +17,7 @@ class ProductInfosTableSeeder extends Seeder
 		DB::table('product_infos')->delete();
 		// cria os registros
 		ProductInfo::create([
-			'product_id'  => 1,
+			'category_id' => 8,
 			'name'        => 'Lisa',
 			'hashtag'     => 'teste',
 			'description' => 'Aqui vai a descrição do produto!',

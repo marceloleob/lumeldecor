@@ -29,12 +29,11 @@ class DatabaseSeeder extends Seeder
 
 			MaterialsTableSeeder::class,
 			CategoriesTableSeeder::class,
-			CategoryProductsTableSeeder::class,
 
-			ProductsTableSeeder::class,
-			ItemsTableSeeder::class,
 			ProductInfosTableSeeder::class,
+			ProductsTableSeeder::class,
 			ProductSuppliersTableSeeder::class,
+			ItemsTableSeeder::class,
 			StocksTableSeeder::class,
 
 			ThemesTableSeeder::class,

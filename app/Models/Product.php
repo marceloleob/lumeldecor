@@ -20,6 +20,7 @@ class Product extends Model
 	 */
 	protected $fillable = [
 		'id',
+		'product_info_id',
 		'code',
 		'slug',
 		'size',
@@ -31,21 +32,12 @@ class Product extends Model
 	];
 
 	/**
-	 * Get the items about this product.
-	 *
-	 */
-	public function items()
-	{
-		return $this->hasMany(Item::class);
-	}
-
-	/**
-	 * Get the info about this product.
+	 * Get the info that owns the product.
 	 *
 	 */
 	public function info()
 	{
-		return $this->hasOne(ProductInfo::class);
+		return $this->belongsTo(ProductInfo::class);
 	}
 
 	/**
@@ -54,7 +46,7 @@ class Product extends Model
 	 */
 	public function category()
 	{
-		return $this->hasOne(CategoryProduct::class);
+		return $this->info()->with('category');
 	}
 
 	/**
@@ -63,7 +55,16 @@ class Product extends Model
 	 */
 	public function material()
 	{
-		return $this->category()->with('category')->with('material');
+		return $this->category()->with('material');
+	}
+
+	/**
+	 * Get the items about this product.
+	 *
+	 */
+	public function items()
+	{
+		return $this->hasMany(Item::class);
 	}
 
 	/**
