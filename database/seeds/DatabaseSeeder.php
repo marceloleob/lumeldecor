@@ -18,23 +18,23 @@ class DatabaseSeeder extends Seeder
 			UserRulesTableSeeder::class,
 			UsersTableSeeder::class,
 			CustomersTableSeeder::class,
-			// CustomerAddressesTableSeeder::class,
-			// EmployeesTableSeeder::class,
+			CustomerAddressesTableSeeder::class,
+			EmployeesTableSeeder::class,
 			SuppliersTableSeeder::class,
 			SupplierContactsTableSeeder::class,
 
-			// ContactMessagesTableSeeder::class,
+			ContactMessagesTableSeeder::class,
 
 			ColorsTableSeeder::class,
 
 			MaterialsTableSeeder::class,
 			CategoriesTableSeeder::class,
-			// CategoryProductsTableSeeder::class,
+			CategoryProductsTableSeeder::class,
 
 			ProductsTableSeeder::class,
-			// ItemsTableSeeder::class,
+			ItemsTableSeeder::class,
 			ProductInfosTableSeeder::class,
-			// ProductSuppliersTableSeeder::class,
+			ProductSuppliersTableSeeder::class,
 			StocksTableSeeder::class,
 
 			ThemesTableSeeder::class,
