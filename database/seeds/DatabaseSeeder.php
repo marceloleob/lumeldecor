@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
 			ProductsTableSeeder::class,
 			// ItemsTableSeeder::class,
 			ProductInfosTableSeeder::class,
-			ProductSuppliersTableSeeder::class,
+			// ProductSuppliersTableSeeder::class,
 			StocksTableSeeder::class,
 
 			ThemesTableSeeder::class,
