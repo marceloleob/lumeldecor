@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 			// CustomerAddressesTableSeeder::class,
 			SupplierContactsTableSeeder::class,
 
-			ContactMessagesTableSeeder::class,
+			// ContactMessagesTableSeeder::class,
 
 			ColorsTableSeeder::class,
 
