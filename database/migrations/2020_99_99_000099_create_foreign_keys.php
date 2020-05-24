@@ -28,7 +28,7 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('customers', function (Blueprint $table) {
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('no action');
 		});
 
 		Schema::table('customer_addresses', function (Blueprint $table) {
@@ -37,7 +37,7 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('employees', function (Blueprint $table) {
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('no action');
 		});
 
 		Schema::table('items', function (Blueprint $table) {

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
 			UsersTableSeeder::class,
 			CustomersTableSeeder::class,
 			SuppliersTableSeeder::class,
-			EmployeesTableSeeder::class,
+			// EmployeesTableSeeder::class,
 
 			CustomerAddressesTableSeeder::class,
 			SupplierContactsTableSeeder::class,
