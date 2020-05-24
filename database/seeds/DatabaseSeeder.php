@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
 			UserRulesTableSeeder::class,
 			UsersTableSeeder::class,
 			CustomersTableSeeder::class,
-			CustomerAddressesTableSeeder::class,
 			EmployeesTableSeeder::class,
 			SuppliersTableSeeder::class,
 			SupplierContactsTableSeeder::class,
 			ContactMessagesTableSeeder::class,
+			CustomerAddressesTableSeeder::class,
 
 			ColorsTableSeeder::class,
 
