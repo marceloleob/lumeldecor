@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
 
 			MaterialsTableSeeder::class,
 			CategoriesTableSeeder::class,
-			CategoryProductsTableSeeder::class,
+			// CategoryProductsTableSeeder::class,
 
 			ProductsTableSeeder::class,
 			ItemsTableSeeder::class,
