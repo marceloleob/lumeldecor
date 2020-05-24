@@ -19,7 +19,7 @@ class EmployeesTableSeeder extends Seeder
 		Employee::create([
 			'user_id'   => 4,      // Melissa
 			'document'  => '779.595.850-83',
-			'telephone' => '',
+			'telephone' => null,
 			'cellphone' => '(31) 99999-9999',
 			'status'    => 1,
 		]);

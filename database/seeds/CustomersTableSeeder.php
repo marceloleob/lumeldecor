@@ -19,14 +19,14 @@ class CustomersTableSeeder extends Seeder
 		Customer::create([
 			'user_id'   => 6,      // Luana
 			'document'  => '251.844.352-55',
-			'telephone' => '',
+			'telephone' => null,
 			'cellphone' => '(31) 99999-9999',
 			'status'    => 1,
 		]);
 		Customer::create([
 			'user_id'   => 7,      // Paula
 			'document'  => '111.713.846-10',
-			'telephone' => '',
+			'telephone' => null,
 			'cellphone' => '(31) 99999-9999',
 			'status'    => 1,
 		]);

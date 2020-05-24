@@ -17,13 +17,13 @@ class OfferCouponsTableSeeder extends Seeder
 		DB::table('offer_coupons')->delete();
 		// cria os registros
 		OfferCoupon::create([
-			'name'       => 'Cupom de Teste',
-			'code'       => 'TESTE123',
-			'kind'       => 'P',
-			'amount'     => 12.89,
-			'start_date' => '2020-05-01',
+			'name'        => 'Cupom de Teste',
+			'code'        => 'TESTE123',
+			'kind'        => 'P',
+			'amount'      => 12.89,
+			'start_date'  => '2020-05-01',
 			'finish_date' => '2020-05-31',
-			'status'     => 1
+			'status'      => 1
 		]);
 	}
 }
