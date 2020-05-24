@@ -18,7 +18,8 @@ class CampaignItemsTableSeeder extends Seeder
 		// cria os registros
 		CampaignItem::create([
 			'campaign_id' => 8,
-			'item_id'     => 1
+			'theme_id'    => 1,
+			'item_id'     => null
 		]);
     }
 }

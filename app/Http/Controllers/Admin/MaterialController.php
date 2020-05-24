@@ -17,7 +17,7 @@ class MaterialController extends AdminController
 	/**
 	 * Constructor
 	 *
-	 * @param \App\Repositories\MaterialRepository $repository
+	 * @param MaterialRepository $repository
 	 */
 	public function __construct(MaterialRepository $repository)
 	{
@@ -34,7 +34,7 @@ class MaterialController extends AdminController
 	{
 		$params = $this->repository->all($request->search);
 
-		return view('admin.pages.material-list')->with($params);
+		return view('admin.pages.material-list', ['page' => 'material'])->with($params);
 	}
 
     /**
@@ -44,11 +44,7 @@ class MaterialController extends AdminController
      */
     public function create()
     {
-		$params = [
-			'data' => $this->repository->make(),
-		];
-
-		return view('admin.pages.material-form')->with($params);
+		return view('admin.pages.material-form-create', ['page' => 'material']);
     }
 
     /**
@@ -81,7 +77,7 @@ class MaterialController extends AdminController
 			'data' => $this->repository->findById($id),
 		];
 
-		return view('admin.pages.material-form')->with($params);
+		return view('admin.pages.material-form-update', ['page' => 'material'])->with($params);
 	}
 
     /**

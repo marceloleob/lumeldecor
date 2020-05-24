@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Filters\Checkbox;
 use App\Http\Requests\BaseRequest;
 
 class MaterialRequest extends BaseRequest
@@ -18,7 +19,9 @@ class MaterialRequest extends BaseRequest
      *
      * @var array
      */
-    public static $customFilters = [];
+    public static $customFilters = [
+		'checkbox' => Checkbox::class
+	];
 
     /**
      * Filter rules
@@ -38,7 +41,22 @@ class MaterialRequest extends BaseRequest
      */
     public static $validations = [
         'id'     => 'integer',
-        'name'   => 'required|unique:materials|min:2|max:100',
+        'name'   => 'required|min:2|max:100|unique:materials',
         'status' => 'boolean',
-    ];
+	];
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+		// efetua o tratamento para campo unico
+		if (!empty($this->id)) {
+			static::$validations['name'] .= ',name,' . $this->id;
+		}
+
+        return static::$validations;
+    }
 }

@@ -31,7 +31,16 @@ class Theme extends Model
 	 */
 	public function items()
 	{
-		return $this->hasMany(ItemTheme::class);
+		return $this->hasMany(ThemeItem::class);
+	}
+
+	/**
+	 * Get the campaigns about this theme.
+	 *
+	 */
+	public function campaigns()
+	{
+		return $this->hasMany(CampaignItem::class);
 	}
 
 	/**

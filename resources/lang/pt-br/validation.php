@@ -212,9 +212,16 @@ return [
         // CUSTOM THIS SITE
         'material_id'           => 'material',
         'category_id'           => 'categoria',
+        'theme_id'              => 'tema',
+        'product_id'            => 'produto',
+        'item_id'               => 'item do produto',
         'supplier_id'           => 'fornecedor',
         's_price'               => 'preço no site',
         'p_price'               => 'preço no fornecedor',
-
+        'show'                  => 'mostrar no site',
+        'start_day'             => 'dia inicial',
+        'start_month'           => 'mês inicial',
+        'finish_day'            => 'dia final',
+        'finish_month'          => 'mês final',
     ],
 ];

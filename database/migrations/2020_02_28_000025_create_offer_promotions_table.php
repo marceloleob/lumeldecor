@@ -21,13 +21,11 @@ class CreateOfferPromotionsTable extends Migration
 			$table->foreignId('campaign_id')->nullable();
 			$table->foreignId('item_id')->nullable();
 			$table->foreignId('product_id')->nullable();
-			$table->string('name', 100);
+			$table->string('name', 150)->unique();
 			$table->enum('kind', ['V', 'P']);
 			$table->decimal('amount', 7, 2);
-			$table->smallInteger('start_day');
-			$table->smallInteger('start_month');
-			$table->smallInteger('finish_day');
-			$table->smallInteger('finish_month');
+			$table->date('start_date');
+			$table->date('finish_date');
 			$table->boolean('status')->default(1);
 			$table->timestamps();
 		});

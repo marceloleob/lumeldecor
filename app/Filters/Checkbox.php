@@ -14,10 +14,10 @@ class Checkbox implements Filter
      */
     public function apply($value, $options = [])
     {
-        if (empty($value) || $value == '') {
+        if (empty($value) || $value == '' || !isset($value) || $value == 'no') {
             return false;
         }
 
-        return (boolean) $value;
+        return (bool) $value;
     }
 }

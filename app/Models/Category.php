@@ -26,21 +26,6 @@ class Category extends Model
 	];
 
 	/**
-	 * Customiza o formato enviado para a view
-	 *
-	 * @return array
-	 */
-	public function format()
-	{
-		return [
-			'id'       => $this->id,
-			'name'     => $this->name,
-			'status'   => $this->status,
-			'material' => $this->material->name,
-		];
-	}
-
-	/**
 	 * Get the material that owns the category.
 	 *
 	 */

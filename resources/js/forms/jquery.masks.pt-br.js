@@ -1,5 +1,16 @@
 $(document).ready(function()
 {
+	// binda o campo para nao permitir espacos
+	$(document).on('focus', '.stripspaces', function(e) {
+		// adiciona a mascara
+		$('.stripspaces')
+			.keydown(function(event)
+			{
+				$(this).val($.trim($(this).val()));
+			}
+		);
+	});
+
 	// binda o campo decimal
 	$(document).on('focus', '.decimal', function(e) {
 		// adiciona mascara

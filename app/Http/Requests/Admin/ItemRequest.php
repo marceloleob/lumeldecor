@@ -35,7 +35,7 @@ class ItemRequest extends BaseRequest
         'material_id' => 'digit',
         'category_id' => 'digit',
         'name'        => 'trim|escape',
-        'description' => 'trim|escape|nullable',
+        'description' => 'trim|escape|strip_tags|nullable',
         'hashtag'     => 'trim|escape|nullable',
         'featured'    => 'checkbox|cast:boolean',
     ];
@@ -50,8 +50,8 @@ class ItemRequest extends BaseRequest
         'material_id' => 'required|integer',
         'category_id' => 'required|integer',
         'name'        => 'required|min:2|max:100',
-        'description' => 'max:3000',
-        'hashtag'     => '',
+        'description' => 'max:3000|nullable',
+        'hashtag'     => 'nullable',
         'featured'    => 'boolean',
     ];
 }

@@ -20,7 +20,7 @@ class ProductService extends BaseService
 		// retorna a query para a busca do grid
 		$query = Item::with(['product' => function($subQuery) {
 			$subQuery->select('code');
-		}])->orderBy('name', 'ASC');
+		}])->orderBy('name');
 
         // verifica se buscou algum item especifico
         if (!empty($search)) {

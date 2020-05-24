@@ -3,6 +3,7 @@
 return [
 
     // DEVELOPER INFORMATION
+    'DEVELOPER_ID'           => 1,
     'DEVELOPER_NAME'         => 'Marcelo Leopold Batista',
     'DEVELOPER_EMAIL'        => 'marceloleob@gmail.com',
 

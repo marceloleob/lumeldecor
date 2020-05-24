@@ -20,7 +20,7 @@ class OfferCouponsTableSeeder extends Seeder
 			'name'       => 'Cupom de Teste',
 			'code'       => 'TESTE123',
 			'kind'       => 'P',
-			'amount'     => 12,
+			'amount'     => 12.89,
 			'start_date' => '2020-05-01',
 			'finish_date' => '2020-05-31',
 			'status'     => 1

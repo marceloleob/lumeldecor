@@ -39,18 +39,18 @@ class MaterialRepository extends BaseRepository
 		];
 	}
 
-
 	/**
 	 * Monta as opcoes do select box
 	 *
-	 * @return array
+	 * @return Collection
 	 */
-	// public static function options()
-	// {
-	// 	$options = Material::orderBy('name', 'ASC')
-	// 		->where('status', config('constants.ACTIVE'))
-	// 		->pluck('name', 'id');
-	// 	// retorna o combobox pronto
-	// 	return $options->prepend('Selecione', '');
-	// }
+	public function options()
+	{
+		$options = $this->query()
+			->orderBy('name')
+			->where('status', config('constants.ACTIVE'))
+			->pluck('name', 'id');
+		// retorna o combobox pronto
+		return $options->prepend('Selecione', '');
+	}
 }

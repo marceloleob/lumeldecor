@@ -16,7 +16,7 @@ class Phone implements Filter
     {
         // verifica se nao foi informado nenhum telefone
         if (empty($value)) {
-            return '';
+            return null;
         }
 		// recupera o ddd
 		$ddd    = substr($value, 0, 3);

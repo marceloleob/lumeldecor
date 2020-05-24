@@ -4,77 +4,91 @@ namespace App\Repositories;
 
 use App\Models\Category;
 
-class CategoryRepository
+class CategoryRepository extends BaseRepository
 {
 	/**
+	 * Armazena a entidade
+	 *
+	 * @var Entity
+	 */
+	protected $model = Category::class;
+
+	/**
+	 * Executa a busca para a listagem com paginacao e filtro
+	 *
+	 * @param  string $search
+	 * @return array
+	 */
+	public function all($search = null)
+	{
+		$query = $this->query()->orderBy('name');
+
+        if (!empty($search)) {
+            // procura o termo
+            $query->where('name', 'LIKE', '%' . $search . '%');
+        }
+        // cria uma collection com paginacao para montar o grid
+		$this->pagination($query, $search);
+		// formata os registros da collection
+		$this->format();
+
+		return [
+			'search'   => $search,
+			'data'     => $this->data,
+			'paginate' => $this->paginate,
+		];
+	}
+
+	/**
+	 * Monta as opcoes do select box
 	 *
 	 * @return array
 	 */
-	public function all()
+	public function options($material = null)
 	{
-		$category = Category::where('status', config('constants.ACTIVE'))
+		// verifica se nao foi informado o material
+		if (empty($material)) {
+			return ['' => 'Selecione'];
+		}
+		// carrega os dados do banco
+		$categories = $this->query()
 			->with(['material' => function ($subQuery) {
 				$subQuery->orderBy('name');
 			}])
-			// ->with('material')
-			// ->get();
-			->map
-			->format();
+			->orderBy('name')
+			->where('status', config('constants.ACTIVE'))
+			->where('material_id', $material)
+			->pluck('name', 'id');
 
-		$data = $category->paginate(10);
-dd($data);
-		// retorna a entidade com paginacao e busca (se existir)
-		$params =[
-			'data'     => $data,
-			// 'search'   => $request->search,
-			'paginate' => $data->links(),
-		];
-
-		return $params;
+		// construindo as opcoes combobox
+		$options = '<option value="">Selecione</option>';
+		// percorre os tipos de imovel
+		foreach ($categories as $id => $name) {
+			// verifica se existe categoria
+			// if ($propertyTypeId == $id) {
+			// 	// monta o html
+			// 	$options .= '<option value="' . $id . '" selected>' . $name . '</option>';
+			// } else {
+				// monta o html
+				$options .= '<option value="' . $id . '">' . $name . '</option>';
+			// }
+        }
+        // retorna o combobox pronto
+		return $options;
 	}
 
-	public function findById($categoryId)
-	{
-		return Category::where('id', $categoryId)
-			->where('status', 1)
-			->with('material')
-			->firstOrFail()
-			->format();
-	}
-
-	public function update($categoryId, $request)
-	{
-		$category = Category::where('id', $categoryId)->firstOrFail();
-
-		$category->update($request);
-	}
-
-    /**
-     * Handler paginator
-     *
-     * @param Builder $query
-     * @return void
-     */
-	// public static function handlePagination($query)
+	// /**
+	//  * Customiza o formato enviado para a view
+	//  *
+	//  * @return array
+	//  */
+	// public function format()
 	// {
-	// 	// efetiva a busca no BD obedecendo as regras da paginacao
-    //     self::$collection = $data = $query->paginate(config('constants.TOTAL_PAGE'));
-    //     // constroi os links da paginacao
-	//	self::$paginate = $data->links();
-    //     // verifica se foi feito uma busca
-    //     if (!empty(self::$search)) {
-    //         // constroi os links da paginacao
-    //         self::$paginate = $data->appends(['search' => self::$search])->links();
-	// 	}
-
-    //     // efetua o tratamento no collection
-    //     static::customCollection();
-
-	// 	// retorna a entidade com paginacao e busca (se existir)
 	// 	return [
-    //         'data'     => self::$collection,
-    //         'search'   => self::$search,
-	// 		'paginate' => self::$paginate,
+	// 		'id'       => $this->id,
+	// 		'name'     => $this->name,
+	// 		'status'   => $this->status,
+	// 		'material' => $this->material->name,
 	// 	];
-    // }
+	// }
 }

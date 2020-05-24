@@ -3,11 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
-use App\Services\ColorService;
+use App\Http\Requests\Admin\ColorRequest;
+use App\Repositories\ColorRepository;
 use Illuminate\Http\Request;
 
 class ColorController extends AdminController
 {
+	/**
+	 * @var ColorRepository
+	 */
+	private $repository;
+
+	/**
+	 * Constructor
+	 *
+	 * @param ColorRepository $repository
+	 */
+	public function __construct(ColorRepository $repository)
+	{
+		$this->repository = $repository;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -16,9 +32,9 @@ class ColorController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = ColorService::list($request->search);
+		$params = $this->repository->all($request->search);
 
-		return view('admin.pages.color-list')->with($params);
+		return view('admin.pages.color-list', ['page' => 'color'])->with($params);
 	}
 
     /**
@@ -28,11 +44,7 @@ class ColorController extends AdminController
      */
     public function create()
     {
-		$params = [
-			'data' => ColorService::find(),
-		];
-
-		return view('admin.pages.color-form')->with($params);
+		return view('admin.pages.color-form-create', ['page' => 'color']);
     }
 
     /**
@@ -41,10 +53,16 @@ class ColorController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ColorRequest $request)
     {
-		// redirect to list
-		return redirect()->route('color.list');
+		// save
+		$response = $this->repository->store($request->all());
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+        }
+
+        return redirect()->route('color.list')->with($response);
     }
 
     /**
@@ -55,8 +73,12 @@ class ColorController extends AdminController
      */
     public function edit($id)
     {
-        //
-    }
+		$params = [
+			'data' => $this->repository->findById($id),
+		];
+
+		return view('admin.pages.color-form-update', ['page' => 'color'])->with($params);
+	}
 
     /**
      * Toggle the status storage.
@@ -64,9 +86,9 @@ class ColorController extends AdminController
      * @param  int  $id
      * @return Response
      */
-    public function toggle($id)
+    public function changeStatus($id)
     {
-        $response = ColorService::toggleStatus($id);
+        $response = $this->repository->changeStatus($id);
 
         return redirect()->route('color.list')->with($response);
     }

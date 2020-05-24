@@ -20,7 +20,7 @@ class CreateStocksTable extends Migration
 			$table->foreignId('user_id');
 			$table->string('action', 50);
 			$table->double('incoming', 10, 2)->nullable();
-			$table->double('overdraw', 10, 2)->nullable();
+			$table->double('outcoming', 10, 2)->nullable();
 			$table->smallInteger('balance');
             $table->timestamps();
         });

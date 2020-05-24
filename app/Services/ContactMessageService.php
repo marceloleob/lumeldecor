@@ -16,7 +16,7 @@ class ContactMessageService extends BaseService
 	public static function list($search = '')
 	{
 		// retorna a query para a busca do grid
-		$query = ContactMessage::orderBy('name', 'ASC');
+		$query = ContactMessage::orderBy('name');
 
         // verifica se buscou algum item especifico
         if (!empty($search)) {

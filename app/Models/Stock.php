@@ -25,7 +25,7 @@ class Stock extends Model
 		'user_id',
 		'action',
 		'incoming',
-		'overdraw',
+		'outcoming',
 		'balance',
     ];
 

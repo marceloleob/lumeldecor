@@ -3,11 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
-use App\Services\SupplierService;
+use App\Http\Requests\Admin\SupplierRequest;
+use App\Repositories\SupplierRepository;
 use Illuminate\Http\Request;
 
 class SupplierController extends AdminController
 {
+	/**
+	 * @var SupplierRepository
+	 */
+	private $repository;
+
+	/**
+	 * Constructor
+	 *
+	 * @param SupplierRepository $repository
+	 */
+	public function __construct(SupplierRepository $repository)
+	{
+		$this->repository = $repository;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -16,9 +32,9 @@ class SupplierController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = SupplierService::list($request->search);
+		$params = $this->repository->all($request->search);
 
-		return view('admin.pages.supplier-list')->with($params);
+		return view('admin.pages.supplier-list', ['page' => 'supplier'])->with($params);
 	}
 
     /**
@@ -28,11 +44,7 @@ class SupplierController extends AdminController
      */
     public function create()
     {
-		$params = [
-			'data' => SupplierService::find(),
-		];
-
-		return view('admin.pages.supplier-form')->with($params);
+		return view('admin.pages.supplier-form-create', ['page' => 'supplier']);
     }
 
     /**
@@ -41,10 +53,16 @@ class SupplierController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SupplierRequest $request)
     {
-		// redirect to list
-		return redirect()->route('supplier.list');
+		// save
+		$response = $this->repository->store($request->all());
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+        }
+
+        return redirect()->route('supplier.list')->with($response);
     }
 
     /**
@@ -55,8 +73,12 @@ class SupplierController extends AdminController
      */
     public function edit($id)
     {
-        //
-    }
+		$params = [
+			'data' => $this->repository->findById($id),
+		];
+
+		return view('admin.pages.supplier-form-update', ['page' => 'supplier'])->with($params);
+	}
 
     /**
      * Toggle the status storage.
@@ -64,9 +86,9 @@ class SupplierController extends AdminController
      * @param  int  $id
      * @return Response
      */
-    public function toggle($id)
+    public function changeStatus($id)
     {
-        $response = SupplierService::toggleStatus($id);
+        $response = $this->repository->changeStatus($id);
 
         return redirect()->route('supplier.list')->with($response);
     }

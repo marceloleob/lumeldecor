@@ -3,11 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
-use App\Services\OfferCouponService;
+use App\Http\Requests\Admin\OfferCouponRequest;
+use App\Repositories\OfferCouponRepository;
 use Illuminate\Http\Request;
 
 class OfferCouponController extends AdminController
 {
+	/**
+	 * @var OfferCouponRepository
+	 */
+	private $repository;
+
+	/**
+	 * Constructor
+	 *
+	 * @param OfferCouponRepository $repository
+	 */
+	public function __construct(OfferCouponRepository $repository)
+	{
+		$this->repository = $repository;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -16,9 +32,9 @@ class OfferCouponController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = OfferCouponService::list($request->search);
+		$params = $this->repository->all($request->search);
 
-		return view('admin.pages.offer-coupon-list')->with($params);
+		return view('admin.pages.offer-coupon-list', ['page' => 'coupon'])->with($params);
 	}
 
     /**
@@ -28,11 +44,7 @@ class OfferCouponController extends AdminController
      */
     public function create()
     {
-		$params = [
-			'data' => OfferCouponService::find(),
-		];
-
-		return view('admin.pages.offer-coupon-form')->with($params);
+		return view('admin.pages.offer-coupon-form-create', ['page' => 'coupon']);
     }
 
     /**
@@ -41,10 +53,16 @@ class OfferCouponController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OfferCouponRequest $request)
     {
-		// redirect to list
-		return redirect()->route('coupon.list');
+		// save
+		$response = $this->repository->store($request->all());
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+        }
+
+        return redirect()->route('coupon.list')->with($response);
     }
 
     /**
@@ -55,8 +73,12 @@ class OfferCouponController extends AdminController
      */
     public function edit($id)
     {
-        //
-    }
+		$params = [
+			'data' => $this->repository->findById($id),
+		];
+
+		return view('admin.pages.offer-coupon-form-update', ['page' => 'coupon'])->with($params);
+	}
 
     /**
      * Toggle the status storage.
@@ -64,9 +86,9 @@ class OfferCouponController extends AdminController
      * @param  int  $id
      * @return Response
      */
-    public function toggle($id)
+    public function changeStatus($id)
     {
-        $response = OfferCouponService::toggleStatus($id);
+        $response = $this->repository->changeStatus($id);
 
         return redirect()->route('coupon.list')->with($response);
     }

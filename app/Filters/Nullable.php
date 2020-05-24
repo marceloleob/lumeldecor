@@ -15,7 +15,7 @@ class Nullable implements Filter
     public function apply($value, $options = [])
     {
         if (empty($value) || $value == '') {
-            return '';
+            return null;
         }
 
         return (int) $value;

@@ -3,11 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
-use App\Services\UserService;
+use App\Http\Requests\Admin\UserRequest;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class UserController extends AdminController
 {
+	/**
+	 * @var UserRepository
+	 */
+	private $repository;
+
+	/**
+	 * Constructor
+	 *
+	 * @param UserRepository $repository
+	 */
+	public function __construct(UserRepository $repository)
+	{
+		$this->repository = $repository;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -16,9 +32,9 @@ class UserController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = UserService::list($request->search);
+		$params = $this->repository->all($request->search);
 
-		return view('admin.pages.user-list')->with($params);
+		return view('admin.pages.user-list', ['page' => 'user'])->with($params);
 	}
 
     /**
@@ -28,11 +44,7 @@ class UserController extends AdminController
      */
     public function create()
     {
-		$params = [
-			'data' => UserService::find(),
-		];
-
-		return view('admin.pages.user-form')->with($params);
+		return view('admin.pages.user-form-create', ['page' => 'user']);
     }
 
     /**
@@ -41,21 +53,16 @@ class UserController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-		// redirect to list
-		return redirect()->route('user.list');
-    }
+		// save
+		$response = $this->repository->store($request->all());
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('user.list')->with($response);
     }
 
     /**
@@ -66,8 +73,12 @@ class UserController extends AdminController
      */
     public function edit($id)
     {
-        //
-    }
+		$params = [
+			'data' => $this->repository->findById($id),
+		];
+
+		return view('admin.pages.user-form-update', ['page' => 'user'])->with($params);
+	}
 
     /**
      * Toggle the status storage.
@@ -75,9 +86,9 @@ class UserController extends AdminController
      * @param  int  $id
      * @return Response
      */
-    public function toggle($id)
+    public function changeStatus($id)
     {
-        $response = UserService::toggleStatus($id);
+        $response = $this->repository->changeStatus($id);
 
         return redirect()->route('user.list')->with($response);
     }

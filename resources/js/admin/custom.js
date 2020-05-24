@@ -21,12 +21,25 @@ $(document).ready(function ()
 	$('[data-toggle="tooltip"]').tooltip();
 
 	/**
-	 * To style all selects
+	 * Bootstrap SelectPicker
 	 */
 	$('.selectpicker').selectpicker({
 		noneSelectedText: 'Selecione',
 		size: 7
 	});
+
+	/**
+	 * Bootstrap DatePicker
+	 */
+	$('.datepicker').datepicker({
+		// locale: 'pt-br',
+		format: "dd/mm/yyyy",
+		// orientation: "bottom auto",
+		autoclose: true,
+		todayHighlight: true,
+		startDate: (new Date().toLocaleString())
+	});
+
 
 	/**
 	 * Mostra a mensagem de retorno por 4 segundos
@@ -46,14 +59,24 @@ $(document).ready(function ()
 
 	/**
 	 * Caso o backend retorne erro, este bloco faz o tratamento
+	 *
+	 * CORRIGIR ESTE BLOCO!
+	 *
 	 */
 	if ($('.help-block').length) {
+
+		// $('input').focus(function() {
+		// 	$(this)
+		// });
+
 		// recupera o form-group do erro
 		var $group = $('.help-block').parent();
+
 		// remove o erro caso seja atualizado
 		$('input', $group).keyup(function(){
+			// console.log($(this));
 			$(this).removeClass('is-invalid').addClass('is-valid');
-			$('.help-block').remove();
+			$('.help-block', $(this)).remove();
 		});
 		// adiciona o erro no input correspondente
 		$('input', $group).addClass('is-invalid');
@@ -63,6 +86,31 @@ $(document).ready(function ()
      * Habilita o menu
      */
 	$("#metismenu").metisMenu();
+
+
+	// /**
+	//  * Seta o status ao carregar a pagina
+	//  *
+	//  * https://www.bootstraptoggle.com
+	//  */
+	// if ($('.checkbox-status').is(':checked')) {
+	// 	$('.label-status').append("<strong>ativo</strong>");
+	// } else {
+	// 	$('.label-status').append("<strong>inativo</strong>");
+	// }
+
+	// /**
+	//  * Acao ao clicar no botao ativar ou desativar
+	//  */
+	// $('.checkbox-status').click(function() {
+	// 	if ($('.checkbox-status').is(':checked')) {
+	// 		$('.checkbox-status').attr('value', 'yes');
+	// 		$('.label-status').text('Você ativou este registro');
+	// 	} else {
+	// 		$('.checkbox-status').attr('value', 'no');
+	// 		$('.label-status').text('Você desativou este registro');
+	// 	}
+	// });
 
 	/**
 	 * Abre e fecha o menu clicando no Hamburger

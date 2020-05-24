@@ -43,19 +43,19 @@
 				<a href="{!! route('material.list') !!}" class="{!! (request()->is('admin/material/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-dolly-flatbed icon-gradient bg-plum-plate"></i> Materiais</a>
 			</li>
 			<li>
-				<a href="{!! route('category.list') !!}" class="{!! (request()->is('admin/categoria/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-store"></i> Categorias</a>
+				<a href="{!! route('category.list') !!}" class="{!! (request()->is('admin/categoria/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-store icon-gradient bg-plum-plate"></i> Categorias</a>
 			</li>
 			<li>
-				<a href="{!! route('theme.list') !!}" class="{!! (request()->is('admin/tema/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-star"></i> Temas</a>
+				<a href="{!! route('theme.list') !!}" class="{!! (request()->is('admin/tema/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-star icon-gradient bg-plum-plate"></i> Temas</a>
 			</li>
 			<li>
-				<a href="{!! route('color.list') !!}" class="{!! (request()->is('admin/cor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-palette"></i> Cores</a>
+				<a href="{!! route('color.list') !!}" class="{!! (request()->is('admin/cor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-palette icon-gradient bg-plum-plate"></i> Cores</a>
 			</li>
 			<li>
 				<a href="{!! route('product.list') !!}" class="{!! (request()->is('admin/produto/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-cubes"></i> Produtos</a>
 			</li>
 			<li>
-				<a href="{!! route('campaign.list') !!}" class="{!! (request()->is('admin/campanha/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-calendar-alt"></i> Campanhas</a>
+				<a href="{!! route('campaign.list') !!}" class="{!! (request()->is('admin/campanha/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-calendar-alt icon-gradient bg-plum-plate"></i> Campanhas</a>
 			</li>
 			<li>
 				<a href="{!! route('stock.list') !!}" class="{!! (request()->is('admin/estoques/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-warehouse"></i> Estoques</a>
@@ -63,13 +63,13 @@
 
 			<li class="app-sidebar__heading">SITE</li>
 			<li>
-				<a href="javascript:void(0);" aria-expanded="{!! ((request()->is('admin/cupom/*')) || (request()->is('admin/promocao/*')) || (request()->is('admin/campanhas'))) ? 'true' : 'false' !!}"><i class="metismenu-icon fas fa-search-dollar"></i> Ofertas <i class="metismenu-state-icon fas fa-angle-down caret-left"></i></a>
+				<a href="javascript:void(0);" aria-expanded="{!! ((request()->is('admin/cupom/*')) || (request()->is('admin/promocao/*')) || (request()->is('admin/campanhas'))) ? 'true' : 'false' !!}"><i class="metismenu-icon fas fa-search-dollar icon-gradient bg-plum-plate"></i> Ofertas <i class="metismenu-state-icon fas fa-angle-down caret-left"></i></a>
 				<ul class="{!! ((request()->is('admin/cupom/*')) || (request()->is('admin/promocao/*')) || (request()->is('admin/campanhas'))) ? 'mm-collapse mm-show' : '' !!}">
 					<li>
-						<a href="{!! route('promotion.list') !!}" class="{!! (request()->is('admin/promocao/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Promoções</a>
+						<a href="{!! route('coupon.list') !!}" class="{!! (request()->is('admin/cupom/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Cupons</a>
 					</li>
 					<li>
-						<a href="{!! route('coupon.list') !!}" class="{!! (request()->is('admin/cupom/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Cupons</a>
+						<a href="{!! route('promotion.list') !!}" class="{!! (request()->is('admin/promocao/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon"></i> Promoções</a>
 					</li>
 				</ul>
 			</li>
@@ -82,13 +82,16 @@
 
 			<li class="app-sidebar__heading">USUÁRIOS</li>
 			<li>
-				<a href="{!! route('customer.list') !!}" class="{!! (request()->is('admin/cliente/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users"></i> Clientes</a>
+				<a href="{!! route('customer.list') !!}" class="{!! (request()->is('admin/cliente/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users icon-gradient bg-plum-plate"></i> Clientes</a>
 			</li>
 			<li>
-				<a href="{!! route('supplier.list') !!}" class="{!! (request()->is('admin/fornecedor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-tie"></i> Fornecedores</a>
+				<a href="{!! route('supplier.list') !!}" class="{!! (request()->is('admin/fornecedor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-tie icon-gradient bg-plum-plate"></i> Fornecedores</a>
 			</li>
 			<li>
-				<a href="{!! route('user.list') !!}" class="{!! (request()->is('admin/usuario/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users-cog"></i> Todos</a>
+				<a href="{!! route('employee.list') !!}" class="{!! (request()->is('admin/funcionario/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-tag icon-gradient bg-plum-plate"></i> Funcionários</a>
+			</li>
+			<li>
+				<a href="{!! route('user.list') !!}" class="{!! (request()->is('admin/usuario/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users-cog icon-gradient bg-plum-plate"></i> Todos</a>
 			</li>
 
 			{{-- <li class="app-sidebar__heading">CONFIGURAÇÕES</li>

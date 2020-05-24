@@ -21,6 +21,7 @@ class CampaignItem extends Model
 	protected $fillable = [
 		'id',
 		'campaign_id',
+		'theme_id',
 		'item_id',
 	];
 
@@ -32,6 +33,15 @@ class CampaignItem extends Model
 	{
 		return $this->belongsTo(Campaign::class);
     }
+
+	/**
+	 * Get the themes that owns the campaign.
+	 *
+	 */
+	public function themes()
+	{
+		return $this->belongsTo(Theme::class);
+	}
 
 	/**
 	 * Get the items that owns the campaign.
@@ -48,6 +58,6 @@ class CampaignItem extends Model
 	 */
 	public function products()
 	{
-		return $this->items()->with();
+		return $this->items()->with('product');
 	}
 }

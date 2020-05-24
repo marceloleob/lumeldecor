@@ -128,10 +128,22 @@ a, a:hover, a:focus, a:visited {
 	display: flex;
 	padding-top: 30px;
 }
-.input-group-text {
-	min-width: 46px;
+.input-group-prepend .input-group-text {
+	min-width: 44px;
+}
+.input-group-append .input-group-text {
+	min-width: 40px;
 }
 
+
+/**
+* -----------------------------------------------------------------------------
+* PAGES - MATERIAL
+* -----------------------------------------------------------------------------
+*/
+.custom-control-label {
+	cursor: pointer;
+}
 
 /**
 * -----------------------------------------------------------------------------

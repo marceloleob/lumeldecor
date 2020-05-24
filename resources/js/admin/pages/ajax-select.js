@@ -34,7 +34,7 @@ $(document).ready(function ()
 	{
 		// carrega o combo
 		$.ajax({
-			url: '../options/category',
+			url: '../category/options',
 			type: 'POST',
             dataType: 'html',
 			data: {

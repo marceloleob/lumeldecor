@@ -5,7 +5,6 @@ namespace App\Http\Requests\Admin;
 use App\Filters\Checkbox;
 use App\Filters\Decimal;
 use App\Filters\Money;
-use App\Filters\Nullable;
 use App\Http\Requests\BaseRequest;
 
 class ProductRequest extends BaseRequest
@@ -26,7 +25,6 @@ class ProductRequest extends BaseRequest
         'money'    => Money::class,
         'checkbox' => Checkbox::class,
         'decimal'  => Decimal::class,
-        'nullable' => Nullable::class,
     ];
 
     /**

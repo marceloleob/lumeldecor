@@ -54,12 +54,12 @@ class Item extends Model
 	}
 
 	/**
-	 * Get the campaigns about this item.
+	 * Get the themes about this item.
 	 *
 	 */
 	public function themes()
 	{
-		return $this->hasMany(ItemTheme::class);
+		return $this->hasMany(ThemeItem::class);
 	}
 
 	/**

@@ -24,12 +24,10 @@ class OfferPromotionsTableSeeder extends Seeder
 			'product_id'  => null,
 			'item_id'     => null,
 			'name'        => 'Promoção em todos os itens de Cerâmica do Site!',
-			'kind'        => 'P',
-			'amount'      => 10,
-			'start_day'   => 1,
-			'start_month' => 6,
-			'finish_day'   => 31,
-			'finish_month' => 6,
+			'kind'        => 'V',
+			'amount'      => 25.50,
+			'start_date'  => '2020-05-01',
+			'finish_date' => '2020-05-31',
 			'status'      => 1
 		]);
 	}

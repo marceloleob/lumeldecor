@@ -3,11 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
-use App\Services\CustomerService;
+use App\Http\Requests\Admin\CustomerRequest;
+use App\Repositories\CustomerRepository;
 use Illuminate\Http\Request;
 
 class CustomerController extends AdminController
 {
+	/**
+	 * @var CustomerRepository
+	 */
+	private $repository;
+
+	/**
+	 * Constructor
+	 *
+	 * @param CustomerRepository $repository
+	 */
+	public function __construct(CustomerRepository $repository)
+	{
+		$this->repository = $repository;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -16,9 +32,9 @@ class CustomerController extends AdminController
 	 */
 	public function index(Request $request)
 	{
-		$params = CustomerService::list($request->search);
+		$params = $this->repository->all($request->search);
 
-		return view('admin.pages.customer-list')->with($params);
+		return view('admin.pages.customer-list', ['page' => 'customer'])->with($params);
 	}
 
     /**
@@ -28,11 +44,7 @@ class CustomerController extends AdminController
      */
     public function create()
     {
-		$params = [
-			'data' => CustomerService::find(),
-		];
-
-		return view('admin.pages.customer-form')->with($params);
+		return view('admin.pages.customer-form-create', ['page' => 'customer']);
     }
 
     /**
@@ -41,10 +53,16 @@ class CustomerController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
-		// redirect to list
-		return redirect()->route('customer.list');
+		// save
+		$response = $this->repository->store($request->all());
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+        }
+
+        return redirect()->route('customer.list')->with($response);
     }
 
     /**
@@ -55,8 +73,12 @@ class CustomerController extends AdminController
      */
     public function edit($id)
     {
-        //
-    }
+		$params = [
+			'data' => $this->repository->findById($id),
+		];
+
+		return view('admin.pages.customer-form-update', ['page' => 'customer'])->with($params);
+	}
 
     /**
      * Toggle the status storage.
@@ -64,9 +86,9 @@ class CustomerController extends AdminController
      * @param  int  $id
      * @return Response
      */
-    public function toggle($id)
+    public function changeStatus($id)
     {
-        $response = CustomerService::toggleStatus($id);
+        $response = $this->repository->changeStatus($id);
 
         return redirect()->route('customer.list')->with($response);
     }

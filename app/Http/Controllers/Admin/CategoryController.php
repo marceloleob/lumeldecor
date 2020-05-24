@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
+use App\Http\Requests\Admin\CategoryRequest;
 use App\Repositories\CategoryRepository;
-use App\Services\CategoryService;
-use App\Services\MaterialService;
+use App\Repositories\MaterialRepository;
 use Illuminate\Http\Request;
 
 class CategoryController extends AdminController
@@ -18,33 +18,12 @@ class CategoryController extends AdminController
 	/**
 	 * Constructor
 	 *
-	 * @param \App\Repositories\CategoryRepository $repository
+	 * @param CategoryRepository $repository
 	 */
 	public function __construct(CategoryRepository $repository)
 	{
 		$this->repository = $repository;
 	}
-
-	// public function teste()
-	// {
-	// 	$teste = $this->repository->all();
-
-	// 	return $teste;
-	// }
-
-	// public function testeFind($categoryId)
-	// {
-	// 	$teste = $this->repository->findById($categoryId);
-
-	// 	return $teste;
-	// }
-
-	// public function testeUpdate($categoryId, Request $request)
-	// {
-	// 	$teste = $this->repository->update($categoryId, $request);
-
-	// 	return redirect('/teste/find/' . $categoryId);
-	// }
 
 	/**
 	 * Display a listing of the resource.
@@ -54,10 +33,9 @@ class CategoryController extends AdminController
 	 */
     public function index(Request $request)
     {
-		// $params = CategoryService::list($request->search);
-		$params = $this->repository->all();
+		$params = $this->repository->all($request->search);
 
-        return view('admin.pages.category-list')->with($params);
+		return view('admin.pages.category-list', ['page' => 'category'])->with($params);
     }
 
     /**
@@ -68,11 +46,10 @@ class CategoryController extends AdminController
     public function create()
     {
 		$params = [
-			'data'            => CategoryService::find(),
-			'optionsmaterial' => MaterialService::options(),
+			'optionsmaterial' => (new MaterialRepository())->options(),
 		];
 
-		return view('admin.pages.category-form')->with($params);
+		return view('admin.pages.category-form-create', ['page' => 'category'])->with($params);
     }
 
     /**
@@ -81,10 +58,16 @@ class CategoryController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-		// redirect to list
-		return redirect()->route('category.list');
+		// save
+		$response = $this->repository->store($request->all());
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+        }
+
+        return redirect()->route('category.list')->with($response);
     }
 
     /**
@@ -95,7 +78,12 @@ class CategoryController extends AdminController
      */
     public function edit($id)
     {
-        //
+		$params = [
+			'data' => $this->repository->findById($id),
+			'optionsmaterial' => (new MaterialRepository())->options(),
+		];
+
+		return view('admin.pages.category-form-update', ['page' => 'category'])->with($params);
     }
 
     /**
@@ -104,12 +92,12 @@ class CategoryController extends AdminController
      * @param  int  $id
      * @return Response
      */
-    public function toggle($id)
+    public function changeStatus($id)
     {
-        $response = CategoryService::toggleStatus($id);
+        $response = $this->repository->changeStatus($id);
 
         return redirect()->route('category.list')->with($response);
-	}
+    }
 
 	/**
 	 * Return select options of Category
@@ -119,9 +107,6 @@ class CategoryController extends AdminController
 	 */
 	public function options(Request $request)
 	{
-		// verifica se foi informado o POST com o "material"
-		$material = $request->material;
-
-		return CategoryService::options($material);
+		return $this->repository->options($request->material);
 	}
 }

@@ -22,7 +22,7 @@ class StocksTableSeeder extends Seeder
 			'user_id'    => 2,
 			'action'     => 'incoming',
 			'incoming'   => 44,
-			'overdraw'   => '',
+			'outcoming'  => null,
 			'balance'    => 44
         ]);
     }

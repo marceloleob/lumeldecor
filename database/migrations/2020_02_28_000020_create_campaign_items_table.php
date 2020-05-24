@@ -16,7 +16,8 @@ class CreateCampaignItemsTable extends Migration
         Schema::create('campaign_items', function (Blueprint $table) {
             $table->id();
 			$table->foreignId('campaign_id');
-			$table->foreignId('item_id');
+			$table->foreignId('theme_id')->nullable();
+			$table->foreignId('item_id')->nullable();
         });
     }
 

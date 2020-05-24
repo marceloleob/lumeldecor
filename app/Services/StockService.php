@@ -17,7 +17,7 @@ class StockService extends BaseService
     public static function list($search = '')
 	{
 		// retorna a query para a busca do grid
-		$query = Product::orderBy('name', 'ASC');
+		$query = Product::orderBy('name');
 
         // verifica se buscou algum item especifico
         if (!empty($search)) {

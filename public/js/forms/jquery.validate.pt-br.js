@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -97,7 +97,7 @@ eval("/**\n * Seta um padrao para os retornos do validate\n *\n */\n$.validator.
 
 /***/ }),
 
-/***/ 6:
+/***/ 4:
 /*!***********************************************************!*\
   !*** multi ./resources/js/forms/jquery.validate.pt-br.js ***!
   \***********************************************************/
