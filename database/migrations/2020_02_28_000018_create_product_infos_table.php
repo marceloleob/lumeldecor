@@ -18,7 +18,7 @@ class CreateProductInfosTable extends Migration
             $table->foreignId('category_id');
 			$table->string('name', 300);
 			$table->text('description');
-			$table->text('hashtag');
+			$table->text('hashtag')->nullable();
 			$table->boolean('featured')->default(0);
 			$table->boolean('status')->default(1);
 		});

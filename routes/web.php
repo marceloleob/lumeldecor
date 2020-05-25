@@ -80,13 +80,14 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 		Route::post('item/salvar', 'ItemController@store')->name('item.store');
 		Route::get('item/editar/{id}/{page}', 'ItemController@edit')->name('item.edit');
 		Route::get('item/status/{id}', 'ItemController@changeStatus')->name('item.status');
-		// Products
-		Route::get('produto/lista', 'ProductController@index')->name('product.list');
-		Route::any('produto/busca', 'ProductController@index')->name('product.search');
-		Route::get('produto/novo/{item?}', 'ProductController@create')->name('product.create');
-		Route::post('produto/salvar', 'ProductController@store')->name('product.store');
-		Route::get('produto/editar/{id}/{page}', 'ProductController@edit')->name('product.edit');
-		Route::get('produto/status/{id}', 'ProductController@changeStatus')->name('product.status');
+	// Products
+	Route::get('produto/listar', 'ProductController@index')->name('product.list');
+	Route::any('produto/buscar', 'ProductController@index')->name('product.search');
+	Route::get('produto/cadastrar', 'ProductController@create')->name('product.create');
+	Route::post('produto/salvar', 'ProductController@store')->name('product.store');
+	Route::get('produto/editar/{id}', 'ProductController@edit')->name('product.edit');
+	Route::put('produto/atualizar/{id}', 'ProductController@store')->name('product.update');
+	Route::get('produto/status/{id}', 'ProductController@changeStatus')->name('product.status');
 
 
 	// Campaign

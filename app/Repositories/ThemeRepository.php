@@ -47,7 +47,8 @@ class ThemeRepository extends BaseRepository
 	public function format()
 	{
 		// Percorre toda a Collection
-		$this->data->map(function ($collection) {
+		$this->data->map(function ($collection)
+		{
 			// verifica os temas vai aparecer na home
 			if ($collection->show == config('constants.ACTIVE')) {
 				$collection->show = '<span class="text-focus">Sim</span>';

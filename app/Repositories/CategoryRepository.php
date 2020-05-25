@@ -52,7 +52,8 @@ class CategoryRepository extends BaseRepository
 		}
 		// carrega os dados do banco
 		$categories = $this->query()
-			->with(['material' => function ($subQuery) {
+			->with(['material' => function ($subQuery)
+			{
 				$subQuery->orderBy('name');
 			}])
 			->orderBy('name')

@@ -19,14 +19,14 @@ const mix = require('laravel-mix');
 
 
     // JS ADMIN DEPENDENCIAS
-	.js('resources/js/admin/app.js', 'public/js/admin')
+	.js('resources/js/admin/app.js', 'public/js/admin').sourceMaps()
     // JS ADMIN CUSTOM
-	.js('resources/js/admin/custom.js', 'public/js/admin')
+	.js('resources/js/admin/custom.js', 'public/js/admin').sourceMaps()
 	// JS FORMS VALIDATE
 	// .js('resources/js/forms/jquery.masks.en.js', 'public/js/forms')
-	.js('resources/js/forms/jquery.masks.pt-br.js', 'public/js/forms')
+	.js('resources/js/forms/jquery.masks.pt-br.js', 'public/js/forms').sourceMaps()
 	// .js('resources/js/forms/jquery.validate.en.js', 'public/js/forms')
-	.js('resources/js/forms/jquery.validate.pt-br.js', 'public/js/forms')
+	.js('resources/js/forms/jquery.validate.pt-br.js', 'public/js/forms').sourceMaps()
 	// JS ADMIN PAGES
 	.js([
 		'resources/js/admin/pages/ajax-select.js',
@@ -47,7 +47,7 @@ const mix = require('laravel-mix');
 		// 'resources/js/admin/pages/supplier.js',
 		'resources/js/admin/pages/theme.js',
 		// 'resources/js/admin/pages/user.js',
-	], 'public/js/admin/pages.js')
+	], 'public/js/admin/pages.js').sourceMaps()
 
 
     // CSS ADMIN
@@ -55,7 +55,7 @@ const mix = require('laravel-mix');
     // CSS ADMIN TEMPLATE
     .copy('resources/sass/admin/architect-ui.min.css', 'public/css/admin')
     // CSS ADMIN CUSTOM
-	.sass('resources/sass/admin/custom.scss', 'public/css/admin')
+	.sass('resources/sass/admin/custom.scss', 'public/css/admin');
 
 	// (nao deixa dar o warning de arquivo.map)
-	.sourceMaps();
+	// .sourceMaps();

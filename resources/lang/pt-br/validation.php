@@ -205,7 +205,7 @@ return [
         // DIMENSIONS
         'size'                  => 'tamanho',
         'weight'                => 'peso',
-        'lenght'                => 'comprimento',
+        'length'                => 'comprimento',
         'width'                 => 'largura',
         'height'                => 'altura',
 

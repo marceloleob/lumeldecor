@@ -37,7 +37,7 @@ class Product extends Model
 	 */
 	public function info()
 	{
-		return $this->belongsTo(ProductInfo::class);
+		return $this->belongsTo(ProductInfo::class, 'product_info_id', 'id');
 	}
 
 	/**

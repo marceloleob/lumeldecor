@@ -4,51 +4,61 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\ProductRequest;
-use App\Services\ColorService;
-use App\Services\ItemService;
+use App\Repositories\CategoryRepository;
+use App\Repositories\ColorRepository;
+use App\Repositories\MaterialRepository;
+use App\Repositories\ProductRepository;
+use App\Repositories\SupplierRepository;
+use App\Repositories\ThemeRepository;
 use App\Services\ProductService;
-use App\Services\SupplierService;
-use App\Services\ThemeService;
 use Illuminate\Http\Request;
 
 class ProductController extends AdminController
 {
+	/**
+	 * @var ProductRepository
+	 */
+	private $repository;
+
+	/**
+	 * Constructor
+	 *
+	 * @param ProductRepository $repository
+	 */
+	public function __construct(ProductRepository $repository)
+	{
+		$this->repository = $repository;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index(Request $request)
-	{
-		$params = ProductService::list($request->search);
+    public function index(Request $request)
+    {
+		$params = $this->repository->all($request->search);
 
-		return view('admin.pages.product-list')->with($params);
-	}
+		return view('admin.pages.product-list', ['page' => 'product'])->with($params);
+    }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @param  int  $item
      * @return \Illuminate\Http\Response
      */
-    public function create($item = null)
+    public function create()
     {
-        // caso nao tenha informado o item
-        if (empty($item)) {
-            //retorna para o formulario do item
-            return back()->withInput()->with(['danger' => 'Para acessar o formulário de produto (2ª parte) você precisa ter concluído a 1ª parte.']);
-        }
-
 		$params = [
-			'data'            => ProductService::find(),
-			'item'            => ItemService::find($item),
-			'optionssupplier' => SupplierService::options(),
-            'optionscolor'    => ColorService::options(),
-            'optionstheme'    => ThemeService::options(),
+			'optionsmaterial' => (new MaterialRepository())->options(),
+			'optionscategory' => (new CategoryRepository())->options(),
+			'optionstheme'    => (new ThemeRepository())->options(),
+			'optionscolor'    => (new ColorRepository())->options(),
+			'optionssupplier' => (new SupplierRepository())->options(),
 		];
 
-		return view('admin.pages.product-form')->with($params);
+		return view('admin.pages.product-form-create', ['page' => 'product'])->with($params);
     }
 
     /**
@@ -59,26 +69,14 @@ class ProductController extends AdminController
      */
     public function store(ProductRequest $request)
     {
-        // save
-        $response = ProductService::store($request);
-
+		// save
+		$response = ProductService::store($request->all());
         // verifica se retornou erro
         if (isset($response['error'])) {
             return back()->withInput()->with($response);
         }
 
-        return redirect()->route('product.form')->with($response);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('promotion.list')->with($response);
     }
 
     /**
@@ -89,31 +87,27 @@ class ProductController extends AdminController
      */
     public function edit($id)
     {
-        //
-    }
+		$params = [
+			'data' => $this->repository->findById($id),
+			'optionsmaterial' => (new MaterialRepository())->options(),
+			'optionscategory' => (new CategoryRepository())->options(),
+			'optionstheme'    => (new ThemeRepository())->options(),
+			'optionscolor'    => (new ColorRepository())->options(),
+		];
+
+		return view('admin.pages.product-form-update', ['page' => 'product'])->with($params);
+	}
 
     /**
-     * Update the specified resource in storage.
+     * Toggle the status storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function update(Request $request, $id)
+    public function changeStatus($id)
     {
-        //
+        $response = $this->repository->changeStatus($id);
+
+        return redirect()->route('product.list')->with($response);
     }
-
-	// /**
-    //  * Toggle the status storage.
-    //  *
-    //  * @param  int  $id
-    //  * @return Response
-    //  */
-    // public function toggle($id)
-    // {
-    //     $response = ProductService::toggleStatus($id);
-
-    //     return redirect()->route('product.list')->with($response);
-    // }
 }

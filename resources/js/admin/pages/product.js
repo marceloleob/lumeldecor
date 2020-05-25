@@ -3,40 +3,71 @@ $(document).ready(function ()
 	/**
 	 * Validacao do formulario
 	 *
+	 * https://jqueryvalidation.org/documentation/
 	 */
-	// if ($('#form-product').length) {
-	// 	// validation
-	// 	$('#form-product').validate({
-	// 		// https://jqueryvalidation.org/documentation/
-	// 		rules: {
-	// 			size: {
-	// 				required: true,
-	// 			},
-	// 			weight: {
-	// 				required: true,
-	// 			},
-	// 			supplier_id: {
-	// 				required: true,
-	// 			},
-	// 			s_price: {
-	// 				required: true,
-	// 			},
-	// 			p_price: {
-	// 				required: true,
-	// 			},
-	// 			lenght: {
-	// 				required: true,
-	// 			},
-	// 			width: {
-	// 				required: true,
-	// 			},
-	// 			height: {
-	// 				required: true,
-	// 			},
-	// 			// 'color[]': 'allRequired',
-	// 		}
-	// 	});
-	// }
+	if ($('#form-product').length) {
+		// validation
+		$('#form-product').validate({
+			rules: {
+				// informacoes basicas
+				material_id: {
+					required: true,
+				},
+				category_id: {
+					required: true,
+				},
+				name: {
+					required: true,
+					minlength: 2,
+					maxlength: 300,
+				},
+				featured: {
+					required: false,
+				},
+				description: {
+					required: true,
+					minlength: 5,
+					maxlength: 2000,
+				},
+
+				// dimensoes / preco
+				size: {
+					required: true,
+				},
+				weight: {
+					required: true,
+				},
+				supplier_id: {
+					required: true,
+				},
+				s_price: {
+					required: true,
+				},
+				p_price: {
+					required: true,
+				},
+				length: {
+					required: true,
+				},
+				width: {
+					required: true,
+				},
+				height: {
+					required: true,
+				},
+			}
+		});
+		// adiciona o validator nos campos (array)
+		jQuery.validator.addClassRules("select-color", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("input-amount", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("custom-file-input", {
+			required: true,
+		});
+	}
 
 	/**
 	 * Customiza os input="file" - Nome do input File
@@ -69,7 +100,19 @@ $(document).ready(function ()
 		// recupera o bootstrap-selec deste bloco
 		var $selectPicker = $bootstrapSelect.find('.selectpicker');
 		// deixa o selectpicker sem nada selecionado
-		$selectPicker.each(function (index) {
+		$selectPicker.each(function (index)
+		{
+			var $field = $(this).data('name');
+			var $label = $(this).closest('.div-' + $field).find('label');
+			var $span  = $(this).closest('.div-' + $field).find('span');
+			// altera o "id" e "name" do select
+			$(this).attr('id', 'item[' + $counter + '][' + $field + ']');
+			$(this).attr('name', 'item[' + $counter + '][' + $field + ']');
+			// altera o "for" da label
+			$label.attr('for', 'item[' + $counter + '][' + $field + ']');
+			// altera o "span" de notification
+			$span.attr('for', 'item[' + $counter + '][' + $field + ']');
+			// limpa o selectpicker
 			$(this).data('selectpicker', null);
 		});
 		// atualiza o bootstrap-select com o select-picker limpo
@@ -89,7 +132,19 @@ $(document).ready(function ()
 		// recupera os inputs (amount, photo, launch)
 		var $inputs = $cloned.find('input');
 		// percorre os inputs
-		$inputs.each(function () {
+		$inputs.each(function ()
+		{
+			var $field = $(this).data('name');
+			var $label = $(this).closest('.div-' + $field).find('label');
+			var $span  = $(this).closest('.div-' + $field).find('span');
+			// altera o "id" e "name" do select
+			$(this).attr('id', 'item[' + $counter + '][' + $field + ']');
+			$(this).attr('name', 'item[' + $counter + '][' + $field + ']');
+			// altera o "for" da label
+			$label.attr('for', 'item[' + $counter + '][' + $field + ']');
+			// altera o "span" de notification
+			$span.attr('for', 'item[' + $counter + '][' + $field + ']');
+
 			// limpa os campos
 			if ($(this).prop('type') === 'text' || $(this).prop('type') === 'number') {
 				$(this).val('').end();
@@ -100,12 +155,6 @@ $(document).ready(function ()
 			}
 			if ($(this).prop('type') === 'checkbox') {
 				$(this).prop('checked', false);
-				// altera o id e a label do checkbox
-				var $input = $(this);
-				var $label = $(this).parent().find('label');
-				$input.attr('id', 'checkbox-launch-' + $counter);
-				$label.attr('for', 'checkbox-launch-' + $counter);
-
 			}
 		});
 

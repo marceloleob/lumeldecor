@@ -21,7 +21,8 @@ class EmployeeRepository extends BaseRepository
 	 */
 	public function all($search = null)
 	{
-		$query = $this->query()->with(['user' => function ($subQuery) use ($search) {
+		$query = $this->query()->with(['user' => function ($subQuery) use ($search)
+		{
 			$subQuery->orderBy('name');
 			// verifica se buscou algum item especifico
 			if (!empty($search)) {

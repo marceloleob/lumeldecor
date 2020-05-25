@@ -35,6 +35,15 @@ class ProductSupplier extends Model
     }
 
 	/**
+	 * Get the product that owns the product supplier.
+	 *
+	 */
+	public function product()
+	{
+		return $this->item()->with('product');
+    }
+
+	/**
 	 * Get the supplier that owns the product supplier.
 	 *
 	 */
