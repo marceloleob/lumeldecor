@@ -2,32 +2,30 @@
 
 namespace App\Services;
 
-use App\Models\Product;
-use App\Services\BaseService;
-use Exception;
+use App\Repositories\StockRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class StockService extends BaseService
+class StockService
 {
-    /**
-     * Monta a lista com paginacao
-     *
-     * @param string $search
-     * @return array
-     */
-    public static function list($search = '')
+	/**
+	 * Armazena as acoes de manipulacao do estoque
+	 */
+	public static $_actions = [
+		'NEW_PRODUCT' => 'Cadastro de novo produto',
+	];
+
+	public static function getNewBalace($productId, $itemId, $amount)
 	{
-		// retorna a query para a busca do grid
-		$query = Product::orderBy('name');
+		try {
+			$stock = new StockRepository();
+			$stock = $stock->getBalance($productId, $itemId);
 
-        // verifica se buscou algum item especifico
-        if (!empty($search)) {
-            // armazena o valor da busca
-            parent::$search = $search;
-            // executa a busca
-            $query->where('name', 'LIKE', '%' . $search . '%');
-        }
+			return $stock->incoming + $amount;
 
-        // cria uma collection com paginacao para montar o grid
-        return parent::handlePagination($query);
+		} catch (ModelNotFoundException $exception) {
+
+			return $amount;
+		}
+
 	}
 }

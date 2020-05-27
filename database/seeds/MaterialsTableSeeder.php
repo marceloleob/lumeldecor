@@ -17,16 +17,16 @@ class MaterialsTableSeeder extends Seeder
 		DB::table('materials')->delete();
 		// cria os registros
 		Material::create(['name' => 'Cartonagem', 'status' => 1]);
-		Material::create(['name' => 'Cerâmicas', 'status' => 1]);
-		Material::create(['name' => 'Enfeites', 'status' => 1]);
-		Material::create(['name' => 'Louças', 'status' => 1]);
-		Material::create(['name' => 'Luminosos', 'status' => 1]);
-		Material::create(['name' => 'Madeiras', 'status' => 1]);
+		Material::create(['name' => 'Cerâmica', 'status' => 1]);
+		Material::create(['name' => 'Enfeite', 'status' => 1]);
+		Material::create(['name' => 'Louça', 'status' => 1]);
+		Material::create(['name' => 'Luminoso', 'status' => 1]);
+		Material::create(['name' => 'Madeira', 'status' => 1]);
 		Material::create(['name' => 'MDF', 'status' => 1]);
-		Material::create(['name' => 'Metais', 'status' => 1]);
-		Material::create(['name' => 'Plásticos', 'status' => 1]);
-		Material::create(['name' => 'Porcelanas', 'status' => 1]);
-		Material::create(['name' => 'Personagens', 'status' => 1]);
-		Material::create(['name' => 'Vidros', 'status' => 1]);
+		Material::create(['name' => 'Metal', 'status' => 1]);
+		Material::create(['name' => 'Plástico', 'status' => 1]);
+		Material::create(['name' => 'Porcelana', 'status' => 1]);
+		Material::create(['name' => 'Personagem', 'status' => 1]);
+		Material::create(['name' => 'Vidro', 'status' => 1]);
     }
 }

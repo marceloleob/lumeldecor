@@ -48,7 +48,8 @@ class CampaignRepository extends BaseRepository
 	public function format()
 	{
 		// Percorre toda a Collection
-		$this->data->map(function ($collection) {
+		$this->data->map(function ($collection)
+		{
 			// monta o periodo
 			$today  = Carbon::now();
 			$start  = Carbon::createFromDate(null, $collection->start_month, $collection->start_day);

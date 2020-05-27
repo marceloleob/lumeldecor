@@ -20,7 +20,7 @@ class ProductInfo extends Model
 	 */
 	protected $fillable = [
 		'id',
-        'product_id',
+        'category_id',
 		'name',
 		'description',
 		'hashtag',
@@ -29,11 +29,29 @@ class ProductInfo extends Model
     ];
 
 	/**
-	 * Get the product that owns the product info.
+	 * Get the category that owns the product.
+	 *
+	 */
+	public function category()
+	{
+		return $this->belongsTo(Category::class, 'category_id', 'id');
+	}
+
+	/**
+	 * Get the category about this product.
+	 *
+	 */
+	public function material()
+	{
+		return $this->category()->with('material');
+	}
+
+	/**
+	 * Get the product about this info.
 	 *
 	 */
 	public function product()
 	{
-		return $this->belongsTo(Product::class);
+		return $this->hasOne(Product::class);
     }
 }

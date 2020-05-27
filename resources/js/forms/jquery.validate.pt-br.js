@@ -63,19 +63,6 @@ $.extend($.validator, {
 
 $(document).ready(function()
 {
-
-	// jQuery.validator.addMethod("allRequired", function(value, element){
-    //     // Use the name to get all the inputs and verify them
-	// 	var name = element.name;
-	// 	console.log(name, $('input[name="'+name+'"]'));
-    //     return  $('input[name="'+name+'"]').map(function(i,obj){
-	// 		console.log($(obj).val());
-	// 		return $(obj).val();
-	// 	}).get().every(function(v){ return v; });
-    // }, '<i class="fas fa-times pr-2 pl-2"></i> Campo obrigatório');
-
-	// https://stackoverflow.com/questions/24670447/how-to-validate-array-of-inputs-using-validate-plugin-jquery
-
 	/**
 	 * Bloqueia numeros
 	 */
@@ -181,7 +168,6 @@ $(document).ready(function()
 			}
 
 			return this.optional(element) || true;
-
 		},
 		'<i class="fas fa-times pr-2 pl-2"></i> Informe um CPF v&aacute;lido'
 	);

@@ -21,7 +21,8 @@ class SupplierRepository extends BaseRepository
 	 */
 	public function all($search = null)
 	{
-		$query = $this->query()->with(['contacts' => function ($subQuery) use ($search) {
+		$query = $this->query()->with(['contacts' => function ($subQuery) use ($search)
+		{
 			$subQuery->orderBy('name')->first();
 			// verifica se buscou algum item especifico
 			if (!empty($search)) {
@@ -54,9 +55,9 @@ class SupplierRepository extends BaseRepository
 	public function options()
 	{
 		$options = $this->query()
-			->orderBy('name')
+			->orderBy('company')
 			->where('status', config('constants.ACTIVE'))
-			->pluck('name', 'id');
+			->pluck('company', 'id');
 		// retorna o combobox pronto
 		return $options->prepend('Selecione', '');
 	}

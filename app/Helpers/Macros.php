@@ -206,11 +206,13 @@ class Macros extends FormBuilder
 	public function selectSize($name, $selected = null, $options = [])
 	{
 		$size = [
-			''  => 'Selecione',
-			'P' => 'P',
-			'M' => 'M',
-			'G' => 'G',
-			'U' => 'Único'
+			''   => 'Selecione',
+			'PP' => 'PP',
+			'P'  => 'P',
+			'M'  => 'M',
+			'G'  => 'G',
+			'GG' => 'GG',
+			'U'  => 'Único'
 		];
 
 		return $this->select($name, $size, $selected, $options);

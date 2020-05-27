@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Services\BaseService;
-
-class CaptchaService extends BaseService
+class CaptchaService
 {
 	/**
 	 * Verifica no GOOGLE se o envio e valido

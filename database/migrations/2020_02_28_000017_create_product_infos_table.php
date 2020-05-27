@@ -15,10 +15,10 @@ class CreateProductInfosTable extends Migration
 	{
 		Schema::create('product_infos', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('product_id');
-			$table->string('name', 300);
+            $table->foreignId('category_id');
+			$table->string('name', 150);
 			$table->text('description');
-			$table->text('hashtag');
+			$table->text('hashtag')->nullable();
 			$table->boolean('featured')->default(0);
 			$table->boolean('status')->default(1);
 		});

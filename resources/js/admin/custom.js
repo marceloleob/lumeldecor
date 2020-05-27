@@ -25,6 +25,8 @@ $(document).ready(function ()
 	 */
 	$('.selectpicker').selectpicker({
 		noneSelectedText: 'Selecione',
+		multipleSeparator: ' | ',
+		maxOptionsText: 'Limite atingido',
 		size: 7
 	});
 

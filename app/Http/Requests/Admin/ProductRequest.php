@@ -3,8 +3,8 @@
 namespace App\Http\Requests\Admin;
 
 use App\Filters\Checkbox;
-use App\Filters\Decimal;
 use App\Filters\Money;
+use App\Filters\NumberFloat;
 use App\Http\Requests\BaseRequest;
 
 class ProductRequest extends BaseRequest
@@ -22,9 +22,9 @@ class ProductRequest extends BaseRequest
      * @var array
      */
     public static $customFilters = [
-        'money'    => Money::class,
         'checkbox' => Checkbox::class,
-        'decimal'  => Decimal::class,
+        'money'    => Money::class,
+		'float'    => NumberFloat::class,
     ];
 
     /**
@@ -34,22 +34,31 @@ class ProductRequest extends BaseRequest
      */
     public static $filters = [
         // product
-        'id'          => 'digit|cast:integer',
-        'item_id'     => 'digit|cast:integer',
-        'supplier_id' => 'digit|cast:integer',
-        'size'        => 'trim|escape|uppercase',
-        'weight'      => 'decimal',
-        'height'      => 'decimal',
-        'width'       => 'decimal',
-        'length'      => 'decimal',
-        'p_price'     => 'money',
-        's_price'     => 'money',
-        // product info
-        'color_id'    => 'digit',
-        'amount'      => 'digit',
-        'image'       => 'trim,lowercase',
-        'launch'      => 'checkbox|cast:boolean',
+		'id'                           => 'cast:integer',
+		// product_info
+        'material_id'                  => 'cast:integer',
+        'category_id'                  => 'cast:integer',
+        'name'                         => 'trim|escape',
+        'description'                  => 'trim|escape|strip_tags',
+        'hashtag'                      => 'trim|cast:string',
+		'featured'                     => 'checkbox',
+		// product
+        'product.*.size'               => 'trim|escape|uppercase',
+        'product.*.weight'             => 'float',
+        'product.*.height'             => 'float',
+        'product.*.width'              => 'float',
+        'product.*.length'             => 'float',
+        // item
+        'product.*.item.*.color_id'    => 'cast:integer',
+        'product.*.item.*.supplier_id' => 'cast:integer',
+        'product.*.item.*.p_price'     => 'money',
+        'product.*.item.*.s_price'     => 'money',
+        'product.*.item.*.photo'       => 'trim|lowercase',
+		'product.*.item.*.launch'      => 'checkbox',
+		// theme item
+		'product.*.item.*.theme'       => 'cast:string',
         // product info theme
+        'product.*.item.*.amount'      => 'cast:integer',
     ];
 
     /**
@@ -59,21 +68,30 @@ class ProductRequest extends BaseRequest
      */
     public static $validations = [
         // product
-        'id'          => 'integer',
-        'item_id'     => 'required|integer',
-        'supplier_id' => 'required|integer',
-        'size'        => 'required|string|required_with:P,M,G,U',
-        'weight'      => "required|regex:/^\d+(\.\d{1,2})?$/",
-        'height'      => "required|regex:/^\d+(\.\d{1,2})?$/",
-        'width'       => "required|regex:/^\d+(\.\d{1,2})?$/",
-        'length'      => "required|regex:/^\d+(\.\d{1,2})?$/",
-        'p_price'     => "required|regex:/^\d+(\.\d{1,2})?$/",
-        's_price'     => 'required',
-        // product info
-        'color_id'    => 'required',
-        'amount'      => 'required',
-        'image'       => 'required|image|mimes:jpeg,png,jpg|max:3000', // 3 MEGABYTES
-        'launch'      => 'boolean',
+		'id'                           => 'integer',
+		// product_info
+        'material_id'                  => 'required|integer',
+        'category_id'                  => 'required|integer',
+        'name'                         => 'required|min:2|max:100',
+        'description'                  => 'max:3000',
+        'hashtag'                      => '',
+        'featured'                     => 'boolean',
+		// product
+        'product.*.size'               => 'required|string|required_with:PP,P,M,G,GG,U',
+        'product.*.weight'             => "required|regex:/^\d+(\.\d{1,3})?$/",
+        'product.*.height'             => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.width'              => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.length'             => "required|regex:/^\d+(\.\d{1,2})?$/",
+        // item
+        'product.*.item.*.color_id'    => 'required|integer',
+        'product.*.item.*.supplier_id' => 'required|integer',
+        'product.*.item.*.p_price'     => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.item.*.s_price'     => 'required|regex:/^\d+(\.\d{1,2})?$/',
+        'product.*.item.*.photo'       => 'required|image|mimes:jpeg,png,jpg|max:3072', // 3 MEGABYTES
+		'product.*.item.*.launch'      => 'boolean',
+		// theme item
+		'product.*.item.*.theme'       => 'integer',
         // product info theme
+        'product.*.item.*.amount'      => 'required|integer',
     ];
 }

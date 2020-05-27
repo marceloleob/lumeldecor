@@ -21,12 +21,16 @@ class ProductRepository extends BaseRepository
 	 */
 	public function all($search = null)
 	{
-		$query = $this->query()->orderBy('name');
+		$query = $this->query()->with(['info' => function ($subQuery) use ($search)
+		{
+			$subQuery->orderBy('name');
+			// verifica se buscou algum item especifico
+			if (!empty($search)) {
+				// procura o termo
+				$subQuery->where('name', 'LIKE', '%' . $search . '%');
+			}
+		}]);
 
-        if (!empty($search)) {
-            // procura o termo
-            $query->where('name', 'LIKE', '%' . $search . '%');
-        }
         // cria uma collection com paginacao para montar o grid
 		$this->pagination($query, $search);
 		// formata os registros da collection
@@ -37,6 +41,34 @@ class ProductRepository extends BaseRepository
 			'data'     => $this->data,
 			'paginate' => $this->paginate,
 		];
+	}
+
+	/**
+	 * Percorre a Collection e customiza dados para imprimir na view
+	 *
+	 * @return Collection
+	 */
+	public function format()
+	{
+		// Percorre toda a Collection
+		$this->data->map(function ($collection)
+		{
+			$product  = $collection->info->name;
+			$category = $collection->info->category->name;
+			$material = $collection->info->category->material->name;
+			$collection->name = $category . ' ' . $product . ' de ' . $material . ' ' . $collection->size;
+			$collection->code = $collection->productItems[0]->code;
+			// verifica se e inativo
+			if ($collection->status == config('constants.ACTIVE')) {
+                // seta ativo como default
+                $collection->status = ['class' => 'success', 'label' => 'Ativo'];
+                $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
+			} else {
+                // seta inativo como default
+				$collection->status = ['class' => 'danger', 'label' => 'Inativo'];
+				$collection->styles = ['class' => 'btn-outline-success', 'label' => 'far fa-check-circle'];
+            }
+		});
 	}
 
 	/**

@@ -47,7 +47,8 @@ class ThemeRepository extends BaseRepository
 	public function format()
 	{
 		// Percorre toda a Collection
-		$this->data->map(function ($collection) {
+		$this->data->map(function ($collection)
+		{
 			// verifica os temas vai aparecer na home
 			if ($collection->show == config('constants.ACTIVE')) {
 				$collection->show = '<span class="text-focus">Sim</span>';
@@ -74,11 +75,9 @@ class ThemeRepository extends BaseRepository
 	 */
 	public function options()
 	{
-		$options = $this->query()
+		return $this->query()
 			->orderBy('name')
 			->where('status', config('constants.ACTIVE'))
 			->pluck('name', 'id');
-		// retorna o combobox pronto
-		return $options->prepend('Selecione', '');
 	}
 }

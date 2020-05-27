@@ -48,7 +48,8 @@ class OfferCouponRepository extends BaseRepository
 	public function format()
 	{
 		// Percorre toda a Collection
-		$this->data->map(function ($collection) {
+		$this->data->map(function ($collection)
+		{
 			// monta o periodo
 			$today  = Carbon::now();
 			$start  = Carbon::createFromFormat('d/m/Y', $collection->start_date);

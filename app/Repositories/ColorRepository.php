@@ -46,11 +46,9 @@ class ColorRepository extends BaseRepository
 	 */
 	public function options()
 	{
-		$options = $this->query()
+		return $this->query()
 			->orderBy('name')
 			->where('status', config('constants.ACTIVE'))
 			->pluck('name', 'id');
-		// retorna o combobox pronto
-		return $options->prepend('Selecione', '');
 	}
 }
