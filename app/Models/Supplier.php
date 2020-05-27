@@ -55,11 +55,11 @@ class Supplier extends Model
 	}
 
 	/**
-	 * Get the products about this supplier.
+	 * Get the items about this supplier.
 	 *
 	 */
-	public function products()
+	public function items()
 	{
-		return $this->hasMany(ProductSupplier::class);
+		return $this->hasMany(Item::class);
 	}
 }

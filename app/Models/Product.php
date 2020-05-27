@@ -21,14 +21,13 @@ class Product extends Model
 	protected $fillable = [
 		'id',
 		'product_info_id',
-		'code',
 		'slug',
 		'size',
 		'weight',
 		'height',
 		'width',
 		'length',
-		'price',
+		'status',
 	];
 
 	/**
@@ -62,7 +61,7 @@ class Product extends Model
 	 * Get the items about this product.
 	 *
 	 */
-	public function items()
+	public function productItems()
 	{
 		return $this->hasMany(Item::class);
 	}

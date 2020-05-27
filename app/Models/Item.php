@@ -21,9 +21,14 @@ class Item extends Model
 	protected $fillable = [
 		'id',
 		'product_id',
+		'supplier_id',
 		'color_id',
+		'code',
 		'image',
+		'p_price',
+		's_price',
 		'launch',
+		'status',
 	];
 
 	/**
@@ -36,12 +41,30 @@ class Item extends Model
 	}
 
 	/**
+	 * Get the supplier that owns the item.
+	 *
+	 */
+	public function supplier()
+	{
+		return $this->belongsTo(Supplier::class);
+	}
+
+	/**
 	 * Get the color that owns the product info.
 	 *
 	 */
 	public function color()
 	{
 		return $this->belongsTo(Color::class);
+	}
+
+	/**
+	 * Get the product supplier about this product.
+	 *
+	 */
+	public function productSupplier()
+	{
+		return $this->hasMany(ProductSupplier::class);
 	}
 
 	/**

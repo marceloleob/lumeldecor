@@ -52,7 +52,7 @@
 				<a href="{!! route('color.list') !!}" class="{!! (request()->is('admin/cor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-palette icon-gradient bg-plum-plate"></i> Cores</a>
 			</li>
 			<li>
-				<a href="{!! route('product.list') !!}" class="{!! (request()->is('admin/produto/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-cubes"></i> Produtos</a>
+				<a href="{!! route('product.list') !!}" class="{!! (request()->is('admin/produto/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-cubes icon-gradient bg-plum-plate"></i> Produtos</a>
 			</li>
 			<li>
 				<a href="{!! route('campaign.list') !!}" class="{!! (request()->is('admin/campanha/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-calendar-alt icon-gradient bg-plum-plate"></i> Campanhas</a>

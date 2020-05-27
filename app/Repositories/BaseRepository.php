@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Material;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -43,7 +42,7 @@ class BaseRepository
     /**
 	 * Cria uma nova query buider
 	 *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function query()
     {
@@ -54,7 +53,7 @@ class BaseRepository
 	 * Retorna os dados referente a este modelo
 	 *
 	 * @param integer $id
-	 * @return Material
+	 * @return Entity
 	 */
 	public function findById($id)
 	{
@@ -111,9 +110,6 @@ class BaseRepository
 	 */
     public function store($data = [])
     {
-        // inicia o acoplamento de uma transacao
-        DB::beginTransaction();
-
         try {
             // verifica qual acao
             if (!empty($data['id'])) {
@@ -127,8 +123,6 @@ class BaseRepository
 				$entity = $this->make()->create($data);
             }
 
-            // efetiva a transacao
-            DB::commit();
             // retorna a entidade criada ou atualizada
             return [
                 'success' => ((isset($data['id'])) ? 'Atualizado' : 'Cadastrado') . ' com sucesso!',
@@ -136,8 +130,6 @@ class BaseRepository
             ];
 
         } catch (Exception $exception) {
-            // descarta a transacao
-            DB::rollback();
             // retorna o erro
             return [
                 'danger' => 'Erro ao ' . (isset($data['id']) ? 'atualizar' : 'cadastrar') . ', tente novamente!',
@@ -145,6 +137,41 @@ class BaseRepository
             ];
         }
     }
+    // {
+    //     // inicia o acoplamento de uma transacao
+    //     DB::beginTransaction();
+
+    //     try {
+    //         // verifica qual acao
+    //         if (!empty($data['id'])) {
+    //             // recupera a entidade
+	// 			$entity = $this->query()->where('id', $data['id'])->firstOrFail();
+	// 			// realiza o update
+	// 			$entity->update($data);
+
+    //         } else {
+    //             // realiza o save e retorna o objeto
+	// 			$entity = $this->make()->create($data);
+    //         }
+
+    //         // efetiva a transacao
+    //         DB::commit();
+    //         // retorna a entidade criada ou atualizada
+    //         return [
+    //             'success' => ((isset($data['id'])) ? 'Atualizado' : 'Cadastrado') . ' com sucesso!',
+    //             'entity'  => $entity,
+    //         ];
+
+    //     } catch (Exception $exception) {
+    //         // descarta a transacao
+    //         DB::rollback();
+    //         // retorna o erro
+    //         return [
+    //             'danger' => 'Erro ao ' . (isset($data['id']) ? 'atualizar' : 'cadastrar') . ', tente novamente!',
+    //             'error'  => $exception,
+    //         ];
+    //     }
+    // }
 
 	/**
 	 * Altera o status do registro (ativo ou inativo)

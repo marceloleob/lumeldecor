@@ -21,10 +21,11 @@ return [
     'ACTIVE'                 => 1,
 
     // IMAGES
-    'PICTURES_PATH'          => 'gallery/',
+    'PICTURES_PATH'          => 'products/',
     'PICTURES_SIZE'          => 3072000, // 3 MEGABYTES EM KB
     'PICTURES_PATH_MSG'      => '3 MB',
-    'PICTURES_LIMIT'         => 30,
+	'PICTURES_LIMIT'         => 30,
+	'PICTURES_MAX_HEIGHT'    => 800,
     'PICTURES_NOTAVAILABLE'  => 'images/no-available-370x278.png',
 
     // GOOGLE CONFIGS

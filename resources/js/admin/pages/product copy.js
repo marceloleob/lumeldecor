@@ -44,7 +44,7 @@ $(document).ready(function ()
 		// recupera o elemento referente a este bloco
 		var $element = $buttonAdd.parent();
 		// faz um clone de todo o bloco
-		var $cloned = $buttonAdd.closest('.row-color').clone(true);
+		var $cloned = $buttonAdd.closest('.row-item').clone(true);
 		// contador
 		var $counter = (parseInt($('#count-color').val()) + 1);
 
@@ -95,7 +95,7 @@ $(document).ready(function ()
 		});
 
 		// adiciona o clone abaixo do bloco que ja existe
-		$buttonAdd.closest('.row-color').after($cloned);
+		$buttonAdd.closest('.row-item').after($cloned);
 		// remove o botao de adicionar
 		$buttonAdd.remove();
 		// adiciona o botao de "remover"
@@ -112,7 +112,7 @@ $(document).ready(function ()
 		// Method cancels the event if it is cancelable
 		e.preventDefault();
 		// remove o bloco
-		$(this).closest('.row-color').remove();
+		$(this).closest('.row-item').remove();
 	});
 
 
@@ -120,7 +120,7 @@ $(document).ready(function ()
 	 * Adiciona um bloco de informacoes expecificas
 	 *
 	 */
-	$('.add-piece').on('click', function (e) {
+	$('.add-product').on('click', function (e) {
 		// Method cancels the event if it is cancelable
 		e.preventDefault();
 		// recupera o botao do click
@@ -128,9 +128,9 @@ $(document).ready(function ()
 		// recupera o elemento referente a este bloco
 		var $element = $buttonAdd.parent();
 		// faz um clone de todo o bloco
-		var $cloned = $buttonAdd.closest('.row-piece').clone(true);
+		var $cloned = $buttonAdd.closest('.row-product').clone(true);
 		// contador
-		var $counter = (parseInt($('#count-piece').val()) + 1);
+		var $counter = (parseInt($('#count-product').val()) + 1);
 
 
 		// faz um clone dos dois bootstrap-select
@@ -179,27 +179,125 @@ $(document).ready(function ()
 		});
 
 		// adiciona o clone abaixo do bloco que ja existe
-		$buttonAdd.closest('.row-piece').after($cloned);
+		$buttonAdd.closest('.row-product').after($cloned);
 		// remove o botao de adicionar
 		$buttonAdd.remove();
 		// adiciona o botao de "remover"
-		$('.remove-piece', $element).removeClass('hide');
+		$('.remove-product', $element).removeClass('hide');
 		// acrescenta um no contador
-		$('#count-piece').val($counter);
+		$('#count-product').val($counter);
 	});
 
 	/**
 	 * Remove um bloco de informacoes expecificas
 	 *
 	 */
-	$('.remove-piece').on('click', function (e) {
+	$('.remove-product').on('click', function (e) {
 		// Method cancels the event if it is cancelable
 		e.preventDefault();
 		// remove o bloco
-		$(this).closest('.row-piece').remove();
+		$(this).closest('.row-product').remove();
 	});
 
 
 
 
 });
+
+
+
+
+
+
+
+
+	/**
+	 * Adiciona um bloco de informacoes expecificas
+	 *
+	 *
+	$('.add-item').on('click', function (e) {
+		// Method cancels the event if it is cancelable
+		e.preventDefault();
+		// recupera o botao do click
+		var $buttonAdd = $(this);
+		// recupera o elemento referente a este bloco
+		var $element = $buttonAdd.parent();
+		// faz um clone de todo o bloco
+		var $cloned = $buttonAdd.closest('.row-item').clone(true);
+		// contador
+		var $counter = (parseInt($('#count-item').val()) + 1);
+
+
+		// faz um clone dos dois bootstrap-select
+		var $bootstrapSelect = $cloned.find('.bootstrap-select');
+		// recupera o bootstrap-selec deste bloco
+		var $selectPicker = $bootstrapSelect.find('.selectpicker');
+		// deixa o selectpicker sem nada selecionado
+		$selectPicker.each(function (index)
+		{
+			var $field = $(this).data('name');
+			var $label = $(this).closest('.div-' + $field).find('label');
+			var $span  = $(this).closest('.div-' + $field).find('span');
+			// altera o "id" e "name" do select
+			$(this).attr('id', 'item[' + $counter + '][' + $field + ']');
+			$(this).attr('name', 'item[' + $counter + '][' + $field + ']');
+			// altera o "for" da label
+			$label.attr('for', 'item[' + $counter + '][' + $field + ']');
+			// altera o "span" de notification
+			$span.attr('for', 'item[' + $counter + '][' + $field + ']');
+			// limpa o selectpicker
+			$(this).data('selectpicker', null);
+		});
+		// atualiza o bootstrap-select com o select-picker limpo
+		$bootstrapSelect.each(function (index) {
+			$(this).replaceWith(function() {
+				return $selectPicker.get(index);
+			});
+		});
+		// cria uma instancia nova dos selectpicker
+		$selectPicker.each(function (index) {
+			$(this).selectpicker({
+				noneSelectedText: 'Selecione',
+				size: 7
+			}).end();
+		});
+
+		// recupera os inputs (amount, photo, launch)
+		var $inputs = $cloned.find('input');
+		// percorre os inputs
+		$inputs.each(function ()
+		{
+			var $field = $(this).data('name');
+			var $label = $(this).closest('.div-' + $field).find('label');
+			var $span  = $(this).closest('.div-' + $field).find('span');
+			// altera o "id" e "name" do select
+			$(this).attr('id', 'item[' + $counter + '][' + $field + ']');
+			$(this).attr('name', 'item[' + $counter + '][' + $field + ']');
+			// altera o "for" da label
+			$label.attr('for', 'item[' + $counter + '][' + $field + ']');
+			// altera o "span" de notification
+			$span.attr('for', 'item[' + $counter + '][' + $field + ']');
+
+			// limpa os campos
+			if ($(this).prop('type') === 'text' || $(this).prop('type') === 'number') {
+				$(this).val('').end();
+			}
+			if ($(this).prop('type') === 'file') {
+				$(this).val('').end();
+				$(this).parent().find('.custom-file-label').html('');
+			}
+			if ($(this).prop('type') === 'checkbox') {
+				$(this).prop('checked', false);
+			}
+		});
+
+		// adiciona o clone abaixo do bloco que ja existe
+		$buttonAdd.closest('.row-item').after($cloned);
+		// remove o botao de adicionar
+		$buttonAdd.remove();
+		// adiciona o botao de "remover"
+		$('.remove-item', $element).removeClass('hide');
+		// acrescenta um no contador
+		$('#count-item').val($counter);
+	});
+	*/

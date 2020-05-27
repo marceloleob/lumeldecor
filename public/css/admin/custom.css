@@ -189,14 +189,15 @@ a:visited {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
 }
 
 .card-box-example img {
-  width: 245px;
-  padding-top: 2.5rem;
+  width: 218px;
 }
 
-.card-color {
+.card-item {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
@@ -234,6 +235,8 @@ a:visited {
 .div-launch ul.button-checkbox {
   -webkit-padding-start: 30px !important;
           padding-inline-start: 30px !important;
+  -webkit-padding-start: 4px !important;
+          padding-inline-start: 4px !important;
 }
 
 /**

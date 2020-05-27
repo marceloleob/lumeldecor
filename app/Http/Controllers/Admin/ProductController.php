@@ -51,6 +51,7 @@ class ProductController extends AdminController
     public function create()
     {
 		$params = [
+			'data' => $this->repository->findById(1),
 			'optionsmaterial' => (new MaterialRepository())->options(),
 			'optionscategory' => (new CategoryRepository())->options(),
 			'optionstheme'    => (new ThemeRepository())->options(),
@@ -67,8 +68,9 @@ class ProductController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
+		dd($request->all());
 		// save
 		$response = ProductService::store($request->all());
         // verifica se retornou erro
@@ -76,7 +78,7 @@ class ProductController extends AdminController
             return back()->withInput()->with($response);
         }
 
-        return redirect()->route('promotion.list')->with($response);
+        return redirect()->route('product.list')->with($response);
     }
 
     /**
@@ -88,11 +90,11 @@ class ProductController extends AdminController
     public function edit($id)
     {
 		$params = [
-			'data' => $this->repository->findById($id),
 			'optionsmaterial' => (new MaterialRepository())->options(),
 			'optionscategory' => (new CategoryRepository())->options(),
 			'optionstheme'    => (new ThemeRepository())->options(),
 			'optionscolor'    => (new ColorRepository())->options(),
+			'optionssupplier' => (new SupplierRepository())->options(),
 		];
 
 		return view('admin.pages.product-form-update', ['page' => 'product'])->with($params);

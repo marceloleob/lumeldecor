@@ -154,14 +154,13 @@ a, a:hover, a:focus, a:visited {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	// border: 1px solid #ced4da;
-	// border-radius: .25rem;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
 }
 .card-box-example img {
-	width: 245px;
-	padding-top: 2.5rem;
+	width: 218px;
 }
-.card-color {
+.card-item {
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
 	// background-color: #faf7ff;
@@ -192,6 +191,7 @@ a, a:hover, a:focus, a:visited {
 }
 .div-launch ul.button-checkbox {
 	padding-inline-start: 30px !important;
+	padding-inline-start: 4px !important;
 }
 
 

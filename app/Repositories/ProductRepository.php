@@ -53,9 +53,11 @@ class ProductRepository extends BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection)
 		{
-			$collection->product  = $collection->info->name;
-			$collection->category = $collection->info->category->name;
-			$collection->material = $collection->info->category->material->name;
+			$product  = $collection->info->name;
+			$category = $collection->info->category->name;
+			$material = $collection->info->category->material->name;
+			$collection->name = $category . ' ' . $product . ' de ' . $material . ' ' . $collection->size;
+			$collection->code = $collection->productItems[0]->code;
 			// verifica se e inativo
 			if ($collection->status == config('constants.ACTIVE')) {
                 // seta ativo como default

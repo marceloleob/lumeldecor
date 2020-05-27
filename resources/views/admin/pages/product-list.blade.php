@@ -15,10 +15,8 @@
 		<thead>
 			<tr>
 				<th width="10%" class="text-center">Código</th>
-				<th width="12%" class="text-center">Code</th>
-				<th width="18%" class="text-left">Material</th>
-				<th width="15%" class="text-left">Categoria</th>
-				<th width="15%" class="text-left">Produto</th>
+				<th width="15%" class="text-center">Code</th>
+				<th width="45%" class="text-left">Produto</th>
 				<th width="15%" class="text-center">Status</th>
 				<th width="15%" class="text-center">Ações</th>
 			</tr>
@@ -28,9 +26,7 @@
 			<tr>
 				<td class="text-center text-muted">{!! $item->id !!}</td>
 				<td class="text-center">{!! $item->code !!}</td>
-				<td class="text-left">{!! $item->material !!}</td>
-				<td class="text-left">{!! $item->category !!}</td>
-				<td class="text-left">{!! $item->product !!}</td>
+				<td class="text-left">{!! $item->name !!}</td>
 				<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 				<td class="text-center">
 					<a href="{!! route($page . '.edit', [$item->id, $data->currentPage()]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
