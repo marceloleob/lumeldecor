@@ -151,10 +151,10 @@
 												<div class="col-md-12">
 													<div class="form-row line-item">
 														<div class="col-md-3">
-															<div class="position-relative form-group div-color_id">
-																{!! Form::label('product[0][item][0][color_id]', 'Cor', ['class' => 'required']) !!}
-																{!! Form::select('product[0][item][0][color_id]', $optionscolor, old('product[0][item][0][color_id]'), ['class' => 'form-control selectpicker select-color_id', 'multiple', 'data-name' => 'color_id', 'data-group' => 'item', 'data-max-options' => '3']) !!}
-																{!! Form::notification('product[0][item][0][color_id]', $errors) !!}
+															<div class="position-relative form-group div-colors">
+																{!! Form::label('product[0][item][0][colors]', 'Cor', ['class' => 'required']) !!}
+																{!! Form::select('product[0][item][0][colors][]', $optionscolor, old('product[0][item][0][colors]'), ['class' => 'form-control selectpicker select-colors multiselect', 'multiple', 'data-name' => 'colors', 'data-group' => 'item', 'data-max-options' => '3']) !!}
+																{!! Form::notification('product[0][item][0][colors]', $errors) !!}
 															</div>
 														</div>
 														<div class="col-md-2">
@@ -202,10 +202,10 @@
 															</div>
 														</div>
 														<div class="col-md-4">
-															<div class="position-relative form-group div-theme">
+															<div class="position-relative form-group div-themes">
 																{!! Form::label('product[0][item][0][theme]', 'Temas relacionados') !!}
-																{!! Form::select('product[0][item][0][theme]', $optionstheme, old('product[0][item][0][theme]'), ['class' => 'form-control selectpicker select-theme', 'multiple', 'data-name' => 'theme', 'data-group' => 'item']) !!}
-																{!! Form::notification('product[0][item][0][theme]', $errors) !!}
+																{!! Form::select('product[0][item][0][themes][]', $optionstheme, old('product[0][item][0][themes]'), ['class' => 'form-control selectpicker select-themes multiselect', 'data-name' => 'themes', 'data-group' => 'item', 'multiple']) !!}
+																{!! Form::notification('product[0][item][0][themes]', $errors) !!}
 															</div>
 														</div>
 														<div class="col-md-3">

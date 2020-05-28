@@ -43,6 +43,15 @@ class CreateForeignKeys extends Migration
 		Schema::table('items', function (Blueprint $table) {
 			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict')->onUpdate('restrict');
 			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('restrict')->onUpdate('restrict');
+		});
+
+		Schema::table('item_themes', function (Blueprint $table) {
+			$table->foreign('item_id')->references('id')->on('items')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('restrict')->onUpdate('restrict');
+		});
+
+		Schema::table('item_colors', function (Blueprint $table) {
+			$table->foreign('item_id')->references('id')->on('items')->onDelete('restrict')->onUpdate('restrict');
 			$table->foreign('color_id')->references('id')->on('colors')->onDelete('no action')->onUpdate('no action');
 		});
 
@@ -75,11 +84,6 @@ class CreateForeignKeys extends Migration
 
 		Schema::table('supplier_contacts', function (Blueprint $table) {
 			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('no action')->onUpdate('no action');
-		});
-
-		Schema::table('theme_items', function (Blueprint $table) {
-			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('restrict')->onUpdate('restrict');
-			$table->foreign('item_id')->references('id')->on('items')->onDelete('restrict')->onUpdate('restrict');
 		});
 
 		Schema::table('users', function (Blueprint $table) {
@@ -130,7 +134,19 @@ class CreateForeignKeys extends Migration
 			$table->dropColumn('product_id');
 			$table->dropForeign('items_supplier_id_foreign');
 			$table->dropColumn('supplier_id');
-			$table->dropForeign('items_color_id_foreign');
+		});
+
+		Schema::table('item_themes', function (Blueprint $table) {
+			$table->dropForeign('item_themes_item_id_foreign');
+			$table->dropColumn('item_id');
+			$table->dropForeign('item_themes_theme_id_foreign');
+			$table->dropColumn('theme_id');
+		});
+
+		Schema::table('item_colors', function (Blueprint $table) {
+			$table->dropForeign('item_colors_item_id_foreign');
+			$table->dropColumn('item_id');
+			$table->dropForeign('item_colors_color_id_foreign');
 			$table->dropColumn('color_id');
 		});
 
@@ -176,13 +192,6 @@ class CreateForeignKeys extends Migration
 		Schema::table('supplier_contacts', function (Blueprint $table) {
 			$table->dropForeign('supplier_contacts_supplier_id_foreign');
 			$table->dropColumn('supplier_id');
-		});
-
-		Schema::table('theme_items', function (Blueprint $table) {
-			$table->dropForeign('theme_items_theme_id_foreign');
-			$table->dropColumn('theme_id');
-			$table->dropForeign('theme_items_item_id_foreign');
-			$table->dropColumn('item_id');
 		});
 
 		Schema::table('users', function (Blueprint $table) {

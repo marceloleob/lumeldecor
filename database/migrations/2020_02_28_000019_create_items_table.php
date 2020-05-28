@@ -17,7 +17,6 @@ class CreateItemsTable extends Migration
 			$table->id();
 			$table->foreignId('product_id');
 			$table->foreignId('supplier_id');
-			$table->foreignId('color_id');
 			$table->string('code', 50);             // MATERIAL (99) + CATEGORIA (99) + PRODUTO (99999) + COR (99) + TAMANHO (P,M,G)
 			$table->string('image', 255);           // Foto do item
 			$table->double('p_price', 10, 2);       // Preco no Fornecedor

@@ -49,7 +49,7 @@ class ThemeRepository extends BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection)
 		{
-			// verifica os temas vai aparecer na home
+			// verifica se o tema vai aparecer na home
 			if ($collection->show == config('constants.ACTIVE')) {
 				$collection->show = '<span class="text-focus">Sim</span>';
 			} else {

@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\ThemeItem;
+use App\Models\ItemTheme;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ThemeItemsTableSeeder extends Seeder
+class ItemThemesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,15 +14,15 @@ class ThemeItemsTableSeeder extends Seeder
     public function run()
     {
 		// limpa a tabela
-		DB::table('theme_items')->delete();
+		DB::table('item_themes')->delete();
 		// cria os registros
-		ThemeItem::create([
-			'theme_id' => 6,
-			'item_id'  => 1
+		ItemTheme::create([
+			'item_id'  => 1,
+			'theme_id' => 6
 		]);
-		ThemeItem::create([
-			'theme_id' => 7,
-			'item_id'  => 1
+		ItemTheme::create([
+			'item_id'  => 1,
+			'theme_id' => 7
 		]);
     }
 }

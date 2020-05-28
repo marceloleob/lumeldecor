@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use App\Models\ProductInfo;
 
 class ProductRepository extends BaseRepository
 {
@@ -21,15 +22,22 @@ class ProductRepository extends BaseRepository
 	 */
 	public function all($search = null)
 	{
-		$query = $this->query()->with(['info' => function ($subQuery) use ($search)
-		{
-			$subQuery->orderBy('name');
+		// $query = $this->query()->with(['info' => function ($subQuery) use ($search)
+		// {
+		// 	$subQuery->orderBy('name');
+		// 	// verifica se buscou algum item especifico
+		// 	if (!empty($search)) {
+		// 		// procura o termo
+		// 		$subQuery->where('name', 'LIKE', '%' . $search . '%');
+		// 	}
+		// }]);
+
+		$query = ProductInfo::with('product')->orderBy('name');
 			// verifica se buscou algum item especifico
 			if (!empty($search)) {
 				// procura o termo
-				$subQuery->where('name', 'LIKE', '%' . $search . '%');
+				$query->where('name', 'LIKE', '%' . $search . '%');
 			}
-		}]);
 
         // cria uma collection com paginacao para montar o grid
 		$this->pagination($query, $search);
@@ -53,13 +61,27 @@ class ProductRepository extends BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection)
 		{
-			$product  = $collection->info->name;
-			$category = $collection->info->category->name;
-			$material = $collection->info->category->material->name;
-			$collection->name = $category . ' ' . $product . ' de ' . $material . ' ' . $collection->size;
-			$collection->code = $collection->productItems[0]->code;
+			// $collection->product  = $collection->info->name;
+			// $collection->category = $collection->info->category->name;
+			// $collection->material = $collection->info->category->material->name;
+
+			// // verifica se e inativo
+			// if ($collection->status == config('constants.ACTIVE')) {
+            //     // seta ativo como default
+            //     $collection->status = ['class' => 'success', 'label' => 'Ativo'];
+            //     $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
+			// } else {
+            //     // seta inativo como default
+			// 	$collection->status = ['class' => 'danger', 'label' => 'Inativo'];
+			// 	$collection->styles = ['class' => 'btn-outline-success', 'label' => 'far fa-check-circle'];
+			// }
+
+			$collection->productName  = $collection->name;
+			$collection->categoryName = $collection->category->name;
+			$collection->materialName = $collection->category->material->name;
+			$collection->size         = $collection->product->size;
 			// verifica se e inativo
-			if ($collection->status == config('constants.ACTIVE')) {
+			if ($collection->product->status == config('constants.ACTIVE')) {
                 // seta ativo como default
                 $collection->status = ['class' => 'success', 'label' => 'Ativo'];
                 $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
@@ -67,7 +89,7 @@ class ProductRepository extends BaseRepository
                 // seta inativo como default
 				$collection->status = ['class' => 'danger', 'label' => 'Inativo'];
 				$collection->styles = ['class' => 'btn-outline-success', 'label' => 'far fa-check-circle'];
-            }
+			}
 		});
 	}
 

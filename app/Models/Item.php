@@ -22,7 +22,6 @@ class Item extends Model
 		'id',
 		'product_id',
 		'supplier_id',
-		'color_id',
 		'code',
 		'image',
 		'p_price',
@@ -50,24 +49,6 @@ class Item extends Model
 	}
 
 	/**
-	 * Get the color that owns the product info.
-	 *
-	 */
-	public function color()
-	{
-		return $this->belongsTo(Color::class);
-	}
-
-	/**
-	 * Get the product supplier about this product.
-	 *
-	 */
-	public function productSupplier()
-	{
-		return $this->hasMany(ProductSupplier::class);
-	}
-
-	/**
 	 * Get the campaign about this item.
 	 *
 	 */
@@ -82,7 +63,16 @@ class Item extends Model
 	 */
 	public function themes()
 	{
-		return $this->hasMany(ThemeItem::class);
+		return $this->hasMany(ItemTheme::class);
+	}
+
+	/**
+	 * Get the colors about this item.
+	 *
+	 */
+	public function colors()
+	{
+		return $this->hasMany(ItemColor::class);
 	}
 
 	/**
@@ -92,5 +82,14 @@ class Item extends Model
 	public function stock()
 	{
 		return $this->hasMany(Stock::class);
+	}
+
+	/**
+	 * Get the promotions about this item.
+	 *
+	 */
+	public function promotions()
+	{
+		return $this->hasMany(OfferPromotion::class);
 	}
 }

@@ -5,77 +5,77 @@ $(document).ready(function ()
 	 *
 	 * https://jqueryvalidation.org/documentation/
 	 */
-	// if ($('#form-product').length) {
-	// 	// validation
-	// 	$('#form-product').validate({
-	// 		rules: {
-	// 			// informacoes basicas
-	// 			material_id: {
-	// 				required: true,
-	// 			},
-	// 			category_id: {
-	// 				required: true,
-	// 			},
-	// 			name: {
-	// 				required: true,
-	// 				minlength: 2,
-	// 				maxlength: 300,
-	// 			},
-	// 			featured: {
-	// 				required: false,
-	// 			},
-	// 			description: {
-	// 				required: true,
-	// 				minlength: 5,
-	// 				maxlength: 2000,
-	// 			},
-	// 		}
-	// 	});
-	// 	// adiciona o validator nos campos (array)
-	// 	jQuery.validator.addClassRules("select-size", {
-	// 		required: true,
-	// 	});
-	// 	jQuery.validator.addClassRules("input-weight", {
-	// 		required: true,
-	// 	});
-	// 	jQuery.validator.addClassRules("input-lenght", {
-	// 		required: true,
-	// 	});
-	// 	jQuery.validator.addClassRules("input-width", {
-	// 		required: true,
-	// 	});
-	// 	jQuery.validator.addClassRules("input-height", {
-	// 		required: true,
-	// 	});
-	// 	jQuery.validator.addClassRules("select-color_id", {
-	// 		required: true,
-	// 	});
-	// 	jQuery.validator.addClassRules("select-supplier_id", {
-	// 		required: true,
-	// 	});
-	// 	jQuery.validator.addClassRules("input-s_price", {
-	// 		required: true,
-	// 	});
-	// 	jQuery.validator.addClassRules("input-p_price", {
-	// 		required: true,
-	// 	});
-	// 	jQuery.validator.addClassRules("input-amount", {
-	// 		required: true,
-	// 		digits: true,
-	// 	});
-	// 	jQuery.validator.addClassRules("custom-file-input", {
-	// 		required: true,
-	// 	});
-	// 	/**
-	// 	 * Valicacao para impedir de selecionar "tamanho unico" e depois adicionar outro tamanho
-	// 	 */
-	// 	jQuery.validator.addMethod("select-size", function (value, element) {
-	// 		if ((value === 'U' && $('.row-product').length > 1)) {
-	// 			return this.optional(element) || false;
-	// 		}
-	// 		return this.optional(element) || true;
-	// 	}, '<i class="fas fa-times pr-2 pl-2"></i> Não pode selecionar "tamanho único".');
-	// }
+	if ($('#form-product').length) {
+		// validation
+		$('#form-product').validate({
+			rules: {
+				// informacoes basicas
+				material_id: {
+					required: true,
+				},
+				category_id: {
+					required: true,
+				},
+				name: {
+					required: true,
+					minlength: 2,
+					maxlength: 300,
+				},
+				featured: {
+					required: false,
+				},
+				description: {
+					required: true,
+					minlength: 5,
+					maxlength: 2000,
+				},
+			}
+		});
+		// adiciona o validator nos campos (array)
+		jQuery.validator.addClassRules("select-size", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("input-weight", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("input-lenght", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("input-width", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("input-height", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("select-colors", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("select-supplier_id", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("input-s_price", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("input-p_price", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("input-amount", {
+			required: true,
+			digits: true,
+		});
+		jQuery.validator.addClassRules("custom-file-input", {
+			required: true,
+		});
+		/**
+		 * Valicacao para impedir de selecionar "tamanho unico" e depois adicionar outro tamanho
+		 */
+		jQuery.validator.addMethod("select-size", function (value, element) {
+			if ((value === 'U' && $('.row-product').length > 1)) {
+				return this.optional(element) || false;
+			}
+			return this.optional(element) || true;
+		}, '<i class="fas fa-times pr-2 pl-2"></i> Não pode selecionar "tamanho único".');
+	}
 
 	/**
 	 * Customiza os input="file" - Nome do input File
@@ -104,7 +104,7 @@ $(document).ready(function ()
 		var cloned = button.closest(`.row-${block}`).clone(true);
 
 		// tratamento especial para o novo bloco
-		handleNewBlock();
+		handleNewBlock(block, cloned);
 		// formata os selects
 		cloneSelectPickers(countProduct, countItem, cloned);
 		// formata os inputs
@@ -168,9 +168,15 @@ $(document).ready(function ()
 				span.attr('for', `product[${countProduct}][${field}]`);
 			}
 			if (group === 'item') {
+				// seta o nome padrao do select
+				var name = `product[${countProduct}][item][${countItem}][${field}]`;
+				// faz o tratamento para campos "multiple"
+				if ($(this).hasClass('multiselect')) {
+					name = `product[${countProduct}][item][${countItem}][${field}][]`;
+				}
 				// altera o "id" e "name" do select, "for" da label e "for" do notification
 				$(this).attr('id', `product[${countProduct}][item][${countItem}][${field}]`);
-				$(this).attr('name', `product[${countProduct}][item][${countItem}][${field}]`);
+				$(this).attr('name', name);
 				label.attr('for', `product[${countProduct}][item][${countItem}][${field}]`);
 				span.attr('for', `product[${countProduct}][item][${countItem}][${field}]`);
 			}
@@ -308,7 +314,7 @@ $(document).ready(function ()
 		}
 	});
 
-	$('select.select-color_id').change(function (event) {
+	$('select.select-colors').change(function (event) {
 		// Method cancels the event if it is cancelable
 		event.preventDefault();
 

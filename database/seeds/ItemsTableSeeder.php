@@ -19,11 +19,10 @@ class ItemsTableSeeder extends Seeder
 		Item::create([
 			'product_id'  => 1,
 			'supplier_id' => 1,
-			'color_id'    => 6,
-			'code'        => '0203000001060P', // MATERIAL (99) + CATEGORIA (99) + PRODUTO (99999) + COR (99) + TAMANHO (P,M,G,U)
+			'code'        => 'LM0205000010006100P',
 			'image'       => 'products/boleira-ceramica-lisa.jpg',
-			'p_price'     => 19.80,          // preco no fornecedor
-			's_price'     => 38.99,          // preco no site
+			'p_price'     => 19.80,
+			's_price'     => 38.99,
 			'launch'      => 1,
 			'status'      => 1
 		]);

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ThemeItem extends Model
+class ItemTheme extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,18 +20,9 @@ class ThemeItem extends Model
 	 */
 	protected $fillable = [
 		'id',
-		'theme_id',
 		'item_id',
+		'theme_id',
 	];
-
-	/**
-	 * Get the themes that owns the item.
-	 *
-	 */
-	public function themes()
-	{
-		return $this->belongsTo(Theme::class);
-    }
 
 	/**
 	 * Get the items that owns the theme.
@@ -41,4 +32,13 @@ class ThemeItem extends Model
 	{
 		return $this->belongsTo(Item::class);
 	}
+
+	/**
+	 * Get the themes that owns the item.
+	 *
+	 */
+	public function themes()
+	{
+		return $this->belongsTo(Theme::class);
+    }
 }

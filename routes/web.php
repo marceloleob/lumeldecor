@@ -86,7 +86,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('produto/cadastrar', 'ProductController@create')->name('product.create');
 	Route::post('produto/salvar', 'ProductController@store')->name('product.store');
 	Route::get('produto/editar/{id}', 'ProductController@edit')->name('product.edit');
-	Route::put('produto/atualizar/{id}', 'ProductController@store')->name('product.update');
+	Route::put('produto/atualizar/{id}', 'ProductController@update')->name('product.update');
 	Route::get('produto/status/{id}', 'ProductController@changeStatus')->name('product.status');
 
 

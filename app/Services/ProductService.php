@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use App\Repositories\CategoryRepository;
+use App\Repositories\ItemColorRepository;
 use App\Repositories\ItemRepository;
+use App\Repositories\ItemThemeRepository;
 use App\Repositories\ProductInfoRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\StockRepository;
-use App\Repositories\ThemeItemRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Exception;
@@ -20,17 +21,13 @@ class ProductService
 	/**
 	 * Monta o SLUG do produto
 	 *
-	 * @param integer $categoryId
-	 * @param string  $productName
+	 * @param ProductInfo $productInfo
 	 * @param string  $productSize
 	 * @return string $slug
 	 */
-	public static function handleSlug($categoryId, $productName, $productSize)
+	public static function handleSlug($productInfo, $productSize)
 	{
-		$category = new CategoryRepository();
-		$category = $category->findById($categoryId);
-
-		return Str::slug($category->name . ' ' . $productName . ' de ' . $category->material->name . ' ' . $productSize);
+		return Str::slug($productInfo->category->name . ' ' . $productInfo->name . ' ' . $productInfo->category->material->name . ' ' . $productSize);
 	}
 
 	/**
@@ -40,15 +37,22 @@ class ProductService
 	 * @param integer $colorId
 	 * @return string
 	 */
-	public static function handleCode($product, $colorId)
+	public static function handleCode($product, $colors)
 	{
+		// forca os codigos das cores terem 2 numeros
+		$colors->transform(function ($item) {
+			return str_pad($item, 2, '0', STR_PAD_LEFT);
+		});
+		// mescla os codigos (3 codigos no maximo)
+		$flattened = $colors->flatten()->implode('');
+
 		$materialCode = str_pad($product->info->category->material->id, 2, '0', STR_PAD_LEFT);
 		$categoryCode = str_pad($product->info->category->id, 2, '0', STR_PAD_LEFT);
-		$productCode  = str_pad($product->id, 6, '0', STR_PAD_LEFT);
-		$colorCode    = str_pad($colorId, 2, '0', STR_PAD_LEFT);
+		$productCode  = str_pad($product->id, 5, '0', STR_PAD_LEFT);
+		$colorCode    = str_pad($flattened, 6, '0', STR_PAD_LEFT);
 		$sizeCode     = str_pad($product->size, 2, '0', STR_PAD_LEFT);
 
-		return $materialCode . $categoryCode . $productCode . $colorCode . $sizeCode;
+		return 'LM' . $materialCode . $categoryCode . $productCode . $colorCode . $sizeCode;
 	}
 
 	/**
@@ -69,17 +73,18 @@ class ProductService
 				'name'        => $data['name'],
 				'description' => $data['description'],
 				'hashtag'     => $data['hashtag'],
-				'featured'    => $data['featured'],
+				'featured'    => $data['featured'] ?? false,
 			];
 			$productInfoRepository = new ProductInfoRepository();
 			$productInfoRepository = $productInfoRepository->store($dataProductInfo)['entity'];
+			// $productInfoRepository = (isset($productInfoRepository['entity'])) ? $productInfoRepository['entity'] : dd($productInfoRepository, $dataProductInfo);
 
 			// percorre todos os tamanhos "produtos" (array)
 			foreach ($data['product'] as $product) {
 				// 2º) Salva o Product
 				$dataProduct = [
 					'product_info_id' => $productInfoRepository->id,
-					'slug'            => self::handleSlug($data['category_id'], $data['name'], $product['size']),
+					'slug'            => self::handleSlug($productInfoRepository, $product['size']),
 					'size'            => $product['size'],
 					'weight'          => $product['weight'],
 					'height'          => $product['height'],
@@ -88,6 +93,7 @@ class ProductService
 				];
 				$productRepository = new ProductRepository();
 				$productRepository = $productRepository->store($dataProduct)['entity'];
+				// $productRepository = (isset($productRepository['entity'])) ? $productRepository['entity'] : dd($productRepository, $dataProduct);
 
 				// precorre todos os itens referentes a este tamanho "produtos" (array)
 				foreach ($product['item'] as $item) {
@@ -95,28 +101,35 @@ class ProductService
 					$dataItem = [
 						'product_id'  => $productRepository->id,
 						'supplier_id' => $item['supplier_id'],
-						'color_id'    => $item['color_id'],
-						'code'        => self::handleCode($productRepository, $item['color_id']),
+						'code'        => self::handleCode($productRepository, $item['colors']),
 						'image'       => ImageService::save($item['photo']),
 						'p_price'     => $item['p_price'],
 						's_price'     => $item['s_price'],
-						'launch'      => $item['launch'] || false,
+						'launch'      => $item['launch'] ?? false,
 					];
 					$itemRepository = new ItemRepository();
 					$itemRepository = $itemRepository->store($dataItem)['entity'];
 
-// 					// 4º) Salva o(s) ThemeItem (array)
-// 					foreach (explode('|', $item['theme']) as $theme) {
-// dd($theme);
-// 						$dataTheme = [
-// 							'theme_id' => $theme,
-// 							'item_id'  => $itemRepository->id,
-// 						];
-// 						$themeItem = new ThemeItemRepository();
-// 						$themeItem = $themeItem->store($dataTheme);
-// 					}
+					// 4º) Salva a(s) cor(es) do item (array)
+					foreach ($item['colors'] as $colorId) {
+						$dataColor = [
+							'item_id'  => $itemRepository->id,
+							'color_id' => (int) $colorId,
+						];
+						$itemColorRepository = new ItemColorRepository();
+						$itemColorRepository->store($dataColor);
+					}
+					// 4º) Salva o(s) tema(s) do item (array)
+					foreach ($item['themes'] as $themeId) {
+						$dataTheme = [
+							'item_id'  => $itemRepository->id,
+							'theme_id' => (int) $themeId,
+						];
+						$itemThemeRepository = new ItemThemeRepository();
+						$itemThemeRepository->store($dataTheme);
+					}
 
-					// 5º) Salva o Stock de cada item (array)
+					// 6º) Salva o Stock de cada item (array)
 					$dataStock = [
 						'product_id' => $productRepository->id,
 						'item_id'    => $itemRepository->id,
@@ -127,7 +140,7 @@ class ProductService
 						'balance'    => StockService::getNewBalace($productRepository->id, $itemRepository->id, $item['amount'])
 					];
 					$stockRepository = new StockRepository();
-					$stockRepository = $stockRepository->store($dataStock)['entity'];
+					$stockRepository->store($dataStock);
 				}
 			}
 
@@ -135,17 +148,16 @@ class ProductService
             DB::commit();
             // retorna a entidade criada ou atualizada
             return [
-                'success' => ((isset($data['id'])) ? 'Atualizado' : 'Cadastrado') . ' com sucesso!',
+                'success' => 'Produto cadastrado com sucesso!',
                 'entity'  => true,
             ];
 
         } catch (Exception $exception) {
-			dd($exception);
             // descarta a transacao
             DB::rollback();
             // retorna o erro
             return [
-                'danger' => 'Erro ao ' . (isset($data['id']) ? 'atualizar' : 'cadastrar') . ', tente novamente!',
+                'danger' => 'Erro ao cadastrar o produto, tente novamente!',
                 'error'  => $exception,
             ];
 		}
