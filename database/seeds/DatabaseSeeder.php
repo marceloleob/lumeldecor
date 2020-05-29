@@ -32,13 +32,13 @@ class DatabaseSeeder extends Seeder
 			MaterialsTableSeeder::class,
 			CategoriesTableSeeder::class,
 
-			ProductInfosTableSeeder::class,
 			ProductsTableSeeder::class,
+			ProductSizesTableSeeder::class,
 			ItemsTableSeeder::class,
-			StocksTableSeeder::class,
 			ItemThemesTableSeeder::class,
 			ItemColorsTableSeeder::class,
 			CampaignItemsTableSeeder::class,
+			StocksTableSeeder::class,
 
 			OfferCouponsTableSeeder::class,
 			OfferPromotionsTableSeeder::class,

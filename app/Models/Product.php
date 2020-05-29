@@ -20,32 +20,23 @@ class Product extends Model
 	 */
 	protected $fillable = [
 		'id',
-		'product_info_id',
+        'category_id',
+		'name',
 		'slug',
-		'size',
-		'weight',
-		'height',
-		'width',
-		'length',
+		'picture',
+		'description',
+		'hashtag',
+		'featured',
 		'status',
-	];
+    ];
 
 	/**
-	 * Get the info that owns the product.
-	 *
-	 */
-	public function info()
-	{
-		return $this->belongsTo(ProductInfo::class, 'product_info_id', 'id');
-	}
-
-	/**
-	 * Get the category about this product.
+	 * Get the category that owns the product.
 	 *
 	 */
 	public function category()
 	{
-		return $this->info()->with('category');
+		return $this->belongsTo(Category::class, 'category_id', 'id');
 	}
 
 	/**
@@ -58,16 +49,16 @@ class Product extends Model
 	}
 
 	/**
-	 * Get the items about this product.
+	 * Get the sizes about this product.
 	 *
 	 */
-	public function productItems()
+	public function sizes()
 	{
-		return $this->hasMany(Item::class);
+		return $this->hasMany(ProductSize::class);
 	}
 
 	/**
-	 * Get the stock about this product.
+	 * Get the stocks about this product.
 	 *
 	 */
 	public function stock()

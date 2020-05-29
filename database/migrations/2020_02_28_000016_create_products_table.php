@@ -15,13 +15,13 @@ class CreateProductsTable extends Migration
 	{
 		Schema::create('products', function (Blueprint $table) {
 			$table->id();
-            $table->foreignId('product_info_id');
-			$table->string('slug', 250)->unique();  // "boleira"-"lisa-neon"-de-"ceramica"
-			$table->char('size', 5);                // Tamanho           (P, M, G, Unico)
-			$table->decimal('weight', 5, 3);        // Peso (kg)         12345,123
-			$table->decimal('height', 5, 2);        // Altura (cm)       12345,12
-			$table->decimal('width', 5, 2);         // Largura (cm)      12345,12
-			$table->decimal('length', 5, 2);        // Comprimento (cm)  12345,12
+            $table->foreignId('category_id');
+			$table->string('name', 150);
+			$table->string('slug', 250)->unique();
+			$table->string('picture', 100)->nullable();
+			$table->text('description');
+			$table->text('hashtag')->nullable();
+			$table->boolean('featured')->default(0);
 			$table->boolean('status')->default(1);
 		});
 	}

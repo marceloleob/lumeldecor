@@ -15,13 +15,13 @@ class CreateItemsTable extends Migration
 	{
 		Schema::create('items', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('product_id');
+			$table->foreignId('product_size_id');
 			$table->foreignId('supplier_id');
-			$table->string('code', 50);             // MATERIAL (99) + CATEGORIA (99) + PRODUTO (99999) + COR (99) + TAMANHO (P,M,G)
-			$table->string('image', 255);           // Foto do item
-			$table->double('p_price', 10, 2);       // Preco no Fornecedor
-			$table->double('s_price', 10, 2);       // Preco no Site
-			$table->boolean('launch')->default(0);  // Mostrar como lancamento?
+			$table->string('code', 50);             // LM + MATERIAL (99) + CATEGORIA (99) + PRODUTO (99999) + COR (999999) + TAMANHO (PP, 0P, 0M, 0G, GG, 0U)
+			$table->string('picture', 100);         // Foto do item
+			$table->decimal('p_price', 8, 2);       // Preco no Fornecedor
+			$table->decimal('s_price', 8, 2);       // Preco no Site
+			$table->boolean('launch')->default(0);  // Lancamento
 			$table->boolean('status')->default(1);
 		});
 	}

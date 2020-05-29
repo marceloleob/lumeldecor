@@ -20,7 +20,7 @@ class Item extends Model
 	 */
 	protected $fillable = [
 		'id',
-		'product_id',
+		'product_size_id',
 		'supplier_id',
 		'code',
 		'image',
@@ -31,12 +31,12 @@ class Item extends Model
 	];
 
 	/**
-	 * Get the product that owns the item.
+	 * Get the size that owns the item.
 	 *
 	 */
-	public function product()
+	public function size()
 	{
-		return $this->belongsTo(Product::class);
+		return $this->belongsTo(ProductSize::class, 'product_size_id', 'id');
 	}
 
 	/**
@@ -45,7 +45,7 @@ class Item extends Model
 	 */
 	public function supplier()
 	{
-		return $this->belongsTo(Supplier::class);
+		return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
 	}
 
 	/**
@@ -58,21 +58,21 @@ class Item extends Model
 	}
 
 	/**
-	 * Get the themes about this item.
-	 *
-	 */
-	public function themes()
-	{
-		return $this->hasMany(ItemTheme::class);
-	}
-
-	/**
 	 * Get the colors about this item.
 	 *
 	 */
 	public function colors()
 	{
 		return $this->hasMany(ItemColor::class);
+	}
+
+	/**
+	 * Get the themes about this item.
+	 *
+	 */
+	public function themes()
+	{
+		return $this->hasMany(ItemTheme::class);
 	}
 
 	/**

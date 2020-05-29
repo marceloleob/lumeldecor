@@ -41,18 +41,18 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('items', function (Blueprint $table) {
-			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('product_size_id')->references('id')->on('product_sizes')->onDelete('restrict')->onUpdate('restrict');
 			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('restrict')->onUpdate('restrict');
-		});
-
-		Schema::table('item_themes', function (Blueprint $table) {
-			$table->foreign('item_id')->references('id')->on('items')->onDelete('restrict')->onUpdate('restrict');
-			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('restrict')->onUpdate('restrict');
 		});
 
 		Schema::table('item_colors', function (Blueprint $table) {
 			$table->foreign('item_id')->references('id')->on('items')->onDelete('restrict')->onUpdate('restrict');
 			$table->foreign('color_id')->references('id')->on('colors')->onDelete('no action')->onUpdate('no action');
+		});
+
+		Schema::table('item_themes', function (Blueprint $table) {
+			$table->foreign('item_id')->references('id')->on('items')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('restrict')->onUpdate('restrict');
 		});
 
 		Schema::table('offer_promotions', function (Blueprint $table) {
@@ -65,11 +65,11 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('products', function (Blueprint $table) {
-			$table->foreign('product_info_id')->references('id')->on('product_infos')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('category_id')->references('id')->on('categories')->onDelete('restrict')->onUpdate('restrict');
 		});
 
-		Schema::table('product_infos', function (Blueprint $table) {
-			$table->foreign('category_id')->references('id')->on('categories')->onDelete('restrict')->onUpdate('restrict');
+		Schema::table('product_sizes', function (Blueprint $table) {
+			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict')->onUpdate('restrict');
 		});
 
 		Schema::table('stocks', function (Blueprint $table) {
@@ -130,17 +130,10 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('items', function (Blueprint $table) {
-			$table->dropForeign('items_product_id_foreign');
-			$table->dropColumn('product_id');
+			$table->dropForeign('items_product_size_id_foreign');
+			$table->dropColumn('product_size_id');
 			$table->dropForeign('items_supplier_id_foreign');
 			$table->dropColumn('supplier_id');
-		});
-
-		Schema::table('item_themes', function (Blueprint $table) {
-			$table->dropForeign('item_themes_item_id_foreign');
-			$table->dropColumn('item_id');
-			$table->dropForeign('item_themes_theme_id_foreign');
-			$table->dropColumn('theme_id');
 		});
 
 		Schema::table('item_colors', function (Blueprint $table) {
@@ -148,6 +141,13 @@ class CreateForeignKeys extends Migration
 			$table->dropColumn('item_id');
 			$table->dropForeign('item_colors_color_id_foreign');
 			$table->dropColumn('color_id');
+		});
+
+		Schema::table('item_themes', function (Blueprint $table) {
+			$table->dropForeign('item_themes_item_id_foreign');
+			$table->dropColumn('item_id');
+			$table->dropForeign('item_themes_theme_id_foreign');
+			$table->dropColumn('theme_id');
 		});
 
 		Schema::table('offer_promotions', function (Blueprint $table) {
@@ -166,13 +166,13 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('products', function (Blueprint $table) {
-			$table->dropForeign('products_product_info_id_foreign');
-			$table->dropColumn('product_info_id');
+			$table->dropForeign('products_category_id_foreign');
+			$table->dropColumn('category_id');
 		});
 
-		Schema::table('product_infos', function (Blueprint $table) {
-			$table->dropForeign('product_infos_category_id_foreign');
-			$table->dropColumn('category_id');
+		Schema::table('product_sizes', function (Blueprint $table) {
+			$table->dropForeign('product_sizes_product_id_foreign');
+			$table->dropColumn('product_id');
 		});
 
 		Schema::table('stocks', function (Blueprint $table) {
