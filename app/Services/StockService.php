@@ -14,6 +14,14 @@ class StockService
 		'NEW_PRODUCT' => 'Cadastro de novo produto',
 	];
 
+	/**
+	 * Recupera a quantidade total do item + a quantidade adicionada
+	 *
+	 * @param integer $productId
+	 * @param integer $itemId
+	 * @param integer $amount
+	 * @return integer
+	 */
 	public static function getNewBalace($productId, $itemId, $amount)
 	{
 		try {
@@ -26,6 +34,5 @@ class StockService
 
 			return $amount;
 		}
-
 	}
 }

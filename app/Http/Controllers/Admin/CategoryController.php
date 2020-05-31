@@ -90,7 +90,7 @@ class CategoryController extends AdminController
      * Toggle the status storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function changeStatus($id)
     {
@@ -102,11 +102,11 @@ class CategoryController extends AdminController
 	/**
 	 * Return select options of Category
 	 *
-	 * @param Request $request
+	 * @param \Illuminate\Http\Request $request
 	 * @return array
 	 */
 	public function options(Request $request)
 	{
-		return $this->repository->options($request->material);
+		return $this->repository->options($request);
 	}
 }

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryRepository extends BaseRepository
 {
@@ -42,13 +43,16 @@ class CategoryRepository extends BaseRepository
 	/**
 	 * Monta as opcoes do select box
 	 *
+	 * @param \Illuminate\Http\Request $request
 	 * @return array
 	 */
-	public function options($material = null)
+	public function options(Request $request = null)
 	{
+		$materialId = $request->material ?? null;
+		$categoryId = $request->category ?? null;
 		// verifica se nao foi informado o material
-		if (empty($material)) {
-			return ['' => 'Selecione'];
+		if (empty($materialId)) {
+			return ['' => 'Selecione um material'];
 		}
 		// carrega os dados do banco
 		$categories = $this->query()
@@ -58,7 +62,7 @@ class CategoryRepository extends BaseRepository
 			}])
 			->orderBy('name')
 			->where('status', config('constants.ACTIVE'))
-			->where('material_id', $material)
+			->where('material_id', $materialId)
 			->pluck('name', 'id');
 
 		// construindo as opcoes combobox
@@ -66,30 +70,15 @@ class CategoryRepository extends BaseRepository
 		// percorre os tipos de imovel
 		foreach ($categories as $id => $name) {
 			// verifica se existe categoria
-			// if ($propertyTypeId == $id) {
-			// 	// monta o html
-			// 	$options .= '<option value="' . $id . '" selected>' . $name . '</option>';
-			// } else {
+			if ($categoryId == $id) {
+				// monta o html
+				$options .= '<option value="' . $id . '" selected>' . $name . '</option>';
+			} else {
 				// monta o html
 				$options .= '<option value="' . $id . '">' . $name . '</option>';
-			// }
+			}
         }
         // retorna o combobox pronto
 		return $options;
 	}
-
-	// /**
-	//  * Customiza o formato enviado para a view
-	//  *
-	//  * @return array
-	//  */
-	// public function format()
-	// {
-	// 	return [
-	// 		'id'       => $this->id,
-	// 		'name'     => $this->name,
-	// 		'status'   => $this->status,
-	// 		'material' => $this->material->name,
-	// 	];
-	// }
 }

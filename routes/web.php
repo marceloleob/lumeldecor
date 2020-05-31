@@ -72,23 +72,23 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::put('cor/atualizar/{id}', 'ColorController@store')->name('color.update');
 	Route::get('cor/status/{id}', 'ColorController@changeStatus')->name('color.status');
 
-
+	// Product Group
+	Route::group(['prefix' => 'produto'], function () {
+		// Products
+		Route::get('listar', 'ProductController@index')->name('product.list');
+		Route::any('buscar', 'ProductController@index')->name('product.search');
+		Route::get('cadastrar', 'ProductController@create')->name('product.create');
+		Route::post('salvar', 'ProductController@store')->name('product.store');
+		Route::get('editar/{id}', 'ProductController@edit')->name('product.edit');
+		Route::put('atualizar/{id}', 'ProductController@update')->name('product.update');
+		Route::get('status/{id}', 'ProductController@changeStatus')->name('product.status');
+		// Products Size
+		Route::get('tamanho/editar/{id}', 'ProductSizeController@edit')->name('product-size.edit');
+		Route::put('tamanho/atualizar/{id}', 'ProductSizeController@update')->name('product-size.update');
 		// Item
-		Route::get('item/lista', 'ItemController@index')->name('item.list');
-		Route::any('item/busca', 'ItemController@index')->name('item.search');
-		Route::get('item/novo', 'ItemController@create')->name('item.create');
-		Route::post('item/salvar', 'ItemController@store')->name('item.store');
-		Route::get('item/editar/{id}/{page}', 'ItemController@edit')->name('item.edit');
-		Route::get('item/status/{id}', 'ItemController@changeStatus')->name('item.status');
-	// Products
-	Route::get('produto/listar', 'ProductController@index')->name('product.list');
-	Route::any('produto/buscar', 'ProductController@index')->name('product.search');
-	Route::get('produto/cadastrar', 'ProductController@create')->name('product.create');
-	Route::post('produto/salvar', 'ProductController@store')->name('product.store');
-	Route::get('produto/editar/{id}', 'ProductController@edit')->name('product.edit');
-	Route::put('produto/atualizar/{id}', 'ProductController@store')->name('product.update');
-	Route::get('produto/status/{id}', 'ProductController@changeStatus')->name('product.status');
-
+		Route::get('item/editar/{id}', 'ItemController@edit')->name('item.edit');
+		Route::put('item/atualizar/{id}', 'ItemController@update')->name('item.update');
+	});
 
 	// Campaign
 	Route::get('campanha/listar', 'CampaignController@index')->name('campaign.list');

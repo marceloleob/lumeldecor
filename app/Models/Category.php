@@ -40,7 +40,7 @@ class Category extends Model
 	 */
 	public function products()
 	{
-		return $this->hasMany(ProductInfo::class);
+		return $this->hasMany(Product::class);
 	}
 
 	/**

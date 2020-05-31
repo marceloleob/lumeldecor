@@ -17,14 +17,14 @@ class ProductsTableSeeder extends Seeder
 		DB::table('products')->delete();
 		// cria os registros
 		Product::create([
-			'product_info_id' => 1,
-			'size'            => 'P',                        // tamanho (P,M,G,U)
-			'slug'            => 'bandeja-lisa-de-ceramica', //"categoria"-"produto"-de-"material"
-			'weight'          => 0.48,                       // kilogramas
-			'height'          => 33,                         // centimetros
-			'width'           => 22,                         // centimetros
-			'length'          => 22,                         // centrimetros
-			'status'          => 1,
+			'category_id' => 3,
+			'name'        => 'Lisa Sextavada',
+			'slug'        => 'bandeja-lisa-sextavada-de-ceramica',
+			'picture'     => null,
+			'description' => 'Aqui vai a descrição do produto!',
+			'hashtag'     => 'hashtagteste',
+			'featured'    => 1,
+			'status'      => 1,
 		]);
 	}
 }

@@ -41,6 +41,7 @@ const mix = require('laravel-mix');
 		'resources/js/admin/pages/offer-coupon.js',
 		'resources/js/admin/pages/offer-promotion.js',
 		'resources/js/admin/pages/product.js',
+		'resources/js/admin/pages/product-size.js',
 		'resources/js/admin/pages/promotion.js',
 		// 'resources/js/admin/pages/email.js',
 		// 'resources/js/admin/pages/stock.js',

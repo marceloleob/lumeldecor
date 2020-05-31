@@ -45,18 +45,22 @@ class ProductRequest extends BaseRequest
 		// product
         'product.*.size'               => 'trim|escape|uppercase',
         'product.*.weight'             => 'float',
-        'product.*.height'             => 'float',
-        'product.*.width'              => 'float',
-        'product.*.length'             => 'float',
+        'product.*.shape'              => 'trim|escape|uppercase',
+        'product.*.pro_length'         => 'float',
+        'product.*.pro_width'          => 'float',
+        'product.*.pro_height'         => 'float',
+        'product.*.shi_length'         => 'float',
+        'product.*.shi_width'          => 'float',
+        'product.*.shi_height'         => 'float',
         // item
-        'product.*.item.*.color_id'    => 'cast:integer',
+        'product.*.item.*.colors'      => 'cast:collection',
         'product.*.item.*.supplier_id' => 'cast:integer',
         'product.*.item.*.p_price'     => 'money',
         'product.*.item.*.s_price'     => 'money',
-        'product.*.item.*.photo'       => 'trim|lowercase',
+        'product.*.item.*.picture'     => 'trim|lowercase',
 		'product.*.item.*.launch'      => 'checkbox',
 		// theme item
-		'product.*.item.*.theme'       => 'cast:string',
+		'product.*.item.*.themes'      => 'cast:collection',
         // product info theme
         'product.*.item.*.amount'      => 'cast:integer',
     ];
@@ -79,18 +83,22 @@ class ProductRequest extends BaseRequest
 		// product
         'product.*.size'               => 'required|string|required_with:PP,P,M,G,GG,U',
         'product.*.weight'             => "required|regex:/^\d+(\.\d{1,3})?$/",
-        'product.*.height'             => "required|regex:/^\d+(\.\d{1,2})?$/",
-        'product.*.width'              => "required|regex:/^\d+(\.\d{1,2})?$/",
-        'product.*.length'             => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.shape'              => 'required|string|required_with:Q,R',
+        'product.*.pro_length'         => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.pro_width'          => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.pro_height'         => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.shi_length'         => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.shi_width'          => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.shi_height'         => "required|regex:/^\d+(\.\d{1,2})?$/",
         // item
-        'product.*.item.*.color_id'    => 'required|integer',
+        'product.*.item.*.colors'      => 'required',
         'product.*.item.*.supplier_id' => 'required|integer',
         'product.*.item.*.p_price'     => "required|regex:/^\d+(\.\d{1,2})?$/",
         'product.*.item.*.s_price'     => 'required|regex:/^\d+(\.\d{1,2})?$/',
-        'product.*.item.*.photo'       => 'required|image|mimes:jpeg,png,jpg|max:3072', // 3 MEGABYTES
+        'product.*.item.*.picture'     => 'required|image|mimes:jpeg,png,jpg|max:3072', // 3 MEGABYTES
 		'product.*.item.*.launch'      => 'boolean',
 		// theme item
-		'product.*.item.*.theme'       => 'integer',
+		'product.*.item.*.themes'      => '',
         // product info theme
         'product.*.item.*.amount'      => 'required|integer',
     ];

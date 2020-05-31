@@ -157,13 +157,20 @@ a, a:hover, a:focus, a:visited {
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
 }
-.card-box-example img {
-	width: 218px;
-}
+// .card-box-example img {
+	// width: 218px;
+// }
 .card-item {
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
 	// background-color: #faf7ff;
+}
+.card-dimension {
+	display: block;
+	padding: 40px 0 0 25px;
+}
+.radio-options {
+	padding: 10px 0 0 2px;
 }
 .card-button-add {
 	position: relative;
@@ -193,7 +200,21 @@ a, a:hover, a:focus, a:visited {
 	padding-inline-start: 30px !important;
 	padding-inline-start: 4px !important;
 }
-
+.row-list-items .table .td-color {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+// Mostra as cores na lista de itens
+.row-list-items .table .colors {
+	height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    opacity: 1;
+	margin: 5px;
+	cursor: pointer;
+}
 
 /**
 * -----------------------------------------------------------------------------

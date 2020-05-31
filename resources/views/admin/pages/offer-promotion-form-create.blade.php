@@ -31,6 +31,7 @@
 								<div class="position-relative form-group">
 									{!! Form::label('category_id', 'Categoria') !!}
 									{!! Form::select('category_id', $optionscategory, old('category_id'), ['class' => 'form-control selectpicker']) !!}
+									{!! Form::hidden('category_id_hide', old('category_id')) !!}
 									{!! Form::notification('category_id', $errors) !!}
 								</div>
 								<div class="position-relative form-group">

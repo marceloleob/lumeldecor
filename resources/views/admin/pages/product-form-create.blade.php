@@ -81,12 +81,12 @@
 						<div class="card-body">
 							<h5 class="card-title">Dimensões</h5>
 							<div class="form-row">
-								<div class="col-md-9">
+								<div class="col-md-7">
 									<div class="form-row">
-										<div class="col-md-8">
+										<div class="col-md-4">
 											<div class="position-relative form-group div-size">
 												{!! Form::label('product[0][size]', 'Tamanho', ['class' => 'required']) !!}
-												{!! Form::selectSize('product[0][size]', old('product[0][size]'), ['class' => 'form-control selectpicker select-size', 'data-name' => 'size', 'data-group' => 'product']) !!}
+												{!! Form::selectSize('product[0][size]', old('product[0][size]'), ['class' => 'form-control selectpicker select-size', 'id' => 'product[0][size]', 'data-name' => 'size', 'data-group' => 'product']) !!}
 												{!! Form::notification('product[0][size]', $errors) !!}
 											</div>
 										</div>
@@ -100,44 +100,101 @@
 												{!! Form::notification('product[0][weight]', $errors) !!}
 											</div>
 										</div>
+										<div class="col-md-4">
+											<div class="position-relative form-group div-shape">
+												{!! Form::label('product[0][shape]', 'Formato do Produto', ['class' => 'required']) !!}
+												<div class="radio-options">
+													<div class="custom-radio custom-control custom-control-inline">
+														{!! Form::radio('product[0][shape]', 'Q', true, ['id' => 'product[0][shape][Q]', 'class' => 'custom-control-input radio-shape', 'data-name' => 'shape', 'data-group' => 'product']) !!}
+														{!! Form::label('product[0][shape][Q]', 'Quadrado', ['class' => 'custom-control-label label-shape-Q']) !!}
+													</div>
+													<div class="custom-radio custom-control custom-control-inline">
+														{!! Form::radio('product[0][shape]', 'R', false, ['id' => 'product[0][shape][R]', 'class' => 'custom-control-input radio-shape', 'data-name' => 'shape', 'data-group' => 'product']) !!}
+														{!! Form::label('product[0][shape][R]', 'Redondo', ['class' => 'custom-control-label label-shape-R']) !!}
+													</div>
+												</div>
+												{!! Form::notification('product[0][shape]', $errors) !!}
+											</div>
+										</div>
 									</div>
 									<div class="form-row">
-										<div class="col-md-4">
-											<div class="position-relative form-group div-length">
-												{!! Form::label('product[0][lenght]', 'Comprimento', ['class' => 'required']) !!}
+										<div class="col-md-3">
+											<h5 class="card-title card-dimension"><i class="fas fa-shopping-bag"></i> &nbsp; Produto</h5>
+										</div>
+										<div class="col-md-3">
+											<div class="position-relative form-group div-pro_length">
+												{!! Form::label('product[0][pro_length]', 'Comprimento', ['class' => 'required']) !!}
 												<div class="input-group">
-													{!! Form::text('product[0][length]', old('product[0][length]'), ['class' => 'form-control decimal input-lenght', 'data-name' => 'length', 'data-group' => 'product']) !!}
+													{!! Form::text('product[0][pro_length]', old('product[0][pro_length]'), ['class' => 'form-control decimal input-pro_length', 'data-name' => 'pro_length', 'data-group' => 'product']) !!}
 													<div class="input-group-append"><span class="input-group-text">cm</span></div>
 												</div>
-												{!! Form::notification('product[0][length]', $errors) !!}
+												{!! Form::notification('product[0][pro_length]', $errors) !!}
 											</div>
 										</div>
-										<div class="col-md-4">
-											<div class="position-relative form-group div-width">
-												{!! Form::label('product[0][width]', 'Largura', ['class' => 'required']) !!}
+										<div class="col-md-3">
+											<div class="position-relative form-group div-pro_width">
+												{!! Form::label('product[0][pro_width]', 'Largura', ['class' => 'required']) !!}
 												<div class="input-group">
-													{!! Form::text('product[0][width]', old('product[0][width]'), ['class' => 'form-control decimal input-width', 'data-name' => 'width', 'data-group' => 'product']) !!}
+													{!! Form::text('product[0][pro_width]', old('product[0][pro_width]'), ['class' => 'form-control decimal input-pro_width', 'data-name' => 'pro_width', 'data-group' => 'product']) !!}
 													<div class="input-group-append"><span class="input-group-text">cm</span></div>
 												</div>
-												{!! Form::notification('product[0][width]', $errors) !!}
+												{!! Form::notification('product[0][pro_width]', $errors) !!}
 											</div>
 										</div>
-										<div class="col-md-4">
-											<div class="position-relative form-group div-height">
-												{!! Form::label('product[0][height]', 'Altura', ['class' => 'required']) !!}
+										<div class="col-md-3">
+											<div class="position-relative form-group div-pro_height">
+												{!! Form::label('product[0][pro_height]', 'Altura', ['class' => 'required']) !!}
 												<div class="input-group">
-													{!! Form::text('product[0][height]', old('product[0][height]'), ['class' => 'form-control decimal input-height', 'data-name' => 'height', 'data-group' => 'product']) !!}
+													{!! Form::text('product[0][pro_height]', old('product[0][pro_height]'), ['class' => 'form-control decimal input-pro_height', 'data-name' => 'pro_height', 'data-group' => 'product']) !!}
 													<div class="input-group-append"><span class="input-group-text">cm</span></div>
 												</div>
-												{!! Form::notification('product[0][height]', $errors) !!}
+												{!! Form::notification('product[0][pro_height]', $errors) !!}
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-3">
+											<h5 class="card-title card-dimension"><i class="fas fa-dolly-flatbed"></i> &nbsp; Embalagem</h5>
+										</div>
+										<div class="col-md-3">
+											<div class="position-relative form-group div-shi_length">
+												{!! Form::label('product[0][shi_length]', 'Comprimento', ['class' => 'required']) !!}
+												<div class="input-group">
+													{!! Form::text('product[0][shi_length]', old('product[0][shi_length]'), ['class' => 'form-control decimal input-shi_length', 'data-name' => 'shi_length', 'data-group' => 'product']) !!}
+													<div class="input-group-append"><span class="input-group-text">cm</span></div>
+												</div>
+												{!! Form::notification('product[0][shi_length]', $errors) !!}
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="position-relative form-group div-shi_width">
+												{!! Form::label('product[0][shi_width]', 'Largura', ['class' => 'required']) !!}
+												<div class="input-group">
+													{!! Form::text('product[0][shi_width]', old('product[0][shi_width]'), ['class' => 'form-control decimal input-shi_width', 'data-name' => 'shi_width', 'data-group' => 'product']) !!}
+													<div class="input-group-append"><span class="input-group-text">cm</span></div>
+												</div>
+												{!! Form::notification('product[0][shi_width]', $errors) !!}
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="position-relative form-group div-shi_height">
+												{!! Form::label('product[0][shi_height]', 'Altura', ['class' => 'required']) !!}
+												<div class="input-group">
+													{!! Form::text('product[0][shi_height]', old('product[0][shi_height]'), ['class' => 'form-control decimal input-shi_height', 'data-name' => 'shi_height', 'data-group' => 'product']) !!}
+													<div class="input-group-append"><span class="input-group-text">cm</span></div>
+												</div>
+												{!! Form::notification('product[0][shi_height]', $errors) !!}
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-3">
-									<div class="card-box-example p-2">
+								<div class="col-md-5">
+									<div class="card-box-example p-4">
 										<img src="{!! asset('images/box.jpeg') !!}" alt="" />
 									</div>
+								</div>
+								<div class="col-md-12">
+									<hr />
 								</div>
 							</div>
 
@@ -151,10 +208,10 @@
 												<div class="col-md-12">
 													<div class="form-row line-item">
 														<div class="col-md-3">
-															<div class="position-relative form-group div-color_id">
-																{!! Form::label('product[0][item][0][color_id]', 'Cor', ['class' => 'required']) !!}
-																{!! Form::select('product[0][item][0][color_id]', $optionscolor, old('product[0][item][0][color_id]'), ['class' => 'form-control selectpicker select-color_id', 'multiple', 'data-name' => 'color_id', 'data-group' => 'item', 'data-max-options' => '3']) !!}
-																{!! Form::notification('product[0][item][0][color_id]', $errors) !!}
+															<div class="position-relative form-group div-colors">
+																{!! Form::label('product[0][item][0][colors]', 'Cor', ['class' => 'required']) !!}
+																{!! Form::select('product[0][item][0][colors][]', $optionscolor, old('product[0][item][0][colors]'), ['class' => 'form-control selectpicker select-colors multiselect', 'id' => 'product[0][item][0][colors]', 'multiple', 'data-name' => 'colors', 'data-group' => 'item', 'data-max-options' => '3']) !!}
+																{!! Form::notification('product[0][item][0][colors]', $errors) !!}
 															</div>
 														</div>
 														<div class="col-md-2">
@@ -175,11 +232,11 @@
 															</div>
 														</div>
 														<div class="col-md-5">
-															<div class="position-relative form-group div-photo">
-																{!! Form::label('product[0][item][0][photo]', 'Foto desta cor', ['class' => 'required']) !!}
-																{!! Form::file('product[0][item][0][photo]', ['class' => 'form-control custom-file-input', 'id' => 'product[0][item][0][photo][file]', 'data-name' => 'photo', 'data-group' => 'item']) !!}
-																{!! Form::label('product[0][item][0][photo][file]', '&nbsp;', ['class' => 'custom-file-label']) !!}
-																{!! Form::notification('product[0][item][0][photo]', $errors) !!}
+															<div class="position-relative form-group div-picture">
+																{!! Form::label('product[0][item][0][picture]', 'Foto desta cor', ['class' => 'required']) !!}
+																{!! Form::file('product[0][item][0][picture]', ['class' => 'form-control custom-file-input', 'id' => 'product[0][item][0][picture][file]', 'data-name' => 'picture', 'data-group' => 'item']) !!}
+																{!! Form::label('product[0][item][0][picture][file]', '&nbsp;', ['class' => 'custom-file-label']) !!}
+																{!! Form::notification('product[0][item][0][picture]', $errors) !!}
 															</div>
 														</div>
 													</div>
@@ -187,7 +244,7 @@
 														<div class="col-md-3">
 															<div class="position-relative form-group div-supplier_id">
 																{!! Form::label('product[0][item][0][supplier_id]', 'Fornecedor', ['class' => 'required']) !!}
-																{!! Form::select('product[0][item][0][supplier_id]', $optionssupplier, old('product[0][item][0][supplier_id]'), ['class' => 'form-control selectpicker select-supplier_id', 'data-name' => 'supplier_id', 'data-group' => 'item']) !!}
+																{!! Form::select('product[0][item][0][supplier_id]', $optionssupplier, old('product[0][item][0][supplier_id]'), ['class' => 'form-control selectpicker select-supplier_id', 'id' => 'product[0][item][0][supplier_id]', 'data-name' => 'supplier_id', 'data-group' => 'item']) !!}
 																{!! Form::notification('product[0][item][0][supplier_id]', $errors) !!}
 															</div>
 														</div>
@@ -202,10 +259,10 @@
 															</div>
 														</div>
 														<div class="col-md-4">
-															<div class="position-relative form-group div-theme">
+															<div class="position-relative form-group div-themes">
 																{!! Form::label('product[0][item][0][theme]', 'Temas relacionados') !!}
-																{!! Form::select('product[0][item][0][theme]', $optionstheme, old('product[0][item][0][theme]'), ['class' => 'form-control selectpicker select-theme', 'multiple', 'data-name' => 'theme', 'data-group' => 'item']) !!}
-																{!! Form::notification('product[0][item][0][theme]', $errors) !!}
+																{!! Form::select('product[0][item][0][themes][]', $optionstheme, old('product[0][item][0][themes]'), ['class' => 'form-control selectpicker select-themes multiselect', 'id' => 'product[0][item][0][themes]', 'data-name' => 'themes', 'data-group' => 'item', 'multiple']) !!}
+																{!! Form::notification('product[0][item][0][themes]', $errors) !!}
 															</div>
 														</div>
 														<div class="col-md-3">
@@ -223,7 +280,7 @@
 																<div class="col-md-7">
 																	<div class="btn-action">
 																		<a href="#" class="mb-2 btn-transition btn btn-outline-alternate btn-block btn-add" data-block="item" data-counter-product="0" data-counter-item="1">
-																			<span class="btn-icon-wrapper opacity-9 mr-1"><i class="fas fa-plus-circle"></i></span> Adicionar outra cor
+																			<span class="btn-icon-wrapper opacity-9 mr-1"><i class="fas fa-plus-circle"></i></span> Outra cor
 																		</a>
 																		<a href="#" class="mb-2 btn-transition btn btn-outline-danger btn-block btn-remove hide" data-block="item">
 																			<span class="btn-icon-wrapper opacity-9 mr-1"><i class="fas fa-trash-alt"></i></span> Remover esta cor
