@@ -31,8 +31,17 @@ class Theme extends Model
 	 */
 	public function items()
 	{
-		return $this->hasMany(ThemeItem::class);
+		return $this->belongsToMany(Item::class);
 	}
+
+	// /**
+	//  * Get the product about this theme.
+	//  *
+	//  */
+	// public function products()
+	// {
+	// 	return $this->items()->with('product');
+	// }
 
 	/**
 	 * Get the campaigns about this theme.
@@ -41,15 +50,6 @@ class Theme extends Model
 	public function campaigns()
 	{
 		return $this->hasMany(CampaignItem::class);
-	}
-
-	/**
-	 * Get the product about this theme.
-	 *
-	 */
-	public function products()
-	{
-		return $this->items()->with('product');
 	}
 
 	/**

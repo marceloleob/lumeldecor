@@ -106,9 +106,10 @@ class BaseRepository
 	 * Gerencia os metodos SAVE e UPDATE de um Model
 	 *
 	 * @param array $data
+	 * @param float $backId
 	 * @return $this
 	 */
-    public function store($data = [])
+    public function store($data = [], $backId = false)
     {
         try {
             // verifica qual acao
@@ -123,55 +124,27 @@ class BaseRepository
 				$entity = $this->make()->create($data);
             }
 
+			// verifica o retorno
+			if ($backId === true) {
+				return $entity;
+			}
             // retorna a entidade criada ou atualizada
             return [
                 'success' => ((isset($data['id'])) ? 'Atualizado' : 'Cadastrado') . ' com sucesso!',
-                'entity'  => $entity,
             ];
 
         } catch (Exception $exception) {
-            // retorna o erro
+			// verifica o retorno
+			if ($backId === true) {
+				return $exception->getMessage();
+			}
+			// retorna o erro
             return [
                 'danger' => 'Erro ao ' . (isset($data['id']) ? 'atualizar' : 'cadastrar') . ', tente novamente!',
-                'error'  => $exception,
+				'error'  => $exception->getMessage(),
             ];
         }
     }
-    // {
-    //     // inicia o acoplamento de uma transacao
-    //     DB::beginTransaction();
-
-    //     try {
-    //         // verifica qual acao
-    //         if (!empty($data['id'])) {
-    //             // recupera a entidade
-	// 			$entity = $this->query()->where('id', $data['id'])->firstOrFail();
-	// 			// realiza o update
-	// 			$entity->update($data);
-
-    //         } else {
-    //             // realiza o save e retorna o objeto
-	// 			$entity = $this->make()->create($data);
-    //         }
-
-    //         // efetiva a transacao
-    //         DB::commit();
-    //         // retorna a entidade criada ou atualizada
-    //         return [
-    //             'success' => ((isset($data['id'])) ? 'Atualizado' : 'Cadastrado') . ' com sucesso!',
-    //             'entity'  => $entity,
-    //         ];
-
-    //     } catch (Exception $exception) {
-    //         // descarta a transacao
-    //         DB::rollback();
-    //         // retorna o erro
-    //         return [
-    //             'danger' => 'Erro ao ' . (isset($data['id']) ? 'atualizar' : 'cadastrar') . ', tente novamente!',
-    //             'error'  => $exception,
-    //         ];
-    //     }
-    // }
 
 	/**
 	 * Altera o status do registro (ativo ou inativo)

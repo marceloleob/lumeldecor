@@ -24,21 +24,21 @@ class ItemTheme extends Model
 		'theme_id',
 	];
 
-	/**
-	 * Get the items that owns the theme.
-	 *
-	 */
-	public function items()
-	{
-		return $this->belongsTo(Item::class);
-	}
+	// /**
+	//  * Get the items that owns the theme.
+	//  *
+	//  */
+	// public function items()
+	// {
+	// 	return $this->belongsTo(Item::class);
+	// }
 
-	/**
-	 * Get the themes that owns the item.
-	 *
-	 */
-	public function themes()
-	{
-		return $this->belongsTo(Theme::class);
-    }
+	// /**
+	//  * Get the themes that owns the item.
+	//  *
+	//  */
+	// public function themes()
+	// {
+	// 	return $this->belongsTo(Theme::class);
+    // }
 }

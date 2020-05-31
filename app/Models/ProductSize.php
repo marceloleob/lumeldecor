@@ -23,6 +23,7 @@ class ProductSize extends Model
 		'product_id',
 		'size',
 		'weight',
+		'shape',
 		'pro_height',
 		'pro_width',
 		'pro_length',

@@ -38,13 +38,25 @@ $(document).ready(function ()
 		jQuery.validator.addClassRules("input-weight", {
 			required: true,
 		});
-		jQuery.validator.addClassRules("input-lenght", {
+		jQuery.validator.addClassRules("radio-shape", {
 			required: true,
 		});
-		jQuery.validator.addClassRules("input-width", {
+		jQuery.validator.addClassRules("input-pro_length", {
 			required: true,
 		});
-		jQuery.validator.addClassRules("input-height", {
+		jQuery.validator.addClassRules("input-pro_width", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("input-pro_height", {
+			required: true,
+		});
+		jQuery.validator.addClassRules("input-shi_length", {
+			required: true,
+		});
+		// jQuery.validator.addClassRules("input-shi_width", {
+		// 	required: ".shape:checked",
+		// });
+		jQuery.validator.addClassRules("input-shi_height", {
 			required: true,
 		});
 		jQuery.validator.addClassRules("select-colors", {
@@ -210,11 +222,13 @@ $(document).ready(function ()
 	 */
 	function cloneInputs(countProduct, countItem, cloned)
 	{
-		// recupera os inputs (s_price, amount, photo, p_price, launch)
+		// recupera os inputs
 		var inputs = cloned.find('input');
+
 		// percorre os inputs
 		inputs.each(function ()
 		{
+			var value = $(this).val();
 			var field = $(this).data('name');
 			var group = $(this).data('group');
 			var label = $(this).closest(`.div-${field}`).find('label');
@@ -224,8 +238,22 @@ $(document).ready(function ()
 				// altera o "id" e "name" do select, "for" da label e "for" do notification
 				$(this).attr('id', `product[${countProduct}][${field}]`);
 				$(this).attr('name', `product[${countProduct}][${field}]`);
-				label.attr('for', `product[${countProduct}][${field}]`);
+				label.eq(0).attr('for', `product[${countProduct}][${field}]`);
 				span.attr('for', `product[${countProduct}][${field}]`);
+
+				// caso seja um radiobox o id do input deve ser o mesmo do texto
+				if ($(this).prop('type') === 'radio') {
+					// renomeia o id do input
+					$(this).attr('id', `product[${countProduct}][${field}][${value}]`);
+					// recupera a label do texto do input radio
+					var labelRadio = $(this).closest(`.div-${field}`).find(`.label-${field}-${value}`);
+					labelRadio.attr('for', `product[${countProduct}][${field}][${value}]`);
+				}
+				// forca mostrar o campo "largura"
+				if (field === 'pro_width') {
+					$(this).closest(`.row-${group}`).find('.div-pro_width').removeClass('hide');
+					$(this).closest(`.row-${group}`).find('.div-pro_length').find('label').html('Comprimento');
+				}
 			}
 			if (group === 'item') {
 				// altera o "id" e "name" do select, "for" da label e "for" do notification
@@ -245,6 +273,12 @@ $(document).ready(function ()
 			}
 			if ($(this).prop('type') === 'checkbox') {
 				$(this).prop('checked', false);
+			}
+			if ($(this).prop('type') === 'radio') {
+				var radio = $(this).closest(`.div-${field}`).find('input[type="radio"]');
+				// forca sempre o primerio radio vir checado
+				radio.eq(0).prop('checked', true);
+				radio.eq(1).prop('checked', false);
 			}
 		});
 	}
@@ -314,10 +348,74 @@ $(document).ready(function ()
 		}
 	});
 
-	$('select.select-colors').change(function (event) {
+	/**
+	 * Altera a opcao de "Comprimento" para "Diametro" caso selecione a forma do produto "Redondo"
+	 *
+	 */
+	$('.radio-shape').change(function (event) {
 		// Method cancels the event if it is cancelable
 		event.preventDefault();
 
-		console.log($(this).val());
+		// recupera o tipo do bloco
+		var group       = $(this).data('group');
+		var widthDiv    = $(this).closest(`.row-${group}`).find('.div-pro_width');
+		var lengthDiv   = $(this).closest(`.row-${group}`).find('.div-pro_length');
+		var lengthlabel = lengthDiv.find('label');
+
+		if ($(this).val() === 'R') {
+			// esconde o campo de largura e altera o label do comprimento
+			widthDiv.addClass('hide');
+			lengthlabel.html('Diâmetro');
+
+		} else if ($(this).val() === 'Q') {
+			// mostra o campo de largura e altera o label do diametro
+			widthDiv.removeClass('hide');
+			lengthlabel.html('Comprimento');
+		}
+	});
+
+	/**
+	 * Duplica a informacao dos campos de "Comprimento"
+	 *
+	 */
+	$('.input-pro_length').keyup(function (event) {
+		// Method cancels the event if it is cancelable
+		event.preventDefault();
+		// recupera o tipo do bloco
+		var group = $(this).data('group');
+		var div   = $(this).closest(`.row-${group}`).find('.div-shi_length');
+		var input = div.find('input');
+
+		input.val($(this).val());
+	});
+
+	/**
+	 * Duplica a informacao dos campos de "Comprimento"
+	 *
+	 */
+	$('.input-pro_width').keyup(function (event) {
+		// Method cancels the event if it is cancelable
+		event.preventDefault();
+		// recupera o tipo do bloco
+		var group = $(this).data('group');
+		var div   = $(this).closest(`.row-${group}`).find('.div-shi_width');
+		var input = div.find('input');
+
+		input.val($(this).val());
+	});
+
+	/**
+	 * Duplica a informacao dos campos de "Comprimento"
+	 *
+	 */
+	$('.input-pro_height').keyup(function (event) {
+		// Method cancels the event if it is cancelable
+		event.preventDefault();
+		// recupera o tipo do bloco
+		var group = $(this).data('group');
+		var div   = $(this).closest(`.row-${group}`).find('.div-shi_height');
+		var input = div.find('input');
+
+		input.val($(this).val());
 	});
 });

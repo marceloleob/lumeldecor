@@ -4,71 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ItemRequest;
-use App\Services\CategoryService;
-use App\Services\ItemService;
-use App\Services\MaterialService;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
+	 * @var ItemRequest
 	 */
-	public function index(Request $request)
+	private $repository;
+
+	/**
+	 * Constructor
+	 *
+	 * @param ItemRequest $repository
+	 */
+	public function __construct(ItemRequest $repository)
 	{
-		$params = ItemService::list($request->search);
-
-		return view('admin.pages.item-list')->with($params);
+		$this->repository = $repository;
 	}
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-		$params = [
-			'data'            => ItemService::find(),
-			'optionsmaterial' => MaterialService::options(),
-            'optionscategory' => CategoryService::options(),
-		];
-
-		return view('admin.pages.item-form')->with($params);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  ItemRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ItemRequest $request)
-    {
-        // save
-        $response = ItemService::store($request);
-
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
-
-        return redirect()->route('product.form', $response['id'])->with($response);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -78,8 +31,18 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+		$params = [
+			'data'            => $this->repository->findById($id),
+			'items'           => (new ProductSizeRepository)->findByProduct($id),
+			'optionsmaterial' => (new MaterialRepository())->options(),
+			'optionscategory' => (new CategoryRepository())->options(),
+			// 'optionstheme'    => (new ThemeRepository())->options(),
+			// 'optionscolor'    => (new ColorRepository())->options(),
+			// 'optionssupplier' => (new SupplierRepository())->options(),
+		];
+
+		return view('admin.pages.product-form-update', ['page' => 'product'])->with($params);
+	}
 
     /**
      * Update the specified resource in storage.
@@ -88,21 +51,28 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductUpdateRequest $request, $id)
     {
-        //
-    }
+		// save
+		$response = ProductService::update($request->all());
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+        }
 
-	/**
+        return redirect()->route('product.list')->with($response);
+	}
+
+    /**
      * Toggle the status storage.
      *
      * @param  int  $id
      * @return Response
      */
-    public function toggle($id)
+    public function changeStatus($id)
     {
-        $response = ItemService::toggleStatus($id);
+        $response = $this->repository->changeStatus($id);
 
-        return redirect()->route('item.list')->with($response);
+        return redirect()->route('product.list')->with($response);
     }
 }

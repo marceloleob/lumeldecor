@@ -23,7 +23,7 @@ class Item extends Model
 		'product_size_id',
 		'supplier_id',
 		'code',
-		'image',
+		'picture',
 		'p_price',
 		's_price',
 		'launch',
@@ -31,10 +31,10 @@ class Item extends Model
 	];
 
 	/**
-	 * Get the size that owns the item.
+	 * Get the product-size that owns the item.
 	 *
 	 */
-	public function size()
+	public function productSize()
 	{
 		return $this->belongsTo(ProductSize::class, 'product_size_id', 'id');
 	}
@@ -63,7 +63,7 @@ class Item extends Model
 	 */
 	public function colors()
 	{
-		return $this->hasMany(ItemColor::class);
+		return $this->belongsToMany(Color::class, 'item_colors');
 	}
 
 	/**
@@ -72,7 +72,7 @@ class Item extends Model
 	 */
 	public function themes()
 	{
-		return $this->hasMany(ItemTheme::class);
+		return $this->belongsToMany(Theme::class, 'item_themes');
 	}
 
 	/**

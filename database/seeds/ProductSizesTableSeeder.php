@@ -19,6 +19,7 @@ class ProductSizesTableSeeder extends Seeder
 		ProductSize::create([
 			'product_id' => 1,
 			'size'       => 'P',
+			'shape'      => 'Q',
 			'weight'     => 0.487, // kg
 			'pro_height' => 33,    // cm
 			'pro_width'  => 22,    // cm

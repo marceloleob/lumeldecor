@@ -14,13 +14,13 @@
 	<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 		<thead>
 			<tr>
-				<th width="10%" class="text-center">Código</th>
+				<th width="8%" class="text-center">Código</th>
 				<th width="15%" class="text-left">Material</th>
 				<th width="15%" class="text-left">Categoria</th>
-				<th width="20%" class="text-left">Produto</th>
-				{{-- <th width="10%" class="text-center">Tamanho</th> --}}
-				<th width="15%" class="text-center">Status</th>
-				<th width="15%" class="text-center">Ações</th>
+				<th width="30%" class="text-left">Produto</th>
+				<th width="10%" class="text-center">Lançamento</th>
+				<th width="10%" class="text-center">Status</th>
+				<th width="12%" class="text-center">Ações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,10 +30,9 @@
 				<td class="text-left">{!! $item->materialName !!}</td>
 				<td class="text-left">{!! $item->categoryName !!}</td>
 				<td class="text-left">{!! $item->productName !!}</td>
-				{{-- <td class="text-center">{!! $item->size !!}</td> --}}
+				<td class="text-center">{!! $item->featured !!}</td>
 				<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 				<td class="text-center">
-					<a href="{!! route('item.list', [$item->id, $data->currentPage()]) !!}" class="border-0 btn-transition btn btn-outline-alternate"><i class="fas fa-cube"></i></a>
 					<a href="{!! route($page . '.edit', [$item->id, $data->currentPage()]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
 					<a href="{!! route($page . '.status', $item->id) !!}" class="border-0 btn-transition btn {!! $item->styles['class'] !!}"><i class="fas {!! $item->styles['label'] !!}"></i></a>
 				</td>
