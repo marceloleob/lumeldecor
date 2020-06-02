@@ -41,7 +41,7 @@ class ImageService
             return $picture;
 		}
 		// exclui a imagem atual
-		// self::destroy($picture);
+		self::destroy($picture);
 		// salva a nova imagem
 		$fileName = self::save($newPicture);
 
