@@ -40,7 +40,7 @@ class ImageService
         if (empty($newPicture)) {
             return $picture;
 		}
-dd($picture, $newPicture);
+// dd($picture, $newPicture);
 		// exclui a imagem atual
 		self::destroy($picture);
 		// salva a nova imagem
@@ -67,6 +67,7 @@ dd($picture, $newPicture);
 			Storage::exists($pictureThumbnail) === false) {
 			throw new Exception('Erro: A foto atual não foi encontrada no servidor, por favor tente novamente', 1);
 		}
+	dd($fileName);
         // exclui as imagens
         Storage::delete($pictureBigger);
         Storage::delete($pictureRegular);
