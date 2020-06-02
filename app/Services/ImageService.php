@@ -60,15 +60,12 @@ class ImageService
 		$pictureRegular   = config('constants.PICTURES_PATHS.REGULAR') . '/' . $fileName;
 		$pictureThumbnail = config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $fileName;
 		// verifica se a imagem atual existe no servidor
-		if (Storage::exists($pictureBigger) === false ||
-			Storage::exists($pictureRegular) === false ||
-			Storage::exists($pictureThumbnail) === false) {
-			throw new Exception('Erro: A foto atual não foi encontrada no servidor, por favor tente novamente', 1);
+		if (Storage::exists($pictureBigger) && Storage::exists($pictureRegular) && Storage::exists($pictureThumbnail)) {
+			// exclui as imagens
+			Storage::delete($pictureBigger);
+			Storage::delete($pictureRegular);
+			Storage::delete($pictureThumbnail);
 		}
-        // exclui as imagens
-        Storage::delete($pictureBigger);
-        Storage::delete($pictureRegular);
-        Storage::delete($pictureThumbnail);
 	}
 
 	/**
