@@ -16,17 +16,17 @@ class ProductSizesTableSeeder extends Seeder
 		// limpa a tabela
 		DB::table('product_sizes')->delete();
 		// cria os registros
-		ProductSize::create([
-			'product_id' => 1,
-			'size'       => 'P',
-			'shape'      => 'Q',
-			'weight'     => 0.487, // kg
-			'pro_height' => 33,    // cm
-			'pro_width'  => 22,    // cm
-			'pro_length' => 22,    // cm
-			'shi_height' => 33,    // cm
-			'shi_width'  => 22,    // cm
-			'shi_length' => 22,    // cm
-		]);
+		// ProductSize::create([
+		// 	'product_id' => 1,
+		// 	'size'       => 'P',
+		// 	'shape'      => 'Q',
+		// 	'weight'     => 0.487, // kg
+		// 	'pro_height' => 33,    // cm
+		// 	'pro_width'  => 22,    // cm
+		// 	'pro_length' => 22,    // cm
+		// 	'shi_height' => 33,    // cm
+		// 	'shi_width'  => 22,    // cm
+		// 	'shi_length' => 22,    // cm
+		// ]);
     }
 }

@@ -16,13 +16,13 @@ class ItemThemesTableSeeder extends Seeder
 		// limpa a tabela
 		DB::table('item_themes')->delete();
 		// cria os registros
-		ItemTheme::create([
-			'item_id'  => 1,
-			'theme_id' => 6
-		]);
-		ItemTheme::create([
-			'item_id'  => 1,
-			'theme_id' => 7
-		]);
+		// ItemTheme::create([
+		// 	'item_id'  => 1,
+		// 	'theme_id' => 6
+		// ]);
+		// ItemTheme::create([
+		// 	'item_id'  => 1,
+		// 	'theme_id' => 7
+		// ]);
     }
 }
