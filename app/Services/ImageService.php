@@ -40,9 +40,8 @@ class ImageService
         if (empty($newPicture)) {
             return $picture;
 		}
-// dd($picture, $newPicture);
 		// exclui a imagem atual
-		self::destroy($picture);
+		// self::destroy($picture);
 		// salva a nova imagem
 		$fileName = self::save($newPicture);
 
@@ -60,14 +59,12 @@ class ImageService
 		$pictureBigger    = config('constants.PICTURES_PATHS.BIGGER') . '/' . $fileName;
 		$pictureRegular   = config('constants.PICTURES_PATHS.REGULAR') . '/' . $fileName;
 		$pictureThumbnail = config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $fileName;
-dd(Storage::exists($pictureBigger));
 		// verifica se a imagem atual existe no servidor
 		if (Storage::exists($pictureBigger) === false ||
 			Storage::exists($pictureRegular) === false ||
 			Storage::exists($pictureThumbnail) === false) {
 			throw new Exception('Erro: A foto atual não foi encontrada no servidor, por favor tente novamente', 1);
 		}
-	dd($fileName);
         // exclui as imagens
         Storage::delete($pictureBigger);
         Storage::delete($pictureRegular);
