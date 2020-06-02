@@ -60,7 +60,7 @@ class ImageService
 		$pictureBigger    = config('constants.PICTURES_PATHS.BIGGER') . '/' . $fileName;
 		$pictureRegular   = config('constants.PICTURES_PATHS.REGULAR') . '/' . $fileName;
 		$pictureThumbnail = config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $fileName;
-
+dd(Storage::exists($pictureBigger));
 		// verifica se a imagem atual existe no servidor
 		if (Storage::exists($pictureBigger) === false ||
 			Storage::exists($pictureRegular) === false ||
