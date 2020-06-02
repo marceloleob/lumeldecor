@@ -19,7 +19,7 @@ class ImageService
 	{
 		// cria um nome para a imagem
 		$fileName = date('Y-m-d') . '-' . uniqid() . '.' . $picture->extension();
-dd($fileName);
+dump($fileName);
 		// salva a imagem na pasta Regular
 		$fullName = $picture->storeAS(config('constants.PICTURES_PATHS.REGULAR'), $fileName, 'public');
 dd($fullName);
