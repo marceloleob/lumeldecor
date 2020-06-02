@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
-class UserController extends AdminController
+class UserController extends Controller
 {
 	/**
 	 * @var UserRepository

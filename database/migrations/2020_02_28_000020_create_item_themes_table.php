@@ -14,7 +14,6 @@ class CreateItemThemesTable extends Migration
     public function up()
     {
         Schema::create('item_themes', function (Blueprint $table) {
-            $table->id();
 			$table->foreignId('item_id');
 			$table->foreignId('theme_id');
         });

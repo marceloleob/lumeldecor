@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use Symfony\Component\HttpFoundation\File\File as SymfonyFile;
 use Intervention\Image\ImageManagerStatic as Image;
-use Intervention\Image\Exception\NotReadableException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Exception;
@@ -12,112 +10,94 @@ use Exception;
 class ImageService
 {
 	/**
-	 * Faz o Upload da imagem utilizando o framework
-	 *
-	 * @param UploadedFile
-	 * @return string $name
-	 */
-	public static function move($image)
-	{
-		// recupera os dados da foto
-		$ext  = strtolower($image->getClientOriginalExtension());
-		$name = config('constants.PICTURES_PATH') . substr(md5($image->getClientOriginalName()), 0, 12) . time('His') . '.' . $ext;
-
-		// grava o arquivo fisico
-		$send = $image->move('images/' . config('constants.PICTURES_PATH'), $name);
-
-		// verifica se salvou a imagem em disco
-		if (!$send instanceof SymfonyFile) {
-			throw new Exception('Erro ao salvar a imagem, por favor tente novamente.', 1);
-		}
-
-		return $name;
-	}
-
-	/**
-	 * Adiciona uma marca d`agua na imagem
-	 *
-	 * @param string $name
-	 * @return void
-	 */
-	public static function waterMark($name)
-	{
-		// cria uma instancia da foto para manipular
-		$photo = Image::make('images/' . $name);
-		// cria uma instancia da estampa
-		$watermark = Image::make('images/stamp.png');
-		// insere a estampa na foto
-		$photo->insert($watermark, 'center');
-	}
-
-	/**
-	 * Redimensiona o tamanho original da imagem
-	 *
-	 * @param  string $name
-	 * @return string $position
-	 */
-	public static function resize($name)
-	{
-		// cria uma instancia da foto para manipular
-		$photo = Image::make('images/' . $name);
-		// recupera as dimensoes
-		list($width, $height) = @getimagesize('images/' . $name);
-		// calcula o novo tamanho fixando a altura em 800px
-		$newHeight = config('constants.PICTURES_MAX_HEIGHT');
-		$newWidth  = ($newHeight * $width) / $height;
-		// executa o redimensionamento
-		$photo->resize($newWidth, $newHeight)->save('images/' . $name);
-		// orientacao da imagem
-		$position = 'H';
-		// verifica se a foto e H ou V
-		if ($width < $height) {
-			$position = 'V';
-		}
-
-		return $position;
-	}
-
-	/**
 	 * Salva a imagem no servidor
 	 *
-	 * @param UploadedFile @image
+	 * @param UploadedFile $picture
 	 * @return string $name
 	 */
-	public static function save($image)
+	public static function save($picture)
 	{
-        // verifica se e uma imagem
-        if ($image->isValid() === false) {
-            throw new Exception('Você deve anexar uma imagem válida!', 1);
+		// cria um nome para a imagem
+		$fileName = date('Y-m-d') . '-' . uniqid() . '.' . $picture->extension();
+		// salva a imagem na pasta Regular
+		$fullName = $picture->storeAS(config('constants.PICTURES_PATHS.REGULAR'), $fileName, 'public');
+		// redimensiona as imagens (bigger, regular e thumbnail)
+		self::resize($fullName, $fileName);
+
+		return $fileName;
+	}
+
+	/**
+	 * Atualiza a imagem no servidor
+	 *
+	 * @param string       $picture
+	 * @param UploadedFile $newPicture
+	 * @return string $name
+	 */
+	public static function update($picture, $newPicture)
+	{
+        // verifica se foi anexado uma nova imagem
+        if (empty($newPicture)) {
+            return $picture;
 		}
 
-		try {
-			// faz o upload da imagem
-			$name = self::move($image);
-			// adiciona uma marca d`agua
-			// self::waterMark($name);
-			// redimensiona a imagem original
-			// self::resize($name);
+		// exclui a imagem atual
+		self::destroy($picture);
+		// salva a nova imagem
+		$fileName = self::save($newPicture);
 
-			return $name;
-
-		} catch (NotReadableException $exception) {
-			throw new Exception('Erro ao localizar a imagem no servidor, por favor tente novamente!', $exception);
-		}
+		return $fileName;
 	}
 
 	/**
      * Exclui a imagem do servidor
      *
-     * @param string $image
+     * @param string $fileName
      * @return void
      */
-    public static function destroy($image)
+    public static function destroy($fileName)
     {
-        // verifica se a imagem existe
-        if (Storage::exists($image) === false) {
-            throw new Exception('A foto não foi encontrada no servidor, por favor tente novamente', 1);
-        }
-        // exclui a imagem
-        return Storage::delete($image);
-    }
+		$pictureBigger    = config('constants.PICTURES_PATHS.BIGGER') . '/' . $fileName;
+		$pictureRegular   = config('constants.PICTURES_PATHS.REGULAR') . '/' . $fileName;
+		$pictureThumbnail = config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $fileName;
+
+		// verifica se a imagem atual existe no servidor
+		if (Storage::exists($pictureBigger) === false ||
+			Storage::exists($pictureRegular) === false ||
+			Storage::exists($pictureThumbnail) === false) {
+			throw new Exception('Erro: A foto atual não foi encontrada no servidor, por favor tente novamente', 1);
+		}
+        // exclui as imagens
+        Storage::delete($pictureBigger);
+        Storage::delete($pictureRegular);
+        Storage::delete($pictureThumbnail);
+	}
+
+	/**
+	 * Redimensiona a imagem
+	 *
+	 * @param  string $fullName
+	 * @param  string $fileName
+	 * @return void
+	 */
+	public static function resize($fullName, $fileName)
+	{
+		// cria uma instancia da imagem
+		$image = Image::make('storage/' . $fullName);
+
+		// salva uma nova imagem com o tamanho correto (Bigger)
+		$image->resize(810, 900, function ($constraint) {
+			$constraint->aspectRatio();
+		})->save('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $fileName);
+
+		// salva uma nova imagem com o tamanho correto (Regular)
+		$image->resize(540, 600, function ($constraint) {
+			$constraint->aspectRatio();
+		})->save('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $fileName);
+
+		// salva uma nova imagem com o tamanho correto (Thumbnail)
+		$image->resize(150, 160, function ($constraint) {
+			$constraint->aspectRatio();
+		})->save('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $fileName);
+	}
 }

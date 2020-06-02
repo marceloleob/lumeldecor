@@ -92,4 +92,26 @@ class Item extends Model
 	{
 		return $this->hasMany(OfferPromotion::class);
 	}
+
+	/**
+     * Get the p_price formated
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getPPriceAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
+    }
+
+	/**
+     * Get the s_price formated
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getSPriceAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductCreateRequest;
 use App\Http\Requests\Admin\ProductUpdateRequest;
 use App\Repositories\CategoryRepository;
@@ -15,7 +15,7 @@ use App\Repositories\ThemeRepository;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
-class ProductController extends AdminController
+class ProductController extends Controller
 {
 	/**
 	 * @var ProductRepository
@@ -94,9 +94,6 @@ class ProductController extends AdminController
 			'items'           => (new ProductSizeRepository)->findByProduct($id),
 			'optionsmaterial' => (new MaterialRepository())->options(),
 			'optionscategory' => (new CategoryRepository())->options(),
-			// 'optionstheme'    => (new ThemeRepository())->options(),
-			// 'optionscolor'    => (new ColorRepository())->options(),
-			// 'optionssupplier' => (new SupplierRepository())->options(),
 		];
 
 		return view('admin.pages.product-form-update', ['page' => 'product'])->with($params);

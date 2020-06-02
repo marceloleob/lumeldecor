@@ -36,7 +36,7 @@
 								</div>
 								<div class="position-relative form-group">
 									{!! Form::label('theme_id', 'Tema') !!}
-									{!! Form::select('theme_id', $optionstheme, old('theme_id', $data->theme_id), ['class' => 'form-control selectpicker']) !!}
+									{!! Form::select('theme_id', $optionstheme, old('theme_id', $data->theme_id), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 									{!! Form::notification('theme_id', $errors) !!}
 								</div>
 								<div class="position-relative form-group">

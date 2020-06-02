@@ -23,7 +23,7 @@
 				<div class="d-inline-block dropdown">
 					<a href="{!! route('product.edit', $data->product_id) !!}" class="mb-2 mr-2 btn-transition btn btn-outline-focus">
 						<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-arrow-circle-left fa-w-20"></i></span>
-						Voltar para o Produto
+						Voltar
 					</a>
 				</div>
 			</div>
@@ -85,8 +85,8 @@
 											<div class="col-md-3">
 												<h5 class="card-title card-dimension"><i class="fas fa-shopping-bag"></i> &nbsp; Produto</h5>
 											</div>
-											<div class="col-md-3">
-												<div class="position-relative form-group div-pro_length">
+											<div class="col-md-3 div-length">
+												<div class="position-relative form-group">
 													{!! Form::label('pro_length', 'Comprimento', ['class' => 'required']) !!}
 													<div class="input-group">
 														{!! Form::text('pro_length', old('pro_length', $data->pro_length), ['class' => 'form-control decimal']) !!}
@@ -95,8 +95,8 @@
 													{!! Form::notification('pro_length', $errors) !!}
 												</div>
 											</div>
-											<div class="col-md-3">
-												<div class="position-relative form-group div-pro_width">
+											<div class="col-md-3 div-width {!! ($data->shape === 'R') ? 'hide' : '' !!}">
+												<div class="position-relative form-group">
 													{!! Form::label('pro_width', 'Largura', ['class' => 'required']) !!}
 													<div class="input-group">
 														{!! Form::text('pro_width', old('pro_width', $data->pro_width), ['class' => 'form-control decimal']) !!}
@@ -120,7 +120,7 @@
 											<div class="col-md-3">
 												<h5 class="card-title card-dimension"><i class="fas fa-dolly-flatbed"></i> &nbsp; Embalagem</h5>
 											</div>
-											<div class="col-md-3">
+											<div class="col-md-3 div-length">
 												<div class="position-relative form-group">
 													{!! Form::label('shi_length', 'Comprimento', ['class' => 'required']) !!}
 													<div class="input-group">
@@ -130,7 +130,7 @@
 													{!! Form::notification('shi_length', $errors) !!}
 												</div>
 											</div>
-											<div class="col-md-3">
+											<div class="col-md-3 div-width {!! ($data->shape === 'R') ? 'hide' : '' !!}">
 												<div class="position-relative form-group">
 													{!! Form::label('shi_width', 'Largura', ['class' => 'required']) !!}
 													<div class="input-group">
@@ -165,7 +165,7 @@
 								{!! Form::hidden('_method', 'PUT') !!}
 								{!! Form::hidden('id', $data->id, ['id' => 'id']) !!}
 								{!! Form::hidden('product_id', $data->product_id, ['id' => 'product_id']) !!}
-								<a href="{!! route('product.edit', $data->product_id) !!}" class="btn-transition btn btn-outline-focus btn-cancel mr-4 pr-3 pl-3"><i class="fas fa-times-circle fa-w-10 pr-2"></i> Voltar para o Produto</a>
+								<a href="{!! route('product.edit', $data->product_id) !!}" class="btn-transition btn btn-outline-focus btn-cancel mr-4 pr-3 pl-3"><i class="fas fa-times-circle fa-w-10 pr-2"></i> Voltar</a>
 								<button type="submit" class="btn-hover-shine btn btn-shadow btn-success btn-save mr-4 pr-4 pl-4"><i class="fas fa-cloud-upload-alt fa-w-10 pr-2"></i> Salvar</button>
 							</div>
 						</div>
@@ -190,30 +190,30 @@
 						<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 							<thead>
 								<tr>
+									<th width="15%" class="text-center">Código</th>
 									<th width="10%" class="text-center">Cores</th>
-									<th width="15%" class="text-center">Códico</th>
 									<th width="10%" class="text-center">Tamanho</th>
-									<th width="25%" class="text-left">Produto</th>
-									<th width="15%" class="text-center">Preço Fornecedor</th>
-									<th width="15%" class="text-center">Preço Site</th>
+									<th width="35%" class="text-left">Produto</th>
+									<th width="10%" class="text-center">Lançamento</th>
+									<th width="10%" class="text-center">Status</th>
 									<th width="10%" class="text-center">Ações</th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach ($items as $item)
 								<tr>
+									<td class="text-center">{!! $item->code !!}</td>
 									<td class="text-center td-color">
 										@foreach ($item->colors as $color)
 											<div class="colors" style="background-color: {!! $color->hexa !!}" data-toggle="tooltip" data-placement="top" data-original-title="{!! $color->name !!}"></div>
 										@endforeach
 									</td>
-									<td class="text-center">{!! $item->code !!}</td>
 									<td class="text-center">{!! $item->size !!}</td>
 									<td class="text-left">{!! $item->name !!}</td>
-									<td class="text-center">{!! $item->p_price !!}</td>
-									<td class="text-center">{!! $item->s_price !!}</td>
+									<td class="text-center">{!! $item->launch !!}</td>
+									<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 									<td class="text-center">
-										<a href="{!! route('product-size.edit', [$item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
+										<a href="{!! route('item.edit', $item->id) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
 									</td>
 								</tr>
 								@endforeach

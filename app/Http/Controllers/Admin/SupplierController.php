@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SupplierRequest;
 use App\Repositories\SupplierRepository;
 use Illuminate\Http\Request;
 
-class SupplierController extends AdminController
+class SupplierController extends Controller
 {
 	/**
 	 * @var SupplierRepository

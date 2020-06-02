@@ -4,26 +4,31 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ItemRequest;
+use App\Repositories\ColorRepository;
+use App\Repositories\ItemRepository;
+use App\Repositories\SupplierRepository;
+use App\Repositories\ThemeRepository;
+use App\Services\ItemService;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
 	/**
-	 * @var ItemRequest
+	 * @var ItemRepository
 	 */
 	private $repository;
 
 	/**
 	 * Constructor
 	 *
-	 * @param ItemRequest $repository
+	 * @param ItemRepository $repository
 	 */
-	public function __construct(ItemRequest $repository)
+	public function __construct(ItemRepository $repository)
 	{
 		$this->repository = $repository;
 	}
 
-    /**
+	/**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -32,16 +37,13 @@ class ItemController extends Controller
     public function edit($id)
     {
 		$params = [
-			'data'            => $this->repository->findById($id),
-			'items'           => (new ProductSizeRepository)->findByProduct($id),
-			'optionsmaterial' => (new MaterialRepository())->options(),
-			'optionscategory' => (new CategoryRepository())->options(),
-			// 'optionstheme'    => (new ThemeRepository())->options(),
-			// 'optionscolor'    => (new ColorRepository())->options(),
-			// 'optionssupplier' => (new SupplierRepository())->options(),
+			'data'            => ItemService::findById($id),
+			'optionscolor'    => (new ColorRepository())->options(),
+			'optionstheme'    => (new ThemeRepository())->options(),
+			'optionssupplier' => (new SupplierRepository())->options(),
 		];
 
-		return view('admin.pages.product-form-update', ['page' => 'product'])->with($params);
+		return view('admin.pages.item-form-update', ['page' => 'item'])->with($params);
 	}
 
     /**
@@ -51,28 +53,15 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductUpdateRequest $request, $id)
+    public function update(ItemRequest $request, $id)
     {
 		// save
-		$response = ProductService::update($request->all());
+		$response = ItemService::update($request->all());
         // verifica se retornou erro
         if (isset($response['error'])) {
             return back()->withInput()->with($response);
         }
 
-        return redirect()->route('product.list')->with($response);
+        return redirect()->route('product-size.edit', $request->product_size_id)->with($response);
 	}
-
-    /**
-     * Toggle the status storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function changeStatus($id)
-    {
-        $response = $this->repository->changeStatus($id);
-
-        return redirect()->route('product.list')->with($response);
-    }
 }

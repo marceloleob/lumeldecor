@@ -109,6 +109,7 @@ class Macros extends FormBuilder
 	public function buttons($link, $id = null)
 	{
 		$buttons = [];
+		$buttonCancel = 'Cancelar';
 
 		$save = $this->button(
 			'<i class="fas fa-cloud-upload-alt fa-w-10 pr-2"></i> Salvar',
@@ -120,12 +121,13 @@ class Macros extends FormBuilder
 
 		// verifica se é um UPDATE
 		if (!empty($id)) {
+			$buttonCancel = 'Voltar';
 			array_push($buttons, $this->hidden('_method', 'PUT'));
 			array_push($buttons, $this->hidden('id', $id, ['id' => 'id']));
 		}
 
 		array_push($buttons, '<a href="' . route($link) . '" class="btn-transition btn btn-outline-focus btn-cancel mr-4 pr-3 pl-3">');
-		array_push($buttons, '<i class="fas fa-times-circle fa-w-10 pr-2"></i> Cancelar');
+		array_push($buttons, '<i class="fas fa-times-circle fa-w-10 pr-2"></i> ' . $buttonCancel);
 		array_push($buttons, '</a>');
 		array_push($buttons, $save);
 

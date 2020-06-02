@@ -49,4 +49,81 @@ class ProductSize extends Model
 	{
 		return $this->hasMany(Item::class);
 	}
+
+	/**
+     * Get the weight formated
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getWeightAttribute($value)
+    {
+        return number_format($value, 3, ',', '.');
+    }
+
+	/**
+     * Get the pro_height formated
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getProHeightAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
+    }
+
+	/**
+     * Get the pro_width formated
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getProWidthAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
+    }
+
+	/**
+     * Get the pro_length formated
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getProLengthAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
+    }
+
+	/**
+     * Get the shi_height formated
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getShiHeightAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
+    }
+
+	/**
+     * Get the shi_width formated
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getShiWidthAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
+    }
+
+	/**
+     * Get the shi_length formated
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getShiLengthAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
+    }
 }

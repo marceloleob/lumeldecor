@@ -57,9 +57,9 @@
 			<li>
 				<a href="{!! route('campaign.list') !!}" class="{!! (request()->is('admin/campanha/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-calendar-alt icon-gradient bg-plum-plate"></i> Campanhas</a>
 			</li>
-			<li>
+			{{-- <li>
 				<a href="{!! route('stock.list') !!}" class="{!! (request()->is('admin/estoques/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-warehouse"></i> Estoques</a>
-			</li>
+			</li> --}}
 
 			<li class="app-sidebar__heading">SITE</li>
 			<li>
@@ -73,13 +73,14 @@
 					</li>
 				</ul>
 			</li>
+			{{--
 			<li>
 				<a href="{!! route('order.list') !!}" class="{!! (request()->is('admin/encomenda/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-dolly"></i> Encomendas</a>
 			</li>
 			<li>
 				<a href="{!! route('message.list') !!}" class="{!! (request()->is('admin/mensagem/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-envelope"></i> Mensagens</a>
 			</li>
-
+			--}}
 			<li class="app-sidebar__heading">USUÁRIOS</li>
 			<li>
 				<a href="{!! route('customer.list') !!}" class="{!! (request()->is('admin/cliente/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users icon-gradient bg-plum-plate"></i> Clientes</a>
@@ -90,6 +91,7 @@
 			<li>
 				<a href="{!! route('employee.list') !!}" class="{!! (request()->is('admin/funcionario/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-tag icon-gradient bg-plum-plate"></i> Funcionários</a>
 			</li>
+
 			<li>
 				<a href="{!! route('user.list') !!}" class="{!! (request()->is('admin/usuario/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users-cog icon-gradient bg-plum-plate"></i> Todos</a>
 			</li>

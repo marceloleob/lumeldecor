@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Services\ContactMessageService;
 use Illuminate\Http\Request;
 
-class ContactMessageController extends AdminController
+class ContactMessageController extends Controller
 {
 	/**
 	 * Display a listing of the resource.

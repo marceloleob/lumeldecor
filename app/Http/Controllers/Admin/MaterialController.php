@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MaterialRequest;
 use App\Repositories\MaterialRepository;
 use Illuminate\Http\Request;
 
-class MaterialController extends AdminController
+class MaterialController extends Controller
 {
 	/**
 	 * @var MaterialRepository

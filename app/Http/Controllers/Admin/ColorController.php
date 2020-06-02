@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ColorRequest;
 use App\Repositories\ColorRepository;
 use Illuminate\Http\Request;
 
-class ColorController extends AdminController
+class ColorController extends Controller
 {
 	/**
 	 * @var ColorRepository

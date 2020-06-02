@@ -38,6 +38,7 @@ Route::group(['namespace' => 'Site'], function () {
 Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
 	// Home
 	Route::get('/', 'DashboardController@index')->name('dashboard');
+
 	// Materials
 	Route::get('material/listar', 'MaterialController@index')->name('material.list');
 	Route::any('material/buscar', 'MaterialController@index')->name('material.search');
@@ -72,23 +73,20 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::put('cor/atualizar/{id}', 'ColorController@store')->name('color.update');
 	Route::get('cor/status/{id}', 'ColorController@changeStatus')->name('color.status');
 
-	// Product Group
-	Route::group(['prefix' => 'produto'], function () {
-		// Products
-		Route::get('listar', 'ProductController@index')->name('product.list');
-		Route::any('buscar', 'ProductController@index')->name('product.search');
-		Route::get('cadastrar', 'ProductController@create')->name('product.create');
-		Route::post('salvar', 'ProductController@store')->name('product.store');
-		Route::get('editar/{id}', 'ProductController@edit')->name('product.edit');
-		Route::put('atualizar/{id}', 'ProductController@update')->name('product.update');
-		Route::get('status/{id}', 'ProductController@changeStatus')->name('product.status');
-		// Products Size
-		Route::get('tamanho/editar/{id}', 'ProductSizeController@edit')->name('product-size.edit');
-		Route::put('tamanho/atualizar/{id}', 'ProductSizeController@update')->name('product-size.update');
-		// Item
-		Route::get('item/editar/{id}', 'ItemController@edit')->name('item.edit');
-		Route::put('item/atualizar/{id}', 'ItemController@update')->name('item.update');
-	});
+	// Products
+	Route::get('produto/listar', 'ProductController@index')->name('product.list');
+	Route::any('produto/buscar', 'ProductController@index')->name('product.search');
+	Route::get('produto/cadastrar', 'ProductController@create')->name('product.create');
+	Route::post('produto/salvar', 'ProductController@store')->name('product.store');
+	Route::get('produto/editar/{id}', 'ProductController@edit')->name('product.edit');
+	Route::put('produto/atualizar/{id}', 'ProductController@update')->name('product.update');
+	Route::get('produto/status/{id}', 'ProductController@changeStatus')->name('product.status');
+	// Products Size
+	Route::get('produto/tamanho/editar/{id}', 'ProductSizeController@edit')->name('product-size.edit');
+	Route::put('produto/tamanho/atualizar/{id}', 'ProductSizeController@update')->name('product-size.update');
+	// Item
+	Route::get('item/editar/{id}', 'ItemController@edit')->name('item.edit');
+	Route::put('item/atualizar/{id}', 'ItemController@update')->name('item.update');
 
 	// Campaign
 	Route::get('campanha/listar', 'CampaignController@index')->name('campaign.list');
@@ -116,24 +114,24 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('promocao/status/{id}', 'OfferPromotionController@changeStatus')->name('promotion.status');
 
 
-		// Orders
-		Route::get('encomenda/lista', 'OrderController@index')->name('order.list');
-		Route::any('encomenda/busca', 'OrderController@index')->name('order.search');
-		Route::get('encomenda/nova', 'OrderController@index')->name('order.create');
-		Route::post('encomenda/salvar', 'OrderController@store')->name('order.store');
-		Route::get('encomenda/editar/{id}/{page}', 'OrderController@edit')->name('order.edit');
-		Route::get('encomenda/status/{id}', 'OrderController@changeStatus')->name('order.status');
-		// Stocks
-		Route::get('estoque/lista', 'StockController@index')->name('stock.list');
-		Route::any('estoque/busca', 'StockController@index')->name('stock.search');
-		Route::get('estoque/novo', 'StockController@index')->name('stock.create');
-		Route::post('estoque/salvar', 'StockController@store')->name('stock.store');
-		Route::get('estoque/editar/{id}/{page}', 'StockController@edit')->name('stock.edit');
-		Route::get('estoque/status/{id}', 'StockController@changeStatus')->name('stock.status');
-		// Contact Message
-		Route::get('mensagem/lista', 'ContactMessageController@index')->name('message.list');
-		Route::get('mensagem/{id}/{page}', 'ContactMessageController@view')->name('message.view');
-		Route::post('mensagem/nao-lida', 'ContactMessageController@read')->name('message.read');
+	// 	// Orders
+	// 	Route::get('encomenda/lista', 'OrderController@index')->name('order.list');
+	// 	Route::any('encomenda/busca', 'OrderController@index')->name('order.search');
+	// 	Route::get('encomenda/nova', 'OrderController@index')->name('order.create');
+	// 	Route::post('encomenda/salvar', 'OrderController@store')->name('order.store');
+	// 	Route::get('encomenda/editar/{id}/{page}', 'OrderController@edit')->name('order.edit');
+	// 	Route::get('encomenda/status/{id}', 'OrderController@changeStatus')->name('order.status');
+	// 	// Stocks
+	// 	Route::get('estoque/lista', 'StockController@index')->name('stock.list');
+	// 	Route::any('estoque/busca', 'StockController@index')->name('stock.search');
+	// 	Route::get('estoque/novo', 'StockController@index')->name('stock.create');
+	// 	Route::post('estoque/salvar', 'StockController@store')->name('stock.store');
+	// 	Route::get('estoque/editar/{id}/{page}', 'StockController@edit')->name('stock.edit');
+	// 	Route::get('estoque/status/{id}', 'StockController@changeStatus')->name('stock.status');
+	// 	// Contact Message
+	// 	Route::get('mensagem/lista', 'ContactMessageController@index')->name('message.list');
+	// 	Route::get('mensagem/{id}/{page}', 'ContactMessageController@view')->name('message.view');
+	// 	Route::post('mensagem/nao-lida', 'ContactMessageController@read')->name('message.read');
 
 
 	// Customers
@@ -168,8 +166,8 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('usuario/editar/{id}', 'UserController@edit')->name('user.edit');
 	Route::put('usuario/atualizar/{id}', 'UserController@store')->name('user.update');
 	Route::get('usuario/status/{id}', 'UserController@changeStatus')->name('user.status');
-	// Profile
-	Route::get('meus-dados', 'UserController@index')->name('profile');
+	// // Profile
+	// Route::get('meus-dados', 'UserController@index')->name('profile');
 });
 
 

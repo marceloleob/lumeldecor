@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Filters\Checkbox;
+use App\Filters\Nullable;
 use App\Filters\NumberFloat;
 use App\Http\Requests\BaseRequest;
 
@@ -23,6 +24,7 @@ class ProductSizeRequest extends BaseRequest
     public static $customFilters = [
         'checkbox' => Checkbox::class,
 		'float'    => NumberFloat::class,
+		'nullable' => Nullable::class,
     ];
 
     /**
@@ -38,10 +40,10 @@ class ProductSizeRequest extends BaseRequest
         'weight'     => 'float',
         'shape'      => 'trim|escape|uppercase',
         'pro_length' => 'float',
-        'pro_width'  => 'float',
+        'pro_width'  => 'float|nullable',
         'pro_height' => 'float',
         'shi_length' => 'float',
-        'shi_width'  => 'float',
+        'shi_width'  => 'float|nullable',
         'shi_height' => 'float',
     ];
 
@@ -58,10 +60,10 @@ class ProductSizeRequest extends BaseRequest
         'weight'     => "required|regex:/^\d+(\.\d{1,3})?$/",
         'shape'      => 'required|string|required_with:Q,R',
         'pro_length' => "required|regex:/^\d+(\.\d{1,2})?$/",
-        'pro_width'  => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'pro_width'  => "nullable|regex:/^\d+(\.\d{1,2})?$/",
         'pro_height' => "required|regex:/^\d+(\.\d{1,2})?$/",
         'shi_length' => "required|regex:/^\d+(\.\d{1,2})?$/",
-        'shi_width'  => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'shi_width'  => "nullable|regex:/^\d+(\.\d{1,2})?$/",
         'shi_height' => "required|regex:/^\d+(\.\d{1,2})?$/",
     ];
 }

@@ -41,10 +41,7 @@ class ProductSizeRepository extends BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection) {
 
-			$collection->name      = $collection->product->name;
-			$collection->length    = number_format($collection->pro_length, 2, ',', '.');
-			$collection->width     = number_format($collection->pro_width, 2, ',', '.');
-			$collection->height    = number_format($collection->pro_height, 2, ',', '.');
+			$collection->name = $collection->product->name;
 		});
 	}
 }

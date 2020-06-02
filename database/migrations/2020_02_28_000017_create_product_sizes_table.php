@@ -23,7 +23,7 @@ class CreateProductSizesTable extends Migration
 			$table->decimal('pro_width', 5, 2)->nullable(); // Product - Largura (cm)      12345,12
 			$table->decimal('pro_height', 5, 2);            // Product - Altura (cm)       12345,12
 			$table->decimal('shi_length', 5, 2);            // Shipping - Comprimento (cm)  12345,12
-			$table->decimal('shi_width', 5, 2);             // Shipping - Largura (cm)      12345,12
+			$table->decimal('shi_width', 5, 2)->nullable(); // Shipping - Largura (cm)      12345,12
 			$table->decimal('shi_height', 5, 2);            // Shipping - Altura (cm)       12345,12
         });
     }

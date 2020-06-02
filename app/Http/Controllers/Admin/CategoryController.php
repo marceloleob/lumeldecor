@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\MaterialRepository;
 use Illuminate\Http\Request;
 
-class CategoryController extends AdminController
+class CategoryController extends Controller
 {
 	/**
 	 * @var CategoryRepository

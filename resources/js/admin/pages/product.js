@@ -45,7 +45,7 @@ $(document).ready(function ()
 			required: true,
 		});
 		jQuery.validator.addClassRules("input-pro_width", {
-			required: true,
+			required: false,
 		});
 		jQuery.validator.addClassRules("input-pro_height", {
 			required: true,
@@ -53,9 +53,9 @@ $(document).ready(function ()
 		jQuery.validator.addClassRules("input-shi_length", {
 			required: true,
 		});
-		// jQuery.validator.addClassRules("input-shi_width", {
-		// 	required: ".shape:checked",
-		// });
+		jQuery.validator.addClassRules("input-shi_width", {
+			required: false,
+		});
 		jQuery.validator.addClassRules("input-shi_height", {
 			required: true,
 		});
@@ -358,8 +358,8 @@ $(document).ready(function ()
 
 		// recupera o tipo do bloco
 		var group       = $(this).data('group');
-		var widthDiv    = $(this).closest(`.row-${group}`).find('.div-pro_width');
-		var lengthDiv   = $(this).closest(`.row-${group}`).find('.div-pro_length');
+		var widthDiv    = $(this).closest(`.row-${group}`).find('.div-width');
+		var lengthDiv   = $(this).closest(`.row-${group}`).find('.div-length');
 		var lengthlabel = lengthDiv.find('label');
 
 		if ($(this).val() === 'R') {

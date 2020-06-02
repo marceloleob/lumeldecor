@@ -19,26 +19,7 @@ class ItemColor extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'id',
 		'item_id',
 		'color_id',
 	];
-
-	// /**
-	//  * Get the items that owns the color.
-	//  *
-	//  */
-	// public function items()
-	// {
-	// 	return $this->belongsToMany(Item::class);
-	// }
-
-	// /**
-	//  * Get the colors that owns the item.
-	//  *
-	//  */
-	// public function colors()
-	// {
-	// 	return $this->belongsToMany(Color::class, 'color_id', 'id');
-    // }
 }

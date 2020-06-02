@@ -31,7 +31,7 @@ $(document).ready(function ()
 					required: false,
 				},
 				shi_width: {
-					required: true,
+					required: false,
 				},
 				shi_height: {
 					required: true,
@@ -48,8 +48,8 @@ $(document).ready(function ()
 		// Method cancels the event if it is cancelable
 		event.preventDefault();
 
-		var widthDiv    = $(this).closest('.row-dimension').find('.div-pro_width');
-		var lengthDiv   = $(this).closest('.row-dimension').find('.div-pro_length');
+		var widthDiv    = $(this).closest('.row-dimension').find('.div-width');
+		var lengthDiv   = $(this).closest('.row-dimension').find('.div-length');
 		var lengthlabel = lengthDiv.find('label');
 
 		if ($(this).val() === 'R') {
@@ -71,7 +71,7 @@ $(document).ready(function ()
 	$('#pro_length').keyup(function (event) {
 		// Method cancels the event if it is cancelable
 		event.preventDefault();
-console.log($(this).val());
+
 		$('#shi_length').val($(this).val());
 	});
 
@@ -79,29 +79,21 @@ console.log($(this).val());
 	 * Duplica a informacao dos campos de "Comprimento"
 	 *
 	 */
-	$('input[name="pro_width"]').keyup(function (event) {
+	$('#pro_width').keyup(function (event) {
 		// Method cancels the event if it is cancelable
 		event.preventDefault();
-		// recupera o tipo do bloco
-		var group = $(this).data('group');
-		var div   = $(this).closest(`.row-${group}`).find('.div-shi_width');
-		var input = div.find('input');
 
-		input.val($(this).val());
+		$('#shi_width').val($(this).val());
 	});
 
 	/**
 	 * Duplica a informacao dos campos de "Comprimento"
 	 *
 	 */
-	$('input[name="pro_height"]').keyup(function (event) {
+	$('#pro_height').keyup(function (event) {
 		// Method cancels the event if it is cancelable
 		event.preventDefault();
-		// recupera o tipo do bloco
-		var group = $(this).data('group');
-		var div   = $(this).closest(`.row-${group}`).find('.div-shi_height');
-		var input = div.find('input');
 
-		input.val($(this).val());
+		$('#shi_height').val($(this).val());
 	});
 });

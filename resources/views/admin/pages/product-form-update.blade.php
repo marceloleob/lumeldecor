@@ -114,9 +114,9 @@
 							<tr>
 								<td class="text-center">{!! $item->size !!}</td>
 								<td class="text-left">{!! $item->name !!}</td>
-								<td class="text-center">{!! $item->length !!}</td>
-								<td class="text-center">{!! $item->width !!}</td>
-								<td class="text-center">{!! $item->height !!}</td>
+								<td class="text-center">{!! $item->pro_length !!}</td>
+								<td class="text-center">{!! $item->pro_width !!}</td>
+								<td class="text-center">{!! $item->pro_height !!}</td>
 								<td class="text-center">
 									<a href="{!! route('product-size.edit', [$item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
 								</td>

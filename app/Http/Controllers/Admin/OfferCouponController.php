@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\OfferCouponRequest;
 use App\Repositories\OfferCouponRepository;
 use Illuminate\Http\Request;
 
-class OfferCouponController extends AdminController
+class OfferCouponController extends Controller
 {
 	/**
 	 * @var OfferCouponRepository

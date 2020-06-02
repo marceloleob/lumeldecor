@@ -80,9 +80,8 @@ class ProductRepository extends BaseRepository
 	public function options()
 	{
 		$options = $this->query()
-			->with(['info' => function ($subQuery) {
-				$subQuery->orderBy('name')->where('status', config('constants.ACTIVE'));
-			}])
+			->orderBy('name')
+			->where('status', config('constants.ACTIVE'))
 			->get()
 			->pluck('name', 'id');
 		// retorna o combobox pronto

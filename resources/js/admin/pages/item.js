@@ -8,23 +8,22 @@ $(document).ready(function ()
 		// validation
 		$('#form-item').validate({
 			rules: {
-				material_id: {
+				colors: {
 					required: true,
 				},
-				category_id: {
+				supplier_id: {
 					required: true,
 				},
-				name: {
+				s_price: {
 					required: true,
-					minlength: 2,
-					maxlength: 100,
 				},
-				description: {
-					required: false,
-					minlength: 5,
-					maxlength: 3000,
+				p_price: {
+					required: true,
 				},
-				hashtag: {
+				themes: {
+					required: true,
+				},
+				launch: {
 					required: false,
 				},
 			}
@@ -35,9 +34,9 @@ $(document).ready(function ()
 	 * Configuracao do campo para Hashtags
 	 *
 	 */
-	$('.hashtag').tagsinput({
-		itemText: 'label',
-		confirmKeys: [13, 44, 32], // Enter, Coma, Space
-		trimValue: true
-	});
+	// $('.hashtag').tagsinput({
+	// 	itemText: 'label',
+	// 	confirmKeys: [13, 44, 32], // Enter, Coma, Space
+	// 	trimValue: true
+	// });
 });

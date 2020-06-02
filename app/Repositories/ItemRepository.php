@@ -41,15 +41,23 @@ class ItemRepository extends BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection) {
 
-			$collection->name    = $collection->productSize->product->name;
-			$collection->size    = $collection->productSize->size;
-			$collection->p_price = 'R$' . number_format($collection->p_price, 2, ',', '.');
-			$collection->s_price = 'R$' . number_format($collection->s_price, 2, ',', '.');
+			$collection->name = $collection->productSize->product->name;
+			$collection->size = $collection->productSize->size;
 			// verifica se o tema vai aparecer na home
 			if ($collection->launch == config('constants.ACTIVE')) {
 				$collection->launch = '<span class="text-focus">Sim</span>';
 			} else {
 				$collection->launch = '<span class="text-danger">Não</span>';
+			}
+			// verifica se e inativo
+			if ($collection->status == config('constants.ACTIVE')) {
+				// seta ativo como default
+				$collection->status = ['class' => 'success', 'label' => 'Ativo'];
+				$collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
+			} else {
+				// seta inativo como default
+				$collection->status = ['class' => 'danger', 'label' => 'Inativo'];
+				$collection->styles = ['class' => 'btn-outline-success', 'label' => 'far fa-check-circle'];
 			}
 		});
 	}

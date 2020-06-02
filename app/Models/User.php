@@ -75,6 +75,15 @@ class User extends Authenticatable
 	}
 
 	/**
+	 * Get the employees about this user.
+	 *
+	 */
+	public function employees()
+	{
+		return $this->hasMany(Employee::class);
+	}
+
+	/**
 	 * Get the stock about this user.
 	 *
 	 */

@@ -121,7 +121,7 @@
 										<div class="col-md-3">
 											<h5 class="card-title card-dimension"><i class="fas fa-shopping-bag"></i> &nbsp; Produto</h5>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-3 div-length">
 											<div class="position-relative form-group div-pro_length">
 												{!! Form::label('product[0][pro_length]', 'Comprimento', ['class' => 'required']) !!}
 												<div class="input-group">
@@ -131,7 +131,7 @@
 												{!! Form::notification('product[0][pro_length]', $errors) !!}
 											</div>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-3 div-width {!! (old('product[0][pro_width]') === 'R') ? 'hide' : '' !!}">
 											<div class="position-relative form-group div-pro_width">
 												{!! Form::label('product[0][pro_width]', 'Largura', ['class' => 'required']) !!}
 												<div class="input-group">
@@ -156,7 +156,7 @@
 										<div class="col-md-3">
 											<h5 class="card-title card-dimension"><i class="fas fa-dolly-flatbed"></i> &nbsp; Embalagem</h5>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-3 div-length">
 											<div class="position-relative form-group div-shi_length">
 												{!! Form::label('product[0][shi_length]', 'Comprimento', ['class' => 'required']) !!}
 												<div class="input-group">
@@ -166,7 +166,7 @@
 												{!! Form::notification('product[0][shi_length]', $errors) !!}
 											</div>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-3 div-width {!! (old('product[0][shi_width]') === 'R') ? 'hide' : '' !!}">
 											<div class="position-relative form-group div-shi_width">
 												{!! Form::label('product[0][shi_width]', 'Largura', ['class' => 'required']) !!}
 												<div class="input-group">
@@ -233,7 +233,7 @@
 														</div>
 														<div class="col-md-5">
 															<div class="position-relative form-group div-picture">
-																{!! Form::label('product[0][item][0][picture]', 'Foto desta cor', ['class' => 'required']) !!}
+																{!! Form::label('product[0][item][0][picture]', 'Foto desta cor - (810px X 900px)', ['class' => 'required']) !!}
 																{!! Form::file('product[0][item][0][picture]', ['class' => 'form-control custom-file-input', 'id' => 'product[0][item][0][picture][file]', 'data-name' => 'picture', 'data-group' => 'item']) !!}
 																{!! Form::label('product[0][item][0][picture][file]', '&nbsp;', ['class' => 'custom-file-label']) !!}
 																{!! Form::notification('product[0][item][0][picture]', $errors) !!}

@@ -48,39 +48,6 @@ class OfferPromotion extends Model
 	];
 
 	/**
-	 * Get the start date.
-	 *
-	 * @param  string  $value
-	 * @return string
-	 */
-	public function getAmountAttribute($value)
-	{
-		return number_format($value, 2, ',', '.');
-	}
-
-	/**
-	 * Get the start date.
-	 *
-	 * @param  string  $value
-	 * @return string
-	 */
-	public function getStartDateAttribute($value)
-	{
-	    return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
-	}
-
-	/**
-	 * Get the finish date.
-	 *
-	 * @param  string  $value
-	 * @return string
-	 */
-	public function getFinishDateAttribute($value)
-	{
-	    return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
-	}
-
-	/**
 	 * Get the material that owns the promotion.
 	 *
 	 */
@@ -117,6 +84,15 @@ class OfferPromotion extends Model
 	}
 
 	/**
+	 * Get the product that owns the promotion.
+	 *
+	 */
+	public function product()
+	{
+		return $this->belongsTo(Product::class);
+	}
+
+	/**
 	 * Get the item that owns the promotion.
 	 *
 	 */
@@ -126,11 +102,35 @@ class OfferPromotion extends Model
 	}
 
 	/**
-	 * Get the product that owns the promotion.
+	 * Get the start date.
 	 *
+	 * @param  string  $value
+	 * @return string
 	 */
-	public function product()
+	public function getAmountAttribute($value)
 	{
-		return $this->belongsTo(Product::class);
+		return number_format($value, 2, ',', '.');
+	}
+
+	/**
+	 * Get the start date.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public function getStartDateAttribute($value)
+	{
+	    return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
+	}
+
+	/**
+	 * Get the finish date.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public function getFinishDateAttribute($value)
+	{
+	    return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
 	}
 }

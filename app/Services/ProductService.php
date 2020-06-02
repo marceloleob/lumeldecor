@@ -22,33 +22,8 @@ class ProductService
 	 */
 	public static function handleSlug($name)
 	{
+		return Str::slug($name);
 		// return Str::slug($product->category->name . ' ' . $product->name . ' ' . $product->category->material->name . ' ' . $productSize);
-	}
-
-	/**
-	 * Cria um codigo unico para cada item de produto
-	 *
-	 * @param Product     $product
-	 * @param ProductSize $productSizeE
-	 * @param integer     $colorId
-	 * @return string
-	 */
-	public static function handleCode($product, $productSizeE, $colors)
-	{
-		// forca os codigos das cores terem 2 numeros
-		$colors->transform(function ($item) {
-			return str_pad($item, 2, '0', STR_PAD_LEFT);
-		});
-		// mescla os codigos (3 codigos no maximo)
-		$flattened = $colors->flatten()->implode('');
-
-		$materialCode = str_pad($product->category->material->id, 2, '0', STR_PAD_LEFT);
-		$categoryCode = str_pad($product->category->id, 2, '0', STR_PAD_LEFT);
-		$productCode  = str_pad($product->id, 5, '0', STR_PAD_LEFT);
-		$colorCode    = str_pad($flattened, 6, '0', STR_PAD_LEFT);
-		$sizeCode     = str_pad($productSizeE->size, 2, '0', STR_PAD_LEFT);
-
-		return 'LM' . $materialCode . $categoryCode . $productCode . $colorCode . $sizeCode;
 	}
 
 	/**
@@ -67,7 +42,7 @@ class ProductService
 			$dataProduct = [
 				'category_id' => $data['category_id'],
 				'name'        => $data['name'],
-				'slug'        => Str::slug($data['name']),
+				'slug'        => self::handleSlug($data['name']),
 				'picture'     => $data['picture'] ?? null,
 				'description' => $data['description'],
 				'hashtag'     => $data['hashtag'],
@@ -108,7 +83,7 @@ class ProductService
 					$dataItem = [
 						'product_size_id' => $productSizeE->id,
 						'supplier_id'     => $item['supplier_id'],
-						'code'            => self::handleCode($productE, $productSizeE, $item['colors']),
+						'code'            => ItemService::handleCode($productE, $productSizeE, $item['colors']),
 						'picture'         => ImageService::save($item['picture']),
 						'p_price'         => $item['p_price'],
 						's_price'         => $item['s_price'],
@@ -135,17 +110,20 @@ class ProductService
 						}
 					}
 
-					// 5º) Salva o(s) tema(s) do item (array)
-					foreach ($item['themes'] as $themeId) {
-						$dataTheme = [
-							'item_id'  => $itemE->id,
-							'theme_id' => (int) $themeId,
-						];
-						$itemThemeR = new ItemThemeRepository();
-						$itemThemeE = $itemThemeR->store($dataTheme, true);
-						// verifica se salvou
-						if (! isset($itemThemeE->id)) {
-							throw new Exception($itemThemeE);
+					// verifica se foi informado algum Tema (nao obrigatorio)
+					if (isset($item['themes']) === true) {
+						// 5º) Salva o(s) tema(s) do item (array)
+						foreach ($item['themes'] as $themeId) {
+							$dataTheme = [
+								'item_id'  => $itemE->id,
+								'theme_id' => (int) $themeId,
+							];
+							$itemThemeR = new ItemThemeRepository();
+							$itemThemeE = $itemThemeR->store($dataTheme, true);
+							// verifica se salvou
+							if (! isset($itemThemeE->id)) {
+								throw new Exception($itemThemeE);
+							}
 						}
 					}
 
@@ -206,6 +184,7 @@ class ProductService
 				'description' => $data['description'],
 				'hashtag'     => $data['hashtag'],
 				'featured'    => $data['featured'] ?? false,
+				'status'      => $data['status'],
 			];
 			$productR = new ProductRepository();
 			$productE = $productR->store($dataProduct, true);

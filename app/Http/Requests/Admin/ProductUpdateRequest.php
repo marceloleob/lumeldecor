@@ -52,5 +52,6 @@ class ProductUpdateRequest extends BaseRequest
         'description' => 'max:3000',
         'hashtag'     => '',
         'featured'    => 'boolean',
+        'status'      => 'boolean',
     ];
 }

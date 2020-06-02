@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Services\StockService;
 use Illuminate\Http\Request;
 
-class StockController extends AdminController
+class StockController extends Controller
 {
 	/**
 	 * Display a listing of the resource.

@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Filters\Checkbox;
-use App\Filters\Nullable;
+use App\Filters\Money;
 use App\Http\Requests\BaseRequest;
 
 class ItemRequest extends BaseRequest
@@ -21,8 +21,8 @@ class ItemRequest extends BaseRequest
      * @var array
      */
     public static $customFilters = [
-        'nullable' => Nullable::class,
-        'checkbox' => Checkbox::class,
+		'checkbox' => Checkbox::class,
+		'money'    => Money::class,
     ];
 
     /**
@@ -31,13 +31,21 @@ class ItemRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'          => 'digit',
-        'material_id' => 'digit',
-        'category_id' => 'digit',
-        'name'        => 'trim|escape',
-        'description' => 'trim|escape|strip_tags|nullable',
-        'hashtag'     => 'trim|escape|nullable',
-        'featured'    => 'checkbox|cast:boolean',
+        'id'              => 'digit',
+        'product_id'      => 'digit',
+        'product_size_id' => 'digit',
+        // item
+        'supplier_id'     => 'cast:integer',
+        'p_price'         => 'money',
+        's_price'         => 'money',
+        'picture'         => 'trim|lowercase',
+        'new_picture'     => 'trim|lowercase',
+		'launch'          => 'checkbox',
+		'status'          => 'checkbox',
+		// item color
+		'colors'          => 'cast:collection',
+		// item theme
+		'themes'          => 'cast:collection',
     ];
 
     /**
@@ -46,12 +54,21 @@ class ItemRequest extends BaseRequest
      * @var array
      */
     public static $validations = [
-        'id'          => 'integer',
-        'material_id' => 'required|integer',
-        'category_id' => 'required|integer',
-        'name'        => 'required|min:2|max:100',
-        'description' => 'max:3000|nullable',
-        'hashtag'     => 'nullable',
-        'featured'    => 'boolean',
+        'id'              => 'integer',
+        'product_id'      => 'integer',
+        'product_size_id' => 'integer',
+        // item
+        'supplier_id'     => 'required|integer',
+        'p_price'         => "required|regex:/^\d+(\.\d{1,2})?$/",
+        's_price'         => 'required|regex:/^\d+(\.\d{1,2})?$/',
+        'picture'         => 'required',
+        'new_picture'     => 'required_if:picture,false|image|mimes:jpeg,png,jpg,gif,svg|max:3072', // 3 MEGABYTES
+        // 'new_picture'     => 'required_if:picture,false|file|max:3072', // 3 MEGABYTES
+		'launch'          => 'boolean',
+		'status'          => 'boolean',
+		// item color
+		'colors'          => 'required',
+		// item theme
+		'themes'          => '',
     ];
 }

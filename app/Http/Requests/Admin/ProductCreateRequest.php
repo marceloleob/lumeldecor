@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Filters\Checkbox;
 use App\Filters\Money;
+use App\Filters\Nullable;
 use App\Filters\NumberFloat;
 use App\Http\Requests\BaseRequest;
 
@@ -25,6 +26,7 @@ class ProductCreateRequest extends BaseRequest
         'checkbox' => Checkbox::class,
         'money'    => Money::class,
 		'float'    => NumberFloat::class,
+		'nullable' => Nullable::class,
     ];
 
     /**
@@ -46,10 +48,10 @@ class ProductCreateRequest extends BaseRequest
         'product.*.weight'             => 'float',
         'product.*.shape'              => 'trim|escape|uppercase',
         'product.*.pro_length'         => 'float',
-        'product.*.pro_width'          => 'float',
+        'product.*.pro_width'          => 'float|nullable',
         'product.*.pro_height'         => 'float',
         'product.*.shi_length'         => 'float',
-        'product.*.shi_width'          => 'float',
+        'product.*.shi_width'          => 'float|nullable',
         'product.*.shi_height'         => 'float',
         // item
         'product.*.item.*.supplier_id' => 'cast:integer',
@@ -84,16 +86,16 @@ class ProductCreateRequest extends BaseRequest
         'product.*.weight'             => "required|regex:/^\d+(\.\d{1,3})?$/",
         'product.*.shape'              => 'required|string|required_with:Q,R',
         'product.*.pro_length'         => "required|regex:/^\d+(\.\d{1,2})?$/",
-        'product.*.pro_width'          => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.pro_width'          => "nullable|regex:/^\d+(\.\d{1,2})?$/",
         'product.*.pro_height'         => "required|regex:/^\d+(\.\d{1,2})?$/",
         'product.*.shi_length'         => "required|regex:/^\d+(\.\d{1,2})?$/",
-        'product.*.shi_width'          => "required|regex:/^\d+(\.\d{1,2})?$/",
+        'product.*.shi_width'          => "nullable|regex:/^\d+(\.\d{1,2})?$/",
         'product.*.shi_height'         => "required|regex:/^\d+(\.\d{1,2})?$/",
         // item
         'product.*.item.*.supplier_id' => 'required|integer',
         'product.*.item.*.p_price'     => "required|regex:/^\d+(\.\d{1,2})?$/",
         'product.*.item.*.s_price'     => 'required|regex:/^\d+(\.\d{1,2})?$/',
-        'product.*.item.*.picture'     => 'required|image|mimes:jpeg,png,jpg|max:3072', // 3 MEGABYTES
+        'product.*.item.*.picture'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3072', // 3 MEGABYTES
 		'product.*.item.*.launch'      => 'boolean',
 		// item color
 		'product.*.item.*.colors'      => 'required',

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ThemeRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\MaterialRepository;
 use App\Repositories\ThemeRepository;
 use Illuminate\Http\Request;
 
-class ThemeController extends AdminController
+class ThemeController extends Controller
 {
 	/**
 	 * @var ThemeRepository

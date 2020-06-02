@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\OfferPromotionRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\MaterialRepository;
@@ -11,7 +11,7 @@ use App\Repositories\ProductRepository;
 use App\Repositories\ThemeRepository;
 use Illuminate\Http\Request;
 
-class OfferPromotionController extends AdminController
+class OfferPromotionController extends Controller
 {
 	/**
 	 * @var OfferPromotionRepository

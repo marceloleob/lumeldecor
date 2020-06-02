@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 
-class OrderController extends AdminController
+class OrderController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
