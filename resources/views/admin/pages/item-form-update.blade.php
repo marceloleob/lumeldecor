@@ -98,7 +98,7 @@
 											<ul class="button-checkbox">
 												<li>
 													{!! Form::checkbox('launch', 1, (old('launch', $data->launch) ? true : false), ['id' => 'launch', 'class' => 'hide checks']) !!}
-													{!! Form::label('launch', 'Lançamento') !!}
+													{!! Form::label('launch', 'Este item é um lançamento') !!}
 												</li>
 											</ul>
 										</div>

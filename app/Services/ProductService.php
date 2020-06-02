@@ -47,6 +47,7 @@ class ProductService
 				'description' => $data['description'],
 				'hashtag'     => $data['hashtag'],
 				'featured'    => $data['featured'] ?? false,
+				'launch'      => $data['launch'] ?? false,
 			];
 			$productR = new ProductRepository();
 			$productE = $productR->store($dataProduct, true);
@@ -184,6 +185,7 @@ class ProductService
 				'description' => $data['description'],
 				'hashtag'     => $data['hashtag'],
 				'featured'    => $data['featured'] ?? false,
+				'launch'      => $data['launch'] ?? false,
 				'status'      => $data['status'],
 			];
 			$productR = new ProductRepository();

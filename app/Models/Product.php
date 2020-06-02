@@ -27,6 +27,7 @@ class Product extends Model
 		'description',
 		'hashtag',
 		'featured',
+		'launch',
 		'status',
     ];
 

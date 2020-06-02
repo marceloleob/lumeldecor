@@ -43,6 +43,7 @@ class ProductCreateRequest extends BaseRequest
         'description'                  => 'trim|escape|strip_tags',
         'hashtag'                      => 'trim|cast:string',
 		'featured'                     => 'checkbox',
+		'launch'                       => 'checkbox',
 		// product size
         'product.*.size'               => 'trim|escape|uppercase',
         'product.*.weight'             => 'float',
@@ -81,6 +82,7 @@ class ProductCreateRequest extends BaseRequest
         'description'                  => 'max:3000',
         'hashtag'                      => '',
         'featured'                     => 'boolean',
+        'launch'                       => 'boolean',
 		// product size
         'product.*.size'               => 'required|string|required_with:PP,P,M,G,GG,U',
         'product.*.weight'             => "required|regex:/^\d+(\.\d{1,3})?$/",

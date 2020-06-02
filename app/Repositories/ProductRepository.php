@@ -53,11 +53,17 @@ class ProductRepository extends BaseRepository
 			$collection->productName  = $collection->name;
 			$collection->categoryName = $collection->category->name;
 			$collection->materialName = $collection->category->material->name;
-			// verifica se o producto e um Lancamento
+			// verifica se o producto e um destaque
 			if ($collection->featured == config('constants.ACTIVE')) {
 				$collection->featured = '<span class="text-focus">Sim</span>';
 			} else {
 				$collection->featured = '<span class="text-danger">Não</span>';
+			}
+			// verifica se o producto e um lancamento
+			if ($collection->launch == config('constants.ACTIVE')) {
+				$collection->launch = '<span class="text-focus">Sim</span>';
+			} else {
+				$collection->launch = '<span class="text-danger">Não</span>';
 			}
 			// verifica se e inativo
 			if ($collection->status == config('constants.ACTIVE')) {

@@ -34,7 +34,7 @@ class ItemService
 	}
 
 	/**
-	 * Percorre a Collection e customiza dados para imprimir na view
+	 * Percorre a Collection e customiza dados para imprimir na view como array e somente com o ID
 	 *
 	 * @return Collection
 	 */
@@ -124,6 +124,7 @@ class ItemService
 					throw new Exception($itemColorE);
 				}
 			}
+
 			// verifica se foi informado algum Tema (nao obrigatorio)
 			if (isset($data['themes']) === true) {
 				// exclui todos os temas dete item

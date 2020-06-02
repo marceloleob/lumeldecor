@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
 			$table->text('description');
 			$table->text('hashtag')->nullable();
 			$table->boolean('featured')->default(0);
+			$table->boolean('launch')->default(0);
 			$table->boolean('status')->default(1);
 		});
 	}

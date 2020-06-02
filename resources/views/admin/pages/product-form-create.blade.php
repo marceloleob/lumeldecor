@@ -41,8 +41,12 @@
 											<div class="position-relative form-group featured">
 												<ul class="button-checkbox">
 													<li>
-														{!! Form::checkbox('featured', '1', (old('featured') ? true : false), ['id' => 'featured', 'class' => 'hide']) !!}
-														{!! Form::label('featured', 'Destacar este produto no Site.') !!}
+														{!! Form::checkbox('featured', 1, (old('featured') ? true : false), ['id' => 'featured', 'class' => 'hide']) !!}
+														{!! Form::label('featured', 'Destacar este produto no site') !!}
+													</li>
+													<li>
+														{!! Form::checkbox('launch', 1, (old('launch') ? true : false), ['id' => 'launch', 'class' => 'hide']) !!}
+														{!! Form::label('launch', 'Este produto é um lançamento') !!}
 													</li>
 												</ul>
 											</div>

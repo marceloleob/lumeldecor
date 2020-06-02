@@ -24,6 +24,7 @@ class ProductsTableSeeder extends Seeder
 			'description' => 'Aqui vai a descrição do produto!',
 			'hashtag'     => 'hashtagteste',
 			'featured'    => 1,
+			'launch'      => 0,
 			'status'      => 1,
 		]);
 	}

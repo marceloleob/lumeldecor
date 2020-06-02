@@ -40,7 +40,7 @@ class ImageService
         if (empty($newPicture)) {
             return $picture;
 		}
-
+dd($picture, $newPicture);
 		// exclui a imagem atual
 		self::destroy($picture);
 		// salva a nova imagem

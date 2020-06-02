@@ -45,6 +45,10 @@
 														{!! Form::checkbox('featured', '1', (old('featured', $data->featured) ? true : false), ['id' => 'featured', 'class' => 'hide']) !!}
 														{!! Form::label('featured', 'Destacar este produto no Site.') !!}
 													</li>
+													<li>
+														{!! Form::checkbox('launch', 1, (old('launch', $data->launch) ? true : false), ['id' => 'launch', 'class' => 'hide']) !!}
+														{!! Form::label('launch', 'Este produto é um lançamento') !!}
+													</li>
 												</ul>
 											</div>
 											<div class="position-relative form-group">
