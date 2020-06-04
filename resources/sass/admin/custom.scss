@@ -150,6 +150,9 @@ a, a:hover, a:focus, a:visited {
 * PAGES - PRODUCT
 * -----------------------------------------------------------------------------
 */
+.card-item {
+	background-color: #F8F8F8;
+}
 .card-box-example {
 	display: flex;
 	align-items: center;
@@ -161,8 +164,8 @@ a, a:hover, a:focus, a:visited {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid #ced4da;
-	border-radius: .25rem;
+	// border: 1px solid #ced4da;
+	// border-radius: .25rem;
 }
 .card-box-picture img {
 	max-width: 100%;

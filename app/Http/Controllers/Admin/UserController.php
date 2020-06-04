@@ -27,8 +27,8 @@ class UserController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
+	 * @param  Request  $request
+	 * @return Response
 	 */
 	public function index(Request $request)
 	{
@@ -40,7 +40,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -50,8 +50,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  UserRequest  $request
+     * @return Response
      */
     public function store(UserRequest $request)
     {
@@ -62,14 +62,14 @@ class UserController extends Controller
             return back()->withInput()->with($response);
         }
 
-        return redirect()->route('user.list')->with($response);
+        return redirect()->route('user.list')->with('success', 'Usuário cadastrado com sucesso!');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -78,6 +78,25 @@ class UserController extends Controller
 		];
 
 		return view('admin.pages.user-form-update', ['page' => 'user'])->with($params);
+	}
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  UserRequest  $request
+     * @param  int  $id
+     * @return Response
+     */
+    public function update(UserRequest $request, $id)
+    {
+		// save
+		$response = $this->repository->store($request->all(), $id);
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+		}
+
+        return redirect()->route('material.list')->with('success', 'Usuário atualizado com sucesso!');
 	}
 
     /**

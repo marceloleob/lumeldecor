@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Item;
 use App\Models\ItemColor;
 use App\Models\ItemTheme;
 use App\Repositories\ItemColorRepository;
@@ -9,8 +10,6 @@ use App\Repositories\ItemRepository;
 use App\Repositories\ItemThemeRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductSizeRepository;
-use Illuminate\Support\Facades\DB;
-
 use Exception;
 
 class ItemService
@@ -74,89 +73,67 @@ class ItemService
 	}
 
 	/**
-	 * Gerencia o metodo update dos produtos
+	 * Gerencia o metodo create e update dos itens do produto
 	 *
-	 * @param  array $data
-	 * @return void
+	 * @param  array   $data
+	 * @param  integer $itemId
+	 * @return \App\Models\Item
 	 */
-    public static function update($data = [])
+    public static function store($data = [], $itemId = null)
     {
-        // inicia o acoplamento de uma transacao
-		DB::beginTransaction();
+		// recupera uma instancia do produto pai
+		$product = (new ProductRepository)->findById($data['product_id']);
+		// recupera uma instancia do tamanho do produto pai
+		$productSize = (new ProductSizeRepository)->findById($data['product_size_id']);
 
-        try {
-			// recupera uma instancia do produto pai
-			$product = (new ProductRepository)->findById($data['product_id']);
-			// recupera uma instancia do tamanho do produto pai
-			$productSize = (new ProductSizeRepository)->findById($data['product_size_id']);
+		// atualiza os dados do Item
+		$data['code']    = self::handleCode($product, $productSize, $data['colors']);
+		$data['picture'] = ImageService::store($data['picture'], $data['new_picture'] ?? null, $itemId);
+		$data['launch']  = $data['launch'] ?? false;
 
-			// atualiza os dados do Item
-			$dataItem = [
-				'id'              => $data['id'],
-				'product_size_id' => $data['product_size_id'],
-				'supplier_id'     => $data['supplier_id'],
-				'code'            => self::handleCode($product, $productSize, $data['colors']),
-				'picture'         => ImageService::update($data['picture'], $data['new_picture'] ?? null),
-				'p_price'         => $data['p_price'],
-				's_price'         => $data['s_price'],
-				'launch'          => $data['launch'] ?? false,
-				'status'          => $data['status'],
-			];
-			$itemR = new ItemRepository();
-			$itemE = $itemR->store($dataItem, true);
-			// verifica se salvou
-			if (! isset($itemE->id)) {
-				throw new Exception($itemE);
-			}
-
-			// exclui todas as cores deste item
-			ItemColor::where('item_id', $itemE->id)->delete();
-			// salva a(s) cor(es) do item (array)
-			foreach ($data['colors'] as $colorId) {
-				$dataColor = [
-					'item_id'  => $itemE->id,
-					'color_id' => (int) $colorId,
-				];
-				$itemColorR = new ItemColorRepository();
-				$itemColorE = $itemColorR->store($dataColor, true);
-				// verifica se salvou
-				if (! isset($itemColorE->id)) {
-					throw new Exception($itemColorE);
-				}
-			}
-
-			// verifica se foi informado algum Tema (nao obrigatorio)
-			if (isset($data['themes']) === true) {
-				// exclui todos os temas dete item
-				ItemTheme::where('item_id', $itemE->id)->delete();
-				// salva o(s) tema(s) do item (array)
-				foreach ($data['themes'] as $themeId) {
-					$dataTheme = [
-						'item_id'  => $itemE->id,
-						'theme_id' => (int) $themeId,
-					];
-					$itemThemeR = new ItemThemeRepository();
-					$itemThemeE = $itemThemeR->store($dataTheme, true);
-					// verifica se salvou
-					if (! isset($itemThemeE->id)) {
-						throw new Exception($itemThemeE);
-					}
-				}
-			}
-
-            // efetiva a transacao
-            DB::commit();
-            // retorna a entidade criada ou atualizada
-            return ['success' => 'Item do produto foi atualizado com sucesso!'];
-
-        } catch (Exception $exception) {
-            // descarta a transacao
-            DB::rollback();
-            // retorna o erro
-            return [
-                'danger' => 'Erro ao atualizar o item do produto produto, tente novamente!',
-                'error'  => $exception,
-            ];
+		// salva ou atualiza os dados
+		$itemR = new ItemRepository();
+		$itemE = $itemR->store($data, true);
+		// verifica se salvou
+		if (!$itemE instanceof Item) {
+			throw new Exception($itemE, 1);
 		}
+
+		// exclui todas as cores deste item
+		ItemColor::where('item_id', $itemE->id)->delete();
+		// salva a(s) cor(es) do item (array)
+		foreach ($data['colors'] as $colorId) {
+			$dataColor = [
+				'item_id'  => $itemE->id,
+				'color_id' => (int) $colorId,
+			];
+			$itemColorR = new ItemColorRepository();
+			$itemColorE = $itemColorR->store($dataColor, true);
+			// verifica se salvou
+			if (!$itemColorE instanceof ItemColor) {
+				throw new Exception($itemColorE, 1);
+			}
+		}
+
+		// verifica se foi informado algum Tema (nao obrigatorio)
+		if (isset($data['themes']) === true) {
+			// exclui todos os temas dete item
+			ItemTheme::where('item_id', $itemE->id)->delete();
+			// salva o(s) tema(s) do item (array)
+			foreach ($data['themes'] as $themeId) {
+				$dataTheme = [
+					'item_id'  => $itemE->id,
+					'theme_id' => (int) $themeId,
+				];
+				$itemThemeR = new ItemThemeRepository();
+				$itemThemeE = $itemThemeR->store($dataTheme, true);
+				// verifica se salvou
+				if (!$itemThemeE instanceof ItemTheme) {
+					throw new Exception($itemThemeE, 1);
+				}
+			}
+		}
+
+		return $itemE;
 	}
 }

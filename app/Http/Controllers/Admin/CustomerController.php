@@ -27,8 +27,8 @@ class CustomerController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
+	 * @param  Request  $request
+	 * @return Response
 	 */
 	public function index(Request $request)
 	{
@@ -40,7 +40,7 @@ class CustomerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -50,8 +50,8 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  CustomerRequest  $request
+     * @return Response
      */
     public function store(CustomerRequest $request)
     {
@@ -62,14 +62,14 @@ class CustomerController extends Controller
             return back()->withInput()->with($response);
         }
 
-        return redirect()->route('customer.list')->with($response);
+        return redirect()->route('customer.list')->with('success', 'Cliente cadastrado com sucesso!');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -78,6 +78,25 @@ class CustomerController extends Controller
 		];
 
 		return view('admin.pages.customer-form-update', ['page' => 'customer'])->with($params);
+	}
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  CustomerRequest  $request
+     * @param  int  $id
+     * @return Response
+     */
+    public function update(CustomerRequest $request, $id)
+    {
+		// save
+		$response = $this->repository->store($request->all(), $id);
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+		}
+
+        return redirect()->route('material.list')->with('success', 'Cliente atualizado com sucesso!');
 	}
 
     /**

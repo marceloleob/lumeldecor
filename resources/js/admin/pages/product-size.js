@@ -19,19 +19,23 @@ $(document).ready(function ()
 					required: true,
 				},
 				pro_length: {
-					required: false,
+					required: true,
 				},
 				pro_width: {
-					required: false,
+					required: function () {
+						return $('#shape-Q').is(':checked');
+					},
 				},
 				pro_height: {
 					required: true,
 				},
 				shi_length: {
-					required: false,
+					required: true,
 				},
 				shi_width: {
-					required: false,
+					required: function () {
+						return $('#shape-Q').is(':checked');
+					},
 				},
 				shi_height: {
 					required: true,

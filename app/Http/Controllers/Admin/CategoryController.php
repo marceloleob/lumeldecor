@@ -28,8 +28,8 @@ class CategoryController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
+	 * @param  Request  $request
+	 * @return Response
 	 */
     public function index(Request $request)
     {
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -55,8 +55,8 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  CategoryRequest  $request
+     * @return Response
      */
     public function store(CategoryRequest $request)
     {
@@ -67,14 +67,14 @@ class CategoryController extends Controller
             return back()->withInput()->with($response);
         }
 
-        return redirect()->route('category.list')->with($response);
+        return redirect()->route('category.list')->with('success', 'Categoria cadastrada com sucesso!');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -87,10 +87,29 @@ class CategoryController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  CategoryRequest  $request
+     * @param  int  $id
+     * @return Response
+     */
+    public function update(CategoryRequest $request, $id)
+    {
+		// save
+		$response = $this->repository->store($request->all(), $id);
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+		}
+
+        return redirect()->route('material.list')->with('success', 'Categoria atualizada com sucesso!');
+	}
+
+    /**
      * Toggle the status storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function changeStatus($id)
     {
@@ -102,7 +121,7 @@ class CategoryController extends Controller
 	/**
 	 * Return select options of Category
 	 *
-	 * @param \Illuminate\Http\Request $request
+	 * @param Request $request
 	 * @return array
 	 */
 	public function options(Request $request)

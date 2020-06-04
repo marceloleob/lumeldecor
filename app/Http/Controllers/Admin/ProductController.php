@@ -35,8 +35,8 @@ class ProductController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
+	 * @param  Request  $request
+	 * @return Response
 	 */
     public function index(Request $request)
     {
@@ -48,7 +48,7 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -67,7 +67,7 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  ProductCreateRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(ProductCreateRequest $request)
     {
@@ -78,20 +78,20 @@ class ProductController extends Controller
             return back()->withInput()->with($response);
         }
 
-        return redirect()->route('product.list')->with($response);
+        return redirect()->route('product.list')->with('success', 'Produto cadastrado com sucesso!');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $productId
+     * @return Response
      */
-    public function edit($id)
+    public function edit($productId)
     {
 		$params = [
-			'data'            => $this->repository->findById($id),
-			'items'           => (new ProductSizeRepository)->findByProduct($id),
+			'data'            => $this->repository->findById($productId),
+			'items'           => (new ProductSizeRepository)->findByProduct($productId),
 			'optionsmaterial' => (new MaterialRepository())->options(),
 			'optionscategory' => (new CategoryRepository())->options(),
 		];
@@ -103,10 +103,10 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  ProductUpdateRequest  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $productId
+     * @return Response
      */
-    public function update(ProductUpdateRequest $request, $id)
+    public function update(ProductUpdateRequest $request, $productId)
     {
 		// save
 		$response = ProductService::update($request->all());
@@ -115,18 +115,18 @@ class ProductController extends Controller
             return back()->withInput()->with($response);
         }
 
-        return redirect()->route('product.list')->with($response);
+        return redirect()->route('product.list')->with('success', 'Produto atualizado com sucesso!');
 	}
 
     /**
      * Toggle the status storage.
      *
-     * @param  int  $id
+     * @param  int  $productId
      * @return Response
      */
-    public function changeStatus($id)
+    public function changeStatus($productId)
     {
-        $response = $this->repository->changeStatus($id);
+        $response = $this->repository->changeStatus($productId);
 
         return redirect()->route('product.list')->with($response);
     }

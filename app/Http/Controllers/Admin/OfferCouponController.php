@@ -27,8 +27,8 @@ class OfferCouponController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
+	 * @param  Request  $request
+	 * @return Response
 	 */
 	public function index(Request $request)
 	{
@@ -40,7 +40,7 @@ class OfferCouponController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -50,8 +50,8 @@ class OfferCouponController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  OfferCouponRequest  $request
+     * @return Response
      */
     public function store(OfferCouponRequest $request)
     {
@@ -62,14 +62,14 @@ class OfferCouponController extends Controller
             return back()->withInput()->with($response);
         }
 
-        return redirect()->route('coupon.list')->with($response);
+        return redirect()->route('coupon.list')->with('success', 'Cupom cadastrado com sucesso!');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -78,6 +78,25 @@ class OfferCouponController extends Controller
 		];
 
 		return view('admin.pages.offer-coupon-form-update', ['page' => 'coupon'])->with($params);
+	}
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  OfferCouponRequest  $request
+     * @param  int  $id
+     * @return Response
+     */
+    public function update(OfferCouponRequest $request, $id)
+    {
+		// save
+		$response = $this->repository->store($request->all(), $id);
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with($response);
+		}
+
+        return redirect()->route('material.list')->with('success', 'Cupom atualizado com sucesso!');
 	}
 
     /**

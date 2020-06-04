@@ -10,12 +10,30 @@ use Exception;
 class ImageService
 {
 	/**
+	 * Verifica se vai salvar uma nova imagem ou atualizar uma atual
+	 *
+	 * @param string       $picture
+	 * @param UploadedFile $newPicture
+	 * @param integer      $itemId
+	 * @return string $name
+	 */
+	public static function store($picture, $newPicture = null, $itemId = null)
+	{
+		// verifica se e para salvar ou atualizar a foto
+		if (!empty($itemId)) {
+			return self::update($picture, $newPicture);
+		}
+
+		return self::create($picture);
+	}
+
+	/**
 	 * Salva a imagem no servidor
 	 *
 	 * @param UploadedFile $picture
 	 * @return string $name
 	 */
-	public static function save($picture)
+	public static function create($picture)
 	{
 		// cria um nome para a imagem
 		$fileName = date('Y-m-d') . '-' . uniqid() . '.' . $picture->extension();
@@ -43,7 +61,7 @@ class ImageService
 		// exclui a imagem atual
 		self::destroy($picture);
 		// salva a nova imagem
-		$fileName = self::save($newPicture);
+		$fileName = self::create($newPicture);
 
 		return $fileName;
 	}

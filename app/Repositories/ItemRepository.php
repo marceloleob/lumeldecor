@@ -19,7 +19,7 @@ class ItemRepository extends BaseRepository
 	 * @param integer $productSizeId
 	 * @return Entity
 	 */
-	public function findByProductSize($productSizeId)
+	public function findByProductSizeId($productSizeId)
 	{
 		$this->data = $this->query()
 			->with('productSize')
@@ -41,7 +41,8 @@ class ItemRepository extends BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection) {
 
-			$collection->name = $collection->productSize->product->name;
+			$collection->product_id  = $collection->productSize->product->id;
+			$collection->productName = $collection->productSize->product->name;
 			$collection->size = $collection->productSize->size;
 			// verifica se o tema vai aparecer na home
 			if ($collection->launch == config('constants.ACTIVE')) {

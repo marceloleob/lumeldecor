@@ -55,7 +55,7 @@ class ProductSizeRequest extends BaseRequest
     public static $validations = [
         // product size
 		'id'         => 'integer',
-		'product_id' => 'integer',
+		'product_id' => 'required|integer',
         'size'       => 'required|string|required_with:PP,P,M,G,GG,U',
         'weight'     => "required|regex:/^\d+(\.\d{1,3})?$/",
         'shape'      => 'required|string|required_with:Q,R',

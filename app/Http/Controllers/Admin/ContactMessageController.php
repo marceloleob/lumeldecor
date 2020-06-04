@@ -11,8 +11,8 @@ class ContactMessageController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
+	 * @param  Request  $request
+	 * @return Response
 	 */
 	public function index(Request $request)
 	{
@@ -24,7 +24,7 @@ class ContactMessageController extends Controller
     /**
      * Show the contact.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function view()
     {

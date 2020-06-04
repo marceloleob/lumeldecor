@@ -82,7 +82,7 @@ $(document).ready(function ()
 		 * Valicacao para impedir de selecionar "tamanho unico" e depois adicionar outro tamanho
 		 */
 		jQuery.validator.addMethod("select-size", function (value, element) {
-			if ((value === 'U' && $('.row-product').length > 1)) {
+			if ((value === 'U' && $('.row-sizes').length > 1)) {
 				return this.optional(element) || false;
 			}
 			return this.optional(element) || true;
@@ -110,19 +110,19 @@ $(document).ready(function ()
 		// recupera o tipo do bloco
 		var block = button.data('block');
 		// recupera o numero do bloco deste botao
-		var countProduct = button.data('counterProduct');
-		var countItem    = button.data('counterItem');
+		var countSizes = button.data('counterSizes');
+		var countItem  = button.data('counterItem');
 		// faz um clone de todo o bloco
 		var cloned = button.closest(`.row-${block}`).clone(true);
 
 		// tratamento especial para o novo bloco
 		handleNewBlock(block, cloned);
 		// formata os selects
-		cloneSelectPickers(countProduct, countItem, cloned);
+		cloneSelectPickers(countSizes, countItem, cloned);
 		// formata os inputs
-		cloneInputs(countProduct, countItem, cloned);
+		cloneInputs(countSizes, countItem, cloned);
 		// atualiza os contadores
-		countersUpdate(block, countProduct, countItem, cloned);
+		countersUpdate(block, countSizes, countItem, cloned);
 
 		// adiciona o clone abaixo do bloco que ja existe
 		button.closest(`.row-${block}`).after(cloned).fadeTo('slow');
@@ -145,7 +145,7 @@ $(document).ready(function ()
 			// insere uma linha para melhorar a visualizacao
 			$('<hr />').insertAfter('.line-item:last-child', cloned);
 		}
-		if (block === 'product') {
+		if (block === 'sizes') {
 			// remove todos os blocos duplicados do clone original
 			cloned.find('.duplicated').remove();
 		}
@@ -154,11 +154,11 @@ $(document).ready(function ()
 	/**
 	 * Atualiza os selectpickers do bloco
 	 *
-	 * @param countProduct int
+	 * @param countSizes int
 	 * @param countItem int
 	 * @param cloned object
 	 */
-	function cloneSelectPickers(countProduct, countItem, cloned)
+	function cloneSelectPickers(countSizes, countItem, cloned)
 	{
 		// faz um clone dos dois bootstrap-select
 		var bootstrapSelect = cloned.find('.bootstrap-select');
@@ -172,25 +172,25 @@ $(document).ready(function ()
 			var label = $(this).closest(`.div-${field}`).find('label');
 			var span  = $(this).closest(`.div-${field}`).find('span');
 
-			if (group === 'product') {
+			if (group === 'sizes') {
 				// altera o "id" e "name" do select, "for" da label e "for" do notification
-				$(this).attr('id', `product[${countProduct}][${field}]`);
-				$(this).attr('name', `product[${countProduct}][${field}]`);
-				label.attr('for', `product[${countProduct}][${field}]`);
-				span.attr('for', `product[${countProduct}][${field}]`);
+				$(this).attr('id', `sizes[${countSizes}][${field}]`);
+				$(this).attr('name', `sizes[${countSizes}][${field}]`);
+				label.attr('for', `sizes[${countSizes}][${field}]`);
+				span.attr('for', `sizes[${countSizes}][${field}]`);
 			}
 			if (group === 'item') {
 				// seta o nome padrao do select
-				var name = `product[${countProduct}][item][${countItem}][${field}]`;
+				var name = `sizes[${countSizes}][item][${countItem}][${field}]`;
 				// faz o tratamento para campos "multiple"
 				if ($(this).hasClass('multiselect')) {
-					name = `product[${countProduct}][item][${countItem}][${field}][]`;
+					name = `sizes[${countSizes}][item][${countItem}][${field}][]`;
 				}
 				// altera o "id" e "name" do select, "for" da label e "for" do notification
-				$(this).attr('id', `product[${countProduct}][item][${countItem}][${field}]`);
+				$(this).attr('id', `sizes[${countSizes}][item][${countItem}][${field}]`);
 				$(this).attr('name', name);
-				label.attr('for', `product[${countProduct}][item][${countItem}][${field}]`);
-				span.attr('for', `product[${countProduct}][item][${countItem}][${field}]`);
+				label.attr('for', `sizes[${countSizes}][item][${countItem}][${field}]`);
+				span.attr('for', `sizes[${countSizes}][item][${countItem}][${field}]`);
 			}
 
 			// limpa o selectpicker
@@ -216,11 +216,11 @@ $(document).ready(function ()
 	/**
 	 * Atualiza os inputs do bloco
 	 *
-	 * @param countProduct int
+	 * @param countSizes int
 	 * @param countItem int
 	 * @param cloned object
 	 */
-	function cloneInputs(countProduct, countItem, cloned)
+	function cloneInputs(countSizes, countItem, cloned)
 	{
 		// recupera os inputs
 		var inputs = cloned.find('input');
@@ -234,20 +234,20 @@ $(document).ready(function ()
 			var label = $(this).closest(`.div-${field}`).find('label');
 			var span  = $(this).closest(`.div-${field}`).find('span');
 
-			if (group === 'product') {
+			if (group === 'sizes') {
 				// altera o "id" e "name" do select, "for" da label e "for" do notification
-				$(this).attr('id', `product[${countProduct}][${field}]`);
-				$(this).attr('name', `product[${countProduct}][${field}]`);
-				label.eq(0).attr('for', `product[${countProduct}][${field}]`);
-				span.attr('for', `product[${countProduct}][${field}]`);
+				$(this).attr('id', `sizes[${countSizes}][${field}]`);
+				$(this).attr('name', `sizes[${countSizes}][${field}]`);
+				label.eq(0).attr('for', `sizes[${countSizes}][${field}]`);
+				span.attr('for', `sizes[${countSizes}][${field}]`);
 
 				// caso seja um radiobox o id do input deve ser o mesmo do texto
 				if ($(this).prop('type') === 'radio') {
 					// renomeia o id do input
-					$(this).attr('id', `product[${countProduct}][${field}][${value}]`);
+					$(this).attr('id', `sizes[${countSizes}][${field}][${value}]`);
 					// recupera a label do texto do input radio
 					var labelRadio = $(this).closest(`.div-${field}`).find(`.label-${field}-${value}`);
-					labelRadio.attr('for', `product[${countProduct}][${field}][${value}]`);
+					labelRadio.attr('for', `sizes[${countSizes}][${field}][${value}]`);
 				}
 				// forca mostrar o campo "largura"
 				if (field === 'pro_width') {
@@ -257,10 +257,10 @@ $(document).ready(function ()
 			}
 			if (group === 'item') {
 				// altera o "id" e "name" do select, "for" da label e "for" do notification
-				$(this).attr('id', `product[${countProduct}][item][${countItem}][${field}]`);
-				$(this).attr('name', `product[${countProduct}][item][${countItem}][${field}]`);
-				label.attr('for', `product[${countProduct}][item][${countItem}][${field}]`);
-				span.attr('for', `product[${countProduct}][item][${countItem}][${field}]`);
+				$(this).attr('id', `sizes[${countSizes}][item][${countItem}][${field}]`);
+				$(this).attr('name', `sizes[${countSizes}][item][${countItem}][${field}]`);
+				label.attr('for', `sizes[${countSizes}][item][${countItem}][${field}]`);
+				span.attr('for', `sizes[${countSizes}][item][${countItem}][${field}]`);
 			}
 
 			// limpa os campos
@@ -287,23 +287,23 @@ $(document).ready(function ()
 	 * Atualiza os contadores do bloco
 	 *
 	 * @param block string
-	 * @param countProduct int
+	 * @param countSizes int
 	 * @param countItem int
 	 * @param cloned object
 	 */
-	function countersUpdate(block, countProduct, countItem, cloned)
+	function countersUpdate(block, countSizes, countItem, cloned)
 	{
-		var button  = cloned.find('.btn-add');
+		var button = cloned.find('.btn-add');
 
 		if (block === 'item') {
 			// mantem o valor do contador de produto
-			button.data('counterProduct', countProduct);
+			button.data('counterSizes', countSizes);
 			// acrescenta um no contador de item
 			button.data('counterItem', parseInt(countItem + 1));
 		}
-		if (block === 'product') {
+		if (block === 'sizes') {
 			// acrescenta um no contador de produto
-			button.data('counterProduct', parseInt(countProduct + 1));
+			button.data('counterSizes', parseInt(countSizes + 1));
 			// zera o contador de item
 			button.data('counterItem', parseInt(0));
 		}
@@ -333,7 +333,7 @@ $(document).ready(function ()
 		event.preventDefault();
 		// recupera o valor selecionado
 		var size   = $(this).val();
-		var blocks = $('.row-product').length;
+		var blocks = $('.row-sizes').length;
 		// verifica se tem mais de um bloco criado
 		if (blocks > 1 && size === 'U') {
 			$(this).val('');
@@ -342,9 +342,9 @@ $(document).ready(function ()
 		}
 		// veririca se selecionou tamanho unico
 		if (size === 'U' || size === '') {
-			$('.row-add-product').addClass('hide');
+			$('.row-add-sizes').addClass('hide');
 		} else {
-			$('.row-add-product').removeClass('hide');
+			$('.row-add-sizes').removeClass('hide');
 		}
 	});
 

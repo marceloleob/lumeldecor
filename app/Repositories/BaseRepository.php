@@ -109,8 +109,11 @@ class BaseRepository
 	 * @param float $backId
 	 * @return $this
 	 */
-    public function store($data = [], $backId = false)
+    public function store($data = [])
     {
+		// inicia o acoplamento de uma transacao
+		DB::beginTransaction();
+
         try {
             // verifica qual acao
             if (!empty($data['id'])) {
@@ -124,25 +127,16 @@ class BaseRepository
 				$entity = $this->make()->create($data);
             }
 
-			// verifica o retorno
-			if ($backId === true) {
-				return $entity;
-			}
-            // retorna a entidade criada ou atualizada
-            return [
-                'success' => ((isset($data['id'])) ? 'Atualizado' : 'Cadastrado') . ' com sucesso!',
-            ];
+			// efetiva a transacao
+			DB::commit();
+
+			return $entity;
 
         } catch (Exception $exception) {
-			// verifica o retorno
-			if ($backId === true) {
-				return $exception->getMessage();
-			}
-			// retorna o erro
-            return [
-                'danger' => 'Erro ao ' . (isset($data['id']) ? 'atualizar' : 'cadastrar') . ', tente novamente!',
-				'error'  => $exception->getMessage(),
-            ];
+            // descarta a transacao
+			DB::rollback();
+
+			return $exception->getMessage();
         }
     }
 

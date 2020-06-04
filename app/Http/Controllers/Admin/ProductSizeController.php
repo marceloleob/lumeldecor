@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductSizeRequest;
 use App\Repositories\ItemRepository;
 use App\Repositories\ProductSizeRepository;
+use App\Services\ProductSizeService;
 use Illuminate\Http\Request;
 
 class ProductSizeController extends Controller
@@ -26,16 +27,45 @@ class ProductSizeController extends Controller
 	}
 
     /**
+     * Show the form for creating a new resource.
+     *
+	 * @param  int  $productId
+     * @return Response
+     */
+    public function create($productId)
+    {
+		return view('admin.pages.product-size-form-create', ['page' => 'product-size'])->with('product_id', $productId);
+	}
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  ProductSizeRequest  $request
+     * @return Response
+     */
+    public function store(ProductSizeRequest $request)
+    {
+		// save
+		$response = ProductSizeService::store($request->all());
+        // verifica se retornou erro
+        if (isset($response['error'])) {
+            return back()->withInput()->with('danger', 'Erro ao cadastrar o tamanho do produto, tente novamente!');
+        }
+
+        return redirect()->route('product.edit', $request->product_id)->with('success', 'Tamanho do produto cadastrado com sucesso!');
+	}
+
+    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $productSizeId
+     * @return Response
      */
-    public function edit($id)
+    public function edit($productSizeId)
     {
 		$params = [
-			'data'  => $this->repository->findById($id),
-			'items' => (new ItemRepository)->findByProductSize($id),
+			'data'  => $this->repository->findById($productSizeId),
+			'items' => (new ItemRepository)->findByProductSizeId($productSizeId),
 		];
 
 		return view('admin.pages.product-size-form-update', ['page' => 'product-size'])->with($params);
@@ -44,19 +74,19 @@ class ProductSizeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  ProductSizeRequest  $request
+     * @param  int  $productSizeId
+     * @return Response
      */
-    public function update(ProductSizeRequest $request, $id)
+    public function update(ProductSizeRequest $request, $productSizeId)
     {
 		// save
-		$response = $this->repository->store($request->all());
+		$response = ProductSizeService::store($request->all(), $productSizeId);
         // verifica se retornou erro
         if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+            return back()->withInput()->with('danger', 'Erro ao atualizar o tamanho do produto, tente novamente!');
         }
 
-        return redirect()->route('product.edit', $request->product_id)->with($response);
+        return redirect()->route('product.edit', $request->product_id)->with('success', 'Tamanho do produto atualizado com sucesso!');
 	}
 }

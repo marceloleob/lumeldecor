@@ -78,15 +78,20 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::any('produto/buscar', 'ProductController@index')->name('product.search');
 	Route::get('produto/cadastrar', 'ProductController@create')->name('product.create');
 	Route::post('produto/salvar', 'ProductController@store')->name('product.store');
-	Route::get('produto/editar/{id}', 'ProductController@edit')->name('product.edit');
-	Route::put('produto/atualizar/{id}', 'ProductController@update')->name('product.update');
-	Route::get('produto/status/{id}', 'ProductController@changeStatus')->name('product.status');
+	Route::get('produto/editar/{productId}', 'ProductController@edit')->name('product.edit');
+	Route::put('produto/atualizar/{productId}', 'ProductController@update')->name('product.update');
+	Route::get('produto/status/{productId}', 'ProductController@changeStatus')->name('product.status');
 	// Products Size
-	Route::get('produto/tamanho/editar/{id}', 'ProductSizeController@edit')->name('product-size.edit');
-	Route::put('produto/tamanho/atualizar/{id}', 'ProductSizeController@update')->name('product-size.update');
+	Route::get('produto/tamanho/cadastrar/{productId}', 'ProductSizeController@create')->name('product-size.create');
+	Route::post('produto/tamanho/salvar', 'ProductSizeController@store')->name('product-size.store');
+	Route::get('produto/tamanho/editar/{productSizeId}', 'ProductSizeController@edit')->name('product-size.edit');
+	Route::put('produto/tamanho/atualizar/{productSizeId}', 'ProductSizeController@update')->name('product-size.update');
 	// Item
-	Route::get('item/editar/{id}', 'ItemController@edit')->name('item.edit');
-	Route::put('item/atualizar/{id}', 'ItemController@update')->name('item.update');
+	Route::get('item/cadastrar/{productId}/{productSizeId}', 'ItemController@create')->name('item.create');
+	Route::post('item/salvar', 'ItemController@store')->name('item.store');
+	Route::get('item/editar/{itemId}', 'ItemController@edit')->name('item.edit');
+	Route::put('item/atualizar/{itemId}', 'ItemController@update')->name('item.update');
+	Route::get('item/status/{itemId}/{productSizeId}', 'ItemController@changeStatus')->name('item.status');
 
 	// Campaign
 	Route::get('campanha/listar', 'CampaignController@index')->name('campaign.list');
