@@ -5,6 +5,12 @@
 @section('subheading', 'Lista todas as categorias de produtos.')
 @section('btn-add', route($page . '.create'))
 
+@section('search')
+	<div class="position-relative mr-2">
+		{!! Form::select('material_id', $optionsmaterial, ($material ?? ''), ['class' => 'selectpicker', 'title' => 'Selecione um Material']) !!}
+	</div>
+@endsection
+
 @section('table')
 	<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 		<thead>

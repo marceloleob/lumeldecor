@@ -19,14 +19,15 @@ class MaterialRepository extends BaseRepository
 	 * @param  string $search
 	 * @return array
 	 */
-	public function all($search = null)
+	public function all($search = null, $material = null)
 	{
 		$query = $this->query()->orderBy('name');
 
+		// verifica se buscou algum item especifico
         if (!empty($search)) {
-            // procura o termo
             $query->where('name', 'LIKE', '%' . $search . '%');
-        }
+		}
+
         // cria uma collection com paginacao para montar o grid
 		$this->pagination($query, $search);
 		// formata os registros da collection

@@ -14,7 +14,7 @@
 				</div>
 			</div>
 			<div class="page-title-actions">
-				@if (! request()->is('admin/usuario/*'))
+				@if (! request()->is('admin/usuario/*') || ! request()->is('admin/estoque/*'))
 				<div class="d-inline-block dropdown">
 					<a href="@yield('btn-add')" class="mb-2 mr-2 btn-transition btn btn-outline-primary">
 						<span class="btn-icon-wrapper pr-1 opacity-9"><i class="fas fa-plus-circle"></i></span> Adicionar
@@ -31,60 +31,51 @@
 		</div>
 	</div>
 
-	@if (count($data) || $search || $category || $material)
-		<div class="row">
-			<div class="col-md-12">
-				<div class="main-card mb-3 card">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="main-card mb-3 card">
 
-					<div class="card-header">Lista
-						<nav class="navbar card-search-pane-right">
-							{!! Form::open(['id' => 'form-search', 'route' => $page . '.search', 'method' => 'POST', 'class' => 'form-inline my-2 my-lg-0']) !!}
-								<div class="form-row">
-									@yield('search')
-									<div class="position-relative mr-2">
-									{!! Form::text('search', ($search ?? ''), ['class' => 'form-control search', 'placeholder' => 'Procurar por nome']) !!}
-									</div>
-									<div class="position-relative mr-2">
-										{!! Form::button('<i class="fas fa-search btn-icon-wrapper pr-1"></i> BUSCAR', ['type' => 'submit', 'class' => 'btn btn-icon btn-dark pl-2']) !!}
-									</div>
-									<div class="position-relative">
-										<a href="{!! route('stock.list') !!}" class="btn btn-icon btn-dark pl-2"><i class="fas fa-backspace btn-icon-wrapper pr-1"></i> Limpar</a>
-									</div>
+				<div class="card-header">Lista
+					<nav class="navbar card-search-pane-right">
+						{!! Form::open(['id' => 'form-search', 'route' => $page . '.search', 'method' => 'POST', 'class' => 'form-inline my-2 my-lg-0']) !!}
+							<div class="form-row">
+								@yield('search')
+								<div class="position-relative mr-2">
+								{!! Form::text('search', ($search ?? ''), ['class' => 'form-control search', 'placeholder' => 'Procurar por nome']) !!}
 								</div>
-							{!! Form::close() !!}
-						</nav>
-					</div>
-
-					<div class="table-responsive">
-						@if (count($data))
-							@yield('table')
-						@else
-							<div class="card-no-records">
-								Nenhum registro encontrado.
+								<div class="position-relative mr-2">
+									{!! Form::button('<i class="fas fa-search btn-icon-wrapper pr-1"></i> BUSCAR', ['type' => 'submit', 'class' => 'btn btn-icon btn-dark pl-2']) !!}
+								</div>
+								<div class="position-relative">
+									<a href="{!! route($page . '.list') !!}" class="btn btn-icon btn-dark pl-2"><i class="fas fa-backspace btn-icon-wrapper pr-1"></i> Limpar</a>
+								</div>
 							</div>
-						@endif
-					</div>
+						{!! Form::close() !!}
+					</nav>
+				</div>
 
+				@if (isset($data) && count($data))
+					<div class="table-responsive">
+						@yield('table')
+					</div>
 					<div class="card-footer">
 						<div class="col-md-12 pt-3">
 							<div class="float-left">{!! $paginate !!}</div>
 							<div class="float-right">Exibindo de {!! $data->firstItem() !!} até {!! $data->lastItem() !!} de um total de {!! $data->total() !!} registros.</div>
 						</div>
 					</div>
-
-				</div>
-			</div>
-		</div>
-	@else
-		<div class="row">
-			<div class="col-md-12">
-				<div class="main-card mb-3 card">
+				@else
 					<div class="card-no-records">
-						Nenhum registro cadastrado.
+						@if (request()->is('admin/estoque/*'))
+							Preencha alguma informação para encontrar o item do produto
+						@else
+							Nenhum registro encontrado!
+						@endif
 					</div>
-				</div>
+				@endif
+
 			</div>
 		</div>
-	@endif
+	</div>
 
 @endsection

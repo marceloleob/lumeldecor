@@ -35,7 +35,7 @@ class StockController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$params = (new ProductRepository())->all($request->search);
+		$params = $this->repository->all($request->search, $request->material_id, $request->category_id);
 		$params['optionsmaterial'] = (new MaterialRepository())->options();
 		$params['optionscategory'] = (new CategoryRepository())->options();
 

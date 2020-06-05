@@ -33,7 +33,8 @@ class CategoryController extends Controller
 	 */
     public function index(Request $request)
     {
-		$params = $this->repository->all($request->search);
+		$params = $this->repository->all($request->search, $request->material_id);
+		$params['optionsmaterial'] = (new MaterialRepository())->options();
 
 		return view('admin.pages.category-list', ['page' => 'category'])->with($params);
     }

@@ -2,9 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Material;
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
 
 class ProductRepository extends BaseRepository
 {

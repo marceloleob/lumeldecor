@@ -18,16 +18,21 @@ class CategoryRepository extends BaseRepository
 	 * Executa a busca para a listagem com paginacao e filtro
 	 *
 	 * @param  string $search
+	 * @param  string $material
 	 * @return array
 	 */
-	public function all($search = null)
+	public function all($search = null, $material = null)
 	{
 		$query = $this->query()->orderBy('name');
 
-        if (!empty($search)) {
-            // procura o termo
-            $query->where('name', 'LIKE', '%' . $search . '%');
-        }
+		// verifica se buscou algum item especifico
+		if (!empty($search)) {
+			$query->where('name', 'LIKE', '%' . $search . '%');
+		}
+		if (!empty($material)) {
+			$query->where('material_id', $material);
+		}
+
         // cria uma collection com paginacao para montar o grid
 		$this->pagination($query, $search);
 		// formata os registros da collection
@@ -35,6 +40,7 @@ class CategoryRepository extends BaseRepository
 
 		return [
 			'search'   => $search,
+			'material' => $material,
 			'data'     => $this->data,
 			'paginate' => $this->paginate,
 		];
