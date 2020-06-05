@@ -1,5 +1,5 @@
 
-	<div class="row row-list-items">
+	<div class="row">
 		<div class="col-md-12">
 			<div class="main-card mb-3 card">
 				<div class="card-body">
@@ -10,9 +10,9 @@
 								<thead>
 									<tr>
 										<th width="15%" class="text-center">Código</th>
-										<th width="10%" class="text-center">Cores</th>
+										<th width="5%" class="text-center">Cores</th>
 										<th width="10%" class="text-center">Tamanho</th>
-										<th width="35%" class="text-left">Produto</th>
+										<th width="40%" class="text-left">Produto</th>
 										<th width="10%" class="text-center">Lançamento</th>
 										<th width="10%" class="text-center">Status</th>
 										<th width="10%" class="text-center">Ações</th>
@@ -23,10 +23,11 @@
 									<tr>
 										<td class="text-center">{!! $item->code !!}</td>
 										<td class="text-center td-color">
-											@foreach ($item->colors as $color)
+											<div class="colors" style="{!! $item->background !!}" data-toggle="tooltip" data-placement="top" data-original-title="{!! $item->tooltip !!}"></div>
+											{{-- @foreach ($item->colors as $color)
 												<div class="colors" style="background-color: {!! $color->hexa !!}" data-toggle="tooltip" data-placement="top" data-original-title="{!! $color->name !!}"></div>
-											@endforeach
-										</td>
+											@endforeach --}}
+															</td>
 										<td class="text-center">{!! $item->size !!}</td>
 										<td class="text-left">{!! $item->productName !!}</td>
 										<td class="text-center">{!! $item->launch !!}</td>

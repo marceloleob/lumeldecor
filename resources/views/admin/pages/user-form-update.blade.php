@@ -1,14 +1,9 @@
 @extends('admin.layouts.forms')
 
-@section('heading')
-	<div class="page-title-icon">
-		<i class="fas fa-users-cog icon-gradient bg-plum-plate"></i>
-	</div>
-	<div>
-		Usuários
-		<div class="page-title-subheading">Formulário para editar um usuário do sistema da {!! config('app.name') !!}.</div>
-	</div>
-@stop
+@section('icon', 'fas fa-users-cog')
+@section('title', 'Usuários')
+@section('subheading', 'Formulário para editar um usuário do sistema.')
+@section('btn-back', route($page . '.list'))
 
 @section('form')
 	<div class="row">

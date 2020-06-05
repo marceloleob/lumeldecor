@@ -43,7 +43,7 @@ class ItemRepository extends BaseRepository
 
 			$collection->product_id  = $collection->productSize->product->id;
 			$collection->productName = $collection->productSize->product->name;
-			$collection->size = $collection->productSize->size;
+			$collection->size        = $collection->productSize->size;
 			// verifica se o tema vai aparecer na home
 			if ($collection->launch == config('constants.ACTIVE')) {
 				$collection->launch = '<span class="text-focus">Sim</span>';
@@ -60,6 +60,25 @@ class ItemRepository extends BaseRepository
 				$collection->status = ['class' => 'danger', 'label' => 'Inativo'];
 				$collection->styles = ['class' => 'btn-outline-success', 'label' => 'far fa-check-circle'];
 			}
+
+			// verifica quantas cores tem este item
+			$colors = $collection->colors;
+			$count  = count($colors);
+			if ($count === 1) {
+				$tooltip    = $colors[0]->name;
+				$background = 'background-color: ' . $colors[0]->hexa . ';';
+			}
+			if ($count === 2) {
+				$tooltip    = $colors[0]->name . ' e ' . $colors[1]->name;
+				$background = 'background: linear-gradient( to right, ' . $colors[0]->hexa . ', ' . $colors[0]->hexa . ' 50%, ' . $colors[1]->hexa . ' 50% );';
+			}
+			if ($count === 3) {
+				$tooltip    = $colors[0]->name . ', ' . $colors[1]->name . ' e ' . $colors[2]->name;
+				$background = 'background: linear-gradient( to right, ' . $colors[0]->hexa . ', ' . $colors[0]->hexa . ' 32%, ' . $colors[1]->hexa . ' 32%, ' . $colors[1]->hexa . ' 67%, ' . $colors[2]->hexa . ' 67% );';
+			}
+
+			$collection->tooltip    = $tooltip;
+			$collection->background = $background;
 		});
 	}
 }

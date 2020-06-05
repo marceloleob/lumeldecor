@@ -233,32 +233,29 @@ a, a:hover, a:focus, a:visited {
 	padding-inline-start: 30px !important;
 	padding-inline-start: 4px !important;
 }
-.row-list-items .table .td-color {
+.table .td-color {
 	display: flex;
 	justify-content: center;
 	flex-direction: row;
 	flex-wrap: wrap;
 }
 // Mostra as cores na lista de itens
-.row-list-items .table .colors {
-	height: 20px;
-    width: 20px;
-    border-radius: 50%;
+.table .colors {
+    height: 23px;
+    width: 30px;
+    border: 1px solid #CFCFCF;
+    border-radius: 15%;
     opacity: 1;
-	margin: 5px;
-	cursor: pointer;
+    margin: 5px;
+    cursor: pointer;
 }
+
 
 /**
 * -----------------------------------------------------------------------------
 * PAGES - COLORS
 * -----------------------------------------------------------------------------
 */
-.table .td-color {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-}
 // Mostra as cores na lista de cores
 .table .swatch-holder-md {
 	height: 30px;

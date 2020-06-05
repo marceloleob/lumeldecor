@@ -1,14 +1,9 @@
 @extends('admin.layouts.forms')
 
-@section('heading')
-	<div class="page-title-icon">
-		<i class="fas fa-cubes icon-gradient bg-plum-plate"></i>
-	</div>
-	<div>
-		Produtos
-		<div class="page-title-subheading">Formulário para editar o produto do site.</div>
-	</div>
-@stop
+@section('icon', 'fas fa-cubes')
+@section('title', 'Produtos')
+@section('subheading', 'Formulário para editar o produto do site.')
+@section('btn-back', route($page . '.list'))
 
 @section('form')
 	<div class="row">
