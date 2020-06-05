@@ -274,12 +274,12 @@ $(document).ready(function ()
 			if ($(this).prop('type') === 'checkbox') {
 				$(this).prop('checked', false);
 			}
-			if ($(this).prop('type') === 'radio') {
-				var radio = $(this).closest(`.div-${field}`).find('input[type="radio"]');
-				// forca sempre o primerio radio vir checado
-				radio.eq(0).prop('checked', true);
-				radio.eq(1).prop('checked', false);
-			}
+			// if ($(this).prop('type') === 'radio') {
+			// 	var radio = $(this).closest(`.div-${field}`).find('input[type="radio"]');
+			// 	// forca sempre o primerio radio vir checado
+			// 	radio.eq(0).prop('checked', true);
+			// 	radio.eq(1).prop('checked', false);
+			// }
 		});
 	}
 
