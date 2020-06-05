@@ -9,11 +9,11 @@
 	<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 		<thead>
 			<tr>
-				<th width="10%" class="text-center">Código</th>
-				<th width="45%" class="text-left">Tema</th>
+				<th width="8%" class="text-center">Código</th>
+				<th width="55%" class="text-left">Tema</th>
 				<th width="15%" class="text-center">Mostrar na Home</th>
-				<th width="15%" class="text-center">Status</th>
-				<th width="15%" class="text-center">Ações</th>
+				<th width="10%" class="text-center">Status</th>
+				<th width="12%" class="text-center">Ações</th>
 			</tr>
 		</thead>
 		<tbody>

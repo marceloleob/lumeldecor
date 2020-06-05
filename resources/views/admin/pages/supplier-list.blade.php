@@ -9,12 +9,12 @@
 	<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 		<thead>
 			<tr>
-				<th width="10%" class="text-center">Código</th>
-				<th width="20%" class="text-left">Forncecedor</th>
+				<th width="8%" class="text-center">Código</th>
+				<th width="30%" class="text-left">Forncecedor</th>
 				<th width="20%" class="text-left">Contato</th>
 				<th width="20%" class="text-left">E-mail</th>
-				<th width="15%" class="text-center">Status</th>
-				<th width="15%" class="text-center">Ações</th>
+				<th width="10%" class="text-center">Status</th>
+				<th width="12%" class="text-center">Ações</th>
 			</tr>
 		</thead>
 		<tbody>
