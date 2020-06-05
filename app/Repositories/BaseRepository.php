@@ -67,17 +67,24 @@ class BaseRepository
 	 * @param string  $search
      * @return void
      */
-	public function pagination($query, $search = null)
+	public function pagination($query, $search = null, $material = null, $category = null)
 	{
 		// recupera os dados paginados
 		$this->data = $query->paginate(config('constants.TOTAL_PAGE'));
-        // constroi o paginate para a view
-		$this->paginate = $this->data->links();
-        // verifica se foi feito uma busca
-        if (!empty($search)) {
-            // adiciona parametro do filtro no paginate
-            $this->paginate = $this->data->appends(['search' => $search])->links();
+		// adiciona parametro do filtro no paginate
+		if (!empty($search)) {
+            $this->data->appends(['search' => $search]);
 		}
+		// adiciona parametro do filtro no paginate
+		if (!empty($material)) {
+            $this->data->appends(['material_id' => $material]);
+		}
+		// adiciona parametro do filtro no paginate
+		if (!empty($category)) {
+            $this->data->appends(['category_id' => $category]);
+		}
+        // constroi o paginate para a view
+		$this->paginate = $this->data;
     }
 
 	/**
@@ -106,7 +113,6 @@ class BaseRepository
 	 * Gerencia os metodos SAVE e UPDATE de um Model
 	 *
 	 * @param array $data
-	 * @param float $backId
 	 * @return $this
 	 */
     public function store($data = [])

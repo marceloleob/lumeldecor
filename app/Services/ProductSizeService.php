@@ -34,7 +34,7 @@ class ProductSizeService
 		}
 
 		// salva ou atualiza os dados
-		$entity = $repository->store($data, true);
+		$entity = $repository->store($data);
 		// verifica se salvou
 		if (!$entity instanceof ProductSize) {
 			throw new Exception($entity, 1);

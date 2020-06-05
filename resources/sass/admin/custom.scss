@@ -135,6 +135,28 @@ a, a:hover, a:focus, a:visited {
 	min-width: 40px;
 }
 
+/**
+* -----------------------------------------------------------------------------
+* LISTS - SEARCH
+* -----------------------------------------------------------------------------
+*/
+.card-search-pane-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    white-space: nowrap;
+    width: 100%;
+}
+.card-search-pane-right .search {
+	width: 220px;
+}
+.card-search-pane-right .bootstrap-select {
+	text-transform: initial !important;
+}
+.card-search-pane-right .selectpicker {
+	width: 300px;
+}
+
 
 /**
 * -----------------------------------------------------------------------------

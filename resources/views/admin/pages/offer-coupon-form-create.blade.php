@@ -32,7 +32,7 @@
 									<div class="col-md-6">
 										<div class="position-relative form-group">
 											{!! Form::label('kind', 'Tipo do desconto', ['class' => 'required']) !!}
-											{!! Form::selectKind('kind', old('kind'), ['class' => 'form-control kind selectpicker']) !!}
+											{!! Form::selectKind('kind', old('kind'), ['class' => 'form-control kind selectpicker', 'title' => 'Selecione']) !!}
 											{!! Form::notification('kind', $errors) !!}
 										</div>
 									</div>

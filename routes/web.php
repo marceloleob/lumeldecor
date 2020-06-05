@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('material/cadastrar', 'MaterialController@create')->name('material.create');
 	Route::post('material/salvar', 'MaterialController@store')->name('material.store');
 	Route::get('material/editar/{id}', 'MaterialController@edit')->name('material.edit');
-	Route::put('material/atualizar/{id}', 'MaterialController@store')->name('material.update');
+	Route::put('material/atualizar/{id}', 'MaterialController@update')->name('material.update');
 	Route::get('material/status/{id}', 'MaterialController@changeStatus')->name('material.status');
 	// Categories
 	Route::get('categoria/listar', 'CategoryController@index')->name('category.list');
@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('categoria/cadastrar', 'CategoryController@create')->name('category.create');
 	Route::post('categoria/salvar', 'CategoryController@store')->name('category.store');
 	Route::get('categoria/editar/{id}', 'CategoryController@edit')->name('category.edit');
-	Route::put('categoria/atualizar/{id}', 'CategoryController@store')->name('category.update');
+	Route::put('categoria/atualizar/{id}', 'CategoryController@update')->name('category.update');
 	Route::get('categoria/status/{id}', 'CategoryController@changeStatus')->name('category.status');
 	Route::post('category/options', 'CategoryController@options');
 	// Themes
@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('tema/cadastrar', 'ThemeController@create')->name('theme.create');
 	Route::post('tema/salvar', 'ThemeController@store')->name('theme.store');
 	Route::get('tema/editar/{id}', 'ThemeController@edit')->name('theme.edit');
-	Route::put('tema/atualizar/{id}', 'ThemeController@store')->name('theme.update');
+	Route::put('tema/atualizar/{id}', 'ThemeController@update')->name('theme.update');
 	Route::get('tema/status/{id}', 'ThemeController@changeStatus')->name('theme.status');
 	// Colors
 	Route::get('cor/listar', 'ColorController@index')->name('color.list');
@@ -70,7 +70,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('cor/cadastrar', 'ColorController@create')->name('color.create');
 	Route::post('cor/salvar', 'ColorController@store')->name('color.store');
 	Route::get('cor/editar/{id}', 'ColorController@edit')->name('color.edit');
-	Route::put('cor/atualizar/{id}', 'ColorController@store')->name('color.update');
+	Route::put('cor/atualizar/{id}', 'ColorController@update')->name('color.update');
 	Route::get('cor/status/{id}', 'ColorController@changeStatus')->name('color.status');
 
 	// Products
@@ -99,7 +99,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('campanha/cadastrar', 'CampaignController@create')->name('campaign.create');
 	Route::post('campanha/salvar', 'CampaignController@store')->name('campaign.store');
 	Route::get('campanha/editar/{id}', 'CampaignController@edit')->name('campaign.edit');
-	Route::put('campanha/atualizar/{id}', 'CampaignController@store')->name('campaign.update');
+	Route::put('campanha/atualizar/{id}', 'CampaignController@update')->name('campaign.update');
 	Route::get('campanha/status/{id}', 'CampaignController@changeStatus')->name('campaign.status');
 	// Offer Coupons
 	Route::get('cupom/listar', 'OfferCouponController@index')->name('coupon.list');
@@ -107,7 +107,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('cupom/cadastrar', 'OfferCouponController@create')->name('coupon.create');
 	Route::post('cupom/salvar', 'OfferCouponController@store')->name('coupon.store');
 	Route::get('cupom/editar/{id}', 'OfferCouponController@edit')->name('coupon.edit');
-	Route::put('cupom/atualizar/{id}', 'OfferCouponController@store')->name('coupon.update');
+	Route::put('cupom/atualizar/{id}', 'OfferCouponController@update')->name('coupon.update');
 	Route::get('cupom/status/{id}', 'OfferCouponController@changeStatus')->name('coupon.status');
 	// Offer Promotions
 	Route::get('promocao/listar', 'OfferPromotionController@index')->name('promotion.list');
@@ -115,9 +115,16 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('promocao/cadastrar', 'OfferPromotionController@create')->name('promotion.create');
 	Route::post('promocao/salvar', 'OfferPromotionController@store')->name('promotion.store');
 	Route::get('promocao/editar/{id}', 'OfferPromotionController@edit')->name('promotion.edit');
-	Route::put('promocao/atualizar/{id}', 'OfferPromotionController@store')->name('promotion.update');
+	Route::put('promocao/atualizar/{id}', 'OfferPromotionController@update')->name('promotion.update');
 	Route::get('promocao/status/{id}', 'OfferPromotionController@changeStatus')->name('promotion.status');
-
+	// Stocks
+	Route::get('estoque/listar', 'StockController@index')->name('stock.list');
+	Route::any('estoque/buscar', 'StockController@index')->name('stock.search');
+	Route::get('estoque/cadastrar', 'StockController@create')->name('stock.create');
+	Route::post('estoque/salvar', 'StockController@store')->name('stock.store');
+	Route::get('estoque/editar/{id}', 'StockController@edit')->name('stock.edit');
+	Route::put('estoque/atualizar/{id}', 'StockController@update')->name('stock.update');
+	Route::get('estoque/status/{id}', 'StockController@changeStatus')->name('stock.status');
 
 	// 	// Orders
 	// 	Route::get('encomenda/lista', 'OrderController@index')->name('order.list');
@@ -126,13 +133,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	// 	Route::post('encomenda/salvar', 'OrderController@store')->name('order.store');
 	// 	Route::get('encomenda/editar/{id}/{page}', 'OrderController@edit')->name('order.edit');
 	// 	Route::get('encomenda/status/{id}', 'OrderController@changeStatus')->name('order.status');
-	// 	// Stocks
-	// 	Route::get('estoque/lista', 'StockController@index')->name('stock.list');
-	// 	Route::any('estoque/busca', 'StockController@index')->name('stock.search');
-	// 	Route::get('estoque/novo', 'StockController@index')->name('stock.create');
-	// 	Route::post('estoque/salvar', 'StockController@store')->name('stock.store');
-	// 	Route::get('estoque/editar/{id}/{page}', 'StockController@edit')->name('stock.edit');
-	// 	Route::get('estoque/status/{id}', 'StockController@changeStatus')->name('stock.status');
+
 	// 	// Contact Message
 	// 	Route::get('mensagem/lista', 'ContactMessageController@index')->name('message.list');
 	// 	Route::get('mensagem/{id}/{page}', 'ContactMessageController@view')->name('message.view');
@@ -145,7 +146,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('cliente/cadastrar', 'CustomerController@create')->name('customer.create');
 	Route::post('cliente/salvar', 'CustomerController@store')->name('customer.store');
 	Route::get('cliente/editar/{id}', 'CustomerController@edit')->name('customer.edit');
-	Route::put('cliente/atualizar/{id}', 'CustomerController@store')->name('customer.update');
+	Route::put('cliente/atualizar/{id}', 'CustomerController@update')->name('customer.update');
 	Route::get('cliente/status/{id}', 'CustomerController@changeStatus')->name('customer.status');
 	// Suppliers
 	Route::get('fornecedor/listar', 'SupplierController@index')->name('supplier.list');
@@ -153,7 +154,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('fornecedor/cadastrar', 'SupplierController@create')->name('supplier.create');
 	Route::post('fornecedor/salvar', 'SupplierController@store')->name('supplier.store');
 	Route::get('fornecedor/editar/{id}', 'SupplierController@edit')->name('supplier.edit');
-	Route::put('fornecedor/atualizar/{id}', 'SupplierController@store')->name('supplier.update');
+	Route::put('fornecedor/atualizar/{id}', 'SupplierController@update')->name('supplier.update');
 	Route::get('fornecedor/status/{id}', 'SupplierController@changeStatus')->name('supplier.status');
 	// Employee
 	Route::get('funcionario/listar', 'EmployeeController@index')->name('employee.list');
@@ -161,7 +162,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('funcionario/cadastrar', 'EmployeeController@create')->name('employee.create');
 	Route::post('funcionario/salvar', 'EmployeeController@store')->name('employee.store');
 	Route::get('funcionario/editar/{id}', 'EmployeeController@edit')->name('employee.edit');
-	Route::put('funcionario/atualizar/{id}', 'EmployeeController@store')->name('employee.update');
+	Route::put('funcionario/atualizar/{id}', 'EmployeeController@update')->name('employee.update');
 	Route::get('funcionario/status/{id}', 'EmployeeController@changeStatus')->name('employee.status');
 	// Users
 	Route::get('usuario/listar', 'UserController@index')->name('user.list');
@@ -169,7 +170,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	// Route::get('usuario/cadastrar', 'UserController@create')->name('user.create');
 	// Route::post('usuario/salvar', 'UserController@store')->name('user.store');
 	Route::get('usuario/editar/{id}', 'UserController@edit')->name('user.edit');
-	Route::put('usuario/atualizar/{id}', 'UserController@store')->name('user.update');
+	Route::put('usuario/atualizar/{id}', 'UserController@update')->name('user.update');
 	Route::get('usuario/status/{id}', 'UserController@changeStatus')->name('user.status');
 	// // Profile
 	// Route::get('meus-dados', 'UserController@index')->name('profile');

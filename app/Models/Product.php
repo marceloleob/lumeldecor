@@ -13,6 +13,13 @@ class Product extends Model
 	 */
 	public $timestamps = false;
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+	protected $with = ['category'];
+
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -20,6 +27,7 @@ class Product extends Model
 	 */
 	protected $fillable = [
 		'id',
+        'material_id',
         'category_id',
 		'name',
 		'slug',
@@ -41,12 +49,14 @@ class Product extends Model
 	}
 
 	/**
-	 * Get the category about this product.
+	 * Get the material about this product.
 	 *
 	 */
 	public function material()
 	{
-		return $this->category()->with('material');
+		return $this->belongsTo(Material::class, 'material_id', 'id');
+		// return $this->category()->with('material');
+		// return $this->belongsToThrough(Material::class, Category::class);
 	}
 
 	/**

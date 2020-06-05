@@ -25,12 +25,12 @@
 										<div class="col-md-12">
 											<div class="position-relative form-group">
 												{!! Form::label('material_id', 'Material', ['class' => 'required']) !!}
-												{!! Form::select('material_id', $optionsmaterial, old('material_id'), ['class' => 'form-control selectpicker']) !!}
+												{!! Form::select('material_id', $optionsmaterial, old('material_id'), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 												{!! Form::notification('material_id', $errors) !!}
 											</div>
 											<div class="position-relative form-group">
 												{!! Form::label('category_id', 'Categoria', ['class' => 'required']) !!}
-												{!! Form::select('category_id', $optionscategory, old('category_id'), ['class' => 'form-control selectpicker']) !!}
+												{!! Form::select('category_id', $optionscategory, old('category_id'), ['class' => 'form-control selectpicker', 'title' => 'Selecione primeiro um Material']) !!}
 												{!! Form::notification('category_id', $errors) !!}
 											</div>
 											<div class="position-relative form-group">
@@ -90,7 +90,7 @@
 										<div class="col-md-4">
 											<div class="position-relative form-group div-size">
 												{!! Form::label('sizes[0][size]', 'Tamanho', ['class' => 'required']) !!}
-												{!! Form::selectSize('sizes[0][size]', old('sizes[0][size]'), ['class' => 'form-control selectpicker select-size', 'id' => 'sizes[0][size]', 'data-name' => 'size', 'data-group' => 'sizes']) !!}
+												{!! Form::selectSize('sizes[0][size]', old('sizes[0][size]'), ['class' => 'form-control selectpicker select-size', 'id' => 'sizes[0][size]', 'data-name' => 'size', 'data-group' => 'sizes', 'title' => 'Selecione']) !!}
 												{!! Form::notification('sizes[0][size]', $errors) !!}
 											</div>
 										</div>
@@ -214,7 +214,7 @@
 														<div class="col-md-3">
 															<div class="position-relative form-group div-colors">
 																{!! Form::label('sizes[0][item][0][colors]', 'Cor', ['class' => 'required']) !!}
-																{!! Form::select('sizes[0][item][0][colors][]', $optionscolor, old('sizes[0][item][0][colors]'), ['class' => 'form-control selectpicker select-colors multiselect', 'id' => 'sizes[0][item][0][colors]', 'multiple', 'data-name' => 'colors', 'data-group' => 'item', 'data-max-options' => '3']) !!}
+																{!! Form::select('sizes[0][item][0][colors][]', $optionscolor, old('sizes[0][item][0][colors]'), ['class' => 'form-control selectpicker select-colors multiselect', 'id' => 'sizes[0][item][0][colors]', 'multiple', 'data-name' => 'colors', 'data-group' => 'item', 'data-max-options' => '3', 'title' => 'Selecione']) !!}
 																{!! Form::notification('sizes[0][item][0][colors]', $errors) !!}
 															</div>
 														</div>
@@ -248,7 +248,7 @@
 														<div class="col-md-3">
 															<div class="position-relative form-group div-supplier_id">
 																{!! Form::label('sizes[0][item][0][supplier_id]', 'Fornecedor', ['class' => 'required']) !!}
-																{!! Form::select('sizes[0][item][0][supplier_id]', $optionssupplier, old('sizes[0][item][0][supplier_id]'), ['class' => 'form-control selectpicker select-supplier_id', 'id' => 'sizes[0][item][0][supplier_id]', 'data-name' => 'supplier_id', 'data-group' => 'item']) !!}
+																{!! Form::select('sizes[0][item][0][supplier_id]', $optionssupplier, old('sizes[0][item][0][supplier_id]'), ['class' => 'form-control selectpicker select-supplier_id', 'id' => 'sizes[0][item][0][supplier_id]', 'data-name' => 'supplier_id', 'data-group' => 'item', 'title' => 'Selecione']) !!}
 																{!! Form::notification('sizes[0][item][0][supplier_id]', $errors) !!}
 															</div>
 														</div>
@@ -265,7 +265,7 @@
 														<div class="col-md-4">
 															<div class="position-relative form-group div-themes">
 																{!! Form::label('sizes[0][item][0][theme]', 'Temas relacionados') !!}
-																{!! Form::select('sizes[0][item][0][themes][]', $optionstheme, old('sizes[0][item][0][themes]'), ['class' => 'form-control selectpicker select-themes multiselect', 'id' => 'sizes[0][item][0][themes]', 'data-name' => 'themes', 'data-group' => 'item', 'multiple']) !!}
+																{!! Form::select('sizes[0][item][0][themes][]', $optionstheme, old('sizes[0][item][0][themes]'), ['class' => 'form-control selectpicker select-themes multiselect', 'id' => 'sizes[0][item][0][themes]', 'data-name' => 'themes', 'data-group' => 'item', 'multiple', ' data-selected-text-format' => 'count > 3', 'title' => 'Selecione']) !!}
 																{!! Form::notification('sizes[0][item][0][themes]', $errors) !!}
 															</div>
 														</div>

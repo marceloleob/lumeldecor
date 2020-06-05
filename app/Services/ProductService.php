@@ -40,6 +40,7 @@ class ProductService
         try {
 			// 1º) Salva o Product
 			$dataProduct = [
+				'material_id' => $data['material_id'],
 				'category_id' => $data['category_id'],
 				'name'        => $data['name'],
 				'slug'        => self::handleSlug($data['name']),
@@ -109,6 +110,7 @@ class ProductService
 			// 1º) Salva o Product
 			$dataProduct = [
 				'id'          => $data['id'],
+				'material_id' => $data['material_id'],
 				'category_id' => $data['category_id'],
 				'name'        => $data['name'],
 				'slug'        => Str::slug($data['name']),

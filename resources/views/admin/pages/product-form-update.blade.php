@@ -25,12 +25,12 @@
 											<div class="col-md-12">
 												<div class="position-relative form-group">
 													{!! Form::label('material_id', 'Material', ['class' => 'required']) !!}
-													{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->category->material->id), ['class' => 'form-control selectpicker']) !!}
+													{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->category->material->id), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 													{!! Form::notification('material_id', $errors) !!}
 												</div>
 												<div class="position-relative form-group">
 													{!! Form::label('category_id', 'Categoria', ['class' => 'required']) !!}
-													{!! Form::select('category_id', $optionscategory, old('category_id', $data->category->id), ['class' => 'form-control selectpicker']) !!}
+													{!! Form::select('category_id', $optionscategory, old('category_id', $data->category->id), ['class' => 'form-control selectpicker', 'title' => 'Selecione primeiro um Material']) !!}
 													{!! Form::hidden('category_id_hide', $data->category->id) !!}
 													{!! Form::notification('category_id', $errors) !!}
 												</div>

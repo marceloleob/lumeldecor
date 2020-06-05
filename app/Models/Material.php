@@ -33,6 +33,15 @@ class Material extends Model
 		return $this->hasMany(Category::class);
 	}
 
+    /**
+     * Get all of the products for the material.
+     */
+    public function products()
+    {
+		return $this->hasMany(Category::class);
+        // return $this->hasManyThrough(Product::class, Category::class);
+	}
+
 	/**
 	 * Get the promotions about this material.
 	 *

@@ -46,7 +46,7 @@
 							<div class="col-md-4">
 								<div class="position-relative form-group">
 									{!! Form::label('colors', 'Cor', ['class' => 'required']) !!}
-									{!! Form::select('colors[]', $optionscolor, old('colors'), ['class' => 'form-control selectpicker multiselect', 'id' => 'colors', 'multiple', 'data-max-options' => '3']) !!}
+									{!! Form::select('colors[]', $optionscolor, old('colors'), ['class' => 'form-control selectpicker multiselect', 'id' => 'colors', 'multiple', 'data-max-options' => '3', 'title' => 'Selecione a cor do Item']) !!}
 									{!! Form::notification('colors', $errors) !!}
 								</div>
 							</div>
@@ -65,7 +65,7 @@
 							<div class="col-md-4">
 								<div class="position-relative form-group">
 									{!! Form::label('supplier_id', 'Fornecedor', ['class' => 'required']) !!}
-									{!! Form::select('supplier_id', $optionssupplier, old('supplier_id'), ['class' => 'form-control selectpicker', 'id' => 'supplier_id']) !!}
+									{!! Form::select('supplier_id', $optionssupplier, old('supplier_id'), ['class' => 'form-control selectpicker', 'id' => 'supplier_id', 'title' => 'Selecione']) !!}
 									{!! Form::notification('supplier_id', $errors) !!}
 								</div>
 							</div>
@@ -84,7 +84,7 @@
 							<div class="col-md-4">
 								<div class="position-relative form-group">
 									{!! Form::label('theme', 'Temas relacionados') !!}
-									{!! Form::select('themes[]', $optionstheme, old('themes'), ['class' => 'form-control selectpicker multiselect', 'id' => 'themes', 'multiple']) !!}
+									{!! Form::select('themes[]', $optionstheme, old('themes'), ['class' => 'form-control selectpicker multiselect', 'id' => 'themes', 'multiple', ' data-selected-text-format' => 'count > 3', 'title' => 'Selecione']) !!}
 									{!! Form::notification('themes', $errors) !!}
 								</div>
 							</div>

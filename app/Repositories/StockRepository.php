@@ -13,6 +13,8 @@ class StockRepository extends BaseRepository
 	 */
 	protected $model = Stock::class;
 
+
+
 	/**
 	 * Retorna os dados referente a este modelo
 	 *

@@ -20,7 +20,7 @@
 							<div class="col-md-6">
 								<div class="position-relative form-group">
 									{!! Form::label('material_id', 'Material', ['class' => 'required']) !!}
-									{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker']) !!}
+									{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 									{!! Form::notification('material_id', $errors) !!}
 								</div>
 								<div class="position-relative form-group">

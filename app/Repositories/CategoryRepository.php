@@ -52,7 +52,7 @@ class CategoryRepository extends BaseRepository
 		$categoryId = $request->category ?? null;
 		// verifica se nao foi informado o material
 		if (empty($materialId)) {
-			return ['' => 'Selecione um material'];
+			return [];
 		}
 		// carrega os dados do banco
 		$categories = $this->query()
@@ -66,7 +66,7 @@ class CategoryRepository extends BaseRepository
 			->pluck('name', 'id');
 
 		// construindo as opcoes combobox
-		$options = '<option value="">Selecione</option>';
+		$options = '';
 		// percorre os tipos de imovel
 		foreach ($categories as $id => $name) {
 			// verifica se existe categoria

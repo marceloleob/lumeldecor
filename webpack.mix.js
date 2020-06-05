@@ -22,6 +22,7 @@ const mix = require('laravel-mix');
 	.js('resources/js/admin/app.js', 'public/js/admin').sourceMaps()
     // JS ADMIN CUSTOM
 	.js('resources/js/admin/custom.js', 'public/js/admin').sourceMaps()
+	.js('resources/js/admin/ajax-select.js', 'public/js/admin/ajax.js').sourceMaps()
 	// JS FORMS VALIDATE
 	// .js('resources/js/forms/jquery.masks.en.js', 'public/js/forms')
 	.js('resources/js/forms/jquery.masks.pt-br.js', 'public/js/forms').sourceMaps()
@@ -29,12 +30,9 @@ const mix = require('laravel-mix');
 	.js('resources/js/forms/jquery.validate.pt-br.js', 'public/js/forms').sourceMaps()
 	// JS ADMIN PAGES
 	.js([
-		'resources/js/admin/pages/ajax-select.js',
 		'resources/js/admin/pages/campaign.js',
 		'resources/js/admin/pages/category.js',
 		'resources/js/admin/pages/color.js',
-		// 'resources/js/admin/pages/coupon.js',
-		// 'resources/js/admin/pages/customer.js',
 		'resources/js/admin/pages/item.js',
 		// 'resources/js/admin/pages/dashboard.js',
 		'resources/js/admin/pages/material.js',

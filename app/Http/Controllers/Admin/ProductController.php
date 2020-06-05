@@ -40,7 +40,9 @@ class ProductController extends Controller
 	 */
     public function index(Request $request)
     {
-		$params = $this->repository->all($request->search);
+		$params = $this->repository->all($request->search, $request->material_id, $request->category_id);
+		$params['optionsmaterial'] = (new MaterialRepository())->options();
+		$params['optionscategory'] = (new CategoryRepository())->options();
 
 		return view('admin.pages.product-list', ['page' => 'product'])->with($params);
     }

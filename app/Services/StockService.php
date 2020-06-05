@@ -61,7 +61,7 @@ class StockService
 
 		// salva ou atualiza os dados
 		$repository = new StockRepository();
-		$entity = $repository->store($data, true);
+		$entity = $repository->store($data);
 		// verifica se salvou
 		if (!$entity instanceof Stock) {
 			throw new Exception($entity, 1);

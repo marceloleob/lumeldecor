@@ -25,12 +25,12 @@
 								</div>
 								<div class="position-relative form-group">
 									{!! Form::label('material_id', 'Material') !!}
-									{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker']) !!}
+									{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 									{!! Form::notification('material_id', $errors) !!}
 								</div>
 								<div class="position-relative form-group">
 									{!! Form::label('category_id', 'Categoria') !!}
-									{!! Form::select('category_id', $optionscategory, old('category_id', $data->category_id), ['class' => 'form-control selectpicker']) !!}
+									{!! Form::select('category_id', $optionscategory, old('category_id', $data->category_id), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 									{!! Form::hidden('category_id_hide', old('category_id', $data->category_id)) !!}
 									{!! Form::notification('category_id', $errors) !!}
 								</div>
@@ -41,14 +41,14 @@
 								</div>
 								<div class="position-relative form-group">
 									{!! Form::label('product_id', 'Produto') !!}
-									{!! Form::select('product_id', $optionsproduct, old('product_id', $data->product_id), ['class' => 'form-control selectpicker']) !!}
+									{!! Form::select('product_id', $optionsproduct, old('product_id', $data->product_id), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 									{!! Form::notification('product_id', $errors) !!}
 								</div>
 								<div class="form-row">
 									<div class="col-md-6">
 										<div class="position-relative form-group">
 											{!! Form::label('kind', 'Tipo do desconto', ['class' => 'required']) !!}
-											{!! Form::selectKind('kind', old('kind', $data->kind), ['class' => 'form-control kind selectpicker']) !!}
+											{!! Form::selectKind('kind', old('kind', $data->kind), ['class' => 'form-control kind selectpicker', 'title' => 'Selecione']) !!}
 											{!! Form::notification('kind', $errors) !!}
 										</div>
 									</div>

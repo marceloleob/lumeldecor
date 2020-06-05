@@ -3,11 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\CategoryRepository;
+use App\Repositories\MaterialRepository;
+use App\Repositories\ProductRepository;
+use App\Repositories\StockRepository;
 use App\Services\StockService;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
 {
+	/**
+	 * @var StockRepository
+	 */
+	private $repository;
+
+	/**
+	 * Constructor
+	 *
+	 * @param StockRepository $repository
+	 */
+	public function __construct(StockRepository $repository)
+	{
+		$this->repository = $repository;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -16,9 +35,11 @@ class StockController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$params = StockService::list($request->search);
+		$params = (new ProductRepository())->all($request->search);
+		$params['optionsmaterial'] = (new MaterialRepository())->options();
+		$params['optionscategory'] = (new CategoryRepository())->options();
 
-		return view('admin.pages.stock-list')->with($params);
+		return view('admin.pages.stock-list', ['page' => 'stock'])->with($params);
 	}
 
     /**
@@ -72,17 +93,6 @@ class StockController extends Controller
      * @return Response
      */
     public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
     {
         //
     }

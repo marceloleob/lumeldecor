@@ -14,7 +14,7 @@ return [
     'COMPANY_SUBJECT_FROM'   => config('app.name'),
 
     // PAGINATION
-    'TOTAL_PAGE'             => 10,
+    'TOTAL_PAGE'             => 20,
 
     // BUSINESS RULES
     'INACTIVE'               => 0,

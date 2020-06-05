@@ -46,22 +46,26 @@
 				<a href="{!! route('category.list') !!}" class="{!! (request()->is('admin/categoria/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-store icon-gradient bg-plum-plate"></i> Categorias</a>
 			</li>
 			<li>
-				<a href="{!! route('theme.list') !!}" class="{!! (request()->is('admin/tema/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-star icon-gradient bg-plum-plate"></i> Temas</a>
+				<a href="{!! route('product.list') !!}" class="{!! (request()->is('admin/produto/*') || request()->is('admin/item/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-cubes icon-gradient bg-plum-plate"></i> Produtos</a>
+			</li>
+			<li>
+				<a href="{!! route('stock.list') !!}" class="{!! (request()->is('admin/estoque/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-warehouse"></i> Estoques</a>
+			</li>
+
+			<li class="app-sidebar__heading">ITENS</li>
+			<li>
+				<a href="javascript: return false;" class=""><i class="metismenu-icon fas fa-swatchbook"></i> Tonalidade</a>
 			</li>
 			<li>
 				<a href="{!! route('color.list') !!}" class="{!! (request()->is('admin/cor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-palette icon-gradient bg-plum-plate"></i> Cores</a>
 			</li>
 			<li>
-				<a href="{!! route('product.list') !!}" class="{!! (request()->is('admin/produto/*') || request()->is('admin/item/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-cubes icon-gradient bg-plum-plate"></i> Produtos</a>
+				<a href="{!! route('theme.list') !!}" class="{!! (request()->is('admin/tema/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-star icon-gradient bg-plum-plate"></i> Temas</a>
 			</li>
+			<li class="app-sidebar__heading">PUBLICIDADE</li>
 			<li>
 				<a href="{!! route('campaign.list') !!}" class="{!! (request()->is('admin/campanha/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-calendar-alt icon-gradient bg-plum-plate"></i> Campanhas</a>
 			</li>
-			{{-- <li>
-				<a href="{!! route('stock.list') !!}" class="{!! (request()->is('admin/estoques/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-warehouse"></i> Estoques</a>
-			</li> --}}
-
-			<li class="app-sidebar__heading">SITE</li>
 			<li>
 				<a href="javascript:void(0);" aria-expanded="{!! ((request()->is('admin/cupom/*')) || (request()->is('admin/promocao/*')) || (request()->is('admin/campanhas'))) ? 'true' : 'false' !!}"><i class="metismenu-icon fas fa-search-dollar icon-gradient bg-plum-plate"></i> Ofertas <i class="metismenu-state-icon fas fa-angle-down caret-left"></i></a>
 				<ul class="{!! ((request()->is('admin/cupom/*')) || (request()->is('admin/promocao/*')) || (request()->is('admin/campanhas'))) ? 'mm-collapse mm-show' : '' !!}">

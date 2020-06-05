@@ -178,6 +178,6 @@
 		</div>
 	</div>
 
-	@include('admin.pages.items-list')
+	@include('admin.pages.item-list')
 
 @endsection

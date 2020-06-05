@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Models\Material;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class ProductRepository extends BaseRepository
 {
@@ -17,24 +19,45 @@ class ProductRepository extends BaseRepository
 	 * Executa a busca para a listagem com paginacao e filtro
 	 *
 	 * @param  string $search
+	 * @param  string $material
+	 * @param  string $category
 	 * @return array
 	 */
-	public function all($search = null)
+	public function all($search = null, $material = null, $category = null)
 	{
+		// $query = DB::table('products')
+		// 	->join('categories', 'categories.id', '=', 'products.category_id')
+		// 	->join('materials', 'materials.id', '=', 'categories.material_id')
+		// 	->select(
+		// 		'products.*',
+		// 		'categories.id AS category_id',
+		// 		'categories.name AS category',
+		// 		'materials.id AS material_id',
+		// 		'materials.name AS material'
+		// 	);
+
 		$query = $this->query()->orderBy('name');
-			// verifica se buscou algum item especifico
-			if (!empty($search)) {
-				// procura o termo
-				$query->where('name', 'LIKE', '%' . $search . '%');
-			}
+
+		// verifica se buscou algum item especifico
+		if (!empty($search)) {
+			$query->where('name', 'LIKE', '%' . $search . '%');
+		}
+		if (!empty($material)) {
+			$query->where('material_id', $material);
+		}
+		if (!empty($category)) {
+			$query->where('category_id', $category);
+		}
 
         // cria uma collection com paginacao para montar o grid
-		$this->pagination($query, $search);
+		$this->pagination($query, $search, $material, $category);
 		// formata os registros da collection
 		$this->format();
 
 		return [
 			'search'   => $search,
+			'material' => $material,
+			'category' => $category,
 			'data'     => $this->data,
 			'paginate' => $this->paginate,
 		];
@@ -52,7 +75,7 @@ class ProductRepository extends BaseRepository
 		{
 			$collection->productName  = $collection->name;
 			$collection->categoryName = $collection->category->name;
-			$collection->materialName = $collection->category->material->name;
+			$collection->materialName = $collection->material->name;
 			// verifica se o producto e um destaque
 			if ($collection->featured == config('constants.ACTIVE')) {
 				$collection->featured = '<span class="text-focus">Sim</span>';

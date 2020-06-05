@@ -1,14 +1,19 @@
 @extends('admin.layouts.lists')
 
-@section('heading')
-	<div class="page-title-icon">
-		<i class="fas fa-cubes icon-gradient bg-plum-plate"></i>
+@section('icon', 'fas fa-cubes')
+@section('title', 'Produtos')
+@section('subheading', 'Lista todos os produtos cadastrados no sistema.')
+@section('btn-add', route($page . '.create'))
+
+@section('search')
+	<div class="position-relative mr-2">
+		{!! Form::select('material_id', $optionsmaterial, ($material ?? ''), ['class' => 'selectpicker', 'title' => 'Selecione um Material']) !!}
 	</div>
-	<div>
-		Produtos
-		<div class="page-title-subheading">Lista todos os produtos cadastrados no sistema.</div>
+	<div class="position-relative mr-2">
+		{!! Form::select('category_id', $optionscategory, ($category ?? ''), ['class' => 'selectpicker', 'title' => 'Selecione uma Categoria']) !!}
+		{!! Form::hidden('category_id_hide', ($category ?? '')) !!}
 	</div>
-@stop
+@endsection
 
 @section('table')
 	<table class="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -35,7 +40,7 @@
 				<td class="text-center">{!! $item->launch !!}</td>
 				<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 				<td class="text-center">
-					<a href="{!! route($page . '.edit', [$item->id, $data->currentPage()]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
+					<a href="{!! route($page . '.edit', [$item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
 					<a href="{!! route($page . '.status', $item->id) !!}" class="border-0 btn-transition btn {!! $item->styles['class'] !!}"><i class="fas {!! $item->styles['label'] !!}"></i></a>
 				</td>
 			</tr>

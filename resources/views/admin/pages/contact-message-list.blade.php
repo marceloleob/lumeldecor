@@ -39,7 +39,7 @@
 			@if (count($data))
 				@foreach ($data as $item)
 				<div class="message_item {!! ($item->read == 0) ? 'new' : '' !!}">
-					<a href="{!! route('message.view', [$item->id, $data->currentPage()]) !!}">
+					<a href="{!! route('message.view', [$item->id]) !!}">
 						{!! ($item->read == 0) ? '<span class="new">Não lida</span>' : '' !!}
 						<div class="left">
 							<span class="{!! ($item->read == 0) ? 'sender_name_new' : 'sender_name' !!}">{{ $item->name }}</span>
@@ -85,7 +85,7 @@
 									<td class="text-center">{!! ($item->read == 0) ? 'Nova' : '&nbsp;' !!}</td>
 									<td class="text-left">
 										<div class="message_item ">
-											<a href="{!! route('message.view', [$item->id, $data->currentPage()]) !!}">
+											<a href="{!! route('message.view', [$item->id]) !!}">
 												<div class="left">
 													<span class="{!! ($item->read == 0) ? 'sender_name_new' : 'sender_name' !!}">{{ $item->name }}</span>
 													<p>{{ Str::limit($item->text, 100, '..') }}</p>

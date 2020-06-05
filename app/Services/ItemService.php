@@ -93,7 +93,7 @@ class ItemService
 
 		// salva ou atualiza os dados
 		$itemR = new ItemRepository();
-		$itemE = $itemR->store($data, true);
+		$itemE = $itemR->store($data);
 		// verifica se salvou
 		if (!$itemE instanceof Item) {
 			throw new Exception($itemE, 1);

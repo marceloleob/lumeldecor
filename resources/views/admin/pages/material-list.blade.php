@@ -1,23 +1,18 @@
 @extends('admin.layouts.lists')
 
-@section('heading')
-	<div class="page-title-icon">
-		<i class="fas fa-dolly-flatbed icon-gradient bg-plum-plate"></i>
-	</div>
-	<div>
-		Materiais
-		<div class="page-title-subheading">Lista todos os materiais referentes as categorias de produtos.</div>
-	</div>
-@stop
+@section('icon', 'fas fa-dolly-flatbed')
+@section('title', 'Materiais')
+@section('subheading', 'Lista todos os materiais dos produtos.')
+@section('btn-add', route($page . '.create'))
 
 @section('table')
 	<table class="align-middle mb-0 table table-borderless table-striped table-hover">
 		<thead>
 			<tr>
-				<th width="10%" class="text-center">Código</th>
-				<th width="60%" class="text-left">Material {!! $page !!}</th>
-				<th width="15%" class="text-center">Status</th>
-				<th width="15%" class="text-center">Ações</th>
+				<th width="8%" class="text-center">Código</th>
+				<th width="70%" class="text-left">Material {!! $page !!}</th>
+				<th width="10%" class="text-center">Status</th>
+				<th width="12%" class="text-center">Ações</th>
 			</tr>
 		</thead>
 		<tbody>

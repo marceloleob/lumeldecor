@@ -27,14 +27,14 @@
 									<div class="col-md-6">
 										<div class="position-relative form-group">
 											{!! Form::label('start_day', 'Dia inicial*') !!}
-											{!! Form::selectDay('start_day', old('start_day', $data->start_day), ['class' => 'form-control selectpicker']) !!}
+											{!! Form::selectDay('start_day', old('start_day', $data->start_day), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 											{!! Form::notification('start_day', $errors) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="position-relative form-group">
 											{!! Form::label('start_month', 'Mês inicial*') !!}
-											{!! Form::selectMonth('start_month', old('start_month', $data->start_month), ['class' => 'form-control selectpicker']) !!}
+											{!! Form::selectMonth('start_month', old('start_month', $data->start_month), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 											{!! Form::notification('start_month', $errors) !!}
 										</div>
 									</div>
@@ -43,14 +43,14 @@
 									<div class="col-md-6">
 										<div class="position-relative form-group">
 											{!! Form::label('finish_day', 'Dia final*') !!}
-											{!! Form::selectDay('finish_day', old('finish_day', $data->finish_day), ['class' => 'form-control selectpicker']) !!}
+											{!! Form::selectDay('finish_day', old('finish_day', $data->finish_day), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 											{!! Form::notification('finish_day', $errors) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="position-relative form-group">
 											{!! Form::label('finish_month', 'Mês final*') !!}
-											{!! Form::selectMonth('finish_month', old('finish_month', $data->finish_month), ['class' => 'form-control selectpicker']) !!}
+											{!! Form::selectMonth('finish_month', old('finish_month', $data->finish_month), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 											{!! Form::notification('finish_month', $errors) !!}
 										</div>
 									</div>
@@ -68,14 +68,14 @@
 							<div class="col-md-5">
 								<div class="position-relative form-group">
 									{!! Form::label('material_id', 'Material', ['class' => 'required']) !!}
-									{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker']) !!}
+									{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material_id), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 									{!! Form::notification('material_id', $errors) !!}
 								</div>
 							</div>
 							<div class="col-md-5">
 								<div class="position-relative form-group">
 									{!! Form::label('category_id', 'Categoria') !!}
-									{!! Form::select('category_id', $optionscategory, old('category_id', $data->category_id), ['class' => 'form-control selectpicker']) !!}
+									{!! Form::select('category_id', $optionscategory, old('category_id', $data->category_id), ['class' => 'form-control selectpicker', 'title' => 'Selecione o Material']) !!}
 									{!! Form::hidden('category_id_hide', old('category_id', $data->category_id)) !!}
 									{!! Form::notification('category_id', $errors) !!}
 								</div>

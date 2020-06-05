@@ -50,7 +50,7 @@
 											<div class="col-md-4">
 												<div class="position-relative form-group">
 													{!! Form::label('size', 'Tamanho', ['class' => 'required']) !!}
-													{!! Form::selectSize('size', old('size'), ['class' => 'form-control selectpicker', 'id' => 'size']) !!}
+													{!! Form::selectSize('size', old('size'), ['class' => 'form-control selectpicker', 'id' => 'size', 'title' => 'Selecione']) !!}
 													{!! Form::notification('size', $errors) !!}
 												</div>
 											</div>
