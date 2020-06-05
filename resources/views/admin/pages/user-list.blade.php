@@ -3,7 +3,6 @@
 @section('icon', 'fas fa-users-cog')
 @section('title', 'Usuários do Sistema')
 @section('subheading', 'Lista todos os usuários do sistema.')
-@section('btn-add', route($page . '.create'))
 
 @section('table')
 	<table class="align-middle mb-0 table table-borderless table-striped table-hover">
