@@ -30,6 +30,23 @@ class BaseRepository
 	public $paginate;
 
     /**
+     * Armazena o total por pagina
+     *
+     * @var integer
+     */
+	public $total;
+
+	/**
+     * Create a new repository instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->total = config('constants.TOTAL_PAGE');
+	}
+
+    /**
 	 * Cria uma nova instancia
 	 *
      * @return Model
@@ -70,7 +87,7 @@ class BaseRepository
 	public function pagination($query, $search = null, $material = null, $category = null)
 	{
 		// recupera os dados paginados
-		$this->data = $query->paginate(config('constants.TOTAL_PAGE'));
+		$this->data = $query->paginate($this->total);
 		// adiciona parametro do filtro no paginate
 		if (!empty($search)) {
             $this->data->appends(['search' => $search]);

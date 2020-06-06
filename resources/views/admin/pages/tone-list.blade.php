@@ -1,8 +1,8 @@
 @extends('admin.layouts.lists')
 
-@section('icon', 'fas fa-dolly-flatbed')
-@section('title', 'Materiais')
-@section('subheading', 'Lista todos os materiais dos produtos.')
+@section('icon', 'fas fa-swatchbook')
+@section('title', 'Tonalidades')
+@section('subheading', 'Lista todas as tonalidades dos produtos.')
 @section('btn-add', route($page . '.create'))
 
 @section('table')
@@ -10,7 +10,7 @@
 		<thead>
 			<tr>
 				<th width="8%" class="text-center">Código</th>
-				<th width="70%" class="text-left">Material</th>
+				<th width="70%" class="text-left">Tonalidade</th>
 				<th width="10%" class="text-center">Status</th>
 				<th width="12%" class="text-center">Ações</th>
 			</tr>

@@ -54,7 +54,7 @@
 
 			<li class="app-sidebar__heading">ITENS</li>
 			<li>
-				<a href="javascript: return false;" class=""><i class="metismenu-icon fas fa-swatchbook"></i> Tonalidade</a>
+				<a href="{!! route('tone.list') !!}" class="{!! (request()->is('admin/tonalidade/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-swatchbook icon-gradient bg-plum-plate"></i> Tonalidade</a>
 			</li>
 			<li>
 				<a href="{!! route('color.list') !!}" class="{!! (request()->is('admin/cor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-palette icon-gradient bg-plum-plate"></i> Cores</a>
@@ -90,12 +90,11 @@
 				<a href="{!! route('customer.list') !!}" class="{!! (request()->is('admin/cliente/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users icon-gradient bg-plum-plate"></i> Clientes</a>
 			</li>
 			<li>
-				<a href="{!! route('supplier.list') !!}" class="{!! (request()->is('admin/fornecedor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-tie icon-gradient bg-plum-plate"></i> Fornecedores</a>
-			</li>
-			<li>
 				<a href="{!! route('employee.list') !!}" class="{!! (request()->is('admin/funcionario/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-tag icon-gradient bg-plum-plate"></i> Funcionários</a>
 			</li>
-
+			<li>
+				<a href="{!! route('supplier.list') !!}" class="{!! (request()->is('admin/fornecedor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-user-tie icon-gradient bg-plum-plate"></i> Fornecedores</a>
+			</li>
 			<li>
 				<a href="{!! route('user.list') !!}" class="{!! (request()->is('admin/usuario/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-users-cog icon-gradient bg-plum-plate"></i> Todos</a>
 			</li>

@@ -20,10 +20,20 @@ class Color extends Model
 	 */
 	protected $fillable = [
 		'id',
+		'tone_id',
 		'name',
 		'hexa',
 		'status',
 	];
+
+	/**
+	 * Get the tone that owns the category.
+	 *
+	 */
+	public function tone()
+	{
+		return $this->belongsTo(Tone::class);
+	}
 
 	/**
 	 * Get the items about this color.

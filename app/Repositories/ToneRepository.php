@@ -2,38 +2,32 @@
 
 namespace App\Repositories;
 
-use App\Models\Color;
+use App\Models\Tone;
 
-class ColorRepository extends BaseRepository
+class ToneRepository extends BaseRepository
 {
 	/**
 	 * Armazena a entidade
 	 *
 	 * @var Entity
 	 */
-	protected $model = Color::class;
+	protected $model = Tone::class;
 
 	/**
 	 * Executa a busca para a listagem com paginacao e filtro
 	 *
 	 * @param  string $search
-	 * @param  string $tone
 	 * @return array
 	 */
-	public function all($search = null, $tone = null)
+	public function all($search = null)
 	{
 		$query = $this->query()->orderBy('name');
 
 		// verifica se buscou algum item especifico
-		if (!empty($search)) {
-			$query->where('name', 'LIKE', '%' . $search . '%');
-		}
-		if (!empty($tone)) {
-			$query->where('tone_id', $tone);
+        if (!empty($search)) {
+            $query->where('name', 'LIKE', '%' . $search . '%');
 		}
 
-		// seta o total da pagina
-		$this->total = 50;
         // cria uma collection com paginacao para montar o grid
 		$this->pagination($query, $search);
 		// formata os registros da collection
@@ -41,7 +35,6 @@ class ColorRepository extends BaseRepository
 
 		return [
 			'search'   => $search,
-			'tone'     => $tone,
 			'data'     => $this->data,
 			'paginate' => $this->paginate,
 		];

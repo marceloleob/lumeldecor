@@ -3,24 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ColorRequest;
-use App\Repositories\ColorRepository;
+use App\Http\Requests\Admin\ToneRequest;
 use App\Repositories\ToneRepository;
 use Illuminate\Http\Request;
 
-class ColorController extends Controller
+class ToneController extends Controller
 {
 	/**
-	 * @var ColorRepository
+	 * @var ToneRepository
 	 */
 	private $repository;
 
 	/**
 	 * Constructor
 	 *
-	 * @param ColorRepository $repository
+	 * @param ToneRepository $repository
 	 */
-	public function __construct(ColorRepository $repository)
+	public function __construct(ToneRepository $repository)
 	{
 		$this->repository = $repository;
 	}
@@ -33,10 +32,9 @@ class ColorController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$params = $this->repository->all($request->search, $request->tone_id);
-		$params['optionstone'] = (new ToneRepository())->options();
+		$params = $this->repository->all($request->search);
 
-		return view('admin.pages.color-list', ['page' => 'color'])->with($params);
+		return view('admin.pages.tone-list', ['page' => 'tone'])->with($params);
 	}
 
     /**
@@ -46,25 +44,25 @@ class ColorController extends Controller
      */
     public function create()
     {
-		return view('admin.pages.color-form-create', ['page' => 'color']);
+		return view('admin.pages.tone-form-create', ['page' => 'tone']);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ColorRequest  $request
+     * @param  ToneRequest  $request
      * @return Response
      */
-    public function store(ColorRequest $request)
+    public function store(ToneRequest $request)
     {
 		// save
 		$response = $this->repository->store($request->all());
         // verifica se retornou erro
         if (isset($response['error'])) {
             return back()->withInput()->with($response);
-        }
+		}
 
-        return redirect()->route('color.list')->with('success', 'Cor cadastrada com sucesso!');
+        return redirect()->route('tone.list')->with('success', 'Tonalidade cadastrada com sucesso!');
     }
 
     /**
@@ -79,17 +77,17 @@ class ColorController extends Controller
 			'data' => $this->repository->findById($id),
 		];
 
-		return view('admin.pages.color-form-update', ['page' => 'color'])->with($params);
+		return view('admin.pages.tone-form-update', ['page' => 'tone'])->with($params);
 	}
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  ColorRequest  $request
+     * @param  ToneRequest  $request
      * @param  int  $id
      * @return Response
      */
-    public function update(ColorRequest $request, $id)
+    public function update(ToneRequest $request, $id)
     {
 		// save
 		$response = $this->repository->store($request->all(), $id);
@@ -98,7 +96,7 @@ class ColorController extends Controller
             return back()->withInput()->with($response);
 		}
 
-        return redirect()->route('material.list')->with('success', 'Cor atualizada com sucesso!');
+        return redirect()->route('tone.list')->with('success', 'Tonalidade atualizada com sucesso!');
 	}
 
     /**
@@ -111,6 +109,6 @@ class ColorController extends Controller
     {
         $response = $this->repository->changeStatus($id);
 
-        return redirect()->route('color.list')->with($response);
+        return redirect()->route('tone.list')->with($response);
     }
 }

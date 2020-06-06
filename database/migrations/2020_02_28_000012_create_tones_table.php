@@ -15,7 +15,7 @@ class CreateTonesTable extends Migration
     {
         Schema::create('tones', function (Blueprint $table) {
             $table->id();
-			$table->string('name', 150);
+			$table->string('name', 150)->unique();
 			$table->boolean('status')->default(1);
         });
     }

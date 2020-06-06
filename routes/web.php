@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Site'], function () {
 	// Home
 	Route::get('/', 'HomeController@index')->name('home');
+	Route::get('cores', 'ColorsController@index');
 });
 
 
@@ -56,23 +57,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::put('categoria/atualizar/{id}', 'CategoryController@update')->name('category.update');
 	Route::get('categoria/status/{id}', 'CategoryController@changeStatus')->name('category.status');
 	Route::post('category/options', 'CategoryController@options');
-	// Themes
-	Route::get('tema/listar', 'ThemeController@index')->name('theme.list');
-	Route::any('tema/buscar', 'ThemeController@index')->name('theme.search');
-	Route::get('tema/cadastrar', 'ThemeController@create')->name('theme.create');
-	Route::post('tema/salvar', 'ThemeController@store')->name('theme.store');
-	Route::get('tema/editar/{id}', 'ThemeController@edit')->name('theme.edit');
-	Route::put('tema/atualizar/{id}', 'ThemeController@update')->name('theme.update');
-	Route::get('tema/status/{id}', 'ThemeController@changeStatus')->name('theme.status');
-	// Colors
-	Route::get('cor/listar', 'ColorController@index')->name('color.list');
-	Route::any('cor/buscar', 'ColorController@index')->name('color.search');
-	Route::get('cor/cadastrar', 'ColorController@create')->name('color.create');
-	Route::post('cor/salvar', 'ColorController@store')->name('color.store');
-	Route::get('cor/editar/{id}', 'ColorController@edit')->name('color.edit');
-	Route::put('cor/atualizar/{id}', 'ColorController@update')->name('color.update');
-	Route::get('cor/status/{id}', 'ColorController@changeStatus')->name('color.status');
-
 	// Products
 	Route::get('produto/listar', 'ProductController@index')->name('product.list');
 	Route::any('produto/buscar', 'ProductController@index')->name('product.search');
@@ -92,6 +76,38 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('item/editar/{itemId}', 'ItemController@edit')->name('item.edit');
 	Route::put('item/atualizar/{itemId}', 'ItemController@update')->name('item.update');
 	Route::get('item/status/{itemId}/{productSizeId}', 'ItemController@changeStatus')->name('item.status');
+	// Stocks
+	Route::get('estoque/listar', 'StockController@index')->name('stock.list');
+	Route::any('estoque/buscar', 'StockController@index')->name('stock.search');
+	Route::get('estoque/editar/{id}', 'StockController@edit')->name('stock.edit');
+	Route::put('estoque/atualizar/{id}', 'StockController@update')->name('stock.update');
+
+
+	// Tones
+	Route::get('tonalidade/listar', 'ToneController@index')->name('tone.list');
+	Route::any('tonalidade/buscar', 'ToneController@index')->name('tone.search');
+	Route::get('tonalidade/cadastrar', 'ToneController@create')->name('tone.create');
+	Route::post('tonalidade/salvar', 'ToneController@store')->name('tone.store');
+	Route::get('tonalidade/editar/{id}', 'ToneController@edit')->name('tone.edit');
+	Route::put('tonalidade/atualizar/{id}', 'ToneController@update')->name('tone.update');
+	Route::get('tonalidade/status/{id}', 'ToneController@changeStatus')->name('tone.status');
+	// Colors
+	Route::get('cor/listar', 'ColorController@index')->name('color.list');
+	Route::any('cor/buscar', 'ColorController@index')->name('color.search');
+	Route::get('cor/cadastrar', 'ColorController@create')->name('color.create');
+	Route::post('cor/salvar', 'ColorController@store')->name('color.store');
+	Route::get('cor/editar/{id}', 'ColorController@edit')->name('color.edit');
+	Route::put('cor/atualizar/{id}', 'ColorController@update')->name('color.update');
+	Route::get('cor/status/{id}', 'ColorController@changeStatus')->name('color.status');
+	// Themes
+	Route::get('tema/listar', 'ThemeController@index')->name('theme.list');
+	Route::any('tema/buscar', 'ThemeController@index')->name('theme.search');
+	Route::get('tema/cadastrar', 'ThemeController@create')->name('theme.create');
+	Route::post('tema/salvar', 'ThemeController@store')->name('theme.store');
+	Route::get('tema/editar/{id}', 'ThemeController@edit')->name('theme.edit');
+	Route::put('tema/atualizar/{id}', 'ThemeController@update')->name('theme.update');
+	Route::get('tema/status/{id}', 'ThemeController@changeStatus')->name('theme.status');
+
 
 	// Campaign
 	Route::get('campanha/listar', 'CampaignController@index')->name('campaign.list');
@@ -117,11 +133,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('promocao/editar/{id}', 'OfferPromotionController@edit')->name('promotion.edit');
 	Route::put('promocao/atualizar/{id}', 'OfferPromotionController@update')->name('promotion.update');
 	Route::get('promocao/status/{id}', 'OfferPromotionController@changeStatus')->name('promotion.status');
-	// Stocks
-	Route::get('estoque/listar', 'StockController@index')->name('stock.list');
-	Route::any('estoque/buscar', 'StockController@index')->name('stock.search');
-	Route::get('estoque/editar/{id}', 'StockController@edit')->name('stock.edit');
-	Route::put('estoque/atualizar/{id}', 'StockController@update')->name('stock.update');
 
 	// 	// Orders
 	// 	Route::get('encomenda/lista', 'OrderController@index')->name('order.list');
@@ -145,14 +156,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('cliente/editar/{id}', 'CustomerController@edit')->name('customer.edit');
 	Route::put('cliente/atualizar/{id}', 'CustomerController@update')->name('customer.update');
 	Route::get('cliente/status/{id}', 'CustomerController@changeStatus')->name('customer.status');
-	// Suppliers
-	Route::get('fornecedor/listar', 'SupplierController@index')->name('supplier.list');
-	Route::any('fornecedor/buscar', 'SupplierController@index')->name('supplier.search');
-	Route::get('fornecedor/cadastrar', 'SupplierController@create')->name('supplier.create');
-	Route::post('fornecedor/salvar', 'SupplierController@store')->name('supplier.store');
-	Route::get('fornecedor/editar/{id}', 'SupplierController@edit')->name('supplier.edit');
-	Route::put('fornecedor/atualizar/{id}', 'SupplierController@update')->name('supplier.update');
-	Route::get('fornecedor/status/{id}', 'SupplierController@changeStatus')->name('supplier.status');
 	// Employee
 	Route::get('funcionario/listar', 'EmployeeController@index')->name('employee.list');
 	Route::any('funcionario/buscar', 'EmployeeController@index')->name('employee.search');
@@ -161,6 +164,14 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('funcionario/editar/{id}', 'EmployeeController@edit')->name('employee.edit');
 	Route::put('funcionario/atualizar/{id}', 'EmployeeController@update')->name('employee.update');
 	Route::get('funcionario/status/{id}', 'EmployeeController@changeStatus')->name('employee.status');
+	// Suppliers
+	Route::get('fornecedor/listar', 'SupplierController@index')->name('supplier.list');
+	Route::any('fornecedor/buscar', 'SupplierController@index')->name('supplier.search');
+	Route::get('fornecedor/cadastrar', 'SupplierController@create')->name('supplier.create');
+	Route::post('fornecedor/salvar', 'SupplierController@store')->name('supplier.store');
+	Route::get('fornecedor/editar/{id}', 'SupplierController@edit')->name('supplier.edit');
+	Route::put('fornecedor/atualizar/{id}', 'SupplierController@update')->name('supplier.update');
+	Route::get('fornecedor/status/{id}', 'SupplierController@changeStatus')->name('supplier.status');
 	// Users
 	Route::get('usuario/listar', 'UserController@index')->name('user.list');
 	Route::any('usuario/buscar', 'UserController@index')->name('user.search');
