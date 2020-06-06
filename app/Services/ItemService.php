@@ -88,7 +88,7 @@ class ItemService
 
 		// atualiza os dados do Item
 		$data['code']    = self::handleCode($product, $productSize, $data['colors']);
-		$data['picture'] = ImageService::store($data['picture'], $data['new_picture'] ?? null, $itemId);
+		$data['picture'] = ImageService::store($data['picture'], $data['new_picture'] ?? null, $itemId ?? null);
 		$data['launch']  = $data['launch'] ?? false;
 
 		// salva ou atualiza os dados

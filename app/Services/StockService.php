@@ -14,7 +14,7 @@ class StockService
 	 * Armazena as acoes de manipulacao do estoque
 	 */
 	public static $_actions = [
-		'NEW_PRODUCT' => 'Cadastro de novo produto',
+		'NEW_PRODUCT' => 1,
 	];
 
 	/**
@@ -53,11 +53,12 @@ class StockService
 		// remove do array o parametro que nao e necessario
 		$data = Arr::only($data, ['product_id', 'item_id']);
 
-		$data['user_id']  = UserService::getUserIdAuth();
-		$data['action']   = self::$_actions['NEW_PRODUCT'];
-		$data['incoming'] = $incoming;
-		$data['overdraw'] = null;
-		$data['balance']  = self::getNewBalace($data['product_id'], $data['item_id'], $incoming);
+		$data['user_id']   = UserService::getUserIdAuth();
+		$data['reason_id'] = self::$_actions['NEW_PRODUCT'];
+		$data['action']    = 'I';
+		$data['incoming']  = $incoming;
+		$data['overdraw']  = null;
+		$data['balance']   = self::getNewBalace($data['product_id'], $data['item_id'], $incoming);
 
 		// salva ou atualiza os dados
 		$repository = new StockRepository();

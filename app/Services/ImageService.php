@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -11,19 +12,24 @@ class ImageService
 	/**
 	 * Verifica se vai salvar uma nova imagem ou atualizar uma atual
 	 *
-	 * @param string       $picture
+	 * @param UploadedFile $picture
 	 * @param UploadedFile $newPicture
 	 * @param integer      $itemId
 	 * @return string $name
 	 */
 	public static function store($picture, $newPicture = null, $itemId = null)
 	{
-		// verifica se e para salvar ou atualizar a foto
-		if (!empty($itemId)) {
-			return self::update($picture, $newPicture);
-		}
+		try {
+			// verifica se e para salvar ou atualizar a foto
+			if (!empty($itemId)) {
+				return self::update($picture, $newPicture);
+			}
 
-		return self::create($picture);
+			return self::create($picture);
+
+		} catch (Exception $exception) {
+			dd($exception);
+		}
 	}
 
 	/**
