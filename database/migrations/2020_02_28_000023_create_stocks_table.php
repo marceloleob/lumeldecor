@@ -18,6 +18,7 @@ class CreateStocksTable extends Migration
 			$table->foreignId('product_id');
 			$table->foreignId('item_id');
 			$table->foreignId('user_id');
+			$table->foreignId('reason_id');
 			$table->string('action', 100);
 			$table->smallInteger('incoming')->nullable();
 			$table->smallInteger('outcoming')->nullable();

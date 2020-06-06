@@ -4,26 +4,26 @@ $(document).ready(function ()
 	 * Validacao do formulario
 	 *
 	 */
-	if ($('#form-item').length) {
+	if ($('#form-stock').length) {
 		// validation
-		$('#form-item').validate({
+		$('#form-stock').validate({
 			rules: {
-				colors: {
+				id: {
 					required: true,
 				},
-				supplier_id: {
+				product_id: {
 					required: true,
 				},
-				s_price: {
+				item_id: {
 					required: true,
 				},
-				p_price: {
+				reason_id: {
 					required: true,
 				},
-				themes: {
+				action: {
 					required: true,
 				},
-				launch: {
+				amount: {
 					required: false,
 				},
 			}

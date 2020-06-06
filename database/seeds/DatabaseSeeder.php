@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
 
 			ContactMessagesTableSeeder::class,
 
+			TonesTableSeeder::class,
 			ColorsTableSeeder::class,
 			ThemesTableSeeder::class,
 			CampaignsTableSeeder::class,
@@ -38,6 +39,7 @@ class DatabaseSeeder extends Seeder
 			ItemThemesTableSeeder::class,
 			ItemColorsTableSeeder::class,
 			CampaignItemsTableSeeder::class,
+			ReasonsTableSeeder::class,
 			StocksTableSeeder::class,
 
 			OfferCouponsTableSeeder::class,

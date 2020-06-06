@@ -27,6 +27,10 @@ class CreateForeignKeys extends Migration
 			$table->foreign('state_id')->references('id')->on('states');
 		});
 
+		Schema::table('colors', function (Blueprint $table) {
+			$table->foreign('tone_id')->references('id')->on('tones');
+		});
+
 		Schema::table('customers', function (Blueprint $table) {
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('no action');
 		});
@@ -77,6 +81,7 @@ class CreateForeignKeys extends Migration
 			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict')->onUpdate('restrict');
 			$table->foreign('item_id')->references('id')->on('items')->onDelete('restrict')->onUpdate('restrict');
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('reason_id')->references('id')->on('reasons')->onDelete('restrict')->onUpdate('restrict');
 		});
 
 		Schema::table('suppliers', function (Blueprint $table) {
@@ -111,6 +116,11 @@ class CreateForeignKeys extends Migration
 		Schema::table('cities', function (Blueprint $table) {
 			$table->dropForeign('cities_state_id_foreign');
 			$table->dropColumn('state_id');
+		});
+
+		Schema::table('colors', function (Blueprint $table) {
+			$table->dropForeign('colors_tone_id_foreign');
+			$table->dropColumn('tone_id');
 		});
 
 		Schema::table('customers', function (Blueprint $table) {
@@ -185,6 +195,8 @@ class CreateForeignKeys extends Migration
 			$table->dropColumn('item_id');
 			$table->dropForeign('stocks_user_id_foreign');
 			$table->dropColumn('user_id');
+			$table->dropForeign('stocks_reason_id_foreign');
+			$table->dropColumn('reason_id');
 		});
 
 		Schema::table('suppliers', function (Blueprint $table) {

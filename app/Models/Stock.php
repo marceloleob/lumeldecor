@@ -23,6 +23,7 @@ class Stock extends Model
         'product_id',
 		'item_id',
 		'user_id',
+		'reason_id',
 		'action',
 		'incoming',
 		'outcoming',
@@ -57,13 +58,11 @@ class Stock extends Model
 	}
 
 	/**
-     * Get the p_price formated
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getColorsAttribute($value)
-    {
-        return number_format($value, 2, ',', '.');
-    }
+	 * Get the reason that owns the stock.
+	 *
+	 */
+	public function reason()
+	{
+		return $this->belongsTo(Reason::class);
+	}
 }

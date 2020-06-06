@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Tone extends Model
+{
+	/**
+	 * Indicates if the model should be timestamped.
+	 *
+	 * @var bool
+	 */
+	public $timestamps = false;
+
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'id',
+		'name',
+		'status',
+	];
+
+	/**
+	 * Get the colors about this tone.
+	 *
+	 */
+	public function colors()
+	{
+		return $this->hasMany(Color::class);
+	}
+}

@@ -52,7 +52,7 @@ class StockController extends Controller
 		$params = [
 			'data' => $this->repository->findById($id),
 		];
-// dd($params);
+
 		return view('admin.pages.stock-form-update', ['page' => 'stock'])->with($params);
 	}
 
