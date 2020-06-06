@@ -15,7 +15,7 @@ class CreateReasonsTable extends Migration
     {
         Schema::create('reasons', function (Blueprint $table) {
             $table->id();
-			$table->char('size', 3);
+			$table->char('action', 3);
 			$table->string('name', 200);
         });
     }

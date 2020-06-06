@@ -14,21 +14,21 @@ class CreateForeignKeys extends Migration
 	public function up()
 	{
 		Schema::table('campaign_items', function (Blueprint $table) {
-			$table->foreign('campaign_id')->references('id')->on('campaigns');
-			$table->foreign('theme_id')->references('id')->on('themes');
-			$table->foreign('item_id')->references('id')->on('items');
+			$table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('item_id')->references('id')->on('items')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('categories', function (Blueprint $table) {
-			$table->foreign('material_id')->references('id')->on('materials');
+			$table->foreign('material_id')->references('id')->on('materials')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('cities', function (Blueprint $table) {
-			$table->foreign('state_id')->references('id')->on('states');
+			$table->foreign('state_id')->references('id')->on('states')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('colors', function (Blueprint $table) {
-			$table->foreign('tone_id')->references('id')->on('tones');
+			$table->foreign('tone_id')->references('id')->on('tones')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('customers', function (Blueprint $table) {
@@ -37,7 +37,7 @@ class CreateForeignKeys extends Migration
 
 		Schema::table('customer_addresses', function (Blueprint $table) {
 			$table->foreign('customer_id')->references('id')->on('customers')->onDelete('restrict')->onUpdate('restrict');
-			$table->foreign('city_id')->references('id')->on('cities');
+			$table->foreign('city_id')->references('id')->on('cities')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('employees', function (Blueprint $table) {
@@ -50,22 +50,22 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('item_colors', function (Blueprint $table) {
-			$table->foreign('item_id')->references('id')->on('items')->onDelete('restrict')->onUpdate('restrict');
-			$table->foreign('color_id')->references('id')->on('colors')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('item_id')->references('id')->on('items')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('color_id')->references('id')->on('colors')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('item_themes', function (Blueprint $table) {
-			$table->foreign('item_id')->references('id')->on('items')->onDelete('restrict')->onUpdate('restrict');
-			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('restrict')->onUpdate('restrict');
+			$table->foreign('item_id')->references('id')->on('items')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('offer_promotions', function (Blueprint $table) {
-			$table->foreign('material_id')->references('id')->on('materials');
-			$table->foreign('category_id')->references('id')->on('categories');
-			$table->foreign('theme_id')->references('id')->on('themes');
-			$table->foreign('campaign_id')->references('id')->on('campaigns');
-			$table->foreign('product_id')->references('id')->on('products');
-			$table->foreign('item_id')->references('id')->on('items');
+			$table->foreign('material_id')->references('id')->on('materials')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('category_id')->references('id')->on('categories')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('theme_id')->references('id')->on('themes')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('product_id')->references('id')->on('products')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('item_id')->references('id')->on('items')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('products', function (Blueprint $table) {
@@ -85,11 +85,11 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('suppliers', function (Blueprint $table) {
-			$table->foreign('city_id')->references('id')->on('cities');
+			$table->foreign('city_id')->references('id')->on('cities')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('supplier_contacts', function (Blueprint $table) {
-			$table->foreign('supplier_id')->references('id')->on('suppliers');
+			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('users', function (Blueprint $table) {
