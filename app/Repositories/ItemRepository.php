@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Item;
+use App\Services\ColorService;
 
 class ItemRepository extends BaseRepository
 {
@@ -62,23 +63,9 @@ class ItemRepository extends BaseRepository
 			}
 
 			// verifica quantas cores tem este item
-			$colors = $collection->colors;
-			$count  = count($colors);
-			if ($count === 1) {
-				$tooltip    = $colors[0]->name;
-				$background = 'background-color: ' . $colors[0]->hexa . ';';
-			}
-			if ($count === 2) {
-				$tooltip    = $colors[0]->name . ' e ' . $colors[1]->name;
-				$background = 'background: linear-gradient( to right, ' . $colors[0]->hexa . ', ' . $colors[0]->hexa . ' 50%, ' . $colors[1]->hexa . ' 50% );';
-			}
-			if ($count === 3) {
-				$tooltip    = $colors[0]->name . ', ' . $colors[1]->name . ' e ' . $colors[2]->name;
-				$background = 'background: linear-gradient( to right, ' . $colors[0]->hexa . ', ' . $colors[0]->hexa . ' 32%, ' . $colors[1]->hexa . ' 32%, ' . $colors[1]->hexa . ' 67%, ' . $colors[2]->hexa . ' 67% );';
-			}
-
-			$collection->tooltip    = $tooltip;
-			$collection->background = $background;
+			$colors = ColorService::format($collection->colors);
+			$collection->tooltip    = $colors['tooltip'];
+			$collection->background = $colors['background'];
 		});
 	}
 }

@@ -3,7 +3,6 @@
 @section('icon', 'fas fa-warehouse')
 @section('title', 'Controle de Estoque')
 @section('subheading', 'Lista todos os itens dos produtos para gerenciar o estoque.')
-@section('btn-add', route($page . '.create'))
 
 @section('search')
 	<div class="position-relative mr-2">

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Stock;
+use App\Services\ColorService;
 use Illuminate\Database\Eloquent\Collection;
 
 class StockRepository extends BaseRepository
@@ -75,26 +76,28 @@ class StockRepository extends BaseRepository
 			$collection->productName  = $collection->product->name;
 			$collection->categoryName = $collection->product->category->name;
 			$collection->materialName = $collection->product->material->name;
-			// $collection->colors       = $collection->item->colors;
 
 			// verifica quantas cores tem este item
-			$colors = $collection->item->colors;
-			$count  = count($colors);
-			if ($count === 1) {
-				$tooltip    = $colors[0]->name;
-				$background = 'background-color: ' . $colors[0]->hexa . ';';
-			}
-			if ($count === 2) {
-				$tooltip    = $colors[0]->name . ' e ' . $colors[1]->name;
-				$background = 'background: linear-gradient( to right, ' . $colors[0]->hexa . ', ' . $colors[0]->hexa . ' 50%, ' . $colors[1]->hexa . ' 50% );';
-			}
-			if ($count === 3) {
-				$tooltip    = $colors[0]->name . ', ' . $colors[1]->name . ' e ' . $colors[2]->name;
-				$background = 'background: linear-gradient( to right, ' . $colors[0]->hexa . ', ' . $colors[0]->hexa . ' 32%, ' . $colors[1]->hexa . ' 32%, ' . $colors[1]->hexa . ' 67%, ' . $colors[2]->hexa . ' 67% );';
-			}
+			$colors = ColorService::format($collection->item->colors);
+			$collection->tooltip    = $colors['tooltip'];
+			$collection->background = $colors['background'];
+		});
+	}
 
-			$collection->tooltip    = $tooltip;
-			$collection->background = $background;
+	/**
+	 * Retorna os dados referente a este modelo
+	 *
+	 * @param integer $id
+	 * @return Entity
+	 */
+	public function findById($id)
+	{
+		return tap($this->query()->with('item', 'product')->where('id', $id)->firstOrFail(), function ($stock)
+		{
+
+			$colors = ColorService::format($stock->item->colors);
+			$stock->tooltip    = $colors['tooltip'];
+			$stock->background = $colors['background'];
 		});
 	}
 

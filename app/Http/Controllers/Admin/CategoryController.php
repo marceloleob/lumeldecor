@@ -31,93 +31,93 @@ class CategoryController extends Controller
 	 * @param  Request  $request
 	 * @return Response
 	 */
-    public function index(Request $request)
-    {
+	public function index(Request $request)
+	{
 		$params = $this->repository->all($request->search, $request->material_id);
 		$params['optionsmaterial'] = (new MaterialRepository())->options();
 
 		return view('admin.pages.category-list', ['page' => 'category'])->with($params);
-    }
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
 		$params = [
 			'optionsmaterial' => (new MaterialRepository())->options(),
 		];
 
 		return view('admin.pages.category-form-create', ['page' => 'category'])->with($params);
-    }
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  CategoryRequest  $request
-     * @return Response
-     */
-    public function store(CategoryRequest $request)
-    {
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  CategoryRequest  $request
+	 * @return Response
+	 */
+	public function store(CategoryRequest $request)
+	{
 		// save
 		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		// verifica se retornou erro
+		if (isset($response['error'])) {
+			return back()->withInput()->with($response);
+		}
 
-        return redirect()->route('category.list')->with('success', 'Categoria cadastrada com sucesso!');
-    }
+		return redirect()->route('category.list')->with('success', 'Categoria cadastrada com sucesso!');
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
 		$params = [
 			'data' => $this->repository->findById($id),
 			'optionsmaterial' => (new MaterialRepository())->options(),
 		];
 
 		return view('admin.pages.category-form-update', ['page' => 'category'])->with($params);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  CategoryRequest  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(CategoryRequest $request, $id)
-    {
-		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-		}
-
-        return redirect()->route('material.list')->with('success', 'Categoria atualizada com sucesso!');
 	}
 
-    /**
-     * Toggle the status storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function changeStatus($id)
-    {
-        $response = $this->repository->changeStatus($id);
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  CategoryRequest  $request
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update(CategoryRequest $request, $id)
+	{
+		// save
+		$response = $this->repository->store($request->all(), $id);
+		// verifica se retornou erro
+		if (isset($response['error'])) {
+			return back()->withInput()->with($response);
+		}
 
-        return redirect()->route('category.list')->with($response);
-    }
+		return redirect()->route('material.list')->with('success', 'Categoria atualizada com sucesso!');
+	}
+
+	/**
+	 * Toggle the status storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function changeStatus($id)
+	{
+		$response = $this->repository->changeStatus($id);
+
+		return redirect()->route('category.list')->with($response);
+	}
 
 	/**
 	 * Return select options of Category

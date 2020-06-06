@@ -54,5 +54,16 @@ class Stock extends Model
 	public function user()
 	{
 		return $this->belongsTo(User::class);
+	}
+
+	/**
+     * Get the p_price formated
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getColorsAttribute($value)
+    {
+        return number_format($value, 2, ',', '.');
     }
 }

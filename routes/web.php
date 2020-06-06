@@ -120,11 +120,8 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	// Stocks
 	Route::get('estoque/listar', 'StockController@index')->name('stock.list');
 	Route::any('estoque/buscar', 'StockController@index')->name('stock.search');
-	Route::get('estoque/cadastrar', 'StockController@create')->name('stock.create');
-	Route::post('estoque/salvar', 'StockController@store')->name('stock.store');
 	Route::get('estoque/editar/{id}', 'StockController@edit')->name('stock.edit');
 	Route::put('estoque/atualizar/{id}', 'StockController@update')->name('stock.update');
-	Route::get('estoque/status/{id}', 'StockController@changeStatus')->name('stock.status');
 
 	// 	// Orders
 	// 	Route::get('encomenda/lista', 'OrderController@index')->name('order.list');

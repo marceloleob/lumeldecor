@@ -5,7 +5,6 @@ namespace App\Services;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Exception;
 
 class ImageService
 {
