@@ -17,17 +17,23 @@ class ToneRepository extends BaseRepository
 	 * Executa a busca para a listagem com paginacao e filtro
 	 *
 	 * @param  string $search
+	 * @param  string $color
 	 * @return array
 	 */
-	public function all($search = null)
+	public function all($search = null, $color = null)
 	{
 		$query = $this->query()->orderBy('name');
 
 		// verifica se buscou algum item especifico
-        if (!empty($search)) {
-            $query->where('name', 'LIKE', '%' . $search . '%');
+		if (!empty($search)) {
+			$query->where('name', 'LIKE', '%' . $search . '%');
+		}
+		if (!empty($color)) {
+			$query->where('color_id', $color);
 		}
 
+		// seta o total da pagina
+		$this->total = 50;
         // cria uma collection com paginacao para montar o grid
 		$this->pagination($query, $search);
 		// formata os registros da collection
@@ -35,6 +41,7 @@ class ToneRepository extends BaseRepository
 
 		return [
 			'search'   => $search,
+			'color'    => $color,
 			'data'     => $this->data,
 			'paginate' => $this->paginate,
 		];

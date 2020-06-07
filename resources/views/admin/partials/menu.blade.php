@@ -54,10 +54,10 @@
 
 			<li class="app-sidebar__heading">ITENS</li>
 			<li>
-				<a href="{!! route('tone.list') !!}" class="{!! (request()->is('admin/tonalidade/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-swatchbook icon-gradient bg-plum-plate"></i> Tonalidade</a>
+				<a href="{!! route('color.list') !!}" class="{!! (request()->is('admin/cor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-palette icon-gradient bg-plum-plate"></i> Cores</a>
 			</li>
 			<li>
-				<a href="{!! route('color.list') !!}" class="{!! (request()->is('admin/cor/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-palette icon-gradient bg-plum-plate"></i> Cores</a>
+				<a href="{!! route('tone.list') !!}" class="{!! (request()->is('admin/tonalidade/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-swatchbook icon-gradient bg-plum-plate"></i> Tonalidade</a>
 			</li>
 			<li>
 				<a href="{!! route('theme.list') !!}" class="{!! (request()->is('admin/tema/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon far fa-star icon-gradient bg-plum-plate"></i> Temas</a>

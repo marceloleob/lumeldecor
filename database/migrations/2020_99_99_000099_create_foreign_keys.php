@@ -27,10 +27,6 @@ class CreateForeignKeys extends Migration
 			$table->foreign('state_id')->references('id')->on('states')->onDelete('no action')->onUpdate('no action');
 		});
 
-		Schema::table('colors', function (Blueprint $table) {
-			$table->foreign('tone_id')->references('id')->on('tones')->onDelete('no action')->onUpdate('no action');
-		});
-
 		Schema::table('customers', function (Blueprint $table) {
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('no action');
 		});
@@ -49,9 +45,9 @@ class CreateForeignKeys extends Migration
 			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('restrict')->onUpdate('restrict');
 		});
 
-		Schema::table('item_colors', function (Blueprint $table) {
+		Schema::table('item_tones', function (Blueprint $table) {
 			$table->foreign('item_id')->references('id')->on('items')->onDelete('no action')->onUpdate('no action');
-			$table->foreign('color_id')->references('id')->on('colors')->onDelete('no action')->onUpdate('no action');
+			$table->foreign('tone_id')->references('id')->on('tones')->onDelete('no action')->onUpdate('no action');
 		});
 
 		Schema::table('item_themes', function (Blueprint $table) {
@@ -92,6 +88,10 @@ class CreateForeignKeys extends Migration
 			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('no action')->onUpdate('no action');
 		});
 
+		Schema::table('tones', function (Blueprint $table) {
+			$table->foreign('color_id')->references('id')->on('colors')->onDelete('no action')->onUpdate('no action');
+		});
+
 		Schema::table('users', function (Blueprint $table) {
 			$table->foreign('user_rule_id')->references('id')->on('user_rules')->onDelete('restrict')->onUpdate('restrict');
 		});
@@ -118,11 +118,6 @@ class CreateForeignKeys extends Migration
 			$table->dropColumn('state_id');
 		});
 
-		Schema::table('colors', function (Blueprint $table) {
-			$table->dropForeign('colors_tone_id_foreign');
-			$table->dropColumn('tone_id');
-		});
-
 		Schema::table('customers', function (Blueprint $table) {
 			$table->dropForeign('customers_user_id_foreign');
 			$table->dropColumn('user_id');
@@ -147,11 +142,11 @@ class CreateForeignKeys extends Migration
 			$table->dropColumn('supplier_id');
 		});
 
-		Schema::table('item_colors', function (Blueprint $table) {
-			$table->dropForeign('item_colors_item_id_foreign');
+		Schema::table('item_tones', function (Blueprint $table) {
+			$table->dropForeign('item_tones_item_id_foreign');
 			$table->dropColumn('item_id');
-			$table->dropForeign('item_colors_color_id_foreign');
-			$table->dropColumn('color_id');
+			$table->dropForeign('item_tones_tone_id_foreign');
+			$table->dropColumn('tone_id');
 		});
 
 		Schema::table('item_themes', function (Blueprint $table) {
@@ -207,6 +202,11 @@ class CreateForeignKeys extends Migration
 		Schema::table('supplier_contacts', function (Blueprint $table) {
 			$table->dropForeign('supplier_contacts_supplier_id_foreign');
 			$table->dropColumn('supplier_id');
+		});
+
+		Schema::table('tones', function (Blueprint $table) {
+			$table->dropForeign('tones_color_id_foreign');
+			$table->dropColumn('color_id');
 		});
 
 		Schema::table('users', function (Blueprint $table) {

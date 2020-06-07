@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTonesTable extends Migration
+class CreateItemTonesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateTonesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tones', function (Blueprint $table) {
-            $table->id();
-			$table->string('name', 150)->unique();
-			$table->boolean('status')->default(1);
+        Schema::create('item_tones', function (Blueprint $table) {
+			$table->foreignId('item_id');
+			$table->foreignId('tone_id');
         });
     }
 
@@ -27,6 +26,6 @@ class CreateTonesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tones');
+        Schema::dropIfExists('item_tones');
     }
 }

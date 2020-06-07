@@ -58,12 +58,12 @@ class Item extends Model
 	}
 
 	/**
-	 * Get the colors about this item.
+	 * Get the tones about this item.
 	 *
 	 */
-	public function colors()
+	public function tones()
 	{
-		return $this->belongsToMany(Color::class, 'item_colors');
+		return $this->belongsToMany(Tone::class, 'item_tones');
 	}
 
 	/**

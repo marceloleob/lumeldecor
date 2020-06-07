@@ -20,16 +20,27 @@ class Tone extends Model
 	 */
 	protected $fillable = [
 		'id',
+		'color_id',
 		'name',
+		'hexa',
 		'status',
 	];
 
 	/**
-	 * Get the colors about this tone.
+	 * Get the color that owns the tone.
 	 *
 	 */
-	public function colors()
+	public function color()
 	{
-		return $this->hasMany(Color::class);
+		return $this->belongsTo(Color::class);
+	}
+
+	/**
+	 * Get the items about this color.
+	 *
+	 */
+	public function items()
+	{
+		return $this->belongsToMany(Item::class);
 	}
 }

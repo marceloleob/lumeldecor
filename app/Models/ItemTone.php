@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ItemColor extends Model
+class ItemTone extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,6 +20,6 @@ class ItemColor extends Model
 	 */
 	protected $fillable = [
 		'item_id',
-		'color_id',
+		'tone_id',
 	];
 }

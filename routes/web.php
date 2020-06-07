@@ -83,14 +83,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::put('estoque/atualizar/{id}', 'StockController@update')->name('stock.update');
 
 
-	// Tones
-	Route::get('tonalidade/listar', 'ToneController@index')->name('tone.list');
-	Route::any('tonalidade/buscar', 'ToneController@index')->name('tone.search');
-	Route::get('tonalidade/cadastrar', 'ToneController@create')->name('tone.create');
-	Route::post('tonalidade/salvar', 'ToneController@store')->name('tone.store');
-	Route::get('tonalidade/editar/{id}', 'ToneController@edit')->name('tone.edit');
-	Route::put('tonalidade/atualizar/{id}', 'ToneController@update')->name('tone.update');
-	Route::get('tonalidade/status/{id}', 'ToneController@changeStatus')->name('tone.status');
 	// Colors
 	Route::get('cor/listar', 'ColorController@index')->name('color.list');
 	Route::any('cor/buscar', 'ColorController@index')->name('color.search');
@@ -99,6 +91,14 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('cor/editar/{id}', 'ColorController@edit')->name('color.edit');
 	Route::put('cor/atualizar/{id}', 'ColorController@update')->name('color.update');
 	Route::get('cor/status/{id}', 'ColorController@changeStatus')->name('color.status');
+	// Tones
+	Route::get('tonalidade/listar', 'ToneController@index')->name('tone.list');
+	Route::any('tonalidade/buscar', 'ToneController@index')->name('tone.search');
+	Route::get('tonalidade/cadastrar', 'ToneController@create')->name('tone.create');
+	Route::post('tonalidade/salvar', 'ToneController@store')->name('tone.store');
+	Route::get('tonalidade/editar/{id}', 'ToneController@edit')->name('tone.edit');
+	Route::put('tonalidade/atualizar/{id}', 'ToneController@update')->name('tone.update');
+	Route::get('tonalidade/status/{id}', 'ToneController@changeStatus')->name('tone.status');
 	// Themes
 	Route::get('tema/listar', 'ThemeController@index')->name('theme.list');
 	Route::any('tema/buscar', 'ThemeController@index')->name('theme.search');

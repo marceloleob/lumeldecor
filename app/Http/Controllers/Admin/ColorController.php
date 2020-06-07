@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ColorRequest;
 use App\Repositories\ColorRepository;
-use App\Repositories\ToneRepository;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
@@ -33,8 +32,7 @@ class ColorController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$params = $this->repository->all($request->search, $request->tone_id);
-		$params['optionstone'] = (new ToneRepository())->options();
+		$params = $this->repository->all($request->search);
 
 		return view('admin.pages.color-list', ['page' => 'color'])->with($params);
 	}
