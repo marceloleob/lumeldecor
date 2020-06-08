@@ -5,7 +5,7 @@
 				<div class="card-body">
 					<h5 class="card-title">Lista dos itens deste produto</h5>
 					<div class="table-responsive">
-						<table class="align-middle mb-0 table table-borderless table-striped table-hover">
+						<table class="table table-hover table-striped table-bordered dtr-inline align-middle mb-0">
 							@if (count($items))
 								<thead>
 									<tr>

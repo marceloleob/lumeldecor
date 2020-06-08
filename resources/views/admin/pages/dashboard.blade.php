@@ -253,7 +253,7 @@
 					</div>
 				</div>
 				<div class="table-responsive">
-					<table class="align-middle mb-0 table table-borderless table-striped table-hover">
+					<table class="table table-hover table-striped table-bordered dtr-inline align-middle mb-0">
 						<thead>
 						<tr>
 							<th class="text-center">#</th>
