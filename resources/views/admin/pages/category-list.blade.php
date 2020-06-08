@@ -26,8 +26,8 @@
 			@foreach ($data as $item)
 			<tr>
 				<td class="text-center text-muted">{!! $item->id !!}</td>
-				<td class="text-left">{!! $item->material->name !!}</td>
-				<td class="text-left">{!! $item->name !!}</td>
+				<td class="text-left">{!! $item->material !!}</td>
+				<td class="text-left">{!! $item->category !!}</td>
 				<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 				<td class="text-center">
 					<a href="{!! route($page . '.edit', [$item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>

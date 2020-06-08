@@ -31,7 +31,7 @@ class ToneRepository extends BaseRepository
 				'colors.name AS color'
 			)
 			->join('colors', 'tones.color_id', '=', 'colors.id')
-			->orderBy('colors.name', 'ASC')
+			->orderBy('colors.name')
 			->orderBy('tones.hexa');
 
 		// verifica se buscou algum item especifico
@@ -65,8 +65,15 @@ class ToneRepository extends BaseRepository
 	public function options()
 	{
 		return $this->query()
-			->orderBy('name')
-			->where('status', config('constants.ACTIVE'))
+			->select(
+				'tones.id',
+				'tones.name AS name',
+				'tones.hexa'
+			)
+			->join('colors', 'tones.color_id', '=', 'colors.id')
+			->where('tones.status', config('constants.ACTIVE'))
+			->orderBy('colors.name')
+			->orderBy('tones.name')
 			->get();
 	}
 }

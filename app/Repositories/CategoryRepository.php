@@ -24,6 +24,16 @@ class CategoryRepository extends BaseRepository
 	public function all($search = null, $material = null)
 	{
 		$query = $this->query()->orderBy('name');
+		$query = $this->query()
+			->select(
+				'categories.id',
+				'categories.name AS category',
+				'categories.status',
+				'materials.name AS material'
+			)
+			->join('materials', 'categories.material_id', '=', 'materials.id')
+			->orderBy('materials.name')
+			->orderBy('categories.name');
 
 		// verifica se buscou algum item especifico
 		if (!empty($search)) {
