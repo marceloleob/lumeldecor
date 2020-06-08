@@ -27,12 +27,12 @@ class Tone extends Model
 	];
 
 	/**
-	 * Get the color that owns the tone.
+	 * Get the colors that owns the tone.
 	 *
 	 */
-	public function color()
+	public function colors()
 	{
-		return $this->belongsTo(Color::class);
+		return $this->belongsTo(Color::class, 'color_id', 'id');
 	}
 
 	/**

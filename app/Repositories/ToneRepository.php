@@ -22,7 +22,17 @@ class ToneRepository extends BaseRepository
 	 */
 	public function all($search = null, $color = null)
 	{
-		$query = $this->query()->orderBy('hexa');
+		$query = $this->query()
+			->select(
+				'tones.id',
+				'tones.name AS tone',
+				'tones.hexa',
+				'tones.status',
+				'colors.name AS color'
+			)
+			->join('colors', 'tones.color_id', '=', 'colors.id')
+			->orderBy('colors.name', 'ASC')
+			->orderBy('tones.hexa');
 
 		// verifica se buscou algum item especifico
 		if (!empty($search)) {
@@ -33,7 +43,7 @@ class ToneRepository extends BaseRepository
 		}
 
 		// seta o total da pagina
-		$this->total = 200;
+		$this->total = 50;
         // cria uma collection com paginacao para montar o grid
 		$this->pagination($query, $search);
 		// formata os registros da collection

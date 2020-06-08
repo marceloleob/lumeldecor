@@ -30,6 +30,6 @@ class Color extends Model
 	 */
 	public function tones()
 	{
-		return $this->hasMany(Color::class);
+		return $this->hasMany(Tone::class);
 	}
 }
