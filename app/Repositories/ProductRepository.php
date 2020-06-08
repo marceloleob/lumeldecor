@@ -23,17 +23,6 @@ class ProductRepository extends BaseRepository
 	 */
 	public function all($search = null, $material = null, $category = null)
 	{
-		// $query = DB::table('products')
-		// 	->join('categories', 'categories.id', '=', 'products.category_id')
-		// 	->join('materials', 'materials.id', '=', 'categories.material_id')
-		// 	->select(
-		// 		'products.*',
-		// 		'categories.id AS category_id',
-		// 		'categories.name AS category',
-		// 		'materials.id AS material_id',
-		// 		'materials.name AS material'
-		// 	);
-
 		$query = $this->query()->orderBy('name');
 
 		// verifica se buscou algum item especifico
@@ -106,12 +95,10 @@ class ProductRepository extends BaseRepository
 	 */
 	public function options()
 	{
-		$options = $this->query()
+		return $this->query()
 			->orderBy('name')
 			->where('status', config('constants.ACTIVE'))
 			->get()
 			->pluck('name', 'id');
-		// retorna o combobox pronto
-		return $options->prepend('Selecione', '');
 	}
 }

@@ -16,14 +16,15 @@ class ReasonsTableSeeder extends Seeder
 		// limpa a tabela
 		DB::table('reasons')->delete();
 		// cria os registros de Entradas
-		Reason::create(['action' => 'I', 'name' => 'Item comprado no Fornecedor']);
-		Reason::create(['action' => 'I', 'name' => 'Compra foi cancelada']);
-		Reason::create(['action' => 'I', 'name' => 'Item devolvido na Loja']);
+		Reason::create(['action' => 'I', 'name' => 'Item novo']);
+		Reason::create(['action' => 'I', 'name' => 'Reposição de estoque']);
+		Reason::create(['action' => 'I', 'name' => 'Cliente cancelou a compra']);
+		Reason::create(['action' => 'I', 'name' => 'Cliente devolveu a compra']);
 		// cria os registros de Saidas
 		Reason::create(['action' => 'O', 'name' => 'Venda na Loja']);
 		Reason::create(['action' => 'O', 'name' => 'Venda no Site']);
 		Reason::create(['action' => 'O', 'name' => 'Venda no Instagram']);
 		Reason::create(['action' => 'O', 'name' => 'Venda no FaceBook']);
-		Reason::create(['action' => 'O', 'name' => 'Item quebrado e devolvido para o Fornecedor']);
+		Reason::create(['action' => 'O', 'name' => 'Item devolvido para o Fornecedor']);
     }
 }

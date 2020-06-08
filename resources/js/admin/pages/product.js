@@ -205,8 +205,6 @@ $(document).ready(function ()
 		// cria uma instancia nova dos selectpicker
 		selectPicker.each(function (index) {
 			$(this).selectpicker({
-				noneSelectedText: 'Selecione',
-				multipleSeparator: ' | ',
 				maxOptionsText: 'Limite atingido',
 				size: 7
 			}).end();

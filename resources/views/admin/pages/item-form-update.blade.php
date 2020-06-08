@@ -15,8 +15,12 @@
 						<div class="form-row">
 							<div class="col-md-4">
 								<div class="position-relative form-group">
-									{!! Form::label('colors', 'Cor', ['class' => 'required']) !!}
-									{!! Form::select('colors[]', $optionscolor, old('colors', $data->colors), ['class' => 'form-control selectpicker multiselect', 'id' => 'colors', 'multiple', 'data-max-options' => '3', 'title' => 'Selecione a cor do Item']) !!}
+									{!! Form::label('colors', 'Tons deste Item (máx.: 3 tons)', ['class' => 'required']) !!}
+									<select class="form-control selectpicker select-colors multiselect" id="colors[]" name="colors[]" multiple data-max-options="3" title="Selecione">
+										@foreach ($optionstone as $tone)
+											<option value="{!! $tone->id !!}" data-content="<span class='badge' style='background-color: {!! $tone->hexa !!}'>&nbsp;</span> &nbsp; {!! $tone->name !!}" {!! in_array($tone->id, $data->tones) ? 'selected' : '' !!}></option>
+										@endforeach
+									</select>
 									{!! Form::notification('colors', $errors) !!}
 								</div>
 							</div>

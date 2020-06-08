@@ -2,30 +2,13 @@
 
 namespace App\Services;
 
-use App\Repositories\ItemColorRepository;
-use App\Repositories\ItemRepository;
-use App\Repositories\ItemThemeRepository;
 use App\Repositories\ProductRepository;
-use App\Repositories\ProductSizeRepository;
-use App\Repositories\StockRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Exception;
 
 class ProductService
 {
-	/**
-	 * Monta o SLUG do produto
-	 *
-	 * @param string  $name
-	 * @return string $slug
-	 */
-	public static function handleSlug($name)
-	{
-		return Str::slug($name);
-		// return Str::slug($product->category->name . ' ' . $product->name . ' ' . $product->category->material->name . ' ' . $productSize);
-	}
-
 	/**
 	 * Gerencia o metodo create dos produtos
 	 *
@@ -43,7 +26,7 @@ class ProductService
 				'material_id' => $data['material_id'],
 				'category_id' => $data['category_id'],
 				'name'        => $data['name'],
-				'slug'        => self::handleSlug($data['name']),
+				'slug'        => Str::slug($data['name']),
 				'picture'     => $data['picture'] ?? null,
 				'description' => $data['description'],
 				'hashtag'     => $data['hashtag'],
@@ -72,10 +55,14 @@ class ProductService
 					// 3º) Salva os Items, Cores e Temas
 					$itemE = ItemService::store($item);
 
-					// seta os ids
-					$item['item_id'] = $itemE->id;
 					// 4º) Salva o Stock de cada item
-					StockService::create($item);
+					StockService::update(
+						$productE->id,
+						$itemE->id,
+						StockService::$_reason['NEW_ITEM'],
+						$item['amount'],
+						StockService::$_actions['INCOMING']
+					);
 				}
 			}
 

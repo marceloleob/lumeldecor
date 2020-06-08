@@ -54,11 +54,9 @@ class SupplierRepository extends BaseRepository
 	 */
 	public function options()
 	{
-		$options = $this->query()
+		return $this->query()
 			->orderBy('company')
 			->where('status', config('constants.ACTIVE'))
 			->pluck('company', 'id');
-		// retorna o combobox pronto
-		return $options->prepend('Selecione', '');
 	}
 }

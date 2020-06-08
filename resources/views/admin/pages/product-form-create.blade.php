@@ -208,8 +208,12 @@
 														<div class="form-row line-item">
 															<div class="col-md-3">
 																<div class="position-relative form-group div-colors">
-																	{!! Form::label('sizes[0][item][0][colors]', 'Cor', ['class' => 'required']) !!}
-																	{!! Form::select('sizes[0][item][0][colors][]', $optionscolor, old('sizes[0][item][0][colors]'), ['class' => 'form-control selectpicker select-colors multiselect', 'id' => 'sizes[0][item][0][colors]', 'multiple', 'data-name' => 'colors', 'data-group' => 'item', 'data-max-options' => '3', 'title' => 'Selecione']) !!}
+																	{!! Form::label('sizes[0][item][0][colors]', 'Tons deste Item (máx.: 3 tons)', ['class' => 'required']) !!}
+																	<select class="form-control selectpicker select-colors multiselect" id="sizes[0][item][0][colors]" name="sizes[0][item][0][colors]" multiple data-name="colors" data-group="item" data-max-options="3" title="Selecione">
+																		@foreach ($optionstone as $tone)
+																			<option value="{!! $tone->id !!}" data-content="<span class='badge' style='background-color: {!! $tone->hexa !!}'>&nbsp;</span> &nbsp; {!! $tone->name !!}"></option>
+																		@endforeach
+																	</select>
 																	{!! Form::notification('sizes[0][item][0][colors]', $errors) !!}
 																</div>
 															</div>

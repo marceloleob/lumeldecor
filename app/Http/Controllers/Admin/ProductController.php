@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductCreateRequest;
 use App\Http\Requests\Admin\ProductUpdateRequest;
 use App\Repositories\CategoryRepository;
-use App\Repositories\ColorRepository;
 use App\Repositories\MaterialRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductSizeRepository;
 use App\Repositories\SupplierRepository;
 use App\Repositories\ThemeRepository;
+use App\Repositories\ToneRepository;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
@@ -58,7 +58,7 @@ class ProductController extends Controller
 			'optionsmaterial' => (new MaterialRepository())->options(),
 			'optionscategory' => (new CategoryRepository())->options(),
 			'optionstheme'    => (new ThemeRepository())->options(),
-			'optionscolor'    => (new ColorRepository())->options(),
+			'optionstone'     => (new ToneRepository())->options(),
 			'optionssupplier' => (new SupplierRepository())->options(),
 		];
 

@@ -12,9 +12,27 @@ class StockService
 {
 	/**
 	 * Armazena as acoes de manipulacao do estoque
+	 *
 	 */
 	public static $_actions = [
-		'NEW_PRODUCT' => 1,
+		'INCOMING' => 'I',
+		'OVERDRAW' => 'O',
+	];
+
+	/**
+	 * Armazena as acoes de manipulacao do estoque
+	 *
+	 */
+	public static $_reason = [
+		'NEW_ITEM'           => 1,
+		'RESTOCK'            => 2,
+		'CANCELLED_PURCHASE' => 3,
+		'RETURNED_PURCHASE'  => 4,
+		'SOLD_STORE'         => 5,
+		'SOLD_WEBSITE'       => 6,
+		'SOLD_INSTAGRAM'     => 7,
+		'SOLD_FACEBOOK'      => 8,
+		'RETURNED_SUPPLIER'  => 9,
 	];
 
 	/**
@@ -23,15 +41,22 @@ class StockService
 	 * @param integer $productId
 	 * @param integer $itemId
 	 * @param integer $amount
+	 * @param string $action
 	 * @return integer
 	 */
-	public static function getNewBalace($productId, $itemId, $amount)
+	public static function getNewBalace($productId, $itemId, $amount, $action)
 	{
 		try {
 			$stock = new StockRepository();
 			$stock = $stock->getBalance($productId, $itemId);
 
-			return $stock->incoming + $amount;
+			if ($action === self::$_actions['INCOMING']) {
+				return $stock->incoming + $amount;
+			}
+
+			if ($action === self::$_actions['OVERDRAW']) {
+				return $stock->incoming - $amount;
+			}
 
 		} catch (ModelNotFoundException $exception) {
 
@@ -39,26 +64,27 @@ class StockService
 		}
 	}
 
-
 	/**
-	 * Gerencia o metodo create e update do tamanho dos produtos
+	 * Adiciona quantidade para um item
 	 *
-	 * @param  array   $data
+	 * @param integer $productId
+	 * @param integer $itemId
+	 * @param integer $reasonId
+	 * @param integer $amount
 	 * @return \App\Models\Stock
 	 */
-    public static function create($data = [])
+    public static function update($productId, $itemId, $reasonId, $amount, $action)
     {
-		// recupera a quantidade
-		$incoming = $data['amount'];
-		// remove do array o parametro que nao e necessario
-		$data = Arr::only($data, ['product_id', 'item_id']);
-
-		$data['user_id']   = UserService::getUserIdAuth();
-		$data['reason_id'] = self::$_actions['NEW_PRODUCT'];
-		$data['action']    = 'I';
-		$data['incoming']  = $incoming;
-		$data['overdraw']  = null;
-		$data['balance']   = self::getNewBalace($data['product_id'], $data['item_id'], $incoming);
+		$data = [
+			'product_id' => $productId,
+			'item_id'    => $itemId,
+			'user_id'    => UserService::getUserIdAuth(),
+			'reason_id'  => $reasonId,
+			'action'     => $action,
+			'incoming'   => $amount,
+			'overdraw'   => null,
+			'balance'    => self::getNewBalace($productId, $itemId, $amount, $action),
+		];
 
 		// salva ou atualiza os dados
 		$repository = new StockRepository();

@@ -57,6 +57,6 @@ class ToneRepository extends BaseRepository
 		return $this->query()
 			->orderBy('name')
 			->where('status', config('constants.ACTIVE'))
-			->pluck('name', 'id');
+			->get();
 	}
 }

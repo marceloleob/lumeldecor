@@ -3,11 +3,11 @@
 namespace App\Services;
 
 use App\Models\Item;
-use App\Models\ItemColor;
 use App\Models\ItemTheme;
-use App\Repositories\ItemColorRepository;
+use App\Models\ItemTone;
 use App\Repositories\ItemRepository;
 use App\Repositories\ItemThemeRepository;
+use App\Repositories\ItemToneRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductSizeRepository;
 use Exception;
@@ -26,7 +26,7 @@ class ItemService
 		$items = $item->findById($id);
 
 		$items->product_id = $items->productSize->product->id;
-		$items->colors     = self::format($items->colors);
+		$items->tones      = self::format($items->tones);
 		$items->themes     = self::format($items->themes);
 
 		return $items;
@@ -50,24 +50,24 @@ class ItemService
 	 * Cria um codigo unico para cada item de produto
 	 *
 	 * @param Product     $product
-	 * @param ProductSize $productSizeE
-	 * @param integer     $colorId
+	 * @param ProductSize $productSize
+	 * @param Tone        $tones
 	 * @return string
 	 */
-	public static function handleCode($product, $productSizeE, $colors)
+	public static function handleCode($product, $productSize, $tones)
 	{
 		// forca os codigos das cores terem 2 numeros
-		$colors->transform(function ($item) {
+		$tones->transform(function ($item) {
 			return str_pad($item, 2, '0', STR_PAD_LEFT);
 		});
 		// mescla os codigos (3 codigos no maximo)
-		$flattened = $colors->flatten()->implode('');
+		$flattened = $tones->flatten()->implode('');
 
 		$materialCode = str_pad($product->category->material->id, 2, '0', STR_PAD_LEFT);
 		$categoryCode = str_pad($product->category->id, 2, '0', STR_PAD_LEFT);
 		$productCode  = str_pad($product->id, 5, '0', STR_PAD_LEFT);
 		$colorCode    = str_pad($flattened, 6, '0', STR_PAD_LEFT);
-		$sizeCode     = str_pad($productSizeE->size, 2, '0', STR_PAD_LEFT);
+		$sizeCode     = str_pad($productSize->size, 2, '0', STR_PAD_LEFT);
 
 		return 'LM' . $materialCode . $categoryCode . $productCode . $colorCode . $sizeCode;
 	}
@@ -100,17 +100,17 @@ class ItemService
 		}
 
 		// exclui todas as cores deste item
-		ItemColor::where('item_id', $itemE->id)->delete();
+		ItemTone::where('item_id', $itemE->id)->delete();
 		// salva a(s) cor(es) do item (array)
-		foreach ($data['colors'] as $colorId) {
+		foreach ($data['colors'] as $toneId) {
 			$dataColor = [
-				'item_id'  => $itemE->id,
-				'color_id' => (int) $colorId,
+				'item_id' => $itemE->id,
+				'tone_id' => (int) $toneId,
 			];
-			$itemColorR = new ItemColorRepository();
+			$itemColorR = new ItemToneRepository();
 			$itemColorE = $itemColorR->store($dataColor, true);
 			// verifica se salvou
-			if (!$itemColorE instanceof ItemColor) {
+			if (!$itemColorE instanceof ItemTone) {
 				throw new Exception($itemColorE, 1);
 			}
 		}

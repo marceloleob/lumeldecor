@@ -146,7 +146,7 @@ class Macros extends FormBuilder
 	 */
 	public function selectDay($name, $selected = null, $options = [], $format = '%d')
 	{
-		$days = ['' => 'Selecione'];
+		$days = [];
 
 		foreach (range(1, 31) as $day) {
 			$days[$day] = strftime($format, mktime(0, 0, 0, 0, $day));
@@ -167,7 +167,7 @@ class Macros extends FormBuilder
 	 */
 	public function selectMonth($name, $selected = null, $options = [], $format = '%m')
 	{
-		$months = ['' => 'Selecione'];
+		$months = [];
 
 		foreach (range(1, 12) as $month) {
 			$months[$month] = trans('date.month.' . strftime($format, mktime(0, 0, 0, $month, 1)));
@@ -188,7 +188,6 @@ class Macros extends FormBuilder
 	public function selectKind($name, $selected = null, $options = [])
 	{
 		$size = [
-			''  => 'Selecione',
 			'V' => 'Dinheiro (R$)',
 			'P' => 'Porcentagem (%)',
 		];
@@ -208,7 +207,6 @@ class Macros extends FormBuilder
 	public function selectSize($name, $selected = null, $options = [])
 	{
 		$size = [
-			''   => 'Selecione',
 			'PP' => 'PP',
 			'P'  => 'P',
 			'M'  => 'M',

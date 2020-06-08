@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Filters\Checkbox;
+use App\Http\Requests\BaseRequest;
 
-class ToneRequest extends FormRequest
+class ToneRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,6 +31,7 @@ class ToneRequest extends FormRequest
     public static $filters = [
         'id'     => 'digit',
         'name'   => 'trim|escape',
+        'hexa'   => 'trim',
         'status' => 'checkbox|cast:boolean',
     ];
 
@@ -40,7 +42,8 @@ class ToneRequest extends FormRequest
      */
     public static $validations = [
         'id'     => 'integer',
-        'name'   => 'required|min:2|max:100|unique:tones',
+        'name'   => 'required|min:2|max:100',
+        'hexa'   => 'required|max:7|unique:tones',
         'status' => 'boolean',
 	];
 
@@ -53,7 +56,7 @@ class ToneRequest extends FormRequest
     {
 		// efetua o tratamento para campo unico
 		if (!empty($this->id)) {
-			static::$validations['name'] .= ',name,' . $this->id;
+			static::$validations['hexa'] .= ',hexa,' . $this->id;
 		}
 
         return static::$validations;

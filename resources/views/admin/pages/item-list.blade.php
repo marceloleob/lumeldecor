@@ -24,10 +24,7 @@
 										<td class="text-center">{!! $item->code !!}</td>
 										<td class="text-center td-color">
 											<div class="colors" style="{!! $item->background !!}" data-toggle="tooltip" data-placement="top" data-original-title="{!! $item->tooltip !!}"></div>
-											{{-- @foreach ($item->colors as $color)
-												<div class="colors" style="background-color: {!! $color->hexa !!}" data-toggle="tooltip" data-placement="top" data-original-title="{!! $color->name !!}"></div>
-											@endforeach --}}
-															</td>
+										</td>
 										<td class="text-center">{!! $item->size !!}</td>
 										<td class="text-left">{!! $item->productName !!}</td>
 										<td class="text-center">{!! $item->launch !!}</td>

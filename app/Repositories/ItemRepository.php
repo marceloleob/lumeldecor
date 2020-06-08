@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Item;
-use App\Services\ColorService;
+use App\Services\ToneService;
 
 class ItemRepository extends BaseRepository
 {
@@ -63,9 +63,9 @@ class ItemRepository extends BaseRepository
 			}
 
 			// verifica quantas cores tem este item
-			$colors = ColorService::format($collection->colors);
-			$collection->tooltip    = $colors['tooltip'];
-			$collection->background = $colors['background'];
+			$tones = ToneService::format($collection->tones);
+			$collection->tooltip    = $tones['tooltip'];
+			$collection->background = $tones['background'];
 		});
 	}
 }

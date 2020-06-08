@@ -31,7 +31,6 @@ class ColorRequest extends BaseRequest
     public static $filters = [
         'id'     => 'digit',
         'name'   => 'trim|escape',
-        'hexa'   => 'trim',
         'status' => 'checkbox|cast:boolean',
     ];
 
@@ -42,8 +41,7 @@ class ColorRequest extends BaseRequest
      */
     public static $validations = [
         'id'     => 'integer',
-        'name'   => 'required|min:2|max:100',
-        'hexa'   => 'required|max:7|unique:colors',
+        'name'   => 'required|min:2|max:100|unique:colors',
         'status' => 'boolean',
 	];
 
@@ -56,9 +54,9 @@ class ColorRequest extends BaseRequest
     {
 		// efetua o tratamento para campo unico
 		if (!empty($this->id)) {
-			static::$validations['hexa'] .= ',hexa,' . $this->id;
+			static::$validations['name'] .= ',name,' . $this->id;
 		}
 
         return static::$validations;
-    }
+	}
 }

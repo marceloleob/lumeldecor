@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ItemRequest;
-use App\Repositories\ColorRepository;
 use App\Repositories\ItemRepository;
 use App\Repositories\SupplierRepository;
 use App\Repositories\ThemeRepository;
+use App\Repositories\ToneRepository;
 use App\Services\ItemService;
 use Illuminate\Http\Request;
 
@@ -41,7 +41,7 @@ class ItemController extends Controller
 			'product_id'      => $productId,
 			'product_size_id' => $productSizeId,
 			'optionstheme'    => (new ThemeRepository())->options(),
-			'optionscolor'    => (new ColorRepository())->options(),
+			'optionstone'     => (new ToneRepository())->options(),
 			'optionssupplier' => (new SupplierRepository())->options(),
 		];
 
@@ -76,7 +76,7 @@ class ItemController extends Controller
     {
 		$params = [
 			'data'            => ItemService::findById($itemId),
-			'optionscolor'    => (new ColorRepository())->options(),
+			'optionstone'     => (new ToneRepository())->options(),
 			'optionstheme'    => (new ThemeRepository())->options(),
 			'optionssupplier' => (new SupplierRepository())->options(),
 		];

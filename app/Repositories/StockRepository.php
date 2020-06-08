@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Stock;
-use App\Services\ColorService;
+use App\Services\ToneService;
 use Illuminate\Database\Eloquent\Collection;
 
 class StockRepository extends BaseRepository
@@ -78,9 +78,9 @@ class StockRepository extends BaseRepository
 			$collection->materialName = $collection->product->material->name;
 
 			// verifica quantas cores tem este item
-			$colors = ColorService::format($collection->item->colors);
-			$collection->tooltip    = $colors['tooltip'];
-			$collection->background = $colors['background'];
+			$tones = ToneService::format($collection->item->tones);
+			$collection->tooltip    = $tones['tooltip'];
+			$collection->background = $tones['background'];
 		});
 	}
 
@@ -95,9 +95,9 @@ class StockRepository extends BaseRepository
 		return tap($this->query()->with('item', 'product')->where('id', $id)->firstOrFail(), function ($stock)
 		{
 
-			$colors = ColorService::format($stock->item->colors);
-			$stock->tooltip    = $colors['tooltip'];
-			$stock->background = $colors['background'];
+			$tones = ToneService::format($stock->item->tones);
+			$stock->tooltip    = $tones['tooltip'];
+			$stock->background = $tones['background'];
 		});
 	}
 

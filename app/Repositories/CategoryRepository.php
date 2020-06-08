@@ -73,7 +73,7 @@ class CategoryRepository extends BaseRepository
 
 		// construindo as opcoes combobox
 		$options = '';
-		// percorre os tipos de imovel
+		// percorre os tipos
 		foreach ($categories as $id => $name) {
 			// verifica se existe categoria
 			if ($categoryId == $id) {
