@@ -15,6 +15,25 @@ class ItemRepository extends BaseRepository
 	protected $model = Item::class;
 
 	/**
+	 * Retorna os dados do item ja salvo para preencher o formulario de create
+	 *
+	 * @param integer $productId
+	 * @param integer $productSizeId
+	 * @return Entity
+	 */
+	public function findByParentsId($productId, $productSizeId)
+	{
+		return $this->query()
+			->with('productSize')
+			->whereHas('productSize', function ($subQuery) use ($productId, $productSizeId) {
+				$subQuery
+					->where('product_id', $productId)
+					->where('product_size_id', $productSizeId);
+			})
+			->first();
+	}
+
+	/**
 	 * Retorna todos os itens de um tamanho de produto
 	 *
 	 * @param integer $productSizeId
@@ -62,7 +81,7 @@ class ItemRepository extends BaseRepository
 				$collection->styles = ['class' => 'btn-outline-success', 'label' => 'far fa-check-circle'];
 			}
 
-			// verifica quantas cores tem este item
+			// recupera as cores do item para mostrar na lista
 			$tones = ToneService::format($collection->tones);
 			$collection->tooltip    = $tones['tooltip'];
 			$collection->background = $tones['background'];

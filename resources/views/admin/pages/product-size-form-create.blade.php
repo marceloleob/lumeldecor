@@ -13,13 +13,13 @@
 					<div class="card-body">
 						<ul class="forms-wizard mb-5">
 							<li class="nav-item">
-								<span class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></span>
+								<a href="{!! route('product.edit', $productId) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
 							</li>
 							<li class="nav-item active">
 								<span class="nav-link"><em><i class="fas fa-ruler-combined"></i></em><span>Tamanho(s) do Produto</span></span>
 							</li>
 							<li class="nav-item">
-								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Core(s) do Produto</span></span>
+								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Cor(es) do Produto</span></span>
 							</li>
 						</ul>
 
@@ -120,7 +120,6 @@
 									<img src="{!! asset('images/box.jpeg') !!}" alt="" />
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -129,7 +128,7 @@
 					<div class="card-button">
 						{!! Form::hidden('product_id', $productId, ['id' => 'product_id']) !!}
 						{!! Form::buttons('product.edit', null, ['back-show' => true, 'cancel-link-params' => $productId]) !!}
-						<a href="{!! route('product-size.create', $productId) !!}" class="btn-hover-shine btn btn-shadow btn-primary btn-save btn-wide btn-pill pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Cadastrar um Tamanho Novo</a>
+						<a href="{!! route('product-size.create', $productId) !!}" class="btn-hover-shine btn btn-shadow btn-primary pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Cadastrar um Tamanho novo</a>
 					</div>
 				</div>
 			{!! Form::close() !!}

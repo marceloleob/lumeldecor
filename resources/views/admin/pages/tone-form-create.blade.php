@@ -2,7 +2,7 @@
 
 @section('icon', 'fas fa-swatchbook')
 @section('title', 'Tonalidades')
-@section('subheading', 'Formulário para cadastrar a tonalidade dos produtos.')
+@section('subheading', 'Formulário para cadastrar as tonalidades dos produtos.')
 @section('btn-back', route($page . '.list'))
 
 @section('form')
@@ -15,8 +15,18 @@
 						<div class="form-row">
 							<div class="col-md-6">
 								<div class="position-relative form-group">
+									{!! Form::label('color_id', 'Selecione o gupo de cor desta tonalidade', ['class' => 'required']) !!}
+									{!! Form::select('color_id', $optionscolor, old('color_id'), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
+									{!! Form::notification('color_id', $errors) !!}
+								</div>
+								<div class="position-relative form-group">
 									{!! Form::label('name', 'Nome da Tonalidade', ['class' => 'required']) !!}
 									{!! Form::text('name', old('name'), ['class' => 'form-control text']) !!}
+									{!! Form::notification('name', $errors) !!}
+								</div>
+								<div class="position-relative form-group">
+									{!! Form::label('hexa', 'Tonalidade', ['class' => 'required']) !!}
+									{!! Form::color('hexa', old('hexa'), ['data-options' => 'pencil', 'class' => 'form-control color']) !!}
 									{!! Form::notification('name', $errors) !!}
 								</div>
 							</div>

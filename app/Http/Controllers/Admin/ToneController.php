@@ -46,7 +46,11 @@ class ToneController extends Controller
      */
     public function create()
     {
-		return view('admin.pages.tone-form-create', ['page' => 'tone']);
+		$params = [
+			'optionscolor' => (new ColorRepository())->options(),
+		];
+
+		return view('admin.pages.tone-form-create', ['page' => 'tone'])->with($params);
     }
 
     /**

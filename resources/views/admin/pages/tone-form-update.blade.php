@@ -15,8 +15,13 @@
 						<div class="form-row">
 							<div class="col-md-6">
 								<div class="position-relative form-group">
-									{!! Form::label('name', 'Nome da Tonalidade', ['class' => 'required']) !!}
+									{!! Form::label('name', 'Nome da Cor', ['class' => 'required']) !!}
 									{!! Form::text('name', old('name', $data->name), ['class' => 'form-control text']) !!}
+									{!! Form::notification('name', $errors) !!}
+								</div>
+								<div class="position-relative form-group">
+									{!! Form::label('hexa', 'Cor', ['class' => 'required']) !!}
+									{!! Form::color('hexa', old('hexa', $data->hexa), ['data-options' => 'pencil', 'class' => 'form-control color']) !!}
 									{!! Form::notification('name', $errors) !!}
 								</div>
 								<div class="position-relative form-group">

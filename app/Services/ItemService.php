@@ -17,17 +17,32 @@ class ItemService
 	/**
 	 * Retorna os dados FORMATADO "belongsToMany" referente a este modelo
 	 *
-	 * @param integer $id
+	 * @param integer $itemId
+	 * @param integer $productId
+	 * @param integer $productSizeId
 	 * @return Entity
 	 */
-	public static function findById($id)
+	public static function findById($itemId = null, $productId, $productSizeId)
 	{
-		$item  = new ItemRepository();
-		$items = $item->findById($id);
+		$repository = new ItemRepository();
+
+		// verifica se esta editando
+		if (!empty($itemId)) {
+			// recupera o item pelo proprio codigo
+			$items = $repository->findById($itemId);
+		} else {
+			// recupera o item pelo produto e tamanho
+			$items = $repository->findByParentsId($productId, $productSizeId);
+		}
+		// retorna nulo caso nao tenha encontrado nada
+		if (empty($items)) {
+			return null;
+		}
 
 		$items->product_id = $items->productSize->product->id;
 		$items->tones      = self::format($items->tones);
 		$items->themes     = self::format($items->themes);
+		$items->profit     = self::profit($items);
 
 		return $items;
 	}
@@ -35,7 +50,8 @@ class ItemService
 	/**
 	 * Percorre a Collection e customiza dados para imprimir na view como array e somente com o ID
 	 *
-	 * @return Collection
+	 * @param Collection $collection
+	 * @return array
 	 */
 	public static function format($collection)
 	{
@@ -44,6 +60,33 @@ class ItemService
 			$array[] = $model->id;
 		}
 		return $array;
+	}
+
+	/**
+	 * Formata o total de lucro que pode ter no item
+	 *
+	 * @param Collection $collection
+	 * @return string
+	 */
+	public static function profit($collection)
+	{
+		$class  = 'success';
+
+		$sPrice = (float) $collection->s_price;
+		$pPrice = (float) $collection->p_price;
+
+		$gross  = ($sPrice - $pPrice);
+		$profit = (($gross * 100) / $pPrice);
+
+		// verifica se o lucro foi bom ou ruim
+		if ($profit <= 10) {
+			$class = 'danger';
+		}
+		if ($profit > 10 && $profit < 100) {
+			$class = 'warning';
+		}
+
+		return '<span class="text-' . $class . '">' . number_format($profit, 2, ',', '.') . '% de lucro</span>';
 	}
 
 	/**
@@ -133,6 +176,21 @@ class ItemService
 				}
 			}
 		}
+
+		// verifica se esta criando um novo ou atualizando
+		if (empty($itemId)) {
+			// salva o Stock deste item
+			StockService::update(
+				$data['product_id'],
+				$itemE->id,
+				StockService::$_reason['NEW_ITEM'],
+				$data['amount'],
+				StockService::$_actions['INCOMING']
+			);
+		}
+
+		// atualiza o produto para (cadastro completo)
+		ProductService::complete($data['product_id']);
 
 		return $itemE;
 	}

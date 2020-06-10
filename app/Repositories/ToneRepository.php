@@ -68,7 +68,8 @@ class ToneRepository extends BaseRepository
 			->select(
 				'tones.id',
 				'tones.name AS name',
-				'tones.hexa'
+				'tones.hexa',
+				'colors.name AS color'
 			)
 			->join('colors', 'tones.color_id', '=', 'colors.id')
 			->where('tones.status', config('constants.STATUS_ACTIVE'))

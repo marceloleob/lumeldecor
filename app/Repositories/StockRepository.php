@@ -94,7 +94,6 @@ class StockRepository extends BaseRepository
 	{
 		return tap($this->query()->with('item', 'product')->where('id', $id)->firstOrFail(), function ($stock)
 		{
-
 			$tones = ToneService::format($stock->item->tones);
 			$stock->tooltip    = $tones['tooltip'];
 			$stock->background = $tones['background'];

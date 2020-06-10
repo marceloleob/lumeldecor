@@ -13,13 +13,13 @@
 					<div class="card-body">
 						<ul class="forms-wizard mb-5">
 							<li class="nav-item">
-								<span class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></span>
+								<a href="{!! route('product.edit', $data->product_id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
 							</li>
 							<li class="nav-item active">
 								<span class="nav-link"><em><i class="fas fa-ruler-combined"></i></em><span>Tamanho(s) do Produto</span></span>
 							</li>
 							<li class="nav-item">
-								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Core(s) do Produto</span></span>
+								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Cor(es) do Produto</span></span>
 							</li>
 						</ul>
 
@@ -44,8 +44,9 @@
 						<div class="row">
 							<div class="col-md-2">
 								<div class="position-relative form-group">
-									{{-- {!! Form::label('size', 'Tamanho', ['class' => 'required']) !!} --}}
-									<div class="show-size">{!! $data->size !!}</div>
+									{!! Form::label('size', 'Tamanho', ['class' => 'required']) !!}
+									{!! Form::selectSize('size', old('size', $data->size), ['class' => 'form-control selectpicker', 'id' => 'size', 'title' => 'Selecione']) !!}
+									{!! Form::notification('size', $errors) !!}
 								</div>
 								<div class="position-relative form-group">
 									{!! Form::label('weight', 'Peso', ['class' => 'required']) !!}
@@ -119,17 +120,15 @@
 									<img src="{!! asset('images/box.jpeg') !!}" alt="" />
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
 
 				<div class="main-card mb-3 card">
 					<div class="card-button">
-						{!! Form::hidden('size', $data->size, ['id' => 'size']) !!}
 						{!! Form::hidden('product_id', $data->product_id, ['id' => 'product_id']) !!}
 						{!! Form::buttons('product.edit', $data->id, ['cancel-link-params' => $data->product_id]) !!}
-						<a href="{!! route('product-size.create', $data->product_id) !!}" class="btn-hover-shine btn btn-shadow btn-primary btn-save btn-wide btn-pill pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Cadastrar um Tamanho Novo</a>
+						<a href="{!! route('product-size.create', $data->product_id) !!}" class="btn-hover-shine btn btn-shadow btn-primary pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Cadastrar um Tamanho novo</a>
 					</div>
 				</div>
 			{!! Form::close() !!}

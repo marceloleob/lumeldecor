@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	// Item
 	Route::get('item/cadastrar/{productId}/{productSizeId}', 'ItemController@create')->name('item.create');
 	Route::post('item/salvar', 'ItemController@store')->name('item.store');
-	Route::get('item/editar/{itemId}', 'ItemController@edit')->name('item.edit');
+	Route::get('item/editar/{itemId}/{productSizeId}', 'ItemController@edit')->name('item.edit');
 	Route::put('item/atualizar/{itemId}', 'ItemController@update')->name('item.update');
 	Route::get('item/status/{itemId}/{productSizeId}', 'ItemController@changeStatus')->name('item.status');
 	// Stocks

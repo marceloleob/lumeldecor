@@ -125,7 +125,7 @@ class Macros extends FormBuilder
 		}
 
 		if ($buttonCancelShow === true) {
-			array_push($buttons, '<a href="' . $route . '" class="btn-transition btn btn-outline-focus btn-cancel mr-4 pr-3 pl-3 float-left">');
+			array_push($buttons, '<a href="' . $route . '" class="mb-2 mr-4 btn-icon btn-shadow btn btn-outline-focus float-left">');
 			array_push($buttons, '<i class="' . $buttonCancelIcon . ' fa-w-10 pr-2"></i> ' . $buttonCancelTitle);
 			array_push($buttons, '</a>');
 		}
@@ -135,7 +135,8 @@ class Macros extends FormBuilder
 			'<i class="fas fa-cloud-upload-alt fa-w-10 pr-2"></i> Salvar',
 			[
 				'type' => 'submit',
-				'class' => 'btn-hover-shine btn btn-shadow btn-success btn-save btn-wide btn-pill pr-4 pl-4'
+				'class' => 'mb-2 mr-4 px-5 btn-icon btn-hover-shine btn btn-shadow btn-success btn-save btn-wide btn-pill'
+				// 'class' => 'mb-2 mr-4 px-4 btn-icon btn-hover-shine btn btn-shadow btn-outline-success'
 			]
 		);
 

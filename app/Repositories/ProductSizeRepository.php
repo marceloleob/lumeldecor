@@ -86,8 +86,9 @@ class ProductSizeRepository extends BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection) {
 
+			$collection->productId   = $collection->product->id;
 			$collection->productName = $collection->product->name;
-			$collection->shape = ($collection->shape === 'R') ? 'Redondo' : 'Quadrado';
+			$collection->shape       = ($collection->shape === 'R') ? 'Redondo' : 'Quadrado';
 
 		});
 	}

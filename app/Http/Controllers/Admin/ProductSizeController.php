@@ -92,12 +92,12 @@ class ProductSizeController extends Controller
     public function update(ProductSizeRequest $request, $productSizeId)
     {
 		// save
-		$response = ProductSizeService::store($request->all(), $productSizeId);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with('danger', 'Erro ao atualizar o tamanho do produto, tente novamente!');
-        }
+		$entity = ProductSizeService::store($request->all(), $productSizeId);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', $entity['message']);
+		}
 
-        return redirect()->route('product.edit', $request->product_id)->with('success', 'Tamanho do produto atualizado com sucesso!');
+        return redirect()->route('product-size.create', $request->product_id)->with('success', 'Tamanho do produto atualizado com sucesso!');
 	}
 }

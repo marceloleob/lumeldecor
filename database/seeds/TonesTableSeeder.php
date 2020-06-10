@@ -95,17 +95,17 @@ class TonesTableSeeder extends Seeder
 		Tone::create(['color_id' => 8, 'name' => 'Madeira', 'hexa' => '#DEB887', 'status' => 1]);
 
 		// CORES PASTEIS
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Neve', 'hexa' => '#FFFAFA', 'status' => 1]);
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Verde', 'hexa' => '#F0FFF0', 'status' => 1]);
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Minta', 'hexa' => '#F5FFFA', 'status' => 1]);
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Verde Água', 'hexa' => '#F0FFFF', 'status' => 1]);
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Azul', 'hexa' => '#F0F8FF', 'status' => 1]);
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Lilás', 'hexa' => '#F8F8FF', 'status' => 1]);
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Cinza', 'hexa' => '#F5F5F5', 'status' => 1]);
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Oliva', 'hexa' => '#F5F5DC', 'status' => 1]);
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Amarelo', 'hexa' => '#FFFFF0', 'status' => 1]);
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Laranja', 'hexa' => '#FAEBD7', 'status' => 1]);
-		Tone::create(['color_id' => 9, 'name' => 'Pastéis - Rosa', 'hexa' => '#FFF0F5', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Neve', 'hexa' => '#FFFAFA', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Verde', 'hexa' => '#F0FFF0', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Minta', 'hexa' => '#F5FFFA', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Verde Água', 'hexa' => '#F0FFFF', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Azul', 'hexa' => '#F0F8FF', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Lilás', 'hexa' => '#F8F8FF', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Cinza', 'hexa' => '#F5F5F5', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Oliva', 'hexa' => '#F5F5DC', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Amarelo', 'hexa' => '#FFFFF0', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Laranja', 'hexa' => '#FAEBD7', 'status' => 1]);
+		Tone::create(['color_id' => 9, 'name' => 'Rosa', 'hexa' => '#FFF0F5', 'status' => 1]);
 
 		// TONS DE CINZA
 		Tone::create(['color_id' => 10, 'name' => 'Branco', 'hexa' => '#FFFFFF', 'status' => 1]);
@@ -115,12 +115,12 @@ class TonesTableSeeder extends Seeder
 		Tone::create(['color_id' => 10, 'name' => 'Preto', 'hexa' => '#000000', 'status' => 1]);
 
 		// NEON
-		Tone::create(['color_id' => 11, 'name' => 'Neon - Vermelho', 'hexa' => '#FF0000', 'status' => 1]);
-		Tone::create(['color_id' => 11, 'name' => 'Neon - Amarelo', 'hexa' => '#FFFF00', 'status' => 1]);
-		Tone::create(['color_id' => 11, 'name' => 'Neon - Verde', 'hexa' => '#00FF00', 'status' => 1]);
-		Tone::create(['color_id' => 11, 'name' => 'Neon - Azul Claro', 'hexa' => '#00FFFF', 'status' => 1]);
-		Tone::create(['color_id' => 11, 'name' => 'Neon - Azul', 'hexa' => '#0000FF', 'status' => 1]);
-		Tone::create(['color_id' => 11, 'name' => 'Neon - Rosa', 'hexa' => '#FF00FF', 'status' => 1]);
+		Tone::create(['color_id' => 11, 'name' => 'Vermelho', 'hexa' => '#FF0000', 'status' => 1]);
+		Tone::create(['color_id' => 11, 'name' => 'Amarelo', 'hexa' => '#FFFF00', 'status' => 1]);
+		Tone::create(['color_id' => 11, 'name' => 'Verde', 'hexa' => '#00FF00', 'status' => 1]);
+		Tone::create(['color_id' => 11, 'name' => 'Azul Claro', 'hexa' => '#00FFFF', 'status' => 1]);
+		Tone::create(['color_id' => 11, 'name' => 'Azul', 'hexa' => '#0000FF', 'status' => 1]);
+		Tone::create(['color_id' => 11, 'name' => 'Rosa', 'hexa' => '#FF00FF', 'status' => 1]);
 
 		// METALICOS
 		Tone::create(['color_id' => 12, 'name' => 'Prata', 'hexa' => '#E6E6E6', 'status' => 1]);

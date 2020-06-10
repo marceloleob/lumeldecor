@@ -34,26 +34,11 @@
 									<td class="text-center">{!! $item->weight !!}</td>
 									<td class="text-center">
 										<a href="{!! route('product-size.edit', [$item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
+										<a href="{!! route('item.create', [$item->productId, $item->id]) !!}" class="btn-icon btn btn-outline-alternate"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Adicionar Cores</a>
 									</td>
 								</tr>
 								@endforeach
 							</tbody>
-
-
-							{{-- @if (!$item->uniqueSize)
-								<tfoot>
-									<tr>
-										<td colspan="3"><hr /></td>
-									</tr>
-									<tr>
-										<td colspan="3" class="text-center">
-											<a href="{!! route('product-size.create', $data->id) !!}" class="mb-2 mr-2 btn btn-info">
-												<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-plus-circle fa-w-10"></i></span> Adicionar outro tamanho para este produto
-											</a>
-										</td>
-									</tr>
-								</tfoot>
-							@endif --}}
 						</table>
 					</div>
 				</div>

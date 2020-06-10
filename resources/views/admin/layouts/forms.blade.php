@@ -21,7 +21,7 @@
 			</div>
 			<div class="page-title-actions">
 				<div class="d-inline-block dropdown">
-					<a href="@yield('btn-back')" class="mb-2 mr-2 btn-transition btn btn-outline-focus">
+					<a href="@yield('btn-back')" class="mb-2 mr-2 btn-icon btn-shadow btn btn-outline-focus">
 						<span class="btn-icon-wrapper pr-2 opacity-9"><i class="fas fa-arrow-circle-left fa-w-20"></i></span>
 						Voltar
 					</a>

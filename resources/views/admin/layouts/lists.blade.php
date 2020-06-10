@@ -16,7 +16,7 @@
 			<div class="page-title-actions">
 				@if (!request()->is('admin/usuario/*') && !request()->is('admin/estoque/*'))
 				<div class="d-inline-block dropdown">
-					<a href="@yield('btn-add')" class="mb-2 mr-2 btn-transition btn btn-outline-primary">
+					<a href="@yield('btn-add')" class="mb-2 mr-2 btn-icon btn-shadow btn btn-outline-primary">
 						<span class="btn-icon-wrapper pr-1 opacity-9"><i class="fas fa-plus-circle"></i></span> Adicionar
 					</a>
 				</div>

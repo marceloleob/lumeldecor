@@ -23,7 +23,7 @@ class ProductRepository extends BaseRepository
 	 */
 	public function all($search = null, $material = null, $category = null)
 	{
-		$query = $this->query()->orderBy('name');
+		$query = $this->query()->orderBy('done')->orderBy('name');
 
 		// verifica se buscou algum item especifico
 		if (!empty($search)) {
@@ -75,15 +75,22 @@ class ProductRepository extends BaseRepository
 			} else {
 				$collection->launch = '<i class="fas fa-times"></i>';
 			}
-			// verifica se e inativo
-			if ($collection->status == config('constants.STATUS_ACTIVE')) {
-                // seta ativo como default
-                $collection->status = ['class' => 'success', 'label' => 'Ativo'];
-                $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
+			// verifica se o cadastro do produto esta completo
+			if ($collection->done == config('constants.STATUS_ACTIVE')) {
+				// verifica se e inativo
+				if ($collection->status == config('constants.STATUS_ACTIVE')) {
+					// seta ativo como default
+					$collection->status = ['class' => 'success', 'label' => 'Ativo'];
+					$collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
+				} else {
+					// seta inativo como default
+					$collection->status = ['class' => 'danger', 'label' => 'Inativo'];
+					$collection->styles = ['class' => 'btn-outline-success', 'label' => 'far fa-check-circle'];
+				}
 			} else {
-                // seta inativo como default
-				$collection->status = ['class' => 'danger', 'label' => 'Inativo'];
-				$collection->styles = ['class' => 'btn-outline-success', 'label' => 'far fa-check-circle'];
+				// seta cadastro incompleto
+				$collection->status = ['class' => 'warning', 'label' => 'Incompleto'];
+				$collection->styles = ['class' => 'btn-outline-ligth', 'label' => 'fas fa-ban'];
 			}
 		});
 	}

@@ -35,6 +35,7 @@
 	padding: 3px;
 }
 
+
 /**
 * -----------------------------------------------------------------------------
 * ARCHITECT CUSTOM
@@ -62,55 +63,8 @@ a, a:hover, a:focus, a:visited {
 .dropdown-menu .dropdown-item.active {
 	color: #FFF;
 }
-// Tamanho da fonte dentro dos inputs
-.form-control {
-	font-size: 0.8rem !important;
-}
-.form-control.readonly {
-	background-color: #f7f7f7;
-}
-.form input.color {
-	padding: 1px 2px !important;
-}
-// Corrigido estilo do SelectPicker
-.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
-	color: #495057 !important;
-}
-.btn-light {
-	background-color: #FFF !important;
-	border: 1px solid #ced4da;
-}
 .btn {
 	line-height: 1.8;
-}
-// Listas sem registros
-.card-no-records {
-    display: flex;
-    align-items: center;
-    border-bottom-width: 1px;
-    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-    height: 25rem;
-    justify-content: center;
-    text-transform: uppercase;
-    color: rgba(13, 27, 62, 0.7);
-    font-weight: bold;
-    font-size: .88rem;
-}
-.app-footer {
-	padding-top: 65px;
-}
-.row-footer {
-	padding: 20px;
-}
-.card-button {
-    flex: 1 1 auto;
-    min-height: 1px;
-	padding: 1.25rem;
-	align-items: center;
-	justify-content: space-between;
-}
-.btn-success.btn-shadow {
-    box-shadow: 0 0.125rem 0.625rem rgba(58,196,125,0.4), 0 0.0625rem 0.125rem rgba(58,196,125,0.5);
 }
 .btn-hover-shine {
     position: relative;
@@ -127,15 +81,174 @@ a, a:hover, a:focus, a:visited {
     -moz-transition: none;
     transition: none;
 }
-.btn-action {
-	display: flex;
-	padding-top: 30px;
+
+
+/**
+* -----------------------------------------------------------------------------
+* FORMS
+* -----------------------------------------------------------------------------
+*/
+// Tamanho da fonte dentro dos inputs
+.form-control {
+	font-size: 0.8rem !important;
+}
+.form-control.readonly {
+	background-color: #f7f7f7;
+}
+.form input.color {
+	padding: 1px 2px !important;
+}
+.btn-success.btn-shadow {
+    box-shadow: 0 0.125rem 0.625rem rgba(58,196,125,0.4), 0 0.0625rem 0.125rem rgba(58,196,125,0.5);
 }
 .input-group-prepend .input-group-text {
 	min-width: 44px;
 }
 .input-group-append .input-group-text {
 	min-width: 40px;
+}
+.card-button {
+    flex: 1 1 auto;
+    min-height: 1px;
+	padding: 1.25rem;
+	align-items: center;
+	justify-content: space-between;
+}
+
+
+/**
+* -----------------------------------------------------------------------------
+* SELECTPICKER
+* -----------------------------------------------------------------------------
+*/
+.bootstrap-select > .dropdown-toggle.bs-placeholder,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:hover,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+	color: #495057 !important;
+	background-color: #FFFFFF !important;
+}
+.bootstrap-select > .btn-light {
+	background-color: #FFF !important;
+	border: 1px solid #ced4da;
+}
+
+/**
+* -----------------------------------------------------------------------------
+* CHECKBOX
+* -----------------------------------------------------------------------------
+*/
+ul.button-checkbox {
+	padding-top: 10px;
+	padding-inline-start: 1px !important;
+}
+.button-checkbox li {
+	display: flex;
+	padding: 5px 0;
+}
+.button-checkbox li label {
+	position: relative;
+	font-family: "Montserrat", sans-serif;
+	font-size: 13px;
+	padding: 2px 0 0 27px;
+	line-height: 24px;
+	cursor: pointer;
+}
+.button-checkbox li label::before {
+	position: absolute;
+	box-sizing: border-box;
+	content: "";
+	height: 19px;
+	width: 19px;
+	left: 0;
+	top: 3px;
+	border: 2px solid #7454ae;
+	transition: border-color 0.3s ease 0s;
+}
+.button-checkbox li input[type="checkbox"]:checked + label::before {
+	position: absolute;
+	content: "\f00c";
+	font-family: "Font Awesome 5 Free";
+	font-size: 12px;
+	font-weight: 900;
+	line-height: 17px;
+	text-align: center;
+	border: 1px solid #7454ae;
+	background-color: #f9f9f9;
+	color: #7454ae;
+}
+
+
+/**
+* -----------------------------------------------------------------------------
+* RADIO
+* -----------------------------------------------------------------------------
+*/
+.radio-options {
+	padding: 10px 0 0 2px;
+}
+.custom-control-label {
+	cursor: pointer;
+}
+.custom-radio .custom-control-label::before {
+	border-color: #7454ae;
+}
+.custom-radio .custom-control-input:checked~.custom-control-label::before,
+.custom-radio .custom-control-input:checked~.custom-control-label::after {
+	background-color: #7454ae;
+	border-radius: 50%;
+}
+.custom-radio .custom-control-input:focus ~ .custom-control-label::before {
+	box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(116, 84, 174);
+}
+
+
+/**
+* -----------------------------------------------------------------------------
+* LISTS
+* -----------------------------------------------------------------------------
+*/
+.card-search-pane-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    white-space: nowrap;
+    width: 100%;
+}
+.card-search-pane-right .search {
+	width: 220px;
+}
+.card-search-pane-right .bootstrap-select {
+	text-transform: initial !important;
+}
+.card-search-pane-right .selectpicker {
+	width: 300px;
+}
+.table .td-color {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.table .colors {
+    height: 23px;
+    width: 30px;
+    border: 1px solid #CFCFCF;
+    border-radius: 15%;
+    opacity: 1;
+    margin: 5px;
+}
+.card-no-records {
+    display: flex;
+    align-items: center;
+    border-bottom-width: 1px;
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    height: 25rem;
+    justify-content: center;
+    text-transform: uppercase;
+    color: rgba(13, 27, 62, 0.7);
+    font-weight: bold;
+    font-size: .88rem;
 }
 
 
@@ -163,10 +276,6 @@ a, a:hover, a:focus, a:visited {
     padding: 1rem 0;
 	color: #adb5bd;
 }
-// .forms-wizard li:first-child::before {
-//     border-top-left-radius: 20px;
-//     border-bottom-left-radius: 20px;
-// }
 .forms-wizard li::before {
     left: 0;
 }
@@ -241,18 +350,6 @@ a, a:hover, a:focus, a:visited {
 .forms-wizard li.done::after, .forms-wizard li.done::before {
     background: #3ac47d;
 }
-
-
-// .forms-wizard li .nav-item .nav-link:hover {
-//     display: flex;
-//     align-items: center;
-//     transition: background-color 0.3s ease, color 0.3s ease;
-//     // border: 1px solid transparent;
-//     // border-top-left-radius: .25rem;
-//     // border-top-right-radius: .25rem;
-// 	font-weight: normal;
-//     cursor: pointer;
-// }
 .forms-wizard .nav-link {
     display: block;
     padding: 0;
@@ -263,120 +360,24 @@ a, a:hover, a:focus, a:visited {
 }
 
 
-
 /**
 * -----------------------------------------------------------------------------
-* LISTS - SEARCH
+* FOOTER
 * -----------------------------------------------------------------------------
 */
-.card-search-pane-right {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: auto;
-    white-space: nowrap;
-    width: 100%;
+.app-footer {
+	padding-top: 65px;
 }
-.card-search-pane-right .search {
-	width: 220px;
-}
-.card-search-pane-right .bootstrap-select {
-	text-transform: initial !important;
-}
-.card-search-pane-right .selectpicker {
-	width: 300px;
+.row-footer {
+	padding: 20px;
 }
 
 
 /**
 * -----------------------------------------------------------------------------
-* PAGES - MATERIAL
+* PAGES - STOCK
 * -----------------------------------------------------------------------------
 */
-.custom-control-label {
-	cursor: pointer;
-}
-
-/**
-* -----------------------------------------------------------------------------
-* PAGES - PRODUCT
-* -----------------------------------------------------------------------------
-*/
-.card-item {
-	background-color: #F8F8F8;
-}
-.card-box-example {
-	display: flex;
-	justify-content: center;
-	margin-top: -4rem;
-	border: 1px solid #ced4da;
-	border-radius: .25rem;
-}
-.card-box-picture {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	// border: 1px solid #ced4da;
-	// border-radius: .25rem;
-}
-.card-box-picture img {
-	max-width: 100%;
-	max-height: 100%;
-}
-.card-item {
-	border: 1px solid #ced4da;
-	border-radius: .25rem;
-	// background-color: #faf7ff;
-}
-.card-dimension {
-	display: block;
-	padding: 40px 0 0 25px;
-}
-.radio-options {
-	padding: 10px 0 0 2px;
-}
-.card-button-add {
-	position: relative;
-	display: flex;
-	justify-content: center;
-}
-.custom-file-label {
-	font-size: 0.8rem;
-	margin-top: 30px !important;
-}
-.custom-file-label::after {
-	position: absolute;
-	content: "\f002";
-	font-family: "Font Awesome 5 Free";
-	font-weight: 900;
-	padding: 0.5rem .75rem;
-	background-color: #f0f9ff;
-}
-.custom-file-input {
-	cursor: pointer;
-}
-.featured ul.button-checkbox {
-	padding-top: 15px;
-	padding-inline-start: 4px !important;
-}
-.div-launch ul.button-checkbox {
-	padding-inline-start: 30px !important;
-	padding-inline-start: 4px !important;
-}
-.table .td-color {
-	display: flex;
-	justify-content: center;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-// Mostra as cores na lista de itens
-.table .colors {
-    height: 23px;
-    width: 30px;
-    border: 1px solid #CFCFCF;
-    border-radius: 15%;
-    opacity: 1;
-    margin: 5px;
-}
 .div-color .colors {
 	height: 38px;
     width: 100%;
@@ -402,11 +403,61 @@ a, a:hover, a:focus, a:visited {
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
 }
+.card-box-example {
+	display: flex;
+	justify-content: center;
+	margin-top: -4rem;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+}
 
 
 /**
 * -----------------------------------------------------------------------------
-* PAGES - COLORS
+* PAGES - ITEMS
+* -----------------------------------------------------------------------------
+*/
+.profit-margin {
+    display: flex;
+    font-size: 1.5rem;
+	font-weight: 500;
+	margin-top: 4px;
+}
+.custom-file-label {
+	font-size: 0.8rem;
+	margin-top: 30px !important;
+	padding: .475rem .75rem !important;
+}
+.custom-file-label::after {
+	position: absolute;
+	content: "\f002";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	padding: 0.5rem .75rem;
+	background-color: #f0f9ff;
+}
+.custom-file-input {
+	cursor: pointer;
+}
+.card-box-picture {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	// border: 1px solid #ced4da;
+	// border-radius: .25rem;
+}
+.card-box-picture img {
+	max-width: 100%;
+	max-height: 100%;
+}
+.item ul.button-checkbox {
+	padding-top: 29px;
+}
+
+
+/**
+* -----------------------------------------------------------------------------
+* PAGES - TONE
 * -----------------------------------------------------------------------------
 */
 // Mostra as cores na lista de cores
@@ -428,50 +479,11 @@ a, a:hover, a:focus, a:visited {
 }
 
 
-/**
-* -----------------------------------------------------------------------------
-* CHECKBOX
-* -----------------------------------------------------------------------------
-*/
-ul.button-checkbox {
-	padding-top: 30px;
-	padding-inline-start: 5px !important;
-}
-.button-checkbox li {
-	display: flex;
-	padding: 5px 0;
-}
-.button-checkbox li label {
-	position: relative;
-	font-family: "Montserrat", sans-serif;
-	font-size: 13px;
-	padding: 2px 0 0 27px;
-	line-height: 24px;
-	cursor: pointer;
-}
-.button-checkbox li label::before {
-	position: absolute;
-	box-sizing: border-box;
-	content: "";
-	height: 19px;
-	width: 19px;
-	left: 0;
-	top: 3px;
-	border: 2px solid #7454ae;
-	transition: border-color 0.3s ease 0s;
-}
-.button-checkbox li input[type="checkbox"]:checked + label::before {
-	position: absolute;
-	content: "\f00c";
-	font-family: "Font Awesome 5 Free";
-	font-size: 12px;
-	font-weight: 900;
-	line-height: 17px;
-	text-align: center;
-	border: 1px solid #7454ae;
-	background-color: #f9f9f9;
-	color: #7454ae;
-}
+
+
+
+
+
 
 
 /**

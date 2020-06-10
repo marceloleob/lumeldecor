@@ -19,7 +19,7 @@
 								<span class="nav-link"><em><i class="fas fa-ruler-combined"></i></em><span>Tamanho(s) do Produto</span></span>
 							</li>
 							<li class="nav-item">
-								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Core(s) do Produto</span></span>
+								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Cor(es) do Produto</span></span>
 							</li>
 						</ul>
 
@@ -40,7 +40,7 @@
 									{!! Form::text('name', old('name'), ['class' => 'form-control text']) !!}
 									{!! Form::notification('name', $errors) !!}
 								</div>
-								<div class="position-relative form-group featured">
+								<div class="position-relative form-group">
 									<ul class="button-checkbox">
 										<li>
 											{!! Form::checkbox('featured', 1, (old('featured') ? true : false), ['id' => 'featured', 'class' => 'hide']) !!}

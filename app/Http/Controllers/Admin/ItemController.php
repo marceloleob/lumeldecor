@@ -38,8 +38,10 @@ class ItemController extends Controller
     public function create($productId, $productSizeId)
     {
 		$params = [
-			'product_id'      => $productId,
-			'product_size_id' => $productSizeId,
+			'productId'       => $productId,
+			'productSizeId'   => $productSizeId,
+			'data'            => ItemService::findById(null, $productId, $productSizeId),
+			'items'           => (new ItemRepository)->findByProductSizeId($productSizeId),
 			'optionstheme'    => (new ThemeRepository())->options(),
 			'optionstone'     => (new ToneRepository())->options(),
 			'optionssupplier' => (new SupplierRepository())->options(),
@@ -57,25 +59,27 @@ class ItemController extends Controller
     public function store(ItemRequest $request)
     {
 		// save
-		$response = ItemService::store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = ItemService::store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', $entity['message']);
+		}
 
-        return redirect()->route('product-size.edit', $request->product_id)->with('success', 'Item do produto cadastrado com sucesso!');
+        return redirect()->route('item.create', [$request->product_id, $request->product_size_id])->with('success', 'Cor do produto cadastrada com sucesso!');
 	}
 
 	/**
      * Show the form for editing the specified resource.
      *
      * @param  int  $itemId
+     * @param  int  $productSizeId
      * @return Response
      */
-    public function edit($itemId)
+    public function edit($itemId, $productSizeId)
     {
 		$params = [
-			'data'            => ItemService::findById($itemId),
+			'data'            => ItemService::findById($itemId, null, $productSizeId),
+			'items'           => (new ItemRepository)->findByProductSizeId($productSizeId),
 			'optionstone'     => (new ToneRepository())->options(),
 			'optionstheme'    => (new ThemeRepository())->options(),
 			'optionssupplier' => (new SupplierRepository())->options(),
@@ -94,13 +98,13 @@ class ItemController extends Controller
     public function update(ItemRequest $request, $itemId)
     {
 		// save
-		$response = ItemService::store($request->all(), $itemId);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = ItemService::store($request->all(), $itemId);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', $entity['message']);
+		}
 
-        return redirect()->route('product-size.edit', $request->product_size_id)->with('success', 'Item do produto atualizado com sucesso!');
+		return redirect()->route('item.create', [$request->product_id, $request->product_size_id])->with('success', 'Cor do produto atualizada com sucesso!');
 	}
 
     /**
