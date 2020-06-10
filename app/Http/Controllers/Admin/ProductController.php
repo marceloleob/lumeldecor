@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ProductCreateRequest;
-use App\Http\Requests\Admin\ProductUpdateRequest;
+use App\Http\Requests\Admin\ProductRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\MaterialRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductSizeRepository;
-use App\Repositories\SupplierRepository;
-use App\Repositories\ThemeRepository;
-use App\Repositories\ToneRepository;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
@@ -57,9 +53,6 @@ class ProductController extends Controller
 		$params = [
 			'optionsmaterial' => (new MaterialRepository())->options(),
 			'optionscategory' => (new CategoryRepository())->options(),
-			'optionstheme'    => (new ThemeRepository())->options(),
-			'optionstone'     => (new ToneRepository())->options(),
-			'optionssupplier' => (new SupplierRepository())->options(),
 		];
 
 		return view('admin.pages.product-form-create', ['page' => 'product'])->with($params);
@@ -68,19 +61,19 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ProductCreateRequest  $request
+     * @param  ProductRequest  $request
      * @return Response
      */
-    public function store(ProductCreateRequest $request)
+    public function store(ProductRequest $request)
     {
 		// save
-		$response = ProductService::create($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = ProductService::store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar o produto, tente novamente!');
+		}
 
-        return redirect()->route('product.list')->with('success', 'Produto cadastrado com sucesso!');
+        return redirect()->route('product-size.create', $entity->id)->with('success', 'Produto cadastrado com sucesso!');
     }
 
     /**
@@ -93,7 +86,6 @@ class ProductController extends Controller
     {
 		$params = [
 			'data'            => $this->repository->findById($productId),
-			'items'           => (new ProductSizeRepository)->findByProduct($productId),
 			'optionsmaterial' => (new MaterialRepository())->options(),
 			'optionscategory' => (new CategoryRepository())->options(),
 		];
@@ -104,20 +96,20 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  ProductUpdateRequest  $request
+     * @param  ProductRequest  $request
      * @param  int  $productId
      * @return Response
      */
-    public function update(ProductUpdateRequest $request, $productId)
+    public function update(ProductRequest $request, $productId)
     {
 		// save
-		$response = ProductService::update($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = ProductService::store($request->all(), $productId);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar o produto, tente novamente!');
+		}
 
-        return redirect()->route('product.list')->with('success', 'Produto atualizado com sucesso!');
+		return redirect()->route('product.list')->with('success', 'Produto atualizado com sucesso!');
 	}
 
     /**

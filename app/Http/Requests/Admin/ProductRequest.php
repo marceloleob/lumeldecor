@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use App\Filters\Checkbox;
 use App\Http\Requests\BaseRequest;
 
-class ProductUpdateRequest extends BaseRequest
+class ProductRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

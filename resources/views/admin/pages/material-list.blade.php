@@ -20,7 +20,7 @@
 			<tr>
 				<td class="text-center text-muted">{!! $item->id !!}</td>
 				<td class="text-left">{!! $item->name !!}</td>
-				<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
+				<td class="text-center"><div  class="badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 				<td class="text-center">
 					<a href="{!! route($page . '.edit', $item->id) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
 					<a href="{!! route($page . '.status', $item->id) !!}" class="border-0 btn-transition btn {!! $item->styles['class'] !!}"><i class="{!! $item->styles['label'] !!}"></i></a>

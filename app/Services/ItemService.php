@@ -108,7 +108,7 @@ class ItemService
 				'tone_id' => (int) $toneId,
 			];
 			$itemColorR = new ItemToneRepository();
-			$itemColorE = $itemColorR->store($dataColor, true);
+			$itemColorE = $itemColorR->store($dataColor);
 			// verifica se salvou
 			if (!$itemColorE instanceof ItemTone) {
 				throw new Exception($itemColorE, 1);
@@ -126,7 +126,7 @@ class ItemService
 					'theme_id' => (int) $themeId,
 				];
 				$itemThemeR = new ItemThemeRepository();
-				$itemThemeE = $itemThemeR->store($dataTheme, true);
+				$itemThemeE = $itemThemeR->store($dataTheme);
 				// verifica se salvou
 				if (!$itemThemeE instanceof ItemTheme) {
 					throw new Exception($itemThemeE, 1);

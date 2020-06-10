@@ -17,8 +17,8 @@ return [
     'TOTAL_PAGE'             => 20,
 
     // BUSINESS RULES
-    'INACTIVE'               => 0,
-    'ACTIVE'                 => 1,
+    'STATUS_INACTIVE'        => 0,
+    'STATUS_ACTIVE'          => 1,
 
     // IMAGES
     'PICTURES_SIZE'          => 3072000, // 3 MEGABYTES EM KB

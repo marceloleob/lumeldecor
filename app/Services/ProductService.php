@@ -3,18 +3,31 @@
 namespace App\Services;
 
 use App\Repositories\ProductRepository;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Exception;
 
 class ProductService
 {
 	/**
+	 * Gerencia o metodo save e update dos produtos
+	 *
+	 * @param array   $data
+	 * @param integer $productId
+	 * @return \App\Models\Product
+	 */
+    public static function store($data = [], $productId = null)
+    {
+		// cria uma slug
+		$data['slug']   = Str::slug($data['name']);
+
+		return (new ProductRepository())->store($data);
+	}
+
+	/*
 	 * Gerencia o metodo create dos produtos
 	 *
 	 * @param array $data
 	 * @return void
-	 */
+	 *
     public static function create($data = [])
     {
         // inicia o acoplamento de uma transacao
@@ -34,7 +47,7 @@ class ProductService
 				'launch'      => $data['launch'] ?? false,
 			];
 			$productR = new ProductRepository();
-			$productE = $productR->store($dataProduct, true);
+			$productE = $productR->store($dataProduct);
 			// verifica se salvou
 			if (! isset($productE->id)) {
 				throw new Exception($productE);
@@ -81,53 +94,5 @@ class ProductService
             ];
 		}
 	}
-
-	/**
-	 * Gerencia o metodo update dos produtos
-	 *
-	 * @param array $data
-	 * @return void
-	 */
-    public static function update($data = [])
-    {
-        // inicia o acoplamento de uma transacao
-        DB::beginTransaction();
-
-        try {
-			// 1º) Salva o Product
-			$dataProduct = [
-				'id'          => $data['id'],
-				'material_id' => $data['material_id'],
-				'category_id' => $data['category_id'],
-				'name'        => $data['name'],
-				'slug'        => Str::slug($data['name']),
-				'picture'     => $data['picture'] ?? null,
-				'description' => $data['description'],
-				'hashtag'     => $data['hashtag'],
-				'featured'    => $data['featured'] ?? false,
-				'launch'      => $data['launch'] ?? false,
-				'status'      => $data['status'],
-			];
-			$productR = new ProductRepository();
-			$productE = $productR->store($dataProduct, true);
-			// verifica se salvou
-			if (! isset($productE->id)) {
-				throw new Exception($productE);
-			}
-
-            // efetiva a transacao
-            DB::commit();
-            // retorna a entidade criada ou atualizada
-            return ['success' => 'Produto atualizado com sucesso!'];
-
-        } catch (Exception $exception) {
-            // descarta a transacao
-            DB::rollback();
-            // retorna o erro
-            return [
-                'danger' => 'Erro ao atualizar o produto, tente novamente!',
-                'error'  => $exception,
-            ];
-		}
-	}
+	*/
 }

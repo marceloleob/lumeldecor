@@ -50,13 +50,13 @@ class ThemeRepository extends BaseRepository
 		$this->data->map(function ($collection)
 		{
 			// verifica se o tema vai aparecer na home
-			if ($collection->show == config('constants.ACTIVE')) {
-				$collection->show = '<span class="text-focus">Sim</span>';
+			if ($collection->show == config('constants.STATUS_ACTIVE')) {
+				$collection->show = '<i class="fas fa-check"></i>';
 			} else {
-				$collection->show = '<span class="text-danger">Não</span>';
+				$collection->show = '<i class="fas fa-times"></i>';
 			}
 			// verifica se e inativo
-			if ($collection->status == config('constants.ACTIVE')) {
+			if ($collection->status == config('constants.STATUS_ACTIVE')) {
                 // seta ativo como default
                 $collection->status = ['class' => 'success', 'label' => 'Ativo'];
                 $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
@@ -77,7 +77,7 @@ class ThemeRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('name')
-			->where('status', config('constants.ACTIVE'))
+			->where('status', config('constants.STATUS_ACTIVE'))
 			->pluck('name', 'id');
 	}
 }

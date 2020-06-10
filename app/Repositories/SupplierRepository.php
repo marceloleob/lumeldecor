@@ -56,7 +56,7 @@ class SupplierRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('company')
-			->where('status', config('constants.ACTIVE'))
+			->where('status', config('constants.STATUS_ACTIVE'))
 			->pluck('company', 'id');
 	}
 }

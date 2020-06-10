@@ -52,8 +52,8 @@ $(document).ready(function ()
 		// Method cancels the event if it is cancelable
 		event.preventDefault();
 
-		var widthDiv    = $(this).closest('.row-dimension').find('.div-width');
-		var lengthDiv   = $(this).closest('.row-dimension').find('.div-length');
+		var widthDiv    = $(this).closest('.card-body').find('.div-width');
+		var lengthDiv   = $(this).closest('.card-body').find('.div-length');
 		var lengthlabel = lengthDiv.find('label');
 
 		if ($(this).val() === 'R') {

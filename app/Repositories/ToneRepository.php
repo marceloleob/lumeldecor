@@ -71,7 +71,7 @@ class ToneRepository extends BaseRepository
 				'tones.hexa'
 			)
 			->join('colors', 'tones.color_id', '=', 'colors.id')
-			->where('tones.status', config('constants.ACTIVE'))
+			->where('tones.status', config('constants.STATUS_ACTIVE'))
 			->orderBy('colors.name')
 			->orderBy('tones.name')
 			->get();

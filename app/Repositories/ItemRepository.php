@@ -45,14 +45,14 @@ class ItemRepository extends BaseRepository
 			$collection->product_id  = $collection->productSize->product->id;
 			$collection->productName = $collection->productSize->product->name;
 			$collection->size        = $collection->productSize->size;
-			// verifica se o tema vai aparecer na home
-			if ($collection->launch == config('constants.ACTIVE')) {
-				$collection->launch = '<span class="text-focus">Sim</span>';
+			// verifica se o item e lancamento
+			if ($collection->launch == config('constants.STATUS_ACTIVE')) {
+				$collection->launch = '<i class="fas fa-check"></i>';
 			} else {
-				$collection->launch = '<span class="text-danger">Não</span>';
+				$collection->launch = '<i class="fas fa-times"></i>';
 			}
 			// verifica se e inativo
-			if ($collection->status == config('constants.ACTIVE')) {
+			if ($collection->status == config('constants.STATUS_ACTIVE')) {
 				// seta ativo como default
 				$collection->status = ['class' => 'success', 'label' => 'Ativo'];
 				$collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];

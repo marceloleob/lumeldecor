@@ -65,7 +65,7 @@ class CampaignRepository extends BaseRepository
 			}
 			$collection->period = $period;
 			// verifica se e inativo
-			if ($collection->status == config('constants.ACTIVE')) {
+			if ($collection->status == config('constants.STATUS_ACTIVE')) {
                 // seta ativo como default
                 $collection->status = ['class' => 'success', 'label' => 'Ativo'];
                 $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
@@ -86,7 +86,7 @@ class CampaignRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('name')
-			->where('status', config('constants.ACTIVE'))
+			->where('status', config('constants.STATUS_ACTIVE'))
 			->pluck('name', 'id');
 	}
 }

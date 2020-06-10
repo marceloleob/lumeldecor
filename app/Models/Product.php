@@ -36,6 +36,7 @@ class Product extends Model
 		'hashtag',
 		'featured',
 		'launch',
+		'done',
 		'status',
     ];
 

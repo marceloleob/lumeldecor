@@ -114,7 +114,7 @@ class BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection) {
 			// verifica se e inativo
-			if ($collection->status == config('constants.ACTIVE')) {
+			if ($collection->status == config('constants.STATUS_ACTIVE')) {
                 // seta ativo como default
                 $collection->status = ['class' => 'success', 'label' => 'Ativo'];
                 $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
@@ -159,7 +159,10 @@ class BaseRepository
             // descarta a transacao
 			DB::rollback();
 
-			return $exception->getMessage();
+			return [
+				'message'   => 'Erro ao ' . (empty($data['id']) ? 'cadastrar' : 'atualizar') . ', tente novamente!',
+				'exception' => $exception->getMessage(),
+			];
         }
     }
 

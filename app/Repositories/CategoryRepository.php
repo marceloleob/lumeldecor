@@ -77,7 +77,7 @@ class CategoryRepository extends BaseRepository
 				$subQuery->orderBy('name');
 			}])
 			->orderBy('name')
-			->where('status', config('constants.ACTIVE'))
+			->where('status', config('constants.STATUS_ACTIVE'))
 			->where('material_id', $materialId)
 			->pluck('name', 'id');
 

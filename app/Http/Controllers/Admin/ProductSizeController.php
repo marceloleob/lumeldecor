@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductSizeRequest;
-use App\Repositories\ItemRepository;
 use App\Repositories\ProductSizeRepository;
 use App\Services\ProductSizeService;
 use Illuminate\Http\Request;
@@ -34,7 +33,12 @@ class ProductSizeController extends Controller
      */
     public function create($productId)
     {
-		return view('admin.pages.product-size-form-create', ['page' => 'product-size'])->with('product_id', $productId);
+		$params = [
+			'productId' => $productId,
+			'items'     => (new ProductSizeRepository)->findByProductId($productId),
+		];
+
+		return view('admin.pages.product-size-form-create', ['page' => 'product-size'])->with($params);
 	}
 
     /**
@@ -46,13 +50,20 @@ class ProductSizeController extends Controller
     public function store(ProductSizeRequest $request)
     {
 		// save
-		$response = ProductSizeService::store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with('danger', 'Erro ao cadastrar o tamanho do produto, tente novamente!');
-        }
+		$entity = ProductSizeService::store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', $entity['message']);
+		}
 
-        return redirect()->route('product.edit', $request->product_id)->with('success', 'Tamanho do produto cadastrado com sucesso!');
+		$message = ['success' => 'Tamanho do produto cadastrado com sucesso!'];
+
+		// caso adicionou um tamanho unico, redireciona para as cores
+		if ($request->size === 'U') {
+			return redirect()->route('item.create', [$request->product_id, $entity->id])->with($message);
+		}
+
+        return redirect()->route('product-size.create', $request->product_id)->with($message);
 	}
 
     /**
@@ -65,7 +76,7 @@ class ProductSizeController extends Controller
     {
 		$params = [
 			'data'  => $this->repository->findById($productSizeId),
-			'items' => (new ItemRepository)->findByProductSizeId($productSizeId),
+			'items' => (new ProductSizeRepository)->findByProductSizeId($productSizeId),
 		];
 
 		return view('admin.pages.product-size-form-update', ['page' => 'product-size'])->with($params);

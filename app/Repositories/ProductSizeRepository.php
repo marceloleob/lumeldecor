@@ -16,10 +16,24 @@ class ProductSizeRepository extends BaseRepository
 	/**
 	 * Retorna todos os sizes de um produto
 	 *
+	 * @param integer $productSizeId
+	 * @return Entity
+	 */
+	public function findByProductSizeId($productSizeId)
+	{
+		// recupera os dados deste "tamanho" para pegar o product_id
+		$productSize = $this->findById($productSizeId);
+
+		return $this->findByProductId($productSize->product_id);
+	}
+
+	/**
+	 * Retorna todos os sizes de um produto
+	 *
 	 * @param integer $productId
 	 * @return Entity
 	 */
-	public function findByProduct($productId)
+	public function findByProductId($productId)
 	{
 		$this->data = $this->query()
 			->with('product')
@@ -72,12 +86,9 @@ class ProductSizeRepository extends BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection) {
 
-			$collection->uniqueSize  = false;
 			$collection->productName = $collection->product->name;
-			// verifica se algum item e Unico
-			if ($collection->size === 'U') {
-				$collection->uniqueSize = true;
-			}
+			$collection->shape = ($collection->shape === 'R') ? 'Redondo' : 'Quadrado';
+
 		});
 	}
 }

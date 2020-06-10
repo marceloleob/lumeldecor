@@ -64,19 +64,19 @@ class ProductRepository extends BaseRepository
 			$collection->categoryName = $collection->category->name;
 			$collection->materialName = $collection->material->name;
 			// verifica se o producto e um destaque
-			if ($collection->featured == config('constants.ACTIVE')) {
-				$collection->featured = '<span class="text-focus">Sim</span>';
+			if ($collection->featured == config('constants.STATUS_ACTIVE')) {
+				$collection->featured = '<i class="fas fa-check"></i>';
 			} else {
-				$collection->featured = '<span class="text-danger">Não</span>';
+				$collection->featured = '<i class="fas fa-times"></i>';
 			}
 			// verifica se o producto e um lancamento
-			if ($collection->launch == config('constants.ACTIVE')) {
-				$collection->launch = '<span class="text-focus">Sim</span>';
+			if ($collection->launch == config('constants.STATUS_ACTIVE')) {
+				$collection->launch = '<i class="fas fa-check"></i>';
 			} else {
-				$collection->launch = '<span class="text-danger">Não</span>';
+				$collection->launch = '<i class="fas fa-times"></i>';
 			}
 			// verifica se e inativo
-			if ($collection->status == config('constants.ACTIVE')) {
+			if ($collection->status == config('constants.STATUS_ACTIVE')) {
                 // seta ativo como default
                 $collection->status = ['class' => 'success', 'label' => 'Ativo'];
                 $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
@@ -97,7 +97,7 @@ class ProductRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('name')
-			->where('status', config('constants.ACTIVE'))
+			->where('status', config('constants.STATUS_ACTIVE'))
 			->get()
 			->pluck('name', 'id');
 	}

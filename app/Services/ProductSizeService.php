@@ -18,28 +18,13 @@ class ProductSizeService
 	 */
     public static function store($data = [], $productSizeId = null)
     {
-		// remove do array o parametro que nao e necessario
-		if (isset($data['item'])) {
-			$data = Arr::except($data, ['item']);
-		}
-
 		// instancia o repositorio
 		$repository = new ProductSizeRepository();
 		// verifica se o tamanho ja foi adicionado
 		if (empty($productSizeId) && $repository->validateNewSize($data['product_id'], $data['size']) === false) {
-			return [
-				'danger' => 'Este tamanho não pode ser adicionado, favor adicionar outro tamanho.',
-				'error'  => 'size',
-			];
+			return ['message' => 'Este tamanho não pode ser adicionado, favor adicionar outro tamanho.'];
 		}
 
-		// salva ou atualiza os dados
-		$entity = $repository->store($data);
-		// verifica se salvou
-		if (!$entity instanceof ProductSize) {
-			throw new Exception($entity, 1);
-		}
-
-		return $entity;
+		return $repository->store($data);
 	}
 }

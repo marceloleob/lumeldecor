@@ -105,7 +105,7 @@ class ThemeController extends Controller
             return back()->withInput()->with($response);
 		}
 
-        return redirect()->route('material.list')->with('success', 'Tema atualizado com sucesso!');
+        return redirect()->route('theme.list')->with('success', 'Tema atualizado com sucesso!');
 	}
 
     /**

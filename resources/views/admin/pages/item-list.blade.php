@@ -28,7 +28,7 @@
 										<td class="text-center">{!! $item->size !!}</td>
 										<td class="text-left">{!! $item->productName !!}</td>
 										<td class="text-center">{!! $item->launch !!}</td>
-										<td class="text-center"><div id="div-{!! $item->id !!}" class="div-{!! $item->id !!} badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
+										<td class="text-center"><div  class="badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 										<td class="text-center">
 											<a href="{!! route('item.edit', $item->id) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
 											<a href="{!! route('item.status', [$item->id, $item->product_size_id]) !!}" class="border-0 btn-transition btn {!! $item->styles['class'] !!}"><i class="fas {!! $item->styles['label'] !!}"></i></a>

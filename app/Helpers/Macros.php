@@ -103,33 +103,49 @@ class Macros extends FormBuilder
 	 *
 	 * @param string $link
 	 * @param int    $id
+	 * @param array  $options
 	 *
 	 * @return HtmlString
 	 */
-	public function buttons($link, $id = null)
+	public function buttons($link, $id = null, $options = [])
 	{
 		$buttons = [];
-		$buttonCancel = 'Cancelar';
 
-		$save = $this->button(
+		$route = isset($options['cancel-link-params']) ? route($link, $options['cancel-link-params']) : route($link);
+
+		$buttonCancelTitle = $options['cancel-title'] ?? 'Cancelar';
+		$buttonCancelIcon  = 'fas fa-times-circle';
+		$buttonCancelShow  = $options['cancel-show'] ?? true;
+		$buttonBack        = $options['back-show'] ?? false;
+
+
+		if (!empty($id) || $buttonBack === true) {
+			$buttonCancelTitle = $options['cancel-title'] ?? 'Voltar';
+			$buttonCancelIcon  = 'fas fa-arrow-circle-left';
+		}
+
+		if ($buttonCancelShow === true) {
+			array_push($buttons, '<a href="' . $route . '" class="btn-transition btn btn-outline-focus btn-cancel mr-4 pr-3 pl-3 float-left">');
+			array_push($buttons, '<i class="' . $buttonCancelIcon . ' fa-w-10 pr-2"></i> ' . $buttonCancelTitle);
+			array_push($buttons, '</a>');
+		}
+
+		// monta o botao save
+		$buttonSave = $this->button(
 			'<i class="fas fa-cloud-upload-alt fa-w-10 pr-2"></i> Salvar',
 			[
 				'type' => 'submit',
-				'class' => 'btn-hover-shine btn btn-shadow btn-success btn-save mr-4 pr-4 pl-4'
+				'class' => 'btn-hover-shine btn btn-shadow btn-success btn-save btn-wide btn-pill pr-4 pl-4'
 			]
 		);
 
 		// verifica se é um UPDATE
 		if (!empty($id)) {
-			$buttonCancel = 'Voltar';
 			array_push($buttons, $this->hidden('_method', 'PUT'));
 			array_push($buttons, $this->hidden('id', $id, ['id' => 'id']));
 		}
 
-		array_push($buttons, '<a href="' . route($link) . '" class="btn-transition btn btn-outline-focus btn-cancel mr-4 pr-3 pl-3">');
-		array_push($buttons, '<i class="fas fa-times-circle fa-w-10 pr-2"></i> ' . $buttonCancel);
-		array_push($buttons, '</a>');
-		array_push($buttons, $save);
+		array_push($buttons, $buttonSave);
 
 		return implode('', $buttons);
 	}
@@ -242,11 +258,11 @@ class Macros extends FormBuilder
 		array_push($radio, $this->label('status-label', 'Status', ['class' => 'required']));
 		array_push($radio, '<div>');
 		array_push($radio, '  <div class="custom-radio custom-control">');
-		array_push($radio,      $this->radio('status', '1', ($value === config('constants.ACTIVE')) ? true : false, ['class' => 'custom-control-input', 'id' => 'status-active']));
+		array_push($radio,      $this->radio('status', '1', ($value === config('constants.STATUS_ACTIVE')) ? true : false, ['class' => 'custom-control-input', 'id' => 'status-active']));
 		array_push($radio,      $this->label('status-active', 'Ativo no site', ['class' => 'custom-control-label']));
 		array_push($radio, '  </div>');
 		array_push($radio, '  <div class="custom-radio custom-control">');
-		array_push($radio,      $this->radio('status', '0', ($value === config('constants.INACTIVE')) ? true : false, ['class' => 'custom-control-input', 'id' => 'status-inactive']));
+		array_push($radio,      $this->radio('status', '0', ($value === config('constants.STATUS_INACTIVE')) ? true : false, ['class' => 'custom-control-input', 'id' => 'status-inactive']));
 		array_push($radio,      $this->label('status-inactive', 'Inativo no site', ['class' => 'custom-control-label']));
 		array_push($radio, '  </div>');
 		array_push($radio, '</div>');

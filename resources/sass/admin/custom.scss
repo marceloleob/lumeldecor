@@ -138,6 +138,132 @@ a, a:hover, a:focus, a:visited {
 	min-width: 40px;
 }
 
+
+/**
+* -----------------------------------------------------------------------------
+* FORM WIZARD
+* -----------------------------------------------------------------------------
+*/
+.forms-wizard {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    border-radius: .25rem;
+    border: 0;
+}
+.forms-wizard li {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+	text-align: center;
+    font-size: 1rem;
+    padding: 1rem 0;
+	color: #adb5bd;
+}
+// .forms-wizard li:first-child::before {
+//     border-top-left-radius: 20px;
+//     border-bottom-left-radius: 20px;
+// }
+.forms-wizard li::before {
+    left: 0;
+}
+.forms-wizard li::after, .forms-wizard li::before {
+    position: absolute;
+    height: 4px;
+    top: 50%;
+    margin-top: -1rem;
+    width: 50%;
+    content: '';
+    background: #dee2e6;
+    z-index: 5;
+    transition: all .2s;
+}
+.forms-wizard li::after {
+    left: 50%;
+}
+.forms-wizard li::after, .forms-wizard li::before {
+    position: absolute;
+    height: 4px;
+    top: 50%;
+    margin-top: -1rem;
+    width: 50%;
+    content: '';
+    background: #dee2e6;
+    z-index: 5;
+    transition: all .2s;
+}
+.forms-wizard li em {
+    font-style: normal;
+    font-size: 1.3rem;
+    background: #ced4da;
+    color: #fff;
+    text-align: center;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto 0.5rem;
+    position: relative;
+    z-index: 9;
+    transition: all .2s;
+}
+.forms-wizard li.active::after, .forms-wizard li.active::before {
+    background: #3f6ad8;
+}
+.forms-wizard li.active em {
+    background: #3f6ad8;
+	color: #fff;
+}
+.forms-wizard li.active .nav-link {
+    color: #495057;
+}
+.forms-wizard li.done em:before {
+	content: "\f058";
+	font-family: "Font Awesome 5 Free";
+	font-weight: none;
+	color: #FFFFFF;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.5rem;
+    text-align: center;
+    display: block;
+}
+.forms-wizard li.done em {
+    background: #3ac47d;
+	color: transparent;
+}
+.forms-wizard li.done::after, .forms-wizard li.done::before {
+    background: #3ac47d;
+}
+
+
+// .forms-wizard li .nav-item .nav-link:hover {
+//     display: flex;
+//     align-items: center;
+//     transition: background-color 0.3s ease, color 0.3s ease;
+//     // border: 1px solid transparent;
+//     // border-top-left-radius: .25rem;
+//     // border-top-right-radius: .25rem;
+// 	font-weight: normal;
+//     cursor: pointer;
+// }
+.forms-wizard .nav-link {
+    display: block;
+    padding: 0;
+    color: #adb5bd;
+}
+.forms-wizard .nav-link:hover {
+	text-decoration-color: #7454ae;
+}
+
+
+
 /**
 * -----------------------------------------------------------------------------
 * LISTS - SEARCH
@@ -180,8 +306,8 @@ a, a:hover, a:focus, a:visited {
 }
 .card-box-example {
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	margin-top: -4rem;
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
 }
@@ -259,6 +385,25 @@ a, a:hover, a:focus, a:visited {
     opacity: 1;
 }
 
+
+/**
+* -----------------------------------------------------------------------------
+* PAGES - PRODUCTS SIZE
+* -----------------------------------------------------------------------------
+*/
+.div-shape {
+	margin-top: -10px;
+}
+.show-size {
+    display: flex;
+    justify-content: center;
+    font-size: 2.7rem;
+	font-weight: 600;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+}
+
+
 /**
 * -----------------------------------------------------------------------------
 * PAGES - COLORS
@@ -281,7 +426,6 @@ a, a:hover, a:focus, a:visited {
 .input-coupon {
 	text-transform: uppercase;
 }
-
 
 
 /**
@@ -398,3 +542,21 @@ ul.button-checkbox {
 .message_item .datetime span {
 	display: block
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
