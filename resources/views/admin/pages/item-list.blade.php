@@ -37,8 +37,8 @@
 									<td class="text-center">{!! $item->launch !!}</td>
 									<td class="text-center"><div  class="badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 									<td class="text-center">
-										<a href="{!! route('item.edit', [$item->id, $item->product_size_id]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
-										<a href="{!! route('item.status', [$item->id, $item->product_size_id]) !!}" class="border-0 btn-transition btn {!! $item->styles['class'] !!}"><i class="fas {!! $item->styles['label'] !!}"></i></a>
+										<a href="{!! route('item.edit', [$item->id, $item->product_id, $item->product_size_id]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
+										<a href="{!! route('item.status', [$item->id, $item->product_id, $item->product_size_id]) !!}" class="border-0 btn-transition btn {!! $item->styles['class'] !!}"><i class="fas {!! $item->styles['label'] !!}"></i></a>
 									</td>
 								</tr>
 								@endforeach

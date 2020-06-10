@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductSizeRequest;
+use App\Repositories\ProductRepository;
 use App\Repositories\ProductSizeRepository;
 use App\Services\ProductSizeService;
 use Illuminate\Http\Request;
@@ -34,8 +35,8 @@ class ProductSizeController extends Controller
     public function create($productId)
     {
 		$params = [
-			'productId' => $productId,
-			'items'     => (new ProductSizeRepository)->findByProductId($productId),
+			'infos' => (new ProductRepository)->findById($productId),
+			'items' => (new ProductSizeRepository)->findByProductId($productId),
 		];
 
 		return view('admin.pages.product-size-form-create', ['page' => 'product-size'])->with($params);
@@ -69,12 +70,14 @@ class ProductSizeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  int  $productId
      * @param  int  $productSizeId
      * @return Response
      */
-    public function edit($productSizeId)
+    public function edit($productId, $productSizeId)
     {
 		$params = [
+			'infos' => (new ProductRepository)->findById($productId),
 			'data'  => $this->repository->findById($productSizeId),
 			'items' => (new ProductSizeRepository)->findByProductSizeId($productSizeId),
 		];

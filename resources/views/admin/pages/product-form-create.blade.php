@@ -12,13 +12,13 @@
 				<div class="main-card mb-3 card">
 					<div class="card-body">
 						<ul class="forms-wizard mb-5">
-							<li class="nav-item active">
+							<li class="nav-item nav-product active">
 								<span class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></span>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item nav-product">
 								<span class="nav-link"><em><i class="fas fa-ruler-combined"></i></em><span>Tamanho(s) do Produto</span></span>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item nav-product">
 								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Cor(es) do Produto</span></span>
 							</li>
 						</ul>

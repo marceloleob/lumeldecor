@@ -3,7 +3,7 @@
 @section('icon', 'fas fa-tags')
 @section('title', 'Cores do Produto')
 @section('subheading', 'Formulário para editar as informações referentes à cor do produto.')
-@section('btn-back', route('product-size.edit', $data->product_size_id))
+@section('btn-back', route('product-size.edit', [$data->product_id, $data->product_size_id]))
 
 @section('form')
 	<div class="row">
@@ -11,18 +11,23 @@
 			{!! Form::open(['id' => 'form-' . $page, 'route' => [$page . '.update', $data->id], 'method' => 'POST', 'role' => 'form', 'class' => 'form', 'files' => true]) !!}
 				<div class="main-card mb-3 card">
 					<div class="card-body">
-						<ul class="forms-wizard mb-5">
-							<li class="nav-item">
+						<ul class="forms-wizard mb-3">
+							<li class="nav-item nav-product">
 								<a href="{!! route('product.edit', $data->product_id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item nav-product">
 								<a href="{!! route('product-size.create', $data->product_id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
 							</li>
-							<li class="nav-item active">
+							<li class="nav-item nav-product active">
 								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Cor(es) do Produto</span></span>
 							</li>
 						</ul>
 
+						<div class="row mb-4">
+							<div class="col-md-12 d-flex px-3 py-2 my-2">
+								<div class="product-title">{!! $infos['productName'] !!} - {!! $infos['productSizeName'] !!}</div>
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="position-relative form-group">
@@ -113,7 +118,7 @@
 						{!! Form::hidden('product_id', $data->product_id, ['id' => 'product_id']) !!}
 						{!! Form::hidden('product_size_id', $data->product_size_id, ['id' => 'product_size_id']) !!}
 						{!! Form::buttons('product-size.create', $data->id, ['back-show' => true, 'cancel-link-params' => $data->product_id]) !!}
-						<a href="{!! route('item.create', [$data->product_id, $data->product_size_id]) !!}" class="btn-hover-shine btn btn-shadow btn-alternate pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Cadastrar um novo Item</a>
+						<a href="{!! route('item.create', [$data->product_id, $data->product_size_id]) !!}" class="btn-hover-shine btn btn-shadow btn-alternate pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Cadastrar </a>
 					</div>
 				</div>
 			{!! Form::close() !!}

@@ -6,24 +6,24 @@
 .help-block {
 	display: block;
 	margin-top: 7px;
-    color: #bd362f;
-    font-size: 13px;
+	color: #bd362f;
+	font-size: 13px;
 }
 .has-error input,
 .has-error textarea,
 .has-error select {
-    border: 1px solid #bd362f !important;
+	border: 1px solid #bd362f !important;
 }
 .has-error .input-group-addon {
-    border: 1px solid #bd362f;
+	border: 1px solid #bd362f;
 }
 .has-success input,
 .has-success textarea,
 .has-success select {
-    border: 1px solid #6E8847 !important;
+	border: 1px solid #6E8847 !important;
 }
 .has-success .input-group-addon {
-    border: 1px solid #6E8847;
+	border: 1px solid #6E8847;
 }
 .form .required::after {
 	position: absolute;
@@ -67,19 +67,19 @@ a, a:hover, a:focus, a:visited {
 	line-height: 1.8;
 }
 .btn-hover-shine {
-    position: relative;
+	position: relative;
 }
 .btn-hover-shine:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: rgba(255,255,255,0.4);
-    -webkit-transition: none;
-    -moz-transition: none;
-    transition: none;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background-color: rgba(255,255,255,0.4);
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
 }
 
 
@@ -99,7 +99,7 @@ a, a:hover, a:focus, a:visited {
 	padding: 1px 2px !important;
 }
 .btn-success.btn-shadow {
-    box-shadow: 0 0.125rem 0.625rem rgba(58,196,125,0.4), 0 0.0625rem 0.125rem rgba(58,196,125,0.5);
+	box-shadow: 0 0.125rem 0.625rem rgba(58,196,125,0.4), 0 0.0625rem 0.125rem rgba(58,196,125,0.5);
 }
 .input-group-prepend .input-group-text {
 	min-width: 44px;
@@ -108,8 +108,8 @@ a, a:hover, a:focus, a:visited {
 	min-width: 40px;
 }
 .card-button {
-    flex: 1 1 auto;
-    min-height: 1px;
+	flex: 1 1 auto;
+	min-height: 1px;
 	padding: 1.25rem;
 	align-items: center;
 	justify-content: space-between;
@@ -209,11 +209,11 @@ ul.button-checkbox {
 * -----------------------------------------------------------------------------
 */
 .card-search-pane-right {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: auto;
-    white-space: nowrap;
-    width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	margin-left: auto;
+	white-space: nowrap;
+	width: 100%;
 }
 .card-search-pane-right .search {
 	width: 220px;
@@ -231,24 +231,24 @@ ul.button-checkbox {
 	flex-wrap: wrap;
 }
 .table .colors {
-    height: 23px;
-    width: 30px;
-    border: 1px solid #CFCFCF;
-    border-radius: 15%;
-    opacity: 1;
-    margin: 5px;
+	height: 23px;
+	width: 30px;
+	border: 1px solid #CFCFCF;
+	border-radius: 15%;
+	opacity: 1;
+	margin: 5px;
 }
 .card-no-records {
-    display: flex;
-    align-items: center;
-    border-bottom-width: 1px;
-    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-    height: 25rem;
-    justify-content: center;
-    text-transform: uppercase;
-    color: rgba(13, 27, 62, 0.7);
-    font-weight: bold;
-    font-size: .88rem;
+	display: flex;
+	align-items: center;
+	border-bottom-width: 1px;
+	border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+	height: 25rem;
+	justify-content: center;
+	text-transform: uppercase;
+	color: rgba(13, 27, 62, 0.7);
+	font-weight: bold;
+	font-size: .88rem;
 }
 
 
@@ -258,105 +258,105 @@ ul.button-checkbox {
 * -----------------------------------------------------------------------------
 */
 .forms-wizard {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    width: 100%;
-    display: table;
-    table-layout: fixed;
-    border-radius: .25rem;
-    border: 0;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+	border-radius: .25rem;
+	border: 0;
 }
 .forms-wizard li {
-    position: relative;
-    display: table-cell;
-    vertical-align: middle;
+	position: relative;
+	display: table-cell;
+	vertical-align: middle;
 	text-align: center;
-    font-size: 1rem;
-    padding: 1rem 0;
+	font-size: 1rem;
+	padding: 1rem 0;
 	color: #adb5bd;
 }
+.forms-wizard .nav-link:hover {
+	color: #3f6ad8;
+}
 .forms-wizard li::before {
-    left: 0;
+	left: 0;
 }
 .forms-wizard li::after, .forms-wizard li::before {
-    position: absolute;
-    height: 4px;
-    top: 50%;
-    margin-top: -1rem;
-    width: 50%;
-    content: '';
-    background: #dee2e6;
-    z-index: 5;
-    transition: all .2s;
+	position: absolute;
+	height: 4px;
+	top: 50%;
+	margin-top: -1rem;
+	width: 50%;
+	content: '';
+	background: #dee2e6;
+	z-index: 5;
+	transition: all .2s;
 }
 .forms-wizard li::after {
-    left: 50%;
+	left: 50%;
 }
 .forms-wizard li::after, .forms-wizard li::before {
-    position: absolute;
-    height: 4px;
-    top: 50%;
-    margin-top: -1rem;
-    width: 50%;
-    content: '';
-    background: #dee2e6;
-    z-index: 5;
-    transition: all .2s;
+	position: absolute;
+	height: 4px;
+	top: 50%;
+	margin-top: -1rem;
+	width: 50%;
+	content: '';
+	background: #dee2e6;
+	z-index: 5;
+	transition: all .2s;
 }
 .forms-wizard li em {
-    font-style: normal;
-    font-size: 1.3rem;
-    background: #ced4da;
-    color: #fff;
-    text-align: center;
-    padding: 0;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto 0.5rem;
-    position: relative;
-    z-index: 9;
-    transition: all .2s;
+	font-style: normal;
+	font-size: 1.3rem;
+	background: #ced4da;
+	color: #fff;
+	text-align: center;
+	padding: 0;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	border-radius: 8px;
+	display: block;
+	margin: 0 auto 0.5rem;
+	position: relative;
+	z-index: 9;
+	transition: all .2s;
 }
 .forms-wizard li.active::after, .forms-wizard li.active::before {
-    background: #3f6ad8;
+	background: #3f6ad8;
 }
 .forms-wizard li.active em {
-    background: #3f6ad8;
+	background: #3f6ad8;
 	color: #fff;
 }
 .forms-wizard li.active .nav-link {
-    color: #495057;
+	color: #495057;
 }
 .forms-wizard li.done em:before {
 	content: "\f058";
 	font-family: "Font Awesome 5 Free";
 	font-weight: none;
 	color: #FFFFFF;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 1.5rem;
-    text-align: center;
-    display: block;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 1.5rem;
+	text-align: center;
+	display: block;
 }
 .forms-wizard li.done em {
-    background: #3ac47d;
+	background: #3ac47d;
 	color: transparent;
 }
 .forms-wizard li.done::after, .forms-wizard li.done::before {
-    background: #3ac47d;
+	background: #3ac47d;
 }
 .forms-wizard .nav-link {
-    display: block;
-    padding: 0;
-    color: #adb5bd;
-}
-.forms-wizard .nav-link:hover {
-	text-decoration-color: #7454ae;
+	display: block;
+	padding: 0;
+	color: #adb5bd;
 }
 
 
@@ -380,10 +380,22 @@ ul.button-checkbox {
 */
 .div-color .colors {
 	height: 38px;
-    width: 100%;
+	width: 100%;
 	border: 1px solid #CFCFCF;
 	border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-    opacity: 1;
+	opacity: 1;
+}
+
+
+/**
+* -----------------------------------------------------------------------------
+* PAGES - PRODUCTS SIZE
+* -----------------------------------------------------------------------------
+*/
+.product-title {
+	display: flex;
+	font-size: 1.5rem;
+	font-weight: 600;
 }
 
 
@@ -396,9 +408,9 @@ ul.button-checkbox {
 	margin-top: -10px;
 }
 .show-size {
-    display: flex;
-    justify-content: center;
-    font-size: 2.7rem;
+	display: flex;
+	justify-content: center;
+	font-size: 2.7rem;
 	font-weight: 600;
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
@@ -418,8 +430,8 @@ ul.button-checkbox {
 * -----------------------------------------------------------------------------
 */
 .profit-margin {
-    display: flex;
-    font-size: 1.5rem;
+	display: flex;
+	font-size: 1.5rem;
 	font-weight: 500;
 	margin-top: 4px;
 }
@@ -464,8 +476,8 @@ ul.button-checkbox {
 .table .swatch-holder-md {
 	height: 30px;
 	width: 30px;
-    border-radius: 50%;
-    opacity: 1;
+	border-radius: 50%;
+	opacity: 1;
 }
 
 
@@ -534,13 +546,13 @@ ul.button-checkbox {
 }
 .message_item p {
 	font-size: 13px;
-    margin-bottom: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	margin-bottom: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .message_item .left {
-    display: block;
+	display: block;
 }
 .message_item .datetime {
 	float: right;
@@ -548,27 +560,9 @@ ul.button-checkbox {
 	text-align: right;
 	font-family: "Montserrat", sans-serif;
 	font-size: 13px;
-    width: 20%;
-    padding: 4px;
+	width: 20%;
+	padding: 4px;
 }
 .message_item .datetime span {
 	display: block
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

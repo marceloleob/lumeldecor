@@ -24,8 +24,6 @@ $(document).ready(function ()
 	 * Bootstrap SelectPicker
 	 */
 	$('.selectpicker').selectpicker({
-		noneSelectedText: 'Selecione',
-		multipleSeparator: ' | ',
 		maxOptionsText: 'Limite atingido',
 		size: 7
 	});
@@ -41,7 +39,6 @@ $(document).ready(function ()
 		todayHighlight: true,
 		startDate: (new Date().toLocaleString())
 	});
-
 
 	/**
 	 * Mostra a mensagem de retorno por 4 segundos
@@ -75,7 +72,7 @@ $(document).ready(function ()
 		var $group = $('.help-block').parent();
 
 		// remove o erro caso seja atualizado
-		$('input', $group).keyup(function(){
+		$('input', $group).keyup(function() {
 			// console.log($(this));
 			$(this).removeClass('is-invalid').addClass('is-valid');
 			$('.help-block', $(this)).remove();
@@ -89,34 +86,8 @@ $(document).ready(function ()
      */
 	$("#metismenu").metisMenu();
 
-
-	// /**
-	//  * Seta o status ao carregar a pagina
-	//  *
-	//  * https://www.bootstraptoggle.com
-	//  */
-	// if ($('.checkbox-status').is(':checked')) {
-	// 	$('.label-status').append("<strong>ativo</strong>");
-	// } else {
-	// 	$('.label-status').append("<strong>inativo</strong>");
-	// }
-
-	// /**
-	//  * Acao ao clicar no botao ativar ou desativar
-	//  */
-	// $('.checkbox-status').click(function() {
-	// 	if ($('.checkbox-status').is(':checked')) {
-	// 		$('.checkbox-status').attr('value', 'yes');
-	// 		$('.label-status').text('Você ativou este registro');
-	// 	} else {
-	// 		$('.checkbox-status').attr('value', 'no');
-	// 		$('.label-status').text('Você desativou este registro');
-	// 	}
-	// });
-
 	/**
 	 * Abre e fecha o menu clicando no Hamburger
-	 *
 	 */
 	$(".close-sidebar-btn").click( function () {
 		// classe para fechar o menu

@@ -12,13 +12,13 @@
 				<div class="main-card mb-3 card">
 					<div class="card-body">
 						<ul class="forms-wizard mb-5">
-							<li class="nav-item active">
+							<li class="nav-item nav-product active">
 								<span class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></span>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item nav-product">
 								<a href="{!! route('product-size.create', $data->id) !!}" class="nav-link"><em><i class="fas fa-ruler-combined"></i></em><span>Tamanho(s) do Produto</span></a>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item nav-product">
 								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Cor(es) do Produto</span></span>
 							</li>
 						</ul>
@@ -76,7 +76,7 @@
 				<div class="main-card mb-3 card">
 					<div class="card-button">
 						{!! Form::buttons($page . '.list', $data->id) !!}
-						<a href="{!! route('product-size.create', $data->id) !!}" class="btn-hover-shine btn btn-shadow btn-primary btn-save btn-wide btn-pill pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Tamanho(s) deste Produto</a>
+						<a href="{!! route('product-size.create', $data->id) !!}" class="btn-hover-shine btn btn-shadow btn-primary btn-save btn-wide btn-pill pr-4 pl-4 float-right">Tamanho(s) deste Produto</a>
 					</div>
 				</div>
 

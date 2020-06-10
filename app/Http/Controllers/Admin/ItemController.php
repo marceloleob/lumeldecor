@@ -38,12 +38,11 @@ class ItemController extends Controller
     public function create($productId, $productSizeId)
     {
 		$params = [
-			'productId'       => $productId,
-			'productSizeId'   => $productSizeId,
+			'infos'           => ItemService::getInfos($productId, $productSizeId),
 			'data'            => ItemService::findById(null, $productId, $productSizeId),
 			'items'           => (new ItemRepository)->findByProductSizeId($productSizeId),
-			'optionstheme'    => (new ThemeRepository())->options(),
 			'optionstone'     => (new ToneRepository())->options(),
+			'optionstheme'    => (new ThemeRepository())->options(),
 			'optionssupplier' => (new SupplierRepository())->options(),
 		];
 
@@ -72,13 +71,15 @@ class ItemController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $itemId
+     * @param  int  $productId
      * @param  int  $productSizeId
      * @return Response
      */
-    public function edit($itemId, $productSizeId)
+    public function edit($itemId, $productId, $productSizeId)
     {
 		$params = [
-			'data'            => ItemService::findById($itemId, null, $productSizeId),
+			'infos'           => ItemService::getInfos($productId, $productSizeId),
+			'data'            => ItemService::findById($itemId, $productId, $productSizeId),
 			'items'           => (new ItemRepository)->findByProductSizeId($productSizeId),
 			'optionstone'     => (new ToneRepository())->options(),
 			'optionstheme'    => (new ThemeRepository())->options(),

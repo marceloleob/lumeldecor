@@ -90,6 +90,25 @@ class ItemService
 	}
 
 	/**
+	 * Recupera as informacoes referente ao produto e ao tamanho do produto deste item
+	 *
+	 * @param integer $productId
+	 * @param integer $productSizeId
+	 * @return array
+	 */
+	public static function getInfos($productId, $productSizeId)
+	{
+		$items = (new ItemRepository())->findByParentsId($productId, $productSizeId);
+
+		return [
+			'productId'       => $items->productSize->product->id,
+			'productName'     => $items->productSize->product->name,
+			'productSizeId'   => $items->productSize->id,
+			'productSizeName' => $items->productSize->size,
+		];
+	}
+
+	/**
 	 * Cria um codigo unico para cada item de produto
 	 *
 	 * @param Product     $product

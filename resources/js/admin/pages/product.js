@@ -32,4 +32,18 @@ $(document).ready(function ()
 			}
 		});
 	}
+
+	/**
+	 * Altera o CSS da navegacao no cadastro de produto
+	 */
+	$('.nav-product').mouseenter(function ()
+	{
+		$(this).find('em').css('background', '#3f6ad8');
+	})
+	.mouseleave(function ()
+	{
+		if (!$(this).hasClass('active')) {
+			$(this).find('em').css('background', '#adb5bd');
+		}
+	});
 });

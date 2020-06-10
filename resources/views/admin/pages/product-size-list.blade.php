@@ -28,12 +28,12 @@
 								<tr>
 									<td class="text-left">{!! $item->productName !!} - {!! $item->size !!}</td>
 									<td class="text-center bold">
-										<a href="{!! route('product-size.edit', [$item->id]) !!}" class="border-0 btn-icon btn-icon-only btn-pill btn btn-outline-info"><strong>{!! $item->size !!}</strong></a>
+										<a href="{!! route('product-size.edit', [$item->productId, $item->id]) !!}" class="border-0 btn-icon btn-icon-only btn-pill btn btn-outline-info"><strong>{!! $item->size !!}</strong></a>
 									</td>
 									<td class="text-center">{!! $item->shape !!}</td>
 									<td class="text-center">{!! $item->weight !!}</td>
 									<td class="text-center">
-										<a href="{!! route('product-size.edit', [$item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
+										<a href="{!! route('product-size.edit', [$item->productId, $item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
 										<a href="{!! route('item.create', [$item->productId, $item->id]) !!}" class="btn-icon btn btn-outline-alternate"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Adicionar Cores</a>
 									</td>
 								</tr>
