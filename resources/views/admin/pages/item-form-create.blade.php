@@ -107,8 +107,8 @@
 							<div class="col-md-6">
 								<div class="position-relative form-group">
 									{!! Form::label('picture', 'Tamanho ideal da foto é de 810px (largura) X 900px (altura)', ['class' => 'required']) !!}
-									{!! Form::file('picture', ['class' => 'form-control custom-file-input', 'id' => 'picture-file']) !!}
-									{!! Form::label('picture-file', 'Clique aqui para selecionar uma foto', ['class' => 'custom-file-label']) !!}
+									{!! Form::file('picture', ['class' => 'form-control custom-file-input', 'id' => 'picture_file']) !!}
+									{!! Form::label('picture_file', 'Clique aqui para selecionar uma foto', ['class' => 'custom-file-label']) !!}
 									{!! Form::notification('picture', $errors) !!}
 								</div>
 							</div>

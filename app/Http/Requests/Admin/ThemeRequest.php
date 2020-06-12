@@ -29,7 +29,7 @@ class ThemeRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'     => 'digit',
+        'id'     => 'cast:integer',
         'name'   => 'trim|escape',
         'show'   => 'checkbox|cast:boolean',
         'status' => 'checkbox|cast:boolean',

@@ -29,8 +29,8 @@ class UserRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'           => 'digit',
-        'user_rule_id' => 'digit',
+        'id'           => 'cast:integer',
+        'user_rule_id' => 'cast:integer',
         'name'         => 'trim|escape',
         'email'        => 'trim|escape|lowercase',
         'password'     => 'trim',

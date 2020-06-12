@@ -31,13 +31,14 @@ class ItemRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'              => 'digit',
-        'product_id'      => 'digit',
-        'product_size_id' => 'digit',
+        'id'              => 'cast:integer',
+        'product_id'      => 'cast:integer',
+        'product_size_id' => 'cast:integer',
         // item
         'supplier_id'     => 'cast:integer',
         'p_price'         => 'money',
         's_price'         => 'money',
+        'amount'          => 'cast:integer',
         'picture'         => 'trim|lowercase',
         'new_picture'     => 'trim|lowercase',
 		'launch'          => 'checkbox',
@@ -61,6 +62,7 @@ class ItemRequest extends BaseRequest
         'supplier_id'     => 'required|integer',
         'p_price'         => "required|regex:/^\d+(\.\d{1,2})?$/",
         's_price'         => 'required|regex:/^\d+(\.\d{1,2})?$/',
+        'amount'          => 'integer',
         'picture'         => 'required',
         'new_picture'     => 'required_if:picture,false|image|mimes:jpeg,png,jpg,gif,svg|max:3072', // 3 MEGABYTES
         // 'new_picture'     => 'required_if:picture,false|file|max:3072', // 3 MEGABYTES

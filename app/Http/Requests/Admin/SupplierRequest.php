@@ -31,8 +31,8 @@ class SupplierRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'        => 'digit',
-        // 'user_id'   => 'digit',
+        'id'        => 'cast:integer',
+        // 'user_id'   => 'cast:integer',
         // 'document'  => 'trim|escape',
         // 'telephone' => 'trim|phone|nullable',
         // 'cellphone' => 'trim|phone',

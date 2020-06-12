@@ -33,13 +33,13 @@ class OfferPromotionRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'           => 'digit',
-        'material_id'  => 'digit|nullable',
-        'category_id'  => 'digit|nullable',
-        'theme_id'     => 'digit|nullable',
-        'campaign_id'  => 'digit|nullable',
-        'product_id'   => 'digit|nullable',
-        'item_id'      => 'digit|nullable',
+        'id'           => 'cast:integer',
+        'material_id'  => 'cast:integer|nullable',
+        'category_id'  => 'cast:integer|nullable',
+        'theme_id'     => 'cast:integer|nullable',
+        'campaign_id'  => 'cast:integer|nullable',
+        'product_id'   => 'cast:integer|nullable',
+        'item_id'      => 'cast:integer|nullable',
         'name'         => 'trim|escape',
         'kind'         => 'trim|escape|uppercase',
         'amount'       => 'money',

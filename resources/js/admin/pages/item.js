@@ -8,7 +8,13 @@ $(document).ready(function ()
 		// validation
 		$('#form-item').validate({
 			rules: {
-				colors: {
+				product_id: {
+					required: true,
+				},
+				product_size_id: {
+					required: true,
+				},
+				"colors[]": {
 					required: true,
 				},
 				supplier_id: {
@@ -20,18 +26,23 @@ $(document).ready(function ()
 				p_price: {
 					required: true,
 				},
-				themes: {
-					required: true,
+				amount: {
+					required: function () {
+						return ($('#stock_id').length === 0);
+					},
+					digits: true,
 				},
-				launch: {
+				"themes[]": {
 					required: false,
 				},
+
 			}
 		});
 		jQuery.validator.addClassRules("custom-file-input", {
 			required: function () {
-				return ($('#picture').val() === '');
+				return ($('#stock_id').length === 0);
 			},
+			extension: true,
 		});
 	}
 
@@ -42,6 +53,7 @@ $(document).ready(function ()
 	$(".custom-file-input").on("change", function() {
 		var fileName = $(this).val().split("\\").pop();
 		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		// $(this).siblings(".custom-file-label").addClass("selected").html(fileName.join(', '));
 	});
 
 	/**

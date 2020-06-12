@@ -29,12 +29,12 @@ class CampaignRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'           => 'digit',
+        'id'           => 'cast:integer',
         'name'         => 'trim|escape',
-        'start_day'    => 'digit',
-        'start_month'  => 'digit',
-        'finish_day'   => 'digit',
-        'finish_month' => 'digit',
+        'start_day'    => 'cast:integer',
+        'start_month'  => 'cast:integer',
+        'finish_day'   => 'cast:integer',
+        'finish_month' => 'cast:integer',
         'status'       => 'checkbox|cast:boolean',
     ];
 

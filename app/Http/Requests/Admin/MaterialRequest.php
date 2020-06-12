@@ -29,7 +29,7 @@ class MaterialRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'     => 'digit',
+        'id'     => 'cast:integer',
         'name'   => 'trim|escape',
         'status' => 'checkbox|cast:boolean',
     ];

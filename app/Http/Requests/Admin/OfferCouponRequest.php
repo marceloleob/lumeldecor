@@ -31,7 +31,7 @@ class OfferCouponRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'          => 'digit',
+        'id'          => 'cast:integer',
         'name'        => 'trim|escape',
         'code'        => 'trim|escape|uppercase',
         'kind'        => 'trim|escape|uppercase',

@@ -29,7 +29,7 @@ class ToneRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'     => 'digit',
+        'id'     => 'cast:integer',
         'name'   => 'trim|escape',
         'hexa'   => 'trim',
         'status' => 'checkbox|cast:boolean',

@@ -29,8 +29,8 @@ class CategoryRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'          => 'digit',
-        'material_id' => 'digit',
+        'id'          => 'cast:integer',
+        'material_id' => 'cast:integer',
         'name'        => 'trim|escape',
         'status'      => 'checkbox|cast:boolean',
     ];

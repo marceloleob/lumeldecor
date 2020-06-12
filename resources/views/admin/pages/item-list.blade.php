@@ -16,24 +16,22 @@
 						<table class="table table-hover table-striped table-bordered dtr-inline align-middle mb-0">
 							<thead>
 								<tr>
-									<th width="18%" class="text-center">Código</th>
-									<th width="7%" class="text-center">Cores</th>
-									<th width="10%" class="text-center">Tamanho</th>
-									<th width="35%" class="text-left">Produto</th>
+									<th width="8%" class="text-center">Cores</th>
+									<th width="44%" class="text-center">Produto</th>
+									<th width="15%" class="text-center">Preço no Site</th>
 									<th width="10%" class="text-center">Lançamento</th>
-									<th width="10%" class="text-center">Status</th>
+									<th width="8%" class="text-center">Status</th>
 									<th width="10%" class="text-center">Ações</th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach ($items as $item)
 								<tr>
-									<td class="text-center">{!! $item->code !!}</td>
 									<td class="text-center td-color">
 										<div class="colors" style="{!! $item->background !!}" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $item->tooltip !!}"></div>
 									</td>
-									<td class="text-center">{!! $item->size !!}</td>
-									<td class="text-left">{!! $item->productName !!}</td>
+									<td class="text-left">{!! $item->productName !!} - {!! $item->size !!}</td>
+									<td class="text-center">R$ {!! $item->s_price !!}</td>
 									<td class="text-center">{!! $item->launch !!}</td>
 									<td class="text-center"><div  class="badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 									<td class="text-center">

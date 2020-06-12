@@ -18,7 +18,13 @@ $.validator.setDefaults(
     },
     errorPlacement: function(error, element)
     {
-        if (element.prop('type') === 'checkbox' || element.prop('type') === 'radio' || element.prop('type') === 'file' || element.prop('type') === 'select-one' || element.parent().is('.input-group')) {
+		console.log(error, element.prop('type'));
+		if (element.prop('type') === 'checkbox' ||
+			element.prop('type') === 'radio' ||
+			element.prop('type') === 'select-one' ||
+			element.prop('type') === 'select-multiple' ||
+			element.parent().is('.input-group')
+		) {
             error.insertAfter(element.parent());
         } else {
             error.insertAfter(element);
@@ -40,24 +46,24 @@ $('select.selectpicker').on('change', function () {
  */
 $.extend($.validator, {
     messages: {
-        accept: '<i class="fas fa-times pr-2 pl-2"></i> O arquivo enviado deve ser uma imagem!',
-        required: '<i class="fas fa-times pr-2 pl-2"></i> Campo obrigatório',
-        remote: '<i class="fas fa-times pr-2 pl-2"></i> Este dado já está cadastrado',
-        email: '<i class="fas fa-times pr-2 pl-2"></i> Este não é um e-mail válido',
-        url: '<i class="fas fa-times pr-2 pl-2"></i> Digite uma url válida',
-        date: '<i class="fas fa-times pr-2 pl-2"></i> Digite uma data válida',
-        dateISO: '<i class="fas fa-times pr-2 pl-2"></i> Digite uma url válida (ISO)',
-        number: '<i class="fas fa-times pr-2 pl-2"></i> Digite um número válido',
-        digits: '<i class="fas fa-times pr-2 pl-2"></i> Só é permitido números',
-        creditcard: '<i class="fas fa-times pr-2 pl-2"></i> Digite um número de cartão de créditos válido',
-        equalTo: '<i class="fas fa-times pr-2 pl-2"></i> Deve ser igual ao campo anterior',
-        maxlength: $.validator.format('<i class="fas fa-times pr-2 pl-2"></i> Máximo de {0} caracteres'),
-        minlength: $.validator.format('<i class="fas fa-times pr-2 pl-2"></i> Mínimo de {0} caracteres'),
-        rangelength: $.validator.format('<i class="fas fa-times pr-2 pl-2"></i> Digite um valor entre {0} e {1} caracteres'),
-        range: $.validator.format('<i class="fas fa-times pr-2 pl-2"></i> Digite um valor entre {0} e {1} caracteres'),
-        max: $.validator.format('<i class="fas fa-times pr-2 pl-2"></i> Insira um valor menor ou igual a {0}'),
-        min: $.validator.format('<i class="fas fa-times pr-2 pl-2"></i> Insira um valor maior ou igual a {0}'),
-        step: $.validator.format('<i class="fas fa-times pr-2 pl-2"></i> Digite um múltiplo de {0}.')
+        accept: 'O arquivo enviado deve ser uma imagem!',
+        required: 'Campo obrigatório',
+        remote: 'Este dado já está cadastrado',
+        email: 'Este não é um e-mail válido',
+        url: 'Digite uma url válida',
+        date: 'Digite uma data válida',
+        dateISO: 'Digite uma url válida (ISO)',
+        number: 'Digite um número válido',
+        digits: 'Só é permitido números',
+        creditcard: 'Digite um número de cartão de créditos válido',
+        equalTo: 'Deve ser igual ao campo anterior',
+        maxlength: $.validator.format('Máximo de {0} caracteres'),
+        minlength: $.validator.format('Mínimo de {0} caracteres'),
+        rangelength: $.validator.format('Digite um valor entre {0} e {1} caracteres'),
+        range: $.validator.format('Digite um valor entre {0} e {1} caracteres'),
+        max: $.validator.format('Insira um valor menor ou igual a {0}'),
+        min: $.validator.format('Insira um valor maior ou igual a {0}'),
+        step: $.validator.format('Digite um múltiplo de {0}.')
     }
 });
 
@@ -69,14 +75,14 @@ $(document).ready(function()
 	jQuery.validator.addMethod("lettersOnly", function(value, element) {
         return this.optional(element) || /^[a-zâêôãõáéíóúà ]+$/i.test(value);
         //return this.optional(element) || /^[a-zA-Z]+$/i.test(value);
-    }, '<i class="fas fa-times pr-2 pl-2"></i> &Eacute; permitido digitar somente letras.');
+    }, '&Eacute; permitido digitar somente letras.');
 
 	/**
 	 * Bloqueia letras
 	 */
     jQuery.validator.addMethod("numbersOnly", function (value, element) {
         return this.optional(element) || /^[0-9]+$/i.test(value);
-    }, '<i class="fas fa-times pr-2 pl-2"></i> &Eacute; permitido digitar somente n&uacute;meros.');
+    }, '&Eacute; permitido digitar somente n&uacute;meros.');
 
 	/**
 	 * Somente telefone
@@ -84,35 +90,44 @@ $(document).ready(function()
     jQuery.validator.addMethod("phoneOnly", function (value, element) {
         return this.optional(element) || /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/i.test(value);
         // return this.optional(element) || /(\([1-9][0-9]\)?|[1-9][0-9])\s?([9]{1})?([0-9]{4})-?([0-9]{4})/i.test(value);
-    }, '<i class="fas fa-times pr-2 pl-2"></i> Este n&uacute;mero de telefone n&atilde;o &eacute; v&aacute;lido.');
+    }, 'Este n&uacute;mero de telefone n&atilde;o &eacute; v&aacute;lido.');
 
 	/**
 	 * Bloqueia letras
 	 */
     jQuery.validator.addMethod("decimalOnly", function (value, element) {
         return this.optional(element) || /^\d+,\d{2}$/i.test(value);
-    }, '<i class="fas fa-times pr-2 pl-2"></i> &Eacute; permitido digitar somente n&uacute;meros decimais.');
+    }, '&Eacute; permitido digitar somente n&uacute;meros decimais.');
 
 	/**
 	 * Somente url
 	 */
 	jQuery.validator.addMethod("urlOnly", function(value, element) {
 		return this.optional(element) || /^[a-zA-Z0-9!@#$%^&*)(]+$/i.test(value);
-    }, '<i class="fas fa-times pr-2 pl-2"></i> Digite um link v&aacute;lido.');
+    }, 'Digite um link v&aacute;lido.');
 
     /**
 	 * Somente email
 	 */
 	jQuery.validator.addMethod("emailOnly", function(value, element) {
 		return this.optional(element) || /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value);
-    }, '<i class="fas fa-times pr-2 pl-2"></i> Digite um e-mail v&aacute;lido.');
+    }, 'Digite um e-mail v&aacute;lido.');
 
     /**
 	 * Somente datas validas
 	 */
     jQuery.validator.addMethod("date", function(value, element) {
         return this.optional(element) || /^(((((0[1-9])|(1\d)|(2[0-8]))\/((0[1-9])|(1[0-2])))|((31\/((0[13578])|(1[02])))|((29|30)\/((0[1,3-9])|(1[0-2])))))\/((20[0-9][0-9])|(19[0-9][0-9])))|((29\/02\/(19|20)(([02468][048])|([13579][26]))))$/.test(value);
-    }, '<i class="fas fa-times pr-2 pl-2"></i> Digite uma data v&aacute;lido.');
+    }, 'Digite uma data v&aacute;lido.');
+
+	/**
+	 * Validate file extension custom method
+	 */
+	jQuery.validator.addMethod("extension", function (value, element, param) {
+		param = typeof param === "string" ? param.replace(/,/g, '|') : "png|jpe?g|gif|svg";
+		console.log(param);
+		return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
+	}, 'Você deve selecionar uma foto v&aacute;lida.');
 
     /**
 	 * Valida os campos de CPF
@@ -169,7 +184,7 @@ $(document).ready(function()
 
 			return this.optional(element) || true;
 		},
-		'<i class="fas fa-times pr-2 pl-2"></i> Informe um CPF v&aacute;lido'
+		'Informe um CPF v&aacute;lido'
 	);
 
 	/**
@@ -242,6 +257,6 @@ $(document).ready(function()
 			}
 
 		},
-		'<i class="fas fa-times pr-2 pl-2"></i> Informe um CNPJ v&aacute;lido'
+		'Informe um CNPJ v&aacute;lido'
 	);
 });

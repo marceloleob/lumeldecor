@@ -69,23 +69,27 @@ class StockService
 	 */
     public static function store($data = [])
     {
+		// verifica se esta inserindo um estoque de um NOVO ITEM
+		$balance = (int) isset($data['stock_id']) ? self::getNewBalace($data['stock_id'], $data['amount'], $data['action']) : $data['amount'];
+
 		// verifica se a acao e para adicionar ou remover do estoque
 		if ($data['action'] === self::$_actions['INCOMING']) {
-			$incoming = $data['amount'];
+			$incoming = (int) $data['amount'];
 		}
 		if ($data['action'] === self::$_actions['OVERDRAW']) {
-			$overdraw = $data['amount'];
+			$overdraw = (int) $data['amount'];
 		}
 
 		$data['user_id']  = UserService::getUserIdAuth();
 		$data['incoming'] = $incoming ?? null;
 		$data['overdraw'] = $overdraw ?? null;
-		$data['balance']  = self::getNewBalace($data['stock_id'], $data['amount'], $data['action']);
-
+		$data['balance']  = $balance;
 
 		try {
 			// seta como "antigo" (current = 0) o atual registro de estoque deste item
-			Stock::where('id', $data['stock_id'])->update(['current' => config('constants.STATUS_INACTIVE')]);
+			if (isset($data['stock_id'])) {
+				Stock::where('id', $data['stock_id'])->update(['current' => config('constants.STATUS_INACTIVE')]);
+			}
 
 			// cria um novo registro de estoque
 			return (new StockRepository())->store($data);
