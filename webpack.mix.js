@@ -22,7 +22,11 @@ const mix = require('laravel-mix');
 	.js('resources/js/admin/app.js', 'public/js/admin').sourceMaps()
     // JS ADMIN CUSTOM
 	.js('resources/js/admin/custom.js', 'public/js/admin').sourceMaps()
-	.js('resources/js/admin/ajax-select.js', 'public/js/admin/ajax.js').sourceMaps()
+    // JS ADMIN AJAX
+	.js([
+		'resources/js/admin/ajax-category.js',
+		'resources/js/admin/ajax-reason.js'
+	], 'public/js/admin/ajax.js').sourceMaps()
 	// JS FORMS VALIDATE
 	// .js('resources/js/forms/jquery.masks.en.js', 'public/js/forms')
 	.js('resources/js/forms/jquery.masks.pt-br.js', 'public/js/forms').sourceMaps()
