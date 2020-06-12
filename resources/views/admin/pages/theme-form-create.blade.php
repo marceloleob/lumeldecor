@@ -23,11 +23,11 @@
 									{!! Form::label('show', 'Mostrar no Site?', ['class' => 'required']) !!}
 									<div>
 										<div class="custom-radio custom-control">
-											{!! Form::radio('show', '1', '', ['class' => 'custom-control-input', 'id' => 'show-active']) !!}
+											{!! Form::radio('show', '1', true, ['class' => 'custom-control-input', 'id' => 'show-active']) !!}
 											{!! Form::label('show-active', 'Sim', ['class' => 'custom-control-label']) !!}
 										</div>
 										<div class="custom-radio custom-control">
-											{!! Form::radio('show', '0', '', ['class' => 'custom-control-input', 'id' => 'show-inactive']) !!}
+											{!! Form::radio('show', '0', false, ['class' => 'custom-control-input', 'id' => 'show-inactive']) !!}
 											{!! Form::label('show-inactive', 'Não', ['class' => 'custom-control-label']) !!}
 										</div>
 									</div>
@@ -37,8 +37,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="main-card mb-3 card">
-					<div class="card-body"><h5 class="card-title">Selecione os produtos deste Tema</h5>
+				{{-- <div class="main-card mb-3 card">
+					<div class="card-body"><h5 class="card-title">Selecione os produtos para este Tema</h5>
 						<div class="form-row">
 							<div class="col-md-5">
 								<div class="position-relative form-group">
@@ -62,7 +62,7 @@
 							</div>
 						</div>
 						<div class="divider"></div>
-						{{-- <div class="form-row">
+						<div class="form-row">
 							<div class="col-md-3">
 								<div class="card-shadow-info border mb-3 card card-body border-info">
 									<h5 class="card-title">Boleira Cerâmica Lisa</h5>
@@ -87,9 +87,9 @@
 									<img src="{!! asset('images/products/boleira-ceramica-lisa.jpg') !!}" alt="">
 								</div>
 							</div>
-						</div> --}}
+						</div>
 					</div>
-				</div>
+				</div> --}}
 				<div class="main-card mb-3 card">
 					<div class="card-button">
 						{!! Form::buttons($page . '.list') !!}

@@ -55,7 +55,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="main-card mb-3 card">
+				{{-- <div class="main-card mb-3 card">
 					<div class="card-body"><h5 class="card-title">Selecione os produtos desta campanha</h5>
 						<div class="form-row">
 							<div class="col-md-5">
@@ -80,7 +80,7 @@
 							</div>
 						</div>
 						<div class="divider"></div>
-						{{-- <div class="form-row">
+						<div class="form-row">
 							<div class="col-md-3">
 								<div class="card-shadow-info border mb-3 card card-body border-info">
 									<h5 class="card-title">Boleira Cerâmica Lisa</h5>
@@ -105,9 +105,9 @@
 									<img src="{!! asset('images/products/boleira-ceramica-lisa.jpg') !!}" alt="">
 								</div>
 							</div>
-						</div> --}}
+						</div>
 					</div>
-				</div>
+				</div> --}}
 				<div class="main-card mb-3 card">
 					<div class="card-button">
 						{!! Form::buttons($page . '.list') !!}
