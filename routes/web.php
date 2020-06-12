@@ -78,10 +78,12 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('item/status/{itemId}/{productId}/{productSizeId}', 'ItemController@changeStatus')->name('item.status');
 	// Stocks
 	Route::get('estoque/listar', 'StockController@index')->name('stock.list');
+	Route::get('estoque/mostrar/{itemId}', 'StockController@show')->name('stock.show');
 	Route::any('estoque/buscar', 'StockController@index')->name('stock.search');
-	Route::get('estoque/editar/{id}', 'StockController@edit')->name('stock.edit');
-	Route::put('estoque/atualizar/{id}', 'StockController@update')->name('stock.update');
-
+	Route::get('estoque/cadastrar/{id}', 'StockController@create')->name('stock.create');
+	Route::post('estoque/salvar', 'StockController@store')->name('stock.store');
+	// Reason
+	Route::post('reason/options', 'ReasonController@options');
 
 	// Colors
 	Route::get('cor/listar', 'ColorController@index')->name('color.list');

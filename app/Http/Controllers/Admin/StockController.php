@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StockRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\MaterialRepository;
+use App\Repositories\ReasonRepository;
 use App\Repositories\StockRepository;
+use App\Services\StockService;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
@@ -41,37 +43,51 @@ class StockController extends Controller
 		return view('admin.pages.stock-list', ['page' => 'stock'])->with($params);
 	}
 
+    /**
+     * Show the history of item stock.
+     *
+     * @param  int  $id
+     * @return View
+     */
+	public function show($itemId)
+	{
+		$history = $this->repository->findByItemId($itemId);
+
+		return view('admin.pages.stock-show', ['page' => 'stock'])->with('show', $history);
+	}
+
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for creating a new resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function create($id)
 	{
 		$params = [
 			'data' => $this->repository->findById($id),
+			'optionsreason' => (new ReasonRepository())->options('I'),
 		];
 
-		return view('admin.pages.stock-form-update', ['page' => 'stock'])->with($params);
+		return view('admin.pages.stock-form-create', ['page' => 'stock'])->with($params);
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Store a newly created resource in storage.
 	 *
 	 * @param  StockRequest  $request
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(StockRequest $request, $id)
+	public function store(StockRequest $request)
 	{
 		// save
-		$response = $this->repository->store($request->all(), $id);
-		// verifica se retornou erro
-		if (isset($response['error'])) {
-			return back()->withInput()->with($response);
+		$entity = StockService::store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar o estoque, tente novamente!');
 		}
 
-		return redirect()->route('material.list')->with('success', 'Categoria atualizada com sucesso!');
+		return redirect()->route('stock.list')->with('success', 'Estoque atualizado com sucesso!');
 	}
 }

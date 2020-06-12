@@ -42,7 +42,8 @@
 					<td class="text-left">{!! $item->productName !!}</td>
 					<td class="text-center">{!! $item->balance !!}</td>
 					<td class="text-center">
-						<a href="{!! route($page . '.edit', [$item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary"><i class="far fa-edit"></i></a>
+						<a href="{!! route($page . '.create', $item->id) !!}" class="border-0 btn-transition btn btn-outline-primary" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="far fa-edit"></i></a>
+						<a href="{!! route($page . '.show', $item->itemId) !!}" class="border-0 btn-transition btn btn-outline-success" data-toggle="tooltip" data-placement="top" data-original-title="Histórico"><i class="fas fa-file-invoice-dollar px-1"></i></a>
 					</td>
 				</tr>
 				@endforeach

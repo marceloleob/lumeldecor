@@ -385,6 +385,23 @@ ul.button-checkbox {
 	border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
 	opacity: 1;
 }
+.stock-title {
+	display: flex;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+.stock-amount {
+	display: flex;
+	justify-content: center;
+	font-size: 1.5rem;
+	font-weight: 600;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+}
+.stock-options {
+	display: flex;
+	justify-content: center;
+}
 
 
 /**
@@ -491,6 +508,124 @@ ul.button-checkbox {
 }
 
 
+/**
+* -----------------------------------------------------------------------------
+* TIMELINE
+* -----------------------------------------------------------------------------
+*/
+.vertical-timeline {
+    width: 100%;
+    position: relative;
+    padding: 1.5rem 0 1rem;
+}
+.vertical-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 108px; // AQUI (ERA 67PX)
+    height: 100%;
+    width: 4px;
+    background: #e9ecef;
+    border-radius: .25rem;
+}
+.vertical-timeline-element {
+    position: relative;
+    margin: 0 0 1rem;
+}
+.vertical-timeline-element:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.vertical-timeline--animate .vertical-timeline-element-icon.bounce-in {
+    visibility: visible;
+    animation: cd-bounce-1 .8s;
+}
+.vertical-timeline--animate .vertical-timeline-element-content.bounce-in {
+    visibility: visible;
+    -webkit-animation: cd-bounce-2 .6s;
+    -moz-animation: cd-bounce-2 .6s;
+    animation: cd-bounce-2 .6s;
+}
+.vertical-timeline-element-icon {
+    position: absolute;
+    top: 0;
+    left: 100px; // AQUI (ERA 60PX)
+}
+.vertical-timeline-element-icon .badge-dot-xl {
+    box-shadow: 0 0 0 5px #fff;
+}
+.vertical-timeline-element-content {
+    position: relative;
+    margin-left: 140px; // AQUI (ERA 90PX)
+    font-size: .8rem;
+}
+.vertical-timeline-element-content .timeline-title {
+    font-size: .8rem;
+    text-transform: uppercase;
+    margin: 0 0 .5rem;
+    padding: 2px 0 0;
+    font-weight: bold;
+}
+.vertical-timeline-element-content p {
+    color: #6c757d;
+    margin: 0 0 .5rem;
+}
+// mmmmmmmmmmmmmmmmmm
+.vertical-timeline-element-content .vertical-timeline-element-date {
+    display: block;
+    position: absolute;
+    left: -120px; // AQUI (ERA -80PX, OU MENOS)
+    top: 0;
+    padding-right: 10px;
+    text-align: right;
+    color: #adb5bd;
+    font-size: .7619rem;
+    white-space: nowrap;
+}
+.vertical-timeline-element-content:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+.badge-dot {
+    text-indent: -999em;
+    padding: 0;
+    width: 8px;
+    height: 8px;
+    border: transparent solid 1px;
+    border-radius: 30px;
+    min-width: 2px;
+}
+.badge-dot-xl::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: .25rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -5px 0 0 -5px;
+    background: #fff;
+}
+.badge-dot-xl {
+    width: 18px;
+    height: 18px;
+    position: relative;
+}
 
 
 

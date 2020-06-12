@@ -21,8 +21,9 @@ class CreateStocksTable extends Migration
 			$table->foreignId('reason_id');
 			$table->string('action', 100);
 			$table->smallInteger('incoming')->nullable();
-			$table->smallInteger('outcoming')->nullable();
+			$table->smallInteger('overdraw')->nullable();
 			$table->smallInteger('balance');
+			$table->boolean('current')->default(1);
             $table->timestamps();
         });
     }

@@ -72,8 +72,8 @@ class ItemService
 	{
 		$class  = 'success';
 
-		$sPrice = (float) $collection->s_price;
-		$pPrice = (float) $collection->p_price;
+		$sPrice = (float) str_replace(',', '.', $collection->s_price);
+		$pPrice = (float) str_replace(',', '.', $collection->p_price);
 
 		$gross  = ($sPrice - $pPrice);
 		$profit = (($gross * 100) / $pPrice);
@@ -98,13 +98,13 @@ class ItemService
 	 */
 	public static function getInfos($productId, $productSizeId)
 	{
-		$items = (new ItemRepository())->findByParentsId($productId, $productSizeId);
+		$items = (new ProductSizeRepository())->findByProductSizeId($productSizeId)->first();
 
 		return [
-			'productId'       => $items->productSize->product->id,
-			'productName'     => $items->productSize->product->name,
-			'productSizeId'   => $items->productSize->id,
-			'productSizeName' => $items->productSize->size,
+			'productId'       => $items->product->id,
+			'productName'     => $items->product->name,
+			'productSizeId'   => $items->id,
+			'productSizeName' => $items->size,
 		];
 	}
 
@@ -198,14 +198,16 @@ class ItemService
 
 		// verifica se esta criando um novo ou atualizando
 		if (empty($itemId)) {
+			// seta os dados relevantes para o estoque
+			$dataStock = [
+				'product_id' => $data['product_id'],
+				'item_id'    => $itemE->id,
+				'reason_id'  => StockService::$_reason['NEW_ITEM'],
+				'amount'     => $data['amount'],
+				'action'     => StockService::$_actions['INCOMING'],
+			];
 			// salva o Stock deste item
-			StockService::update(
-				$data['product_id'],
-				$itemE->id,
-				StockService::$_reason['NEW_ITEM'],
-				$data['amount'],
-				StockService::$_actions['INCOMING']
-			);
+			StockService::store($dataStock);
 		}
 
 		// atualiza o produto para (cadastro completo)

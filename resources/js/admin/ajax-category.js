@@ -67,8 +67,6 @@ $(document).ready(function ()
 			{
 				var combobox = $('select[name="category_id"]');
 
-				// combobox.selectpicker('refresh').empty().append(output).selectpicker('refresh').trigger('change')
-
 				combobox.selectpicker('refresh');
 				combobox.selectpicker({title: 'Selecione uma Categoria'})
                 combobox.append(response);

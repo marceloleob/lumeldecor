@@ -133,7 +133,6 @@
 					<div class="card-button">
 						{!! Form::hidden('product_id', $infos['id'], ['id' => 'product_id']) !!}
 						{!! Form::buttons('product.edit', null, ['back-show' => true, 'cancel-link-params' => $infos['id']]) !!}
-						<a href="{!! route('product-size.create', $infos['id']) !!}" class="btn-hover-shine btn btn-shadow btn-primary pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Cadastrar um Tamanho novo</a>
 					</div>
 				</div>
 			{!! Form::close() !!}

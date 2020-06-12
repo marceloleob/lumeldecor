@@ -57,7 +57,7 @@ class CategoryRepository extends BaseRepository
 	}
 
 	/**
-	 * Monta as opcoes do select box
+	 * Monta as opcoes do select box de category
 	 *
 	 * @param \Illuminate\Http\Request $request
 	 * @return array

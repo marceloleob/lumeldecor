@@ -26,7 +26,7 @@ class Stock extends Model
 		'reason_id',
 		'action',
 		'incoming',
-		'outcoming',
+		'overdraw',
 		'balance',
     ];
 

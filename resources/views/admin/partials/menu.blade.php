@@ -49,7 +49,7 @@
 				<a href="{!! route('product.list') !!}" class="{!! (request()->is('admin/produto/*') || request()->is('admin/item/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-cubes icon-gradient bg-plum-plate"></i> Produtos</a>
 			</li>
 			<li>
-				<a href="{!! route('stock.list') !!}" class="{!! (request()->is('admin/estoque/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-warehouse"></i> Estoques</a>
+				<a href="{!! route('stock.list') !!}" class="{!! (request()->is('admin/estoque/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-warehouse icon-gradient bg-plum-plate"></i> Estoques</a>
 			</li>
 
 			<li class="app-sidebar__heading">ITENS</li>

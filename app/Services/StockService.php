@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Stock;
 use App\Repositories\StockRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Arr;
 use Exception;
 
 class StockService
@@ -38,24 +37,22 @@ class StockService
 	/**
 	 * Recupera a quantidade total do item + a quantidade adicionada
 	 *
-	 * @param integer $productId
-	 * @param integer $itemId
+	 * @param integer $stockId
 	 * @param integer $amount
 	 * @param string $action
 	 * @return integer
 	 */
-	public static function getNewBalace($productId, $itemId, $amount, $action)
+	public static function getNewBalace($stockId, $amount, $action)
 	{
 		try {
-			$stock = new StockRepository();
-			$stock = $stock->getBalance($productId, $itemId);
+			$stock = (new StockRepository())->findById($stockId);
 
 			if ($action === self::$_actions['INCOMING']) {
-				return $stock->incoming + $amount;
+				return (int) ($stock->balance + $amount);
 			}
 
 			if ($action === self::$_actions['OVERDRAW']) {
-				return $stock->incoming - $amount;
+				return (int) ($stock->balance - $amount);
 			}
 
 		} catch (ModelNotFoundException $exception) {
@@ -67,33 +64,34 @@ class StockService
 	/**
 	 * Adiciona quantidade para um item
 	 *
-	 * @param integer $productId
-	 * @param integer $itemId
-	 * @param integer $reasonId
-	 * @param integer $amount
+	 * @param array $data
 	 * @return \App\Models\Stock
 	 */
-    public static function update($productId, $itemId, $reasonId, $amount, $action)
+    public static function store($data = [])
     {
-		$data = [
-			'product_id' => $productId,
-			'item_id'    => $itemId,
-			'user_id'    => UserService::getUserIdAuth(),
-			'reason_id'  => $reasonId,
-			'action'     => $action,
-			'incoming'   => $amount,
-			'overdraw'   => null,
-			'balance'    => self::getNewBalace($productId, $itemId, $amount, $action),
-		];
-
-		// salva ou atualiza os dados
-		$repository = new StockRepository();
-		$entity = $repository->store($data);
-		// verifica se salvou
-		if (!$entity instanceof Stock) {
-			throw new Exception($entity, 1);
+		// verifica se a acao e para adicionar ou remover do estoque
+		if ($data['action'] === self::$_actions['INCOMING']) {
+			$incoming = $data['amount'];
+		}
+		if ($data['action'] === self::$_actions['OVERDRAW']) {
+			$overdraw = $data['amount'];
 		}
 
-		return $entity;
+		$data['user_id']  = UserService::getUserIdAuth();
+		$data['incoming'] = $incoming ?? null;
+		$data['overdraw'] = $overdraw ?? null;
+		$data['balance']  = self::getNewBalace($data['stock_id'], $data['amount'], $data['action']);
+
+
+		try {
+			// seta como "antigo" (current = 0) o atual registro de estoque deste item
+			Stock::where('id', $data['stock_id'])->update(['current' => config('constants.STATUS_INACTIVE')]);
+
+			// cria um novo registro de estoque
+			return (new StockRepository())->store($data);
+
+		} catch (Exception $exception) {
+			return $exception->getMessage();
+		}
 	}
 }

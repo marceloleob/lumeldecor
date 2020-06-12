@@ -121,7 +121,6 @@
 						{!! Form::hidden('product_id', $infos['productId'], ['id' => 'product_id']) !!}
 						{!! Form::hidden('product_size_id', $infos['productSizeId'], ['id' => 'product_size_id']) !!}
 						{!! Form::buttons('product-size.create', null, ['back-show' => true, 'cancel-link-params' => $infos['productId']]) !!}
-						<a href="{!! route('item.create', [$infos['productId'], $infos['productSizeId']]) !!}" class="btn-hover-shine btn btn-shadow btn-alternate pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Cadastrar </a>
 					</div>
 				</div>
 			{!! Form::close() !!}
