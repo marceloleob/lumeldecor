@@ -19,18 +19,21 @@ use Illuminate\Support\Facades\Route;
  */
 Route::group(['namespace' => 'Site'], function () {
 	// Home
-	Route::get('/', 'HomeController@index')->name('home');
-	Route::get('cores', 'ColorsController@index');
+	Route::get('/', 'HomeController@waiting');
 });
 
-
-// /**
-//  * Rotas AJAX
-//  */
-// Route::group(['namespace' => 'Ajax', 'middleware' => 'auth', 'prefix' => 'ajax'], function () {
-// 	// Combo que carrega as Categorias de um Material
-// 	Route::post('options/category', 'AjaxController@optionsCategory');
-// });
+/**
+ * Rotas do Site
+ */
+Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
+	// Home
+	Route::get('/', 'HomeController@index')->name('home');
+	Route::get('sobre-nos', 'AboutController@index')->name('about');
+	Route::get('perguntas-frequestes', 'FaqController@index')->name('faq');
+	Route::get('termos-condicoes', 'TermsController@index')->name('terms');
+	Route::get('contato', 'ContactController@index')->name('contact');
+	Route::post('enviar-contato', 'ContactController@send')->name('contact.send');
+});
 
 
 /**
@@ -110,7 +113,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::put('tema/atualizar/{id}', 'ThemeController@update')->name('theme.update');
 	Route::get('tema/status/{id}', 'ThemeController@changeStatus')->name('theme.status');
 
-
 	// Campaign
 	Route::get('campanha/listar', 'CampaignController@index')->name('campaign.list');
 	Route::any('campanha/buscar', 'CampaignController@index')->name('campaign.search');
@@ -148,7 +150,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	// 	Route::get('mensagem/lista', 'ContactMessageController@index')->name('message.list');
 	// 	Route::get('mensagem/{id}/{page}', 'ContactMessageController@view')->name('message.view');
 	// 	Route::post('mensagem/nao-lida', 'ContactMessageController@read')->name('message.read');
-
 
 	// Customers
 	Route::get('cliente/listar', 'CustomerController@index')->name('customer.list');

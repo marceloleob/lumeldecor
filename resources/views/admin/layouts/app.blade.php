@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="{!! $locale !!}">
-
-@include('admin.partials.head')
-
+<head>
+	@include('admin.partials.head')
+</head>
 <body>
 
 <div class="app-container app-theme-white body-tabs-shadow fixed-header">

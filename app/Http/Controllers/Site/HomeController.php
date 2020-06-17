@@ -8,12 +8,29 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 	/**
+	 * Waiting page
+	 *
+	 * @return void
+	 */
+	public function waiting()
+	{
+		return view('site.pages.waiting');
+	}
+
+	/**
 	 * Home page
 	 *
 	 * @return void
 	 */
 	public function index()
 	{
-		return view('site.pages.home');
+		$params = [
+			'page'      => 'home',
+			'show'      => 'show',
+			'expanded'  => true,
+			'collapsed' => '',
+		];
+
+		return view('site.pages.home')->with($params);
 	}
 }

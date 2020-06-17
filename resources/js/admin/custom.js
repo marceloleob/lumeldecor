@@ -1,13 +1,6 @@
 $(document).ready(function ()
 {
 	/**
-	 * Posta o token do form toda fez que for ativado um post por ajax
-	 */
-	$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-		return jqXHR.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
-	});
-
-	/**
 	 * Desloga do sistema
 	 */
 	$('.logout').click(function (e) {

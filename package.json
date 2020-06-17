@@ -1,4 +1,6 @@
 {
+    "name": "lumeldecor",
+    "version": "1.0.0",
     "private": true,
     "scripts": {
         "dev": "npm run development",
@@ -9,11 +11,14 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
+    "author": "Marcelo Leopold",
     "devDependencies": {
         "axios": "^0.19",
         "bootstrap": "^4.0.0",
+        "browser-sync": "^2.26.7",
+        "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^7.0",
-        "jquery": "^3.2",
+        "jquery": "^3.5.1",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",
@@ -26,10 +31,11 @@
         "@fortawesome/fontawesome-free": "^5.13.0",
         "bootstrap-datepicker": "^1.9.0",
         "bootstrap-select": "^1.13.16",
-        "bootstrap-tagsinput": "^0.7.1",
+        "http-proxy": "^1.18.1",
         "jquery-maskmoney": "^3.0.2",
         "jquery-validation": "^1.19.1",
         "metismenu": "^3.0.6",
-        "moment": "^2.26.0"
+        "moment": "^2.26.0",
+        "owl.carousel": "^2.3.4"
     }
 }

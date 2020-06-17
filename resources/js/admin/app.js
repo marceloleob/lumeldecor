@@ -8,7 +8,7 @@ require('../../../node_modules/bootstrap-select/dist/js/bootstrap-select');
 require('../../../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');
 
 // Bootstrap TagsInput
-require('../../../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput');
+// require('../../../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput');
 
 // MetisMenu
 require('../../../node_modules/metismenu/dist/metismenu');

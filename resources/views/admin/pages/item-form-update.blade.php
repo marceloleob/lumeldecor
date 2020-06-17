@@ -3,7 +3,6 @@
 @section('icon', 'fas fa-tags')
 @section('title', 'Cores do Produto')
 @section('subheading', 'Formulário para editar as informações referentes à cor do produto.')
-@section('btn-back', route('product-size.edit', [$data->product_id, $data->product_size_id]))
 
 @section('form')
 	<div class="row">
@@ -51,7 +50,7 @@
 								</div>
 							</div>
 							<div class="col-md-6">
-								<div class="form-row">
+								<div class="row">
 									<div class="col-md-4">
 										<div class="position-relative form-group">
 											{!! Form::label('s_price', 'Preço no Site', ['class' => 'required']) !!}
@@ -70,6 +69,21 @@
 											{!! Form::notification('p_price', $errors) !!}
 										</div>
 									</div>
+									<div class="col-md-8">
+										<div class="form-row">
+											<div class="col-md-6">
+												<div class="position-relative form-group">
+													{!! Form::label('amount', 'Quantidade', ['class' => 'required']) !!}
+													{!! Form::number('amount', $data->amount, ['class' => 'form-control', 'readonly' => true]) !!}
+												</div>
+											</div>
+										</div>
+										<div class="position-relative form-group">
+											<div class="profit-margin p1 px-2 pt-4">
+												{!! ($data->profit ?? '') !!}
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="form-row">
 									<div class="col-md-12">
@@ -77,7 +91,7 @@
 											<ul class="button-checkbox">
 												<li>
 													{!! Form::checkbox('launch', '1', (old('launch', $data->launch) ? true : false), ['id' => 'launch', 'class' => 'hide checks']) !!}
-													{!! Form::label('launch', 'Este item é um lançamento') !!}
+													{!! Form::label('launch', 'Esta cor é um lançamento') !!}
 												</li>
 											</ul>
 										</div>

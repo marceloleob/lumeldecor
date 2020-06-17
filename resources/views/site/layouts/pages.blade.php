@@ -11,10 +11,6 @@
 	{{-- @include('site.partials.loader') --}}
 	{{-- END LOADER --}}
 
-	{{-- Home Popup Section --}}
-	{{-- @include('site.partials.popup') --}}
-	{{-- End Screen Load Popup Section --}}
-
 	{{-- START HEADER --}}
 	<header class="header_wrap fixed-top">
 		@include('site.partials.header')
@@ -22,14 +18,13 @@
 	</header>
 	{{-- END HEADER --}}
 
-	{{-- START SECTION BANNER --}}
-	@include('site.banner.header-1')
-	{{-- END SECTION BANNER --}}
+	{{-- START BREADCRUMB --}}
+	<div class="breadcrumb_section bg_lumel_gray page-title-mini">
+		@include('site.partials.breadcrumb')
+	</div>
+	{{-- END BREADCRUMB --}}
 
 	<div class="main_content">
-		{{-- CARDS INFO --}}
-		@include('site.partials.shopinfo')
-
 		{{-- CONTENT --}}
 		@yield('content')
 

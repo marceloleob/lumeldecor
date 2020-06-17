@@ -3,7 +3,6 @@
 @section('icon', 'fas fa-tags')
 @section('title', 'Cores do Produto')
 @section('subheading', 'Formulário para cadastrar as informações referentes às cores do produto.')
-@section('btn-back', route('product-size.create', $infos['productId']))
 
 @section('form')
 	<div class="row">
@@ -93,7 +92,7 @@
 											<ul class="button-checkbox">
 												<li>
 													{!! Form::checkbox('launch', '1', (old('launch') ? true : false), ['id' => 'launch', 'class' => 'hide checks']) !!}
-													{!! Form::label('launch', 'Este item é um lançamento') !!}
+													{!! Form::label('launch', 'Esta cor é um lançamento') !!}
 												</li>
 											</ul>
 										</div>
