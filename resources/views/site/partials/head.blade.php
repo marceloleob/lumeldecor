@@ -31,15 +31,18 @@
 <!-- Icon Font CSS -->
 {{-- {!! Html::style('assets/css/all.min.css') !!} --}}
 {!! Html::style('css/app.css') !!}
+
 {!! Html::style('assets/css/ionicons.min.css') !!}
 {!! Html::style('assets/css/themify-icons.css') !!}
 {!! Html::style('assets/css/linearicons.css') !!}
 {!! Html::style('assets/css/flaticon.css') !!}
 {!! Html::style('assets/css/simple-line-icons.css') !!}
+
+{!! Html::style('css/site/app.css') !!}
 <!--- owl carousel CSS-->
-{!! Html::style('assets/owlcarousel/css/owl.carousel.min.css') !!}
+{{-- {!! Html::style('assets/owlcarousel/css/owl.carousel.min.css') !!}
 {!! Html::style('assets/owlcarousel/css/owl.theme.default.css') !!}
-{!! Html::style('assets/owlcarousel/css/owl.theme.default.min.css') !!}
+{!! Html::style('assets/owlcarousel/css/owl.theme.default.min.css') !!} --}}
 <!-- Magnific Popup CSS -->
 {!! Html::style('assets/css/magnific-popup.css') !!}
 <!-- Slick CSS -->

@@ -27,7 +27,7 @@
 {{-- CSS --}}
 {!! Html::style('css/app.css') !!}
 {!! Html::style('css/admin/architect-ui.min.css') !!}
-{!! Html::style('css/admin/custom.css') !!}
+{!! Html::style('css/admin/app.css') !!}
 
 {{-- CUSTOM --}}
 @yield('css-custom')

@@ -1,8 +1,9 @@
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// Owl Carousel 2
+@import '../../../node_modules/owl.carousel/dist/assets/owl.carousel.min.css';
+@import '../../../node_modules/owl.carousel/dist/assets/owl.theme.default.min.css';
 
-// Font Awesome
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/brands';
+
+
+// {!! Html::style('assets/owlcarousel/css/owl.carousel.min.css') !!}
+// {!! Html::style('assets/owlcarousel/css/owl.theme.default.css') !!}
+// {!! Html::style('assets/owlcarousel/css/owl.theme.default.min.css') !!}

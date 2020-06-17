@@ -23,7 +23,7 @@
 	{{-- FONTS --}}
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 	{{-- CSS --}}
-	{!! Html::style('css/site/app.css') !!}
+	{!! Html::style('css/app.css') !!}
 	{{-- STYLE --}}
 	<style>
 		html, body {

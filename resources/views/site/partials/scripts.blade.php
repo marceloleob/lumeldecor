@@ -2,15 +2,15 @@
 
 {{-- Latest jQuery --}}
 {{-- {!! Html::script('assets/js/jquery-1.12.4.min.js') !!} --}}
-{!! Html::script('assets/js/jquery-3.5.1.min.js') !!}
+{{-- {!! Html::script('assets/js/jquery-3.5.1.min.js') !!} --}}
 {{-- popper min js --}}
-{!! Html::script('assets/js/popper.min.js') !!}
+{{-- {!! Html::script('assets/js/popper.min.js') !!} --}}
 {{-- Latest compiled and minified Bootstrap --}}
-{!! Html::script('assets/bootstrap/js/bootstrap.min.js') !!}
+{{-- {!! Html::script('assets/bootstrap/js/bootstrap.min.js') !!} --}}
 
 
 {{-- owl-carousel min js  --}}
-{!! Html::script('assets/owlcarousel/js/owl.carousel.min.js') !!}
+{{-- {!! Html::script('assets/owlcarousel/js/owl.carousel.min.js') !!} --}}
 {{-- magnific-popup min js  --}}
 {!! Html::script('assets/js/magnific-popup.min.js') !!}
 {{-- waypoints min js  --}}
@@ -36,8 +36,13 @@
 {{-- modernizr js --}}
 {!! Html::script('assets/js/modernizr-custom.js') !!}
 
+
+
 {{-- scripts js --}}
-{!! Html::script('assets/js/scripts.js') !!}
+{{-- {!! Html::script('assets/js/scripts.js') !!} --}}
+
+{{-- JS SYSTEM --}}
+{!! Html::script('js/site/app.js', ['defer' => 'defer']) !!}
 {{-- JS CUSTOM INTERNAL PAGES --}}
 @yield('js-custom')
 
