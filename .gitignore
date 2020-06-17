@@ -3,8 +3,6 @@
 /node_modules
 /public/hot
 /public/storage
-/resources/js
-/resources/sass
 /resources/vendor
 /storage/*.key
 /vendor
