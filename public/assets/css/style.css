@@ -615,6 +615,9 @@ button:focus {
 .bg_lumel_gray {
 	background-color: #fceff3 !important;
 }
+.bg_tiffany {
+	background-color: #81d6cf !important;
+}
 
 .radius_all_5,
 .radius_all_5:before,

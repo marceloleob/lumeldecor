@@ -32,52 +32,24 @@ const mix = require('laravel-mix');
 	// SITE FILES
 	mix
 	.js('resources/js/site/app.js', 'public/js/site')
+	.js('resources/js/libs/modernizr-custom.js', 'public/js/libs')
 	.js([
 		'resources/js/site/pages/contact.js',
 	], 'public/js/site/pages.js')
-	.sass('resources/sass/site/app.scss', 'public/css/site');
-	// .js([
-	// 	'resources/vendor/js/magnific-popup.min.js',
-	// 	'resources/vendor/js/waypoints.min.js',
-	// 	'resources/vendor/js/parallax.js',
-	// 	'resources/vendor/js/jquery.countdown.min.js',
-	// 	'resources/vendor/js/Hoverparallax.min.js',
-	// 	'resources/vendor/js/imagesloaded.pkgd.min.js',
-	// 	'resources/vendor/js/isotope.min.js',
-	// 	'resources/vendor/js/jquery.appear.js',
-	// 	'resources/vendor/js/jquery.dd.min.js',
-	// 	'resources/vendor/js/slick.min.js',
-	// 	'resources/vendor/js/jquery.elevatezoom.js',
-	// 	'resources/vendor/js/scripts.js',
-	// ], 'public/js/site/scripts.js').sourceMaps()
-
-	// .styles(['resources/sass/libs/animate.css'], 'public/css/libs/animate.css')
-	// .copy('resources/fonts/vendor', 'public/fonts/vendor')
-	// .styles([
-	// 	'resources/sass/libs/ionicons.min.css',
-	// 	'resources/sass/libs/themify-icons.css',
-	// 	'resources/sass/libs/linearicons.css',
-	// 	'resources/sass/libs/flaticon.css',
-	// 	'resources/sass/libs/simple-line-icons.css',
-	// ], 'public/css/libs/icons.css')
-	// .copy('resources/owlcarousel', 'public/owlcarousel')
-	// .styles([
-	// 	'resources/vendor/owlcarousel/css/owl.carousel.min.css',
-	// 	'resources/vendor/owlcarousel/css/owl.theme.css',
-	// 	'resources/vendor/owlcarousel/css/owl.theme.default.min.css',
-	// ], 'public/css/site/owlcarousel.css')
-	// .styles('resources/vendor/css/magnific-popup.css', 'public/css/site')
-	// .styles([
-	// 	'resources/vendor/css/slick.css',
-	// 	'resources/vendor/css/slick-theme.css',
-	// ], 'public/css/site/slick.css')
-	// .styles([
-	// 	'resources/sass/site/style.css',
-	// 	'resources/sass/site/responsive.css',
-	// ], 'public/css/site/all.css');
-
-
-
+	.sass('resources/sass/site/app.scss', 'public/css/site')
+	.sass('resources/sass/site/animate.scss', 'public/css/site')
+	.sass('resources/sass/site/style.scss', 'public/css/site')
+	.sass('resources/sass/site/responsive.scss', 'public/css/site')
+	.styles([
+		'resources/sass/icons/ionicons.min.css',
+		'resources/sass/icons/themify-icons.css',
+		'resources/sass/icons/linearicons.css',
+		'resources/sass/icons/flaticon.css',
+		'resources/sass/icons/simple-line-icons.css',
+		// 'resources/sass/icons/slick.css',
+		// 'resources/sass/icons/slick-theme.css',
+	], 'public/css/icons.css')
+	.copy('resources/fonts/vendor', 'public/fonts/vendor');
 
 
 	// ADMIN FILES
@@ -103,8 +75,6 @@ const mix = require('laravel-mix');
 		], 'public/js/admin/pages.js')
 		.copy('resources/sass/admin/architect-ui.min.css', 'public/css/admin')
 		.sass('resources/sass/admin/app.scss', 'public/css/admin');
-
-
 
 
 	// mix.autoload({

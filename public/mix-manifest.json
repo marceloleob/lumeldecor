@@ -5,9 +5,14 @@
     "/js/forms/jquery.masks.pt-br.js": "/js/forms/jquery.masks.pt-br.js",
     "/css/app.css": "/css/app.css",
     "/css/site/app.css": "/css/site/app.css",
+    "/css/site/animate.css": "/css/site/animate.css",
+    "/css/site/style.css": "/css/site/style.css",
+    "/css/site/responsive.css": "/css/site/responsive.css",
     "/css/admin/app.css": "/css/admin/app.css",
     "/js/forms/jquery.validate.pt-br.js": "/js/forms/jquery.validate.pt-br.js",
+    "/js/libs/modernizr-custom.js": "/js/libs/modernizr-custom.js",
     "/js/site/app.js": "/js/site/app.js",
     "/js/site/pages.js": "/js/site/pages.js",
+    "/css/icons.css": "/css/icons.css",
     "/css/admin/architect-ui.min.css": "/css/admin/architect-ui.min.css"
 }
