@@ -1,4 +1,4 @@
-<div class="section bg_dark_gray mt_50 py_50">
+<div class="section bg_tiffany mt_50 py_50">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-md-4">

@@ -3,13 +3,28 @@ require('../bootstrap');
 
 // Bootstrap SelectPicker
 require('../../../node_modules/bootstrap-select/dist/js/bootstrap-select');
-
 // jQuery Validate
 require('../../../node_modules/jquery-validation/dist/jquery.validate.min.js');
-
-// jQuery Validate
+// jQuery OWL Carousel 2
 require('../../../node_modules/owl.carousel/dist/owl.carousel.min.js');
-
+// jQuery Waypoints
+require('../../../node_modules/waypoints/lib/jquery.waypoints.min.js');
+// jQuery Magnific Popup
+require('../../../node_modules/magnific-popup/dist/jquery.magnific-popup.min.js');
+// Parallax Js
+require('../../../node_modules/parallax-js/dist/parallax.min.js');
+// jQuery CountDown
+require('../../../node_modules/jquery-countdown/dist/jquery.countdown.min.js');
+// jQuery Appear
+require('../../../node_modules/jquery.appear/jquery.appear.js');
+// Slick
+require('../../../node_modules/slick/finder.js');
+// jQuery Zoom Plugin (elevatezoom)
+require('../../../node_modules/@oroinc/elevatezoom/jquery.elevatezoom.js');
+// Isotope
+require('../../../node_modules/isotope-layout/dist/isotope.pkgd.min.js');
+// Images Loaded
+require('../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 
 
 (function($) {

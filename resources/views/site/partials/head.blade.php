@@ -19,35 +19,16 @@
 <link rel="shortcut icon" href="{!! asset('favicon.ico') !!}" />
 {{-- <link rel="shortcut icon" type="image/x-icon" href="{!! Html::style('assets/images/favicon.png') !!} --}}
 
-
-
-<!-- Animation CSS -->
-{!! Html::style('assets/css/animate.css') !!}
-<!-- Latest Bootstrap min CSS -->
-{!! Html::style('assets/bootstrap/css/bootstrap.min.css') !!}
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" />
-<!-- Icon Font CSS -->
-{{-- {!! Html::style('assets/css/all.min.css') !!} --}}
+{{-- GOOGLE FONTS --}}
+{!! Html::style('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap') !!}
+{!! Html::style('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap') !!}
+{{-- APIS STYLE --}}
 {!! Html::style('css/app.css') !!}
-
-{!! Html::style('assets/css/ionicons.min.css') !!}
-{!! Html::style('assets/css/themify-icons.css') !!}
-{!! Html::style('assets/css/linearicons.css') !!}
-{!! Html::style('assets/css/flaticon.css') !!}
-{!! Html::style('assets/css/simple-line-icons.css') !!}
-
+{{-- ICON FONT CSS --}}
+{!! Html::style('css/icons.css') !!}
+{{-- ANIMATION CSS --}}
+{!! Html::style('css/site/animate.css') !!}
+{{-- APIS STYLE --}}
 {!! Html::style('css/site/app.css') !!}
-<!--- owl carousel CSS-->
-{{-- {!! Html::style('assets/owlcarousel/css/owl.carousel.min.css') !!}
-{!! Html::style('assets/owlcarousel/css/owl.theme.default.css') !!}
-{!! Html::style('assets/owlcarousel/css/owl.theme.default.min.css') !!} --}}
-<!-- Magnific Popup CSS -->
-{!! Html::style('assets/css/magnific-popup.css') !!}
-<!-- Slick CSS -->
-{!! Html::style('assets/css/slick.css') !!}
-{!! Html::style('assets/css/slick-theme.css') !!}
-<!-- Style CSS -->
-{!! Html::style('assets/css/style.css') !!}
-{!! Html::style('assets/css/responsive.css') !!}
+{!! Html::style('css/site/style.css') !!}
+{!! Html::style('css/site/responsive.css') !!}

@@ -1,6 +1,6 @@
 
 {{-- MENU --}}
-<div class="bottom_header light_skin main_menu_uppercase bg_dark_gray">
+<div class="bottom_header dark_skin main_menu_uppercase bg_tiffany">
 	<div class="container">
 		<div class="row align-items-center">
 
