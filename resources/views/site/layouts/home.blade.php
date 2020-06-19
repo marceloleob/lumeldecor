@@ -23,7 +23,7 @@
 	{{-- END HEADER --}}
 
 	{{-- START SECTION BANNER --}}
-	@include('site.banner.header-1')
+	@include('site.banners.header-1')
 	{{-- END SECTION BANNER --}}
 
 	<div class="main_content">

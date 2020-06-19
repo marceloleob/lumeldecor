@@ -415,7 +415,7 @@
 	{{-- END SECTION FEATURED --}}
 
 	{{-- START SECTION BANNER --}}
-	@include('site.banner.three')
+	@include('site.banners.three')
 	{{-- END SECTION BANNER --}}
 
 	{{-- START SECTION BEST SELLERS --}}
