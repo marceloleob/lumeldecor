@@ -9,7 +9,7 @@ class CategoriesTableSeeder extends Seeder
 	/**
 	 * Run the database seeds.
 	 *
-	 *  1 - Cartonagem
+	 *  1 - Cartonagens
 	 *  2 - Cerâmicas
 	 *  3 - Enfeites
 	 *  4 - Louças
@@ -17,10 +17,11 @@ class CategoriesTableSeeder extends Seeder
 	 *  6 - Madeiras
 	 *  7 - MDF
 	 *  8 - Metais
-	 *  9 - Plásticos
-	 * 10 - Porcelanas
-	 * 11 - Personagens
-	 * 12 - Vidros
+	 *  9 - Pelúcias
+	 * 10 - Plásticos
+	 * 11 - Porcelanas
+	 * 12 - Tecidos
+	 * 13 - Vidros
 	 *
 	 * @return void
 	 */
@@ -73,26 +74,30 @@ class CategoriesTableSeeder extends Seeder
 		Category::create(['material_id' => 8, 'name' => 'Latinha', 'status' => 1]);
 		Category::create(['material_id' => 8, 'name' => 'Enfeite', 'status' => 1]);
 		Category::create(['material_id' => 8, 'name' => 'Maleta', 'status' => 1]);
+		// PELUCIA
+		Category::create(['material_id' => 9, 'name' => 'Animais', 'status' => 1]);
+		Category::create(['material_id' => 9, 'name' => 'Disney', 'status' => 1]);
+		Category::create(['material_id' => 9, 'name' => 'Marvel', 'status' => 1]);
 		// PLASTICOS
-		Category::create(['material_id' => 9, 'name' => 'Bandeja', 'status' => 1]);
-		Category::create(['material_id' => 9, 'name' => 'Enfeite', 'status' => 1]);
-		// PORCELANAS
 		Category::create(['material_id' => 10, 'name' => 'Bandeja', 'status' => 1]);
-		Category::create(['material_id' => 10, 'name' => 'Bola', 'status' => 1]);
-		Category::create(['material_id' => 10, 'name' => 'Boleira', 'status' => 1]);
-		Category::create(['material_id' => 10, 'name' => 'Bule', 'status' => 1]);
-		Category::create(['material_id' => 10, 'name' => 'Caneca', 'status' => 1]);
-		Category::create(['material_id' => 10, 'name' => 'Decoração', 'status' => 1]);
-		Category::create(['material_id' => 10, 'name' => 'Prato', 'status' => 1]);
-		Category::create(['material_id' => 10, 'name' => 'Redoma', 'status' => 1]);
-		Category::create(['material_id' => 10, 'name' => 'Vaso', 'status' => 1]);
-		// PERSONAGENS
-		Category::create(['material_id' => 11, 'name' => 'Flamingo', 'status' => 1]);
-		Category::create(['material_id' => 11, 'name' => 'Mickey', 'status' => 1]);
-		Category::create(['material_id' => 11, 'name' => 'Minie', 'status' => 1]);
-		Category::create(['material_id' => 11, 'name' => 'Astronauta', 'status' => 1]);
+		Category::create(['material_id' => 10, 'name' => 'Enfeite', 'status' => 1]);
+		Category::create(['material_id' => 10, 'name' => 'Personagem', 'status' => 1]);
+		// PORCELANAS
+		Category::create(['material_id' => 11, 'name' => 'Bandeja', 'status' => 1]);
+		Category::create(['material_id' => 11, 'name' => 'Bola', 'status' => 1]);
+		Category::create(['material_id' => 11, 'name' => 'Boleira', 'status' => 1]);
+		Category::create(['material_id' => 11, 'name' => 'Bule', 'status' => 1]);
+		Category::create(['material_id' => 11, 'name' => 'Caneca', 'status' => 1]);
+		Category::create(['material_id' => 11, 'name' => 'Decoração', 'status' => 1]);
+		Category::create(['material_id' => 11, 'name' => 'Prato', 'status' => 1]);
+		Category::create(['material_id' => 11, 'name' => 'Redoma', 'status' => 1]);
+		Category::create(['material_id' => 11, 'name' => 'Vaso', 'status' => 1]);
+		// TECIDOS
+		Category::create(['material_id' => 12, 'name' => 'Painel', 'status' => 1]);
 		// VIDROS
-		Category::create(['material_id' => 12, 'name' => 'Enfeite', 'status' => 1]);
-		Category::create(['material_id' => 12, 'name' => 'Vaso', 'status' => 1]);
+		Category::create(['material_id' => 13, 'name' => 'Bandeja', 'status' => 1]);
+		Category::create(['material_id' => 13, 'name' => 'Enfeite', 'status' => 1]);
+		Category::create(['material_id' => 13, 'name' => 'Prato', 'status' => 1]);
+		Category::create(['material_id' => 13, 'name' => 'Vaso', 'status' => 1]);
 	}
 }

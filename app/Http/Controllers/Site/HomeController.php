@@ -25,10 +25,8 @@ class HomeController extends Controller
 	public function index()
 	{
 		$params = [
-			'page'      => 'home',
-			'show'      => 'show',
-			'expanded'  => true,
-			'collapsed' => '',
+			'page'  => 'home',
+			'title' => 'Lumel Decor',
 		];
 
 		return view('site.pages.home')->with($params);

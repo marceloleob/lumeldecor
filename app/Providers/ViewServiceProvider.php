@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\MenuService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +29,12 @@ class ViewServiceProvider extends ServiceProvider
 		// Retorna a localizacao do usuario
 		View::composer('*', function ($view) {
 			$view->with('locale', str_replace('_', '-', strtolower(App::getLocale())));
+		});
+
+		// binda o site para renderizar o menu
+		View::composer('site.*', function()
+		{
+			View::share('menu', MenuService::render());
 		});
     }
 }

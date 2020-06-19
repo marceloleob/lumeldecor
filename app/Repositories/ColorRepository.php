@@ -41,6 +41,19 @@ class ColorRepository extends BaseRepository
 	}
 
 	/**
+	 * Recupera todos os registros ativos
+	 *
+	 * @return Entity
+	 */
+	public function allActive()
+	{
+		return $this->query()
+			->where('status', config('constants.STATUS_ACTIVE'))
+			->orderBy('name')
+			->get();
+	}
+
+	/**
 	 * Monta as opcoes do select box
 	 *
 	 * @return Collection

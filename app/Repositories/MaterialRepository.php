@@ -19,7 +19,7 @@ class MaterialRepository extends BaseRepository
 	 * @param  string $search
 	 * @return array
 	 */
-	public function all($search = null, $material = null)
+	public function all($search = null)
 	{
 		$query = $this->query()->orderBy('name');
 
@@ -38,6 +38,19 @@ class MaterialRepository extends BaseRepository
 			'data'     => $this->data,
 			'paginate' => $this->paginate,
 		];
+	}
+
+	/**
+	 * Recupera todos os registros ativos
+	 *
+	 * @return Entity
+	 */
+	public function allActive()
+	{
+		return $this->query()
+			->where('status', config('constants.STATUS_ACTIVE'))
+			->orderBy('name')
+			->get();
 	}
 
 	/**

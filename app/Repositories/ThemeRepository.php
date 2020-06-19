@@ -40,6 +40,19 @@ class ThemeRepository extends BaseRepository
 	}
 
 	/**
+	 * Recupera todos os registros ativos
+	 *
+	 * @return Entity
+	 */
+	public function allActive()
+	{
+		return $this->query()
+			->where('status', config('constants.STATUS_ACTIVE'))
+			->orderBy('name')
+			->get();
+	}
+
+	/**
 	 * Percorre a Collection e customiza dados para imprimir na view
 	 *
 	 * @return Collection

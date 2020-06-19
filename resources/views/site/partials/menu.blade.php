@@ -8,30 +8,14 @@
 			<div class="col-lg-3 col-md-4 col-sm-6 col-3">
 				<div class="categories_wrap">
 					<button type="button" data-toggle="collapse" data-target="#navCatContent" aria-expanded="false" class="categories_btn">
-						<i class="linearicons-menu"></i> <span>Todas as Categorias</span>
+						<i class="linearicons-menu"></i> <span>Todos os Materiais</span>
 					</button>
 					<div id="navCatContent" class="{!! ($page === 'home') ? 'nav_cat' : '' !!} navbar collapse" data-page="{!! $page !!}">
 						<ul>
-							<li><a class="dropdown-item nav-link nav_item" href="#"><i class="ico-heart"></i> <span class="heart">Clothing</span></a></li>
-							<li><a class="dropdown-item nav-link nav_item" href="coming-soon.html"><i class="flaticon-headphones"></i> <span>Headphones</span></a></li>
-							<li><a class="dropdown-item nav-link nav_item" href="404.html"><i class="flaticon-console"></i> <span>Gaming</span></a></li>
-							<li><a class="dropdown-item nav-link nav_item" href="#"><i class="ico-heart"></i> <span class="heart">Clothing</span></a></li>
-							<li><a class="dropdown-item nav-link nav_item" href="coming-soon.html"><i class="flaticon-headphones"></i> <span>Headphones</span></a></li>
-							<li><a class="dropdown-item nav-link nav_item" href="404.html"><i class="flaticon-console"></i> <span>Gaming</span></a></li>
-							<li><a class="dropdown-item nav-link nav_item" href="login.html"><i class="flaticon-watch"></i> <span>Watches</span></a></li>
-							<li><a class="dropdown-item nav-link nav_item" href="register.html"><i class="flaticon-music-system"></i> <span>Home Audio & Theater</span></a></li>
-							<li><a class="dropdown-item nav-link nav_item" href="coming-soon.html"><i class="flaticon-monitor"></i> <span>TV & Smart Box</span></a></li>
-							<li><a class="dropdown-item nav-link nav_item" href="404.html"><i class="flaticon-printer"></i> <span>Printer</span></a></li>
-							<li>
-								<ul class="more_slide_open">
-									<li><a class="dropdown-item nav-link nav_item" href="login.html"><i class="flaticon-pijamas"></i> <span>Sleepwear</span></a></li>
-									<li><a class="dropdown-item nav-link nav_item" href="register.html"><i class="flaticon-scarf"></i> <span>Seasonal Wear</span></a></li>
-									<li><a class="dropdown-item nav-link nav_item" href="404.html"><i class="flaticon-vintage"></i> <span>Ethinic Wear</span></a></li>
-									<li><a class="dropdown-item nav-link nav_item" href="coming-soon.html"><i class="flaticon-pregnant"></i> <span>Baby Clothing</span></a></li>
-								</ul>
-							</li>
+							@foreach ($menu['materials'] as $material)
+								<li><a class="dropdown-item nav-link nav_item" href="#"><i class="ico-heart"></i> <span class="heart">{!! $material['name'] !!}</span></a></li>
+							@endforeach
 						</ul>
-						<div class="more_categories">More Categories</div>
 					</div>
 				</div>
 			</div>
@@ -48,18 +32,31 @@
 							<li>
 								<a class="nav-link nav_item {!! ($page === 'home') ? 'active' : '' !!}" href="{!! route('home') !!}">Início</a>
 							</li>
-							<li class="dropdown">
-								<a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Materiais</a>
+							<li class="dropdown dropdown-mega-menu">
+								<a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Categorias</a>
 								<div class="dropdown-menu">
-									<ul>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
+									<ul class="mega-menu d-lg-flex">
+										<li class="mega-menu-col col-lg-4">
+											<ul>
+												@foreach ($menu['categories'][0] as $category)
+													<li><a class="dropdown-item nav-link nav_item" href="#">{!! $category['name'] !!}</a></li>
+												@endforeach
+											</ul>
+										</li>
+										<li class="mega-menu-col col-lg-4">
+											<ul>
+												@foreach ($menu['categories'][1] as $category)
+													<li><a class="dropdown-item nav-link nav_item" href="#">{!! $category['name'] !!}</a></li>
+												@endforeach
+											</ul>
+										</li>
+										<li class="mega-menu-col col-lg-4">
+											<ul>
+												@foreach ($menu['categories'][2] as $category)
+													<li><a class="dropdown-item nav-link nav_item" href="#">{!! $category['name'] !!}</a></li>
+												@endforeach
+											</ul>
+										</li>
 									</ul>
 								</div>
 							</li>
@@ -67,14 +64,9 @@
 								<a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Cores</a>
 								<div class="dropdown-menu">
 									<ul>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
+										@foreach ($menu['colors'] as $color)
+											<li><a class="dropdown-item nav-link nav_item" href="#">{!! $color['name'] !!}</a></li>
+										@endforeach
 									</ul>
 								</div>
 							</li>
@@ -82,19 +74,14 @@
 								<a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Temas</a>
 								<div class="dropdown-menu">
 									<ul>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
-										<li><a class="dropdown-item nav-link nav_item" href="#">Teste</a></li>
+										@foreach ($menu['themes'] as $theme)
+											<li><a class="dropdown-item nav-link nav_item" href="#">{!! $theme['name'] !!}</a></li>
+										@endforeach
 									</ul>
 								</div>
 							</li>
 							<li class="dropdown">
-								<a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Lumel Decor</a>
+								<a class="dropdown-toggle nav-link {!! (request()->is('*lumel-decor*')) ? 'active' : '' !!}" href="#" data-toggle="dropdown">Lumel Decor</a>
 								<div class="dropdown-menu">
 									<ul>
 										<li><a class="dropdown-item nav-link nav_item {!! ($page === 'about') ? 'active' : '' !!}" href="{!! route('about') !!}">Sobre nós</a></li>
@@ -108,6 +95,8 @@
 							</li>
 						</ul>
 					</div>
+
+					{{-- INFORMACOES DO USUARIO --}}
 					<ul class="navbar-nav attr-nav align-items-center">
 						<li><a href="#" class="nav-link"><i class="linearicons-user"></i></a></li>
 						<li><a href="#" class="nav-link"><i class="linearicons-heart"></i><span class="wishlist_count">0</span></a></li>
@@ -127,11 +116,16 @@
 								</ul>
 								<div class="cart_footer">
 									<p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>159.00</p>
-									<p class="cart_buttons"><a href="#" class="btn btn-fill-line view-cart">View Cart</a><a href="#" class="btn btn-fill-out checkout">Checkout</a></p>
+									<p class="cart_buttons">
+										{{-- <a href="#" class="btn btn-fill-line view-cart">View Cart</a> --}}
+										<a href="#" class="btn btn-fill-out checkout">Ver Carrinho</a>
+									</p>
 								</div>
 							</div>
 						</li>
 					</ul>
+					{{-- INFORMACOES DO USUARIO --}}
+
 					<div class="pr_search_icon">
 						<a href="javascript:void(0);" class="nav-link pr_search_trigger"><i class="linearicons-magnifier"></i></a>
 					</div>

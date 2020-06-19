@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryRepository extends BaseRepository
 {
@@ -54,6 +55,31 @@ class CategoryRepository extends BaseRepository
 			'data'     => $this->data,
 			'paginate' => $this->paginate,
 		];
+	}
+
+	/**
+	 * Recupera todos os registros ativos
+	 *
+	 * @return Entity
+	 */
+	public function allActive()
+	{
+		$categories = $this->query()
+			->select('name')
+			->distinct()
+			->where('status', config('constants.STATUS_ACTIVE'))
+			->orderBy('name')
+			// ->limit(13)
+			->get()
+			->map(function ($category)
+			{
+				return [
+					'name' => $category->name,
+					'slug' => $category->slug = Str::slug($category->name)
+				];
+			});
+		// divide o resultado da busca em 3 blocos
+		return $categories->split(3);
 	}
 
 	/**

@@ -34,7 +34,7 @@
 							<span>E-mails</span>
 							<p>
 								contato@lumeldecor.com.br <br />
-								financeiro@lumeldecor.com.br
+								&nbsp;
 							</p>
 						</div>
 					</div>

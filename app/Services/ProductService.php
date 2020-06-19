@@ -17,7 +17,7 @@ class ProductService
     public static function store($data = [], $productId = null)
     {
 		// cria uma slug
-		$data['slug']   = Str::slug($data['name']);
+		$data['slug'] = Str::slug($data['name']);
 
 		return (new ProductRepository())->store($data);
 	}
