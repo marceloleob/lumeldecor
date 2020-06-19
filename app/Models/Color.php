@@ -21,6 +21,7 @@ class Color extends Model
 	protected $fillable = [
 		'id',
 		'name',
+		'icon',
 		'status',
 	];
 

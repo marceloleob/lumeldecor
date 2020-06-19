@@ -65,7 +65,9 @@
 								<div class="dropdown-menu">
 									<ul>
 										@foreach ($menu['colors'] as $color)
-											<li><a class="dropdown-item nav-link nav_item" href="#">{!! $color['name'] !!}</a></li>
+											<li>
+												<a class="dropdown-item nav-link nav_item" href="#"><img src="{!! asset('images/icons/' . $color['icon'] . '.png') !!}" class="colors" /> {!! $color['name'] !!}</a>
+											</li>
 										@endforeach
 									</ul>
 								</div>

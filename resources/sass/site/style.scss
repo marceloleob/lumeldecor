@@ -1233,6 +1233,11 @@ button:focus {
 	text-transform: capitalize;
 	font-size: 14px;
 }
+.nav-link img.colors {
+    margin: -6px 13px 0 0;
+    width: 25px;
+	height: 25px;
+}
 .navbar .navbar-nav > li > a.active,
 .navbar .navbar-nav > li:hover > a,
 .light_skin.transparent_header.nav-fixed .navbar .navbar-nav > li > a.active,
@@ -1241,13 +1246,6 @@ button:focus {
 .transparent_header.nav-fixed .light_skin .navbar .navbar-nav > li:hover > a {
 	color: #FF324D;
 }
-/* HOVER DE CORACAO COLORIDO NO MENU */
-#navCatContent li > a.active i.ico-heart, #navCatContent li:hover > a i.ico-heart {
-    background: url('../../images/heart.png');
-	background-repeat: no-repeat;
-	transition: 0.2;
-}
-/* HOVER DE CORACAO COLORIDO NO MENU */
 .light_skin .navbar .navbar-nav .dropdown-item,
 .light_skin .navbar .navbar-nav .dropdown-header {
 	color: #fff;
@@ -1259,7 +1257,7 @@ button:focus {
 	border-right: 1px solid #3f3f3f;
 }
 .navbar .navbar-nav .dropdown-item {
-	padding: 8px 20px 8px 35px;
+	padding: 8px 20px 8px 20px;
 	color: #333;
 	font-size: 14px;
 	text-transform: capitalize;
@@ -2561,7 +2559,14 @@ input.text {
 	display: block;
 }
 /* ICONE DO MENU FIM */
-#navCatContent li a:hover {
+/* HOVER DE CORACAO COLORIDO NO MENU */
+#navCatContent li > a.active i.ico-heart, #navCatContent li:hover > a i.ico-heart {
+    background: url('../../images/heart.png');
+	background-repeat: no-repeat;
+	transition: 0.2;
+}
+/* HOVER DE CORACAO COLORIDO NO MENU */
+#navCatContent li a:hover, #navCatContent li a.active {
 	color: #FF324D;
 }
 #navCatContent li a.dropdown-toggler::after {
