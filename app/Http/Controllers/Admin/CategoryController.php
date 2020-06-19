@@ -123,7 +123,7 @@ class CategoryController extends Controller
 	 * Return select options of Category
 	 *
 	 * @param Request $request
-	 * @return array
+	 * @return string
 	 */
 	public function options(Request $request)
 	{

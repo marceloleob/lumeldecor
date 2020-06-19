@@ -51,7 +51,7 @@ $(document).ready(function ()
 	{
 		var url = '../category/options';
 		// verifica se esta no formulario de edicao
-		if ($('#id').val()) {
+		if ($('#id').length) {
 			var url = '../../category/options';
 		}
 		// carrega o combo

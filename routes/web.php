@@ -28,20 +28,16 @@ Route::group(['namespace' => 'Site'], function () {
 Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
 	// Home
 	Route::get('/', 'HomeController@index')->name('home');
-
+	// Institucional
 	Route::group(['prefix' => 'lumel-decor'], function () {
 		Route::get('sobre-nos', 'AboutController@index')->name('about');
 		Route::get('perguntas-frequestes', 'FaqController@index')->name('faq');
 		Route::get('termos-condicoes', 'TermsController@index')->name('terms');
 	});
+	// Contato
 	Route::get('contato', 'ContactController@index')->name('contact');
 	Route::post('enviar-contato', 'ContactController@send')->name('contact.send');
-
-	Route::get('categoria', 'CategoryController@index')->name('category');
-	Route::get('material', 'MaterialController@index')->name('material');
-	Route::get('cor', 'ColorController@index')->name('color');
-	Route::get('tema', 'ThemeController@index')->name('theme');
-
+	// Produtos
 	Route::get('produtos/material/{slug}', 'ProductController@show')->name('product.material');
 	Route::get('produtos/categoria/{slug}', 'ProductController@show')->name('product.category');
 	Route::get('produtos/cor/{slug}', 'ProductController@show')->name('product.color');

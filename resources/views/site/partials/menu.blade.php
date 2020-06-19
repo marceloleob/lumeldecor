@@ -13,7 +13,7 @@
 					<div id="navCatContent" class="{!! ($page === 'home') ? 'nav_cat' : '' !!} navbar collapse" data-page="{!! $page !!}">
 						<ul>
 							@foreach ($menu['materials'] as $material)
-								<li><a class="dropdown-item nav-link nav_item" href="#"><i class="ico-heart"></i> <span class="heart">{!! $material['name'] !!}</span></a></li>
+								<li><a class="dropdown-item nav-link nav_item" href="{!! route('product.material', 'teste') !!}"><i class="ico-heart"></i> <span class="heart">{!! $material['name'] !!}</span></a></li>
 							@endforeach
 						</ul>
 					</div>

@@ -38,10 +38,10 @@ class CategoryRepository extends BaseRepository
 
 		// verifica se buscou algum item especifico
 		if (!empty($search)) {
-			$query->where('name', 'LIKE', '%' . $search . '%');
+			$query->where('categories.name', 'LIKE', '%' . $search . '%');
 		}
 		if (!empty($material)) {
-			$query->where('material_id', $material);
+			$query->where('categories.material_id', $material);
 		}
 
         // cria uma collection com paginacao para montar o grid
@@ -86,7 +86,7 @@ class CategoryRepository extends BaseRepository
 	 * Monta as opcoes do select box de category
 	 *
 	 * @param \Illuminate\Http\Request $request
-	 * @return array
+	 * @return string
 	 */
 	public function options(Request $request = null)
 	{
