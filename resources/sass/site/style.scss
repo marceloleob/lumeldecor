@@ -2277,7 +2277,7 @@ header.light_skin.nav-fixed .social_icons li a:hover {
 	z-index: 9999;
 	top: 0;
 	transition: all 0.5s ease-in-out;
-	cursor: url("../../images/close.png"), pointer;
+	cursor: url("../../images/icons/close.png"), pointer;
 }
 body.active {
 	overflow: hidden;
@@ -2545,7 +2545,7 @@ input.text {
     position: absolute;
     display: block;
     margin-top: -2px;
-    background: url('../../images/heart-transparent.png');
+    background: url('../../images/icons/heart-transparent.png');
     background-repeat: no-repeat;
     width: 26px;
 	height: 28px;
@@ -2561,7 +2561,7 @@ input.text {
 /* ICONE DO MENU FIM */
 /* HOVER DE CORACAO COLORIDO NO MENU */
 #navCatContent li > a.active i.ico-heart, #navCatContent li:hover > a i.ico-heart {
-    background: url('../../images/heart.png');
+    background: url('../../images/icons/heart.png');
 	background-repeat: no-repeat;
 	transition: 0.2;
 }

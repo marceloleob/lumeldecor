@@ -35,7 +35,6 @@
 					<ul class="widget_links">
 						<li><a href="{!! route('about') !!}">Sobre Nós</a></li>
 						<li><a href="{!! route('faq') !!}">Perguntas Frequentes</a></li>
-						{{-- <li><a href="#">Nossa Loja Física</a></li> --}}
 						<li><a href="{!! route('terms') !!}">Termos de Uso</a></li>
 						<li><a href="{!! route('contact') !!}">Contato</a></li>
 					</ul>
@@ -68,25 +67,25 @@
 			<div class="col-lg-4 order-lg-first">
 				<div class="widget mb-lg-0">
 					<ul class="social_icons footer text-center">
-						<li><a href="https://www.facebook.com/lumelldecor" target="_blank"><img src="{!! asset('images/facebook.png') !!}"></a></li>
-						<li><a href="https://www.instagram.com/lumeldecor" target="_blank"><img src="{!! asset('images/instagram.png') !!}"></a></li>
-						<li><a href="https://wa.me/553195140615" target="_blank"><img src="{!! asset('images/whatsapp.png') !!}"></a></li>
+						<li><a href="https://www.facebook.com/lumelldecor" target="_blank"><img src="{!! asset('images/icons/social_facebook.png') !!}"></a></li>
+						<li><a href="https://www.instagram.com/lumeldecor" target="_blank"><img src="{!! asset('images/icons/social_instagram.png') !!}"></a></li>
+						<li><a href="https://wa.me/553195140615" target="_blank"><img src="{!! asset('images/icons/social_whatsapp.png') !!}"></a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-lg-3">
 				<ul class="footer_payment text-center text-lg-right">
-					<li><a href="#"><img src="{!! asset('assets/images/visa.png') !!}" alt="visa"></a></li>
-					<li><a href="#"><img src="{!! asset('assets/images/master_card.png') !!}" alt="master_card"></a></li>
-					<li><a href="#"><img src="{!! asset('assets/images/paypal.png') !!}" alt="paypal"></a></li>
-					<li><a href="#"><img src="{!! asset('assets/images/amarican_express.png') !!}" alt="amarican_express"></a></li>
+					<li><a href="#"><img src="{!! asset('images/icons/payment_visa.png') !!}" alt="visa"></a></li>
+					<li><a href="#"><img src="{!! asset('images/icons/payment_master_card.png') !!}" alt="master_card"></a></li>
+					<li><a href="#"><img src="{!! asset('images/icons/payment_paypal.png') !!}" alt="paypal"></a></li>
+					<li><a href="#"><img src="{!! asset('images/icons/payment_amarican_express.png') !!}" alt="amarican_express"></a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="row align-items-center">
 			<div class="col-lg-12 col-sm-12 py-3">
 				<p class="mb-lg-0 text-center">
-					Site criado por &nbsp; <i class="far fa-registered"></i> <a href="https://www.turnupweb.com" class="turnupweb" target="_blank">TurUp Web</a> &nbsp; <img src="{!! asset('images/turnupweb.png') !!}" />
+					Site criado por &nbsp; <i class="far fa-registered"></i> <a href="https://www.turnupweb.com" class="turnupweb" target="_blank">TurUp Web</a> &nbsp; <img src="{!! asset('images/icons/turnupweb.png') !!}" />
 				</p>
 			</div>
 		</div>
