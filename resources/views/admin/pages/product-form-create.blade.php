@@ -32,7 +32,7 @@
 								</div>
 								<div class="position-relative form-group">
 									{!! Form::label('category_id', 'Categoria', ['class' => 'required']) !!}
-									{!! Form::select('category_id', $optionscategory, old('category_id'), ['class' => 'form-control selectpicker', 'title' => 'Selecione primeiro um Material']) !!}
+									{!! Form::select('category_id', $optionscategory, old('category_id'), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 									{!! Form::notification('category_id', $errors) !!}
 								</div>
 								<div class="position-relative form-group">

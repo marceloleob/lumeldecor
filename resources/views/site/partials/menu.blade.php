@@ -13,7 +13,7 @@
 					<div id="navCatContent" class="{!! ($page === 'home') ? 'nav_cat' : '' !!} navbar collapse" data-page="{!! $page !!}">
 						<ul>
 							@foreach ($menu['materials'] as $material)
-								<li><a class="dropdown-item nav-link nav_item" href="{!! route('product.material', 'teste') !!}"><i class="ico-heart"></i> <span class="heart">{!! $material['name'] !!}</span></a></li>
+								<li><a class="dropdown-item nav-link nav_item" href="{!! route('product.material', $material['slug']) !!}"><i class="ico-heart"></i> <span class="heart">{!! $material['name'] !!}</span></a></li>
 							@endforeach
 						</ul>
 					</div>
@@ -39,21 +39,21 @@
 										<li class="mega-menu-col col-lg-4">
 											<ul>
 												@foreach ($menu['categories'][0] as $category)
-													<li><a class="dropdown-item nav-link nav_item" href="#">{!! $category['name'] !!}</a></li>
+													<li><a href="{!! route('product.category', $category['slug']) !!}" class="dropdown-item nav-link nav_item">{!! $category['name'] !!}</a></li>
 												@endforeach
 											</ul>
 										</li>
 										<li class="mega-menu-col col-lg-4">
 											<ul>
 												@foreach ($menu['categories'][1] as $category)
-													<li><a class="dropdown-item nav-link nav_item" href="#">{!! $category['name'] !!}</a></li>
+													<li><a href="{!! route('product.category', $category['slug']) !!}" class="dropdown-item nav-link nav_item">{!! $category['name'] !!}</a></li>
 												@endforeach
 											</ul>
 										</li>
 										<li class="mega-menu-col col-lg-4">
 											<ul>
 												@foreach ($menu['categories'][2] as $category)
-													<li><a class="dropdown-item nav-link nav_item" href="#">{!! $category['name'] !!}</a></li>
+													<li><a href="{!! route('product.category', $category['slug']) !!}" class="dropdown-item nav-link nav_item">{!! $category['name'] !!}</a></li>
 												@endforeach
 											</ul>
 										</li>
@@ -66,7 +66,7 @@
 									<ul>
 										@foreach ($menu['colors'] as $color)
 											<li>
-												<a class="dropdown-item nav-link nav_item" href="#"><img src="{!! asset('images/icons/' . $color['icon'] . '.png') !!}" class="colors" /> {!! $color['name'] !!}</a>
+												<a href="{!! route('product.color', $color['slug']) !!}" class="dropdown-item nav-link nav_item"><img src="{!! asset('images/icons/' . $color['icon']) !!}" class="colors" /> {!! $color['name'] !!}</a>
 											</li>
 										@endforeach
 									</ul>
@@ -77,7 +77,7 @@
 								<div class="dropdown-menu">
 									<ul>
 										@foreach ($menu['themes'] as $theme)
-											<li><a class="dropdown-item nav-link nav_item" href="#">{!! $theme['name'] !!}</a></li>
+											<li><a href="{!! route('product.theme', $theme['slug']) !!}" class="dropdown-item nav-link nav_item">{!! $theme['name'] !!}</a></li>
 										@endforeach
 									</ul>
 								</div>

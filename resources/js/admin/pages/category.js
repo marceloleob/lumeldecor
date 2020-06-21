@@ -5,9 +5,6 @@ $(document).ready(function ()
 		// validation
 		$('#form-category').validate({
 			rules: {
-				material_id: {
-					required: true,
-				},
 				name: {
 					required: true,
 					minlength: 2,
