@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\ProductRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\MaterialRepository;
 use App\Repositories\ProductRepository;
-use App\Repositories\ProductSizeRepository;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
@@ -97,13 +96,13 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  ProductRequest  $request
-     * @param  int  $productId
+     * @param  int  $id
      * @return Response
      */
-    public function update(ProductRequest $request, $productId)
+    public function update(ProductRequest $request, $id)
     {
 		// save
-		$entity = ProductService::store($request->all(), $productId);
+		$entity = ProductService::store($request->all(), $id);
 		// verifica se salvou
 		if (! isset($entity->id)) {
 			return back()->withInput()->with('danger', 'Erro ao atualizar o produto, tente novamente!');

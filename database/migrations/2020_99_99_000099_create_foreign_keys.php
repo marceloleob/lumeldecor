@@ -19,10 +19,6 @@ class CreateForeignKeys extends Migration
 			$table->foreign('item_id')->references('id')->on('items')->onDelete('no action')->onUpdate('no action');
 		});
 
-		Schema::table('categories', function (Blueprint $table) {
-			$table->foreign('material_id')->references('id')->on('materials')->onDelete('no action')->onUpdate('no action');
-		});
-
 		Schema::table('cities', function (Blueprint $table) {
 			$table->foreign('state_id')->references('id')->on('states')->onDelete('no action')->onUpdate('no action');
 		});
@@ -106,11 +102,6 @@ class CreateForeignKeys extends Migration
 			$table->dropColumn('theme_id');
 			$table->dropForeign('campaign_items_item_id_foreign');
 			$table->dropColumn('item_id');
-		});
-
-		Schema::table('categories', function (Blueprint $table) {
-			$table->dropForeign('categories_material_id_foreign');
-			$table->dropColumn('material_id');
 		});
 
 		Schema::table('cities', function (Blueprint $table) {

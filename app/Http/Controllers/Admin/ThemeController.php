@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\ThemeRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\MaterialRepository;
 use App\Repositories\ThemeRepository;
+use App\Services\ThemeService;
 use Illuminate\Http\Request;
 
 class ThemeController extends Controller
@@ -63,11 +64,11 @@ class ThemeController extends Controller
     public function store(ThemeRequest $request)
     {
 		// save
-		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = ThemeService::store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar o tema, tente novamente!');
+		}
 
         return redirect()->route('theme.list')->with('success', 'Tema cadastrado com sucesso!');
     }
@@ -99,13 +100,13 @@ class ThemeController extends Controller
     public function update(ThemeRequest $request, $id)
     {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = ThemeService::store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar o tema, tente novamente!');
 		}
 
-        return redirect()->route('theme.list')->with('success', 'Tema atualizado com sucesso!');
+		return redirect()->route('theme.list')->with('success', 'Tema atualizado com sucesso!');
 	}
 
     /**

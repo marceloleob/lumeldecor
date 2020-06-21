@@ -29,10 +29,9 @@ class CategoryRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'          => 'cast:integer',
-        'material_id' => 'cast:integer',
-        'name'        => 'trim|escape',
-        'status'      => 'checkbox|cast:boolean',
+        'id'     => 'cast:integer',
+        'name'   => 'trim|escape',
+        'status' => 'checkbox|cast:boolean',
     ];
 
     /**
@@ -41,9 +40,23 @@ class CategoryRequest extends BaseRequest
      * @var array
      */
     public static $validations = [
-        'id'          => 'integer',
-        'material_id' => 'required|integer',
-        'name'        => 'required|min:2|max:100',
-        'status'      => 'boolean',
+        'id'     => 'integer',
+        'name'   => 'required|min:2|max:150|unique:categories',
+        'status' => 'boolean',
 	];
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+		// efetua o tratamento para campo unico
+		if (!empty($this->id)) {
+			static::$validations['name'] .= ',name,' . $this->id;
+		}
+
+        return static::$validations;
+    }
 }

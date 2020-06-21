@@ -21,17 +21,9 @@ class Material extends Model
 	protected $fillable = [
 		'id',
 		'name',
+		'slug',
 		'status',
 	];
-
-	/**
-	 * Get the categories about this material.
-	 *
-	 */
-	public function categories()
-	{
-		return $this->hasMany(Category::class);
-	}
 
     /**
      * Get all of the products for the material.
@@ -39,7 +31,6 @@ class Material extends Model
     public function products()
     {
 		return $this->hasMany(Category::class);
-        // return $this->hasManyThrough(Product::class, Category::class);
 	}
 
 	/**

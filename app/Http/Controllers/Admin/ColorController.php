@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ColorRequest;
 use App\Repositories\ColorRepository;
+use App\Services\ColorService;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
@@ -56,11 +57,11 @@ class ColorController extends Controller
     public function store(ColorRequest $request)
     {
 		// save
-		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = ColorService::store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar a cor, tente novamente!');
+		}
 
         return redirect()->route('color.list')->with('success', 'Cor cadastrada com sucesso!');
     }
@@ -90,13 +91,13 @@ class ColorController extends Controller
     public function update(ColorRequest $request, $id)
     {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = ColorService::store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar a cor, tente novamente!');
 		}
 
-        return redirect()->route('material.list')->with('success', 'Cor atualizada com sucesso!');
+		return redirect()->route('color.list')->with('success', 'Cor atualizada com sucesso!');
 	}
 
     /**

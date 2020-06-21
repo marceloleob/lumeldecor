@@ -15,7 +15,8 @@ class CreateMaterialsTable extends Migration
 	{
 		Schema::create('materials', function (Blueprint $table) {
 			$table->id();
-			$table->string('name', 150)->unique();
+			$table->string('name', 150);
+			$table->string('slug', 200)->unique();
 			$table->boolean('status')->default(1);
 		});
 	}

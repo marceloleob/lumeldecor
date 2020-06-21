@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class CategoryRepository extends BaseRepository
@@ -19,29 +18,15 @@ class CategoryRepository extends BaseRepository
 	 * Executa a busca para a listagem com paginacao e filtro
 	 *
 	 * @param  string $search
-	 * @param  string $material
 	 * @return array
 	 */
-	public function all($search = null, $material = null)
+	public function all($search = null)
 	{
 		$query = $this->query()->orderBy('name');
-		$query = $this->query()
-			->select(
-				'categories.id',
-				'categories.name AS category',
-				'categories.status',
-				'materials.name AS material'
-			)
-			->join('materials', 'categories.material_id', '=', 'materials.id')
-			->orderBy('materials.name')
-			->orderBy('categories.name');
 
 		// verifica se buscou algum item especifico
 		if (!empty($search)) {
-			$query->where('categories.name', 'LIKE', '%' . $search . '%');
-		}
-		if (!empty($material)) {
-			$query->where('categories.material_id', $material);
+			$query->where('name', 'LIKE', '%' . $search . '%');
 		}
 
         // cria uma collection com paginacao para montar o grid
@@ -51,7 +36,6 @@ class CategoryRepository extends BaseRepository
 
 		return [
 			'search'   => $search,
-			'material' => $material,
 			'data'     => $this->data,
 			'paginate' => $this->paginate,
 		];
@@ -65,19 +49,9 @@ class CategoryRepository extends BaseRepository
 	public function allActive()
 	{
 		$categories = $this->query()
-			->select('name')
-			->distinct()
 			->where('status', config('constants.STATUS_ACTIVE'))
 			->orderBy('name')
-			// ->limit(13)
-			->get()
-			->map(function ($category)
-			{
-				return [
-					'name' => $category->name,
-					'slug' => $category->slug = Str::slug($category->name)
-				];
-			});
+			->get();
 		// divide o resultado da busca em 3 blocos
 		return $categories->split(3);
 	}
@@ -88,39 +62,11 @@ class CategoryRepository extends BaseRepository
 	 * @param \Illuminate\Http\Request $request
 	 * @return string
 	 */
-	public function options(Request $request = null)
+	public function options()
 	{
-		$materialId = $request->material ?? null;
-		$categoryId = $request->category ?? null;
-		// verifica se nao foi informado o material
-		if (empty($materialId)) {
-			return [];
-		}
-		// carrega os dados do banco
-		$categories = $this->query()
-			->with(['material' => function ($subQuery)
-			{
-				$subQuery->orderBy('name');
-			}])
+		return $this->query()
 			->orderBy('name')
 			->where('status', config('constants.STATUS_ACTIVE'))
-			->where('material_id', $materialId)
 			->pluck('name', 'id');
-
-		// construindo as opcoes combobox
-		$options = '';
-		// percorre os tipos
-		foreach ($categories as $id => $name) {
-			// verifica se existe categoria
-			if ($categoryId == $id) {
-				// monta o html
-				$options .= '<option value="' . $id . '" selected>' . $name . '</option>';
-			} else {
-				// monta o html
-				$options .= '<option value="' . $id . '">' . $name . '</option>';
-			}
-        }
-        // retorna o combobox pronto
-		return $options;
 	}
 }

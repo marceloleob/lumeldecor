@@ -21,6 +21,7 @@ class Theme extends Model
 	protected $fillable = [
 		'id',
 		'name',
+		'slug',
 		'show',
 		'status',
 	];

@@ -20,19 +20,10 @@ class Category extends Model
 	 */
 	protected $fillable = [
 		'id',
-		'material_id',
 		'name',
+		'slug',
 		'status',
 	];
-
-	/**
-	 * Get the material that owns the category.
-	 *
-	 */
-	public function material()
-	{
-		return $this->belongsTo(Material::class);
-	}
 
 	/**
 	 * Get the products about this category.

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MaterialRequest;
 use App\Repositories\MaterialRepository;
+use App\Services\MaterialService;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -56,10 +57,10 @@ class MaterialController extends Controller
     public function store(MaterialRequest $request)
     {
 		// save
-		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = MaterialService::store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar o material, tente novamente!');
 		}
 
         return redirect()->route('material.list')->with('success', 'Material cadastrado com sucesso!');
@@ -90,13 +91,13 @@ class MaterialController extends Controller
     public function update(MaterialRequest $request, $id)
     {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = MaterialService::store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar o material, tente novamente!');
 		}
 
-        return redirect()->route('material.list')->with('success', 'Material atualizado com sucesso!');
+		return redirect()->route('material.list')->with('success', 'Material atualizado com sucesso!');
 	}
 
     /**

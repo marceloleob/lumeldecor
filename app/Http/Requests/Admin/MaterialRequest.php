@@ -41,7 +41,7 @@ class MaterialRequest extends BaseRequest
      */
     public static $validations = [
         'id'     => 'integer',
-        'name'   => 'required|min:2|max:100|unique:materials',
+        'name'   => 'required|min:2|max:150|unique:materials',
         'status' => 'boolean',
 	];
 

@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('material_id');
             $table->foreignId('category_id');
 			$table->string('name', 150);
-			$table->string('slug', 250)->unique();
+			$table->string('slug', 200)->unique();
 			$table->string('picture', 100)->nullable();
 			$table->text('description');
 			$table->text('hashtag')->nullable();

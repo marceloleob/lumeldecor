@@ -42,8 +42,23 @@ class ThemeRequest extends BaseRequest
      */
     public static $validations = [
         'id'     => 'integer',
-        'name'   => 'required|min:2|max:100',
+        'name'   => 'required|min:2|max:150|unique:themes',
         'show'   => 'required|boolean',
         'status' => 'boolean',
 	];
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+		// efetua o tratamento para campo unico
+		if (!empty($this->id)) {
+			static::$validations['name'] .= ',name,' . $this->id;
+		}
+
+        return static::$validations;
+	}
 }

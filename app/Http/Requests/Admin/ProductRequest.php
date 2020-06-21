@@ -48,10 +48,25 @@ class ProductRequest extends BaseRequest
 		'id'          => 'integer',
         'material_id' => 'required|integer',
         'category_id' => 'required|integer',
-        'name'        => 'required|min:2|max:100',
+        'name'        => 'required|min:2|max:150|unique:products',
         'description' => 'max:3000',
         'hashtag'     => '',
         'featured'    => 'boolean',
         'status'      => 'boolean',
-    ];
+	];
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+		// efetua o tratamento para campo unico
+		if (!empty($this->id)) {
+			static::$validations['name'] .= ',name,' . $this->id;
+		}
+
+        return static::$validations;
+    }
 }

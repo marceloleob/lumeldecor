@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\MaterialRepository;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -33,7 +34,7 @@ class CategoryController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$params = $this->repository->all($request->search, $request->material_id);
+		$params = $this->repository->all($request->search);
 		$params['optionsmaterial'] = (new MaterialRepository())->options();
 
 		return view('admin.pages.category-list', ['page' => 'category'])->with($params);
@@ -59,17 +60,17 @@ class CategoryController extends Controller
 	 * @param  CategoryRequest  $request
 	 * @return Response
 	 */
-	public function store(CategoryRequest $request)
-	{
+    public function store(CategoryRequest $request)
+    {
 		// save
-		$response = $this->repository->store($request->all());
-		// verifica se retornou erro
-		if (isset($response['error'])) {
-			return back()->withInput()->with($response);
+		$entity = CategoryService::store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar a categoria, tente novamente!');
 		}
 
-		return redirect()->route('category.list')->with('success', 'Categoria cadastrada com sucesso!');
-	}
+        return redirect()->route('category.list')->with('success', 'Categoria cadastrada com sucesso!');
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -95,15 +96,15 @@ class CategoryController extends Controller
 	 * @return Response
 	 */
 	public function update(CategoryRequest $request, $id)
-	{
+    {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-		// verifica se retornou erro
-		if (isset($response['error'])) {
-			return back()->withInput()->with($response);
+		$entity = CategoryService::store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar a categoria, tente novamente!');
 		}
 
-		return redirect()->route('material.list')->with('success', 'Categoria atualizada com sucesso!');
+		return redirect()->route('category.list')->with('success', 'Categoria atualizada com sucesso!');
 	}
 
 	/**
