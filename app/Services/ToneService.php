@@ -5,7 +5,7 @@ namespace App\Services;
 class ToneService
 {
 	/**
-	 * Recupera as imagens do Item e retorna com formatado para CSS/HTML
+	 * Recupera as imagens do Item e retorna formatado para CSS/HTML
 	 *
 	 * @param \App\Models\Tone
 	 * @return array

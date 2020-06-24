@@ -18,7 +18,7 @@ class Product extends Model
      *
      * @var array
      */
-	protected $with = ['category'];
+	protected $with = ['material', 'category', 'sizes', 'items'];
 
 	/**
 	 * The attributes that are mass assignable.
@@ -41,23 +41,21 @@ class Product extends Model
     ];
 
 	/**
-	 * Get the category that owns the product.
-	 *
-	 */
-	public function category()
-	{
-		return $this->belongsTo(Category::class, 'category_id', 'id');
-	}
-
-	/**
 	 * Get the material about this product.
 	 *
 	 */
 	public function material()
 	{
-		return $this->belongsTo(Material::class, 'material_id', 'id');
-		// return $this->category()->with('material');
-		// return $this->belongsToThrough(Material::class, Category::class);
+		return $this->belongsTo(Material::class);
+	}
+
+	/**
+	 * Get the category that owns the product.
+	 *
+	 */
+	public function category()
+	{
+		return $this->belongsTo(Category::class);
 	}
 
 	/**
@@ -67,6 +65,15 @@ class Product extends Model
 	public function sizes()
 	{
 		return $this->hasMany(ProductSize::class);
+	}
+
+	/**
+	 * Get the items about this product.
+	 *
+	 */
+	public function items()
+	{
+		return $this->hasManyThrough(Item::class, ProductSize::class);
 	}
 
 	/**

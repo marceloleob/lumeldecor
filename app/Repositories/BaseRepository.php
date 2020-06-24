@@ -84,21 +84,13 @@ class BaseRepository
 	 * @param string  $search
      * @return void
      */
-	public function pagination($query, $search = null, $material = null, $category = null)
+	public function pagination($query, $search = null)
 	{
 		// recupera os dados paginados
 		$this->data = $query->paginate($this->total);
 		// adiciona parametro do filtro no paginate
 		if (!empty($search)) {
             $this->data->appends(['search' => $search]);
-		}
-		// adiciona parametro do filtro no paginate
-		if (!empty($material)) {
-            $this->data->appends(['material_id' => $material]);
-		}
-		// adiciona parametro do filtro no paginate
-		if (!empty($category)) {
-            $this->data->appends(['category_id' => $category]);
 		}
         // constroi o paginate para a view
 		$this->paginate = $this->data;

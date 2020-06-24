@@ -15,14 +15,14 @@ use Exception;
 class ItemService
 {
 	/**
-	 * Retorna os dados FORMATADO "belongsToMany" referente a este modelo
+	 * Retorna os dados FORMATADO 'belongsToMany' referente a este modelo
 	 *
-	 * @param integer $itemId
 	 * @param integer $productId
 	 * @param integer $productSizeId
+	 * @param integer $itemId
 	 * @return Entity
 	 */
-	public static function findById($itemId = null, $productId, $productSizeId)
+	public static function findByIds($productId, $productSizeId, $itemId = null)
 	{
 		$repository = new ItemRepository();
 
@@ -40,8 +40,8 @@ class ItemService
 		}
 
 		$items->product_id = $items->productSize->product->id;
-		$items->tones      = self::format($items->tones);
-		$items->themes     = self::format($items->themes);
+		$items->tones      = self::getIdsArray($items->tones);
+		$items->themes     = self::getIdsArray($items->themes);
 		$items->profit     = self::profit($items);
 
 		return $items;
@@ -53,7 +53,7 @@ class ItemService
 	 * @param Collection $collection
 	 * @return array
 	 */
-	public static function format($collection)
+	public static function getIdsArray($collection)
 	{
 		$array = [];
 		foreach ($collection as $model) {
@@ -90,25 +90,6 @@ class ItemService
 	}
 
 	/**
-	 * Recupera as informacoes referente ao produto e ao tamanho do produto deste item
-	 *
-	 * @param integer $productId
-	 * @param integer $productSizeId
-	 * @return array
-	 */
-	public static function getInfos($productId, $productSizeId)
-	{
-		$items = (new ProductSizeRepository())->findByProductSizeId($productSizeId)->first();
-
-		return [
-			'productId'       => $items->product->id,
-			'productName'     => $items->product->name,
-			'productSizeId'   => $items->id,
-			'productSizeName' => $items->size,
-		];
-	}
-
-	/**
 	 * Cria um codigo unico para cada item de produto
 	 *
 	 * @param Product     $product
@@ -125,7 +106,7 @@ class ItemService
 		// mescla os codigos (3 codigos no maximo)
 		$flattened = $tones->flatten()->implode('');
 
-		$materialCode = str_pad($product->category->material->id, 2, '0', STR_PAD_LEFT);
+		$materialCode = str_pad($product->material->id, 2, '0', STR_PAD_LEFT);
 		$categoryCode = str_pad($product->category->id, 2, '0', STR_PAD_LEFT);
 		$productCode  = str_pad($product->id, 5, '0', STR_PAD_LEFT);
 		$colorCode    = str_pad($flattened, 6, '0', STR_PAD_LEFT);
@@ -214,5 +195,35 @@ class ItemService
 		ProductService::complete($data['product_id']);
 
 		return $itemE;
+	}
+
+
+	/**
+	 * Formata os itens para renderizar no Site
+	 *
+	 * @param \App\Models\Item
+	 * @return array
+	 */
+	public static function formatWebSite($items)
+	{
+		$array = [];
+		$count = 0;
+		// percorre os itens e monta um array com informacoes uteis para a view
+		foreach ($items as $item) {
+			// verifica quantas cores tem este item
+			$tones = ToneService::format($item->tones);
+			// monta os dados importantes do item
+			$array[] = [
+				'code'       => $item->code,
+				'picture'    => $item->picture,
+				's_price'    => number_format((float) $item->s_price, 2, ',', '.'),
+				'launch'     => $item->launch,
+				'tooltip'    => $tones['tooltip'],
+				'background' => $tones['background'],
+			];
+			$count++;
+		}
+
+		return $array;
 	}
 }

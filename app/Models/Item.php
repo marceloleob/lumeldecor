@@ -13,6 +13,13 @@ class Item extends Model
 	 */
 	public $timestamps = false;
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+	// protected $with = ['product', 'items'];
+
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -31,6 +38,15 @@ class Item extends Model
 	];
 
 	/**
+	 * Get the product that owns the item.
+	 *
+	 */
+	public function product()
+	{
+		return $this->belongsToThrough(ProductSize::class, Product::class);
+	}
+
+	/**
 	 * Get the product-size that owns the item.
 	 *
 	 */
@@ -45,16 +61,7 @@ class Item extends Model
 	 */
 	public function supplier()
 	{
-		return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
-	}
-
-	/**
-	 * Get the campaign about this item.
-	 *
-	 */
-	public function campaign()
-	{
-		return $this->hasOne(CampaignItem::class);
+		return $this->belongsTo(Supplier::class);
 	}
 
 	/**
@@ -91,6 +98,15 @@ class Item extends Model
 	public function promotions()
 	{
 		return $this->hasMany(OfferPromotion::class);
+	}
+
+	/**
+	 * Get the campaign about this item.
+	 *
+	 */
+	public function campaign()
+	{
+		return $this->hasOne(CampaignItem::class);
 	}
 
 	/**

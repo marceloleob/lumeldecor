@@ -236,6 +236,47 @@ class Macros extends FormBuilder
 	}
 
 	/**
+	 * Create a select sort field.
+	 *
+	 * @param  string $name
+	 * @param  string $selected
+	 * @param  array  $options
+	 *
+	 * @return HtmlString
+	 */
+	public function selectSort($name, $selected = null, $options = [])
+	{
+		$size = [
+			'best-seller' => 'Mais Vendidos',
+			'low-high'    => 'Menores Preços',
+			'high-low'    => 'Maiores Preços',
+			'lauch'       => 'Lançamentos',
+		];
+
+		return $this->select($name, $size, $selected, $options);
+	}
+
+	/**
+	 * Create a select sort field.
+	 *
+	 * @param  string $name
+	 * @param  string $selected
+	 * @param  array  $options
+	 *
+	 * @return HtmlString
+	 */
+	public function selectShow($name, $selected = null, $options = [])
+	{
+		$size = [
+			'9'  => '9',
+			'18' => '18',
+			'27' => '27',
+		];
+
+		return $this->select($name, $size, $selected, $options);
+	}
+
+	/**
 	 * Create a checkbox with bootstrap switch.
 	 *
 	 * @param  string $name

@@ -568,7 +568,7 @@ require('../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 
 	/*===================================*
 	23. PRODUCT COLOR JS
-	*===================================*/
+	*===================================*
 	$('.product_color span').each(function() {
 		var get_color = $(this).attr('data-color');
 		$(this).css("background-color", get_color);

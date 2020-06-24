@@ -27,7 +27,7 @@
 							<div class="col-md-6">
 								<div class="position-relative form-group">
 									{!! Form::label('material_id', 'Material', ['class' => 'required']) !!}
-									{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->category->material->id), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
+									{!! Form::select('material_id', $optionsmaterial, old('material_id', $data->material->id), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
 									{!! Form::notification('material_id', $errors) !!}
 								</div>
 								<div class="position-relative form-group">

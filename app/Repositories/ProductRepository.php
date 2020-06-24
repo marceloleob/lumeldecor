@@ -3,6 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use App\Services\ProductSizeService;
+use App\Services\ToneService;
+use Illuminate\Http\Request;
 
 class ProductRepository extends BaseRepository
 {
@@ -16,24 +19,30 @@ class ProductRepository extends BaseRepository
 	/**
 	 * Executa a busca para a listagem com paginacao e filtro
 	 *
-	 * @param  string $search
-	 * @param  string $material
-	 * @param  string $category
+	 * @param Request $request
 	 * @return array
 	 */
-	public function all($search = null, $material = null, $category = null)
+	public function all(Request $request)
 	{
+		$search   = $request->search ?? null;
+		$material = $request->material_id ?? null;
+		$category = $request->category_id ?? null;
+		$return   = [];
+
 		$query = $this->query()->orderBy('done')->orderBy('name');
 
 		// verifica se buscou algum item especifico
 		if (!empty($search)) {
 			$query->where('name', 'LIKE', '%' . $search . '%');
+			$return['search'] = $search;
 		}
 		if (!empty($material)) {
 			$query->where('material_id', $material);
+			$return['material'] = $material;
 		}
 		if (!empty($category)) {
 			$query->where('category_id', $category);
+			$return['category'] = $category;
 		}
 
         // cria uma collection com paginacao para montar o grid
@@ -41,14 +50,40 @@ class ProductRepository extends BaseRepository
 		// formata os registros da collection
 		$this->format();
 
-		return [
-			'search'   => $search,
-			'material' => $material,
-			'category' => $category,
-			'data'     => $this->data,
-			'paginate' => $this->paginate,
-		];
+		$return['data']     = $this->data;
+		$return['paginate'] = $this->paginate;
+
+		return $return;
 	}
+
+    /**
+     * Handler paginator
+     *
+     * @param Builder $query
+	 * @param string  $search
+	 * @param string  $material
+	 * @param string  $category
+     * @return void
+     */
+	public function pagination($query, $search = null, $material = null, $category = null)
+	{
+		// recupera os dados paginados
+		$this->data = $query->paginate($this->total);
+		// adiciona parametro do filtro no paginate
+		if (!empty($search)) {
+            $this->data->appends(['search' => $search]);
+		}
+		// adiciona parametro do filtro no paginate
+		if (!empty($material)) {
+            $this->data->appends(['material_id' => $material]);
+		}
+		// adiciona parametro do filtro no paginate
+		if (!empty($category)) {
+            $this->data->appends(['category_id' => $category]);
+		}
+        // constroi o paginate para a view
+		$this->paginate = $this->data;
+    }
 
 	/**
 	 * Percorre a Collection e customiza dados para imprimir na view
@@ -107,5 +142,51 @@ class ProductRepository extends BaseRepository
 			->where('status', config('constants.STATUS_ACTIVE'))
 			->get()
 			->pluck('name', 'id');
+	}
+
+	/**
+	 * Recupera todos os produtos referentes ao material informado
+	 *
+	 * @param string $search
+	 * @return array
+	 */
+	public function getProductsByMaterial($search)
+	{
+		$query = $this->query()
+			->with([
+				'material' => function ($subQuery) use ($search) {
+					$subQuery->where('slug', 'LIKE', '%' . $search . '%');
+				},
+				'sizes' // => function ($subQuery) {
+				// 	$subQuery->where('done', config('constants.STATUS_ACTIVE'));
+				// }
+			])
+			->where('done', config('constants.STATUS_ACTIVE'))
+			->where('status', config('constants.STATUS_ACTIVE'))
+			->inRandomOrder();
+
+        // cria uma collection com paginacao para montar o grid
+		$this->pagination($query, $search);
+		// formata os registros da collection
+		$this->formatWebSite();
+// dd($this->data);
+		$return['data']     = $this->data;
+		$return['paginate'] = $this->paginate;
+
+		return $return;
+	}
+
+	/**
+	 * Percorre a Collection e customiza dados para imprimir na view
+	 *
+	 * @return \Illuminate\Database\Eloquent\Collection
+	 */
+	public function formatWebSite()
+	{
+		// Percorre toda a Collection
+		$this->data->map(function ($collection)
+		{
+			$collection->pSizes = ProductSizeService::formatWebSite($collection->sizes);
+		});
 	}
 }

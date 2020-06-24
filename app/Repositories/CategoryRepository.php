@@ -42,11 +42,11 @@ class CategoryRepository extends BaseRepository
 	}
 
 	/**
-	 * Recupera todos os registros ativos
+	 * Recupera todos os registros ativos para carregar o menu do Site
 	 *
 	 * @return Entity
 	 */
-	public function allActive()
+	public function loadMenu()
 	{
 		$categories = $this->query()
 			->where('status', config('constants.STATUS_ACTIVE'))

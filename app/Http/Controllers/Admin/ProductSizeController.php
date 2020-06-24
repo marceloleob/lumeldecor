@@ -77,9 +77,9 @@ class ProductSizeController extends Controller
     public function edit($productId, $productSizeId)
     {
 		$params = [
-			'infos' => (new ProductRepository)->findById($productId),
 			'data'  => $this->repository->findById($productSizeId),
-			'items' => (new ProductSizeRepository)->findByProductSizeId($productSizeId),
+			'infos' => (new ProductRepository)->findById($productId),
+			'items' => (new ProductSizeRepository)->findByProductId($productId),
 		];
 
 		return view('admin.pages.product-size-form-update', ['page' => 'product-size'])->with($params);

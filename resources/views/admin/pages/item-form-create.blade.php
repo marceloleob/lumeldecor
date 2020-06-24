@@ -12,10 +12,10 @@
 					<div class="card-body">
 						<ul class="forms-wizard mb-3">
 							<li class="nav-item nav-product">
-								<a href="{!! route('product.edit', $infos['productId']) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
+								<a href="{!! route('product.edit', $productSize->product->id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
 							</li>
 							<li class="nav-item nav-product">
-								<a href="{!! route('product-size.create', $infos['productId']) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
+								<a href="{!! route('product-size.create', $productSize->product->id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
 							</li>
 							<li class="nav-item nav-product active">
 								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Cor(es) do Produto</span></span>
@@ -24,7 +24,7 @@
 
 						<div class="row mb-4">
 							<div class="col-md-12 d-flex px-3 py-2 my-2">
-								<div class="product-title">{!! $infos['productName'] !!} - {!! $infos['productSizeName'] !!}</div>
+								<div class="product-title">{!! $productSize->product->name !!} - {!! $productSize->size !!}</div>
 							</div>
 						</div>
 						<div class="row">
@@ -117,9 +117,9 @@
 
 				<div class="main-card mb-3 card">
 					<div class="card-button">
-						{!! Form::hidden('product_id', $infos['productId'], ['id' => 'product_id']) !!}
-						{!! Form::hidden('product_size_id', $infos['productSizeId'], ['id' => 'product_size_id']) !!}
-						{!! Form::buttons('product-size.create', null, ['back-show' => true, 'cancel-link-params' => $infos['productId']]) !!}
+						{!! Form::hidden('product_id', $productSize->product->id, ['id' => 'product_id']) !!}
+						{!! Form::hidden('product_size_id', $productSize->id, ['id' => 'product_size_id']) !!}
+						{!! Form::buttons('product-size.create', null, ['back-show' => true, 'cancel-link-params' => $productSize->product->id]) !!}
 					</div>
 				</div>
 			{!! Form::close() !!}

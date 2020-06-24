@@ -14,21 +14,7 @@ class ProductSizeRepository extends BaseRepository
 	protected $model = ProductSize::class;
 
 	/**
-	 * Retorna todos os sizes de um produto
-	 *
-	 * @param integer $productSizeId
-	 * @return Entity
-	 */
-	public function findByProductSizeId($productSizeId)
-	{
-		// recupera os dados deste "tamanho" para pegar o product_id
-		$productSize = $this->findById($productSizeId);
-
-		return $this->findByProductId($productSize->product_id);
-	}
-
-	/**
-	 * Retorna todos os sizes de um produto
+	 * Retorna todos os sizes de um produto pelo codigo do produto
 	 *
 	 * @param integer $productId
 	 * @return Entity
@@ -43,6 +29,23 @@ class ProductSizeRepository extends BaseRepository
 		$this->format();
 
 		return $this->data;
+	}
+
+	/**
+	 * Percorre a Collection e customiza dados para imprimir na view
+	 *
+	 * @return Collection
+	 */
+	public function format()
+	{
+		// Percorre toda a Collection
+		$this->data->map(function ($collection) {
+
+			$collection->productId   = $collection->product->id;
+			$collection->productName = $collection->product->name;
+			$collection->shape       = ($collection->shape === 'R') ? 'Redondo' : 'Quadrado';
+
+		});
 	}
 
 	/**
@@ -74,22 +77,5 @@ class ProductSizeRepository extends BaseRepository
 		}
 		// retorna OK
 		return true;
-	}
-
-	/**
-	 * Percorre a Collection e customiza dados para imprimir na view
-	 *
-	 * @return Collection
-	 */
-	public function format()
-	{
-		// Percorre toda a Collection
-		$this->data->map(function ($collection) {
-
-			$collection->productId   = $collection->product->id;
-			$collection->productName = $collection->product->name;
-			$collection->shape       = ($collection->shape === 'R') ? 'Redondo' : 'Quadrado';
-
-		});
 	}
 }

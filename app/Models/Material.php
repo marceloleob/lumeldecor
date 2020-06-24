@@ -25,12 +25,13 @@ class Material extends Model
 		'status',
 	];
 
-    /**
-     * Get all of the products for the material.
-     */
-    public function products()
-    {
-		return $this->hasMany(Category::class);
+	/**
+	 * Get the products about this material.
+	 *
+	 */
+	public function products()
+	{
+		return $this->hasMany(Product::class);
 	}
 
 	/**

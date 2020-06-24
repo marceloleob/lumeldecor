@@ -38,4 +38,32 @@ class ProductService
 
 		return (new ProductRepository())->store($data);
 	}
+
+	/**
+	 * Recupera o nome completo do produto (mais o tamanho)
+	 *
+	 * @param integer $productId
+	 * @param integer $productSizeId
+	 * @param integer $itemId
+	 * @return array
+	 */
+	// public static function getInfos($productId, $productSizeId = null, $itemId = null)
+	// {
+	// 	// recupera as informacoes do produto
+	// 	$product = (new ProductRepository())->findById($productId);
+	// 	// recupera as informacoes de um tamanho expecifico
+	// 	if (!empty($productSizeId)) {
+	// 		$sizes = $product->sizes->where('id', $productSizeId);
+	// 	}
+	// 	// recupera as informacoes de um item de um tamanho expecifico
+	// 	if (!empty($itemId)) {
+	// 		$items = $product->sizes->items->where('id', $itemId);
+	// 	}
+
+	// 	return [
+	// 		'product' => $product,
+	// 		'sizes'   => $sizes ?? null,
+	// 		'items'   => $items ?? null,
+	// 	];
+	// }
 }

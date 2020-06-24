@@ -35,7 +35,7 @@ class ProductController extends Controller
 	 */
     public function index(Request $request)
     {
-		$params = $this->repository->all($request->search, $request->material_id, $request->category_id);
+		$params = $this->repository->all($request);
 		$params['optionsmaterial'] = (new MaterialRepository())->options();
 		$params['optionscategory'] = (new CategoryRepository())->options();
 

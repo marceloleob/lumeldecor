@@ -38,10 +38,10 @@ Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
 	Route::get('contato', 'ContactController@index')->name('contact');
 	Route::post('enviar-contato', 'ContactController@send')->name('contact.send');
 	// Produtos
-	Route::get('produtos/material/{slug}', 'ProductController@show')->name('product.material');
-	Route::get('produtos/categoria/{slug}', 'ProductController@show')->name('product.category');
-	Route::get('produtos/cor/{slug}', 'ProductController@show')->name('product.color');
-	Route::get('produtos/tema/{slug}', 'ProductController@show')->name('product.theme');
+	Route::get('material/{search}', 'ProductController@showByMaterial')->name('product.material');
+	Route::get('categoria/{search}', 'ProductController@show')->name('product.category');
+	Route::get('cor/{search}', 'ProductController@show')->name('product.color');
+	Route::get('tema/{search}', 'ProductController@show')->name('product.theme');
 });
 
 

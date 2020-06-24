@@ -17,10 +17,10 @@ class MenuService
 	public static function render()
 	{
 		return [
-			'materials'  => (new MaterialRepository())->allActive(),
-			'categories' => (new CategoryRepository())->allActive(),
-			'colors'     => (new ColorRepository())->allActive(),
-			'themes'     => (new ThemeRepository())->allActive(),
+			'materials'  => (new MaterialRepository())->loadMenu(),
+			'categories' => (new CategoryRepository())->loadMenu(),
+			'colors'     => (new ColorRepository())->loadMenu(),
+			'themes'     => (new ThemeRepository())->loadMenu(),
 		];
 	}
 }

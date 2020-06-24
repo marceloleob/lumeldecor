@@ -13,6 +13,13 @@ class ProductSize extends Model
 	 */
 	public $timestamps = false;
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+	// protected $with = ['product', 'items'];
+
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -38,7 +45,7 @@ class ProductSize extends Model
 	 */
 	public function product()
 	{
-		return $this->belongsTo(Product::class, 'product_id', 'id');
+		return $this->belongsTo(Product::class);
 	}
 
 	/**

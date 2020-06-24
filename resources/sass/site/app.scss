@@ -3,3 +3,20 @@
 @import '../../../node_modules/owl.carousel/dist/assets/owl.theme.default.min.css';
 // jQuery Magnific Popup
 @import '../../../node_modules/magnific-popup/dist/magnific-popup.css';
+
+/**
+* -----------------------------------------------------------------------------
+* SELECTPICKER
+* -----------------------------------------------------------------------------
+*/
+.bootstrap-select > .dropdown-toggle.bs-placeholder,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:hover,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+	color: #495057 !important;
+	background-color: #FFFFFF !important;
+}
+.bootstrap-select > .btn-light {
+	background-color: #FFF !important;
+	border: 1px solid #ced4da;
+}

@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Models\Stock;
 use App\Services\ToneService;
-use Illuminate\Support\Facades\DB;
 
 class StockRepository extends BaseRepository
 {
