@@ -153,14 +153,11 @@ class ProductRepository extends BaseRepository
 	public function getProductsByMaterial($search)
 	{
 		$query = $this->query()
-			->with([
-				'material' => function ($subQuery) use ($search) {
+			->whereHas(
+				'material', function ($subQuery) use ($search) {
 					$subQuery->where('slug', 'LIKE', '%' . $search . '%');
-				},
-				'sizes' // => function ($subQuery) {
-				// 	$subQuery->where('done', config('constants.STATUS_ACTIVE'));
-				// }
-			])
+				}
+			)
 			->where('done', config('constants.STATUS_ACTIVE'))
 			->where('status', config('constants.STATUS_ACTIVE'))
 			->inRandomOrder();
@@ -169,7 +166,9 @@ class ProductRepository extends BaseRepository
 		$this->pagination($query, $search);
 		// formata os registros da collection
 		$this->formatWebSite();
+
 // dd($this->data);
+
 		$return['data']     = $this->data;
 		$return['paginate'] = $this->paginate;
 

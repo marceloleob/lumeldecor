@@ -56,11 +56,11 @@ class OfferCouponController extends Controller
     public function store(OfferCouponRequest $request)
     {
 		// save
-		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = $this->repository->store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar cupom, tente novamente!');
+		}
 
         return redirect()->route('coupon.list')->with('success', 'Cupom cadastrado com sucesso!');
     }
@@ -90,13 +90,13 @@ class OfferCouponController extends Controller
     public function update(OfferCouponRequest $request, $id)
     {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = $this->repository->store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar cupom, tente novamente!');
 		}
 
-        return redirect()->route('material.list')->with('success', 'Cupom atualizado com sucesso!');
+        return redirect()->route('coupon.list')->with('success', 'Cupom atualizado com sucesso!');
 	}
 
     /**

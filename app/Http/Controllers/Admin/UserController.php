@@ -56,11 +56,11 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
 		// save
-		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = $this->repository->store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar usuário, tente novamente!');
+		}
 
         return redirect()->route('user.list')->with('success', 'Usuário cadastrado com sucesso!');
     }
@@ -90,13 +90,13 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = $this->repository->store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar usuário, tente novamente!');
 		}
 
-        return redirect()->route('material.list')->with('success', 'Usuário atualizado com sucesso!');
+        return redirect()->route('user.list')->with('success', 'Usuário atualizado com sucesso!');
 	}
 
     /**

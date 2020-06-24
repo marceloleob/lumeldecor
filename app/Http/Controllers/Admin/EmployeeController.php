@@ -56,13 +56,13 @@ class EmployeeController extends Controller
     public function store(EmployeeRequest $request)
     {
 		// save
-		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = $this->repository->store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar funcionário(a), tente novamente!');
+		}
 
-        return redirect()->route('employee.list')->with('success', 'Funcionário cadastrado com sucesso!');
+        return redirect()->route('employee.list')->with('success', 'Funcionário(a) cadastrado(a) com sucesso!');
     }
 
     /**
@@ -90,13 +90,13 @@ class EmployeeController extends Controller
     public function update(EmployeeRequest $request, $id)
     {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = $this->repository->store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar funcionário(a), tente novamente!');
 		}
 
-        return redirect()->route('material.list')->with('success', 'Funcionário atualizado com sucesso!');
+        return redirect()->route('employee.list')->with('success', 'Funcionário(a) atualizado(a) com sucesso!');
 	}
 
     /**

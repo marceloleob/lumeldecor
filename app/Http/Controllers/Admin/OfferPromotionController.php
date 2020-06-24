@@ -67,11 +67,11 @@ class OfferPromotionController extends Controller
     public function store(OfferPromotionRequest $request)
     {
 		// save
-		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = $this->repository->store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar oferta, tente novamente!');
+		}
 
         return redirect()->route('promotion.list')->with('success', 'Oferta cadastrada com sucesso!');
     }
@@ -105,13 +105,13 @@ class OfferPromotionController extends Controller
     public function update(OfferPromotionRequest $request, $id)
     {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = $this->repository->store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar oferta, tente novamente!');
 		}
 
-        return redirect()->route('material.list')->with('success', 'Oferta atualizada com sucesso!');
+        return redirect()->route('promotion.list')->with('success', 'Oferta atualizada com sucesso!');
 	}
 
     /**

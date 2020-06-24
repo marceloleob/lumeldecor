@@ -62,10 +62,10 @@ class ToneController extends Controller
     public function store(ToneRequest $request)
     {
 		// save
-		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = $this->repository->store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar tonalidade, tente novamente!');
 		}
 
         return redirect()->route('tone.list')->with('success', 'Tonalidade cadastrada com sucesso!');
@@ -96,10 +96,10 @@ class ToneController extends Controller
     public function update(ToneRequest $request, $id)
     {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = $this->repository->store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar tonalidade, tente novamente!');
 		}
 
         return redirect()->route('tone.list')->with('success', 'Tonalidade atualizada com sucesso!');

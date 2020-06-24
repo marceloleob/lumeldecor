@@ -63,11 +63,11 @@ class CampaignController extends Controller
     public function store(CampaignRequest $request)
     {
 		// save
-		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = $this->repository->store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar a campanha, tente novamente!');
+		}
 
         return redirect()->route('campaign.list')->with('success', 'Campanha cadastrada com sucesso!');
     }
@@ -99,13 +99,13 @@ class CampaignController extends Controller
     public function update(CampaignRequest $request, $id)
     {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = $this->repository->store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar a campanha, tente novamente!');
 		}
 
-        return redirect()->route('material.list')->with('success', 'Campanha atualizada com sucesso!');
+		return redirect()->route('campaign.list')->with('success', 'Campanha atualizada com sucesso!');
 	}
 
     /**

@@ -56,11 +56,11 @@ class SupplierController extends Controller
     public function store(SupplierRequest $request)
     {
 		// save
-		$response = $this->repository->store($request->all());
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
-        }
+		$entity = $this->repository->store($request->all());
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao cadastrar fornecedor, tente novamente!');
+		}
 
         return redirect()->route('supplier.list')->with('success', 'Fornecedor cadastrado com sucesso!');
     }
@@ -90,13 +90,13 @@ class SupplierController extends Controller
     public function update(SupplierRequest $request, $id)
     {
 		// save
-		$response = $this->repository->store($request->all(), $id);
-        // verifica se retornou erro
-        if (isset($response['error'])) {
-            return back()->withInput()->with($response);
+		$entity = $this->repository->store($request->all(), $id);
+		// verifica se salvou
+		if (! isset($entity->id)) {
+			return back()->withInput()->with('danger', 'Erro ao atualizar fornecedor, tente novamente!');
 		}
 
-        return redirect()->route('material.list')->with('success', 'Fornecedor atualizado com sucesso!');
+        return redirect()->route('supplier.list')->with('success', 'Fornecedor atualizado com sucesso!');
 	}
 
     /**
