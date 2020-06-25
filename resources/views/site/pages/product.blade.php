@@ -53,73 +53,27 @@
 									<div class="product_info">
 										<h6 class="product_title"><a href="shop-product-detail.html">{!! $product->productName !!}</a></h6>
 										<div class="product_price">
-											<span class="price">R$ {!! $product->p_price !!}</span>
+											<span class="price">R$ {!! $product->s_price !!}</span>
+											<del>R$ 25.00</del>
+											<div class="on_sale">
+												<span>35% Off</span>
+											</div>
+										</div>
+										<div class="pr_desc">
+											<p>{!! $product->product->description !!}</p>
+										</div>
+										<div class="list_product_action_box">
+											<ul class="list_none pr_action_btn">
+												<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Comprar</a></li>
+												<li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+												<li><a href="#"><i class="icon-heart"></i></a></li>
+											</ul>
 										</div>
 									</div>
+
 								</div>
 							</div>
 						@endforeach
-
-						{{-- <div class="col-md-4 col-6">
-							<div class="product">
-								<span class="pr_flash"><i class="fas fa-rocket launch"></i></span>
-								<div class="product_img">
-									<a href="#">
-										<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/2020-06-22-5ef10ea82e9d7.jpeg') !!}" alt="nome do produto">
-									</a>
-									<div class="product_action_box">
-										<ul class="list_none pr_action_btn">
-											<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i></a></li>
-											<li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-											<li><a href="#"><i class="icon-heart"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product_info">
-									<h6 class="product_title"><a href="shop-product-detail.html">Bandeja de Cerâmica Lisa</a></h6>
-									<div class="product_price">
-										<span class="price">R$ 999,99</span>
-									</div>
-								</div>
-							</div>
-						</div> --}}
-
-						{{-- <div class="col-md-4 col-6">
-							<div class="product">
-								<div class="product_img">
-									<a href="shop-product-detail.html">
-										<img src="{!! asset('assets/images/product_img1.jpg') !!}" alt="product_img1">
-									</a>
-									<div class="product_action_box">
-										<ul class="list_none pr_action_btn">
-											<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-											<li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-											<li><a href="#"><i class="icon-heart"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product_info">
-									<h6 class="product_title"><a href="shop-product-detail.html">Caneca de Cerâmica</a></h6>
-									<div class="product_price">
-										<span class="price">R$ 15,00</span>
-										<del>R$ 25.00</del>
-										<div class="on_sale">
-											<span>35% Off</span>
-										</div>
-									</div>
-									<div class="pr_desc">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
-									</div>
-									<div class="pr_switch_wrap">
-										<div class="product_color_switch">
-											<span class="active" data-color="#87554B" style="background-color: rgb(135, 85, 75);"></span>
-											<span data-color="#333333" style="background-color: rgb(51, 51, 51);"></span>
-											<span data-color="#DA323F" style="background-color: rgb(218, 50, 63);"></span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div> --}}
 						{{-- END PRODUCT --}}
 
 					</div>

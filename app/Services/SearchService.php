@@ -99,7 +99,7 @@ class SearchService
 			$collection->productId   = $collection->productSize->product->id;
 			$collection->productName = $collection->productSize->product->name;
 			$collection->size        = $collection->productSize->size;
-			$collection->s_price     = number_format((float) $collection->s_price, 2, ',', '.');
+			// $collection->s_price     = number_format((float) $collection->s_price, 2, ',', '.');
 			// verifica se o item e lancamento
 			if ($collection->launch == config('constants.STATUS_ACTIVE')) {
 				$collection->launch = '<span class="pr_flash"><i class="fas fa-rocket launch"></i></span>';

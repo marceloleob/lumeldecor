@@ -118,7 +118,7 @@ class Item extends Model
      */
     public function getPPriceAttribute($value)
     {
-        return number_format($value, 2, ',', '.');
+        return number_format((float) $value, 2, ',', '.');
     }
 
 	/**
@@ -129,6 +129,6 @@ class Item extends Model
      */
     public function getSPriceAttribute($value)
     {
-        return number_format($value, 2, ',', '.');
+        return number_format((float) $value, 2, ',', '.');
     }
 }
