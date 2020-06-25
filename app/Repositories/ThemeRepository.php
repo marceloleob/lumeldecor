@@ -40,19 +40,6 @@ class ThemeRepository extends BaseRepository
 	}
 
 	/**
-	 * Recupera todos os registros ativos para carregar o menu do Site
-	 *
-	 * @return Entity
-	 */
-	public function loadMenu()
-	{
-		return $this->query()
-			->where('status', config('constants.STATUS_ACTIVE'))
-			->orderBy('name')
-			->get();
-	}
-
-	/**
 	 * Percorre a Collection e customiza dados para imprimir na view
 	 *
 	 * @return Collection
@@ -63,13 +50,13 @@ class ThemeRepository extends BaseRepository
 		$this->data->map(function ($collection)
 		{
 			// verifica se o tema vai aparecer na home
-			if ($collection->show == config('constants.STATUS_ACTIVE')) {
+			if ($collection->show == config('constants.SHOW.ACTIVE')) {
 				$collection->show = '<i class="fas fa-check"></i>';
 			} else {
 				$collection->show = '<i class="fas fa-times"></i>';
 			}
 			// verifica se e inativo
-			if ($collection->status == config('constants.STATUS_ACTIVE')) {
+			if ($collection->status == config('constants.STATUS.ACTIVE')) {
                 // seta ativo como default
                 $collection->status = ['class' => 'success', 'label' => 'Ativo'];
                 $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
@@ -90,7 +77,21 @@ class ThemeRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('name')
-			->where('status', config('constants.STATUS_ACTIVE'))
+			->where('status', config('constants.STATUS.ACTIVE'))
 			->pluck('name', 'id');
+	}
+
+	/**
+	 * Recupera todos os registros ativos para carregar o menu do Site
+	 *
+	 * @return Entity
+	 */
+	public function loadMenu()
+	{
+		return $this->query()
+			->where('status', config('constants.STATUS.ACTIVE'))
+			->where('show', config('constants.SHOW.ACTIVE'))
+			->orderBy('name')
+			->get();
 	}
 }

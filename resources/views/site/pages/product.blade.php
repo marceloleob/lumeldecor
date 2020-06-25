@@ -51,7 +51,7 @@
 										</div>
 									</div>
 									<div class="product_info">
-										<h6 class="product_title"><a href="shop-product-detail.html">{!! $product->productName !!}</a></h6>
+										<h6 class="product_title"><a href="shop-product-detail.html">{!! $product->product->name !!}</a></h6>
 										<div class="product_price">
 											<span class="price">R$ {!! $product->s_price !!}</span>
 											<del>R$ 25.00</del>

@@ -97,21 +97,21 @@ class ProductRepository extends BaseRepository
 			$collection->categoryName = $collection->category->name;
 			$collection->materialName = $collection->material->name;
 			// verifica se o producto e um destaque
-			if ($collection->featured == config('constants.STATUS_ACTIVE')) {
+			if ($collection->featured == config('constants.FEATURED.ACTIVE')) {
 				$collection->featured = '<i class="fas fa-check"></i>';
 			} else {
 				$collection->featured = '<i class="fas fa-times"></i>';
 			}
 			// verifica se o producto e um lancamento
-			if ($collection->launch == config('constants.STATUS_ACTIVE')) {
+			if ($collection->launch == config('constants.LAUNCH.ACTIVE')) {
 				$collection->launch = '<i class="fas fa-check"></i>';
 			} else {
 				$collection->launch = '<i class="fas fa-times"></i>';
 			}
 			// verifica se o cadastro do produto esta completo
-			if ($collection->done == config('constants.STATUS_ACTIVE')) {
+			if ($collection->done == config('constants.DONE.ACTIVE')) {
 				// verifica se e inativo
-				if ($collection->status == config('constants.STATUS_ACTIVE')) {
+				if ($collection->status == config('constants.STATUS.ACTIVE')) {
 					// seta ativo como default
 					$collection->status = ['class' => 'success', 'label' => 'Ativo'];
 					$collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
@@ -137,7 +137,8 @@ class ProductRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('name')
-			->where('status', config('constants.STATUS_ACTIVE'))
+			->where('status', config('constants.STATUS.ACTIVE'))
+			->where('done', config('constants.DONE.ACTIVE'))
 			->get()
 			->pluck('name', 'id');
 	}

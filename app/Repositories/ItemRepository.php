@@ -60,13 +60,13 @@ class ItemRepository extends BaseRepository
 			$collection->productName = $collection->productSize->product->name;
 			$collection->size        = $collection->productSize->size;
 			// verifica se o item e lancamento
-			if ($collection->launch == config('constants.STATUS_ACTIVE')) {
+			if ($collection->launch == config('constants.LAUNCH.ACTIVE')) {
 				$collection->launch = '<i class="fas fa-check"></i>';
 			} else {
 				$collection->launch = '<i class="fas fa-times"></i>';
 			}
 			// verifica se e inativo
-			if ($collection->status == config('constants.STATUS_ACTIVE')) {
+			if ($collection->status == config('constants.STATUS.ACTIVE')) {
 				// seta ativo como default
 				$collection->status = ['class' => 'success', 'label' => 'Ativo'];
 				$collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];

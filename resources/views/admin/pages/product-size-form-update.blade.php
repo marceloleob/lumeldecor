@@ -63,43 +63,39 @@
 								</div>
 							</div>
 							<div class="col-md-2">
-								<div class="div-length">
-									<div class="position-relative form-group">
-										{!! Form::label('pro_length', 'Comprimento', ['class' => 'required']) !!}
-										<div class="input-group">
-											{!! Form::text('pro_length', old('pro_length', $data->pro_length), ['class' => 'form-control decimal', 'placeholder' => 'Produto']) !!}
-											<div class="input-group-append"><span class="input-group-text">cm</span></div>
-										</div>
-										{!! Form::notification('pro_length', $errors) !!}
+								<div class="position-relative form-group">
+									{!! Form::label('pro_length', ((old('shape', $data->shape) === 'R') ? 'Diâmetro' : 'Comprimento'), ['class' => 'required label-length']) !!}
+									<div class="input-group">
+										{!! Form::text('pro_length', old('pro_length', $data->pro_length), ['class' => 'form-control decimal', 'placeholder' => 'Produto']) !!}
+										<div class="input-group-append"><span class="input-group-text">cm</span></div>
 									</div>
-									<div class="position-relative form-group">
-										{!! Form::label('shi_length', 'Comprimento', ['class' => 'required']) !!}
-										<div class="input-group">
-											{!! Form::text('shi_length', old('shi_length', $data->shi_length), ['class' => 'form-control decimal', 'placeholder' => 'Embalagem']) !!}
-											<div class="input-group-append"><span class="input-group-text">cm</span></div>
-										</div>
-										{!! Form::notification('shi_length', $errors) !!}
+									{!! Form::notification('pro_length', $errors) !!}
+								</div>
+								<div class="position-relative form-group">
+									{!! Form::label('shi_length', 'Comprimento', ['class' => 'required']) !!}
+									<div class="input-group">
+										{!! Form::text('shi_length', old('shi_length', $data->shi_length), ['class' => 'form-control decimal', 'placeholder' => 'Embalagem']) !!}
+										<div class="input-group-append"><span class="input-group-text">cm</span></div>
 									</div>
+									{!! Form::notification('shi_length', $errors) !!}
 								</div>
 							</div>
 							<div class="col-md-2">
-								<div class="div-width {!! (old('shape', $data->shape) === 'R') ? 'hide' : '' !!}">
-									<div class="position-relative form-group">
-										{!! Form::label('pro_width', 'Largura', ['class' => 'required']) !!}
-										<div class="input-group">
-											{!! Form::text('pro_width', old('pro_width', $data->pro_width), ['class' => 'form-control decimal', 'placeholder' => 'Produto']) !!}
-											<div class="input-group-append"><span class="input-group-text">cm</span></div>
-										</div>
-										{!! Form::notification('pro_width', $errors) !!}
+								<div class="position-relative form-group">
+									{!! Form::label('pro_width', 'Largura', ['class' => 'required label-width' . ((old('shape', $data->shape) === 'R') ? ' line-through' : '')]) !!}
+									<div class="input-group">
+										{!! Form::text('pro_width', old('pro_width', $data->pro_width), ['class' => 'form-control decimal input-width', 'placeholder' => 'Produto', 'disabled' => ((old('shape', $data->shape) === 'R') ? true : false)]) !!}
+										<div class="input-group-append"><span class="input-group-text">cm</span></div>
 									</div>
-									<div class="position-relative form-group">
-										{!! Form::label('shi_width', 'Largura', ['class' => 'required']) !!}
-										<div class="input-group">
-											{!! Form::text('shi_width', old('shi_width', $data->shi_width), ['class' => 'form-control decimal', 'placeholder' => 'Embalagem']) !!}
-											<div class="input-group-append"><span class="input-group-text">cm</span></div>
-										</div>
-										{!! Form::notification('shi_width', $errors) !!}
+									{!! Form::notification('pro_width', $errors) !!}
+								</div>
+								<div class="position-relative form-group">
+									{!! Form::label('shi_width', 'Largura', ['class' => 'required']) !!}
+									<div class="input-group">
+										{!! Form::text('shi_width', old('shi_width', $data->shi_width), ['class' => 'form-control decimal', 'placeholder' => 'Embalagem']) !!}
+										<div class="input-group-append"><span class="input-group-text">cm</span></div>
 									</div>
+									{!! Form::notification('shi_width', $errors) !!}
 								</div>
 							</div>
 							<div class="col-md-2">

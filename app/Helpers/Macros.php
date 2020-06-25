@@ -300,11 +300,11 @@ class Macros extends FormBuilder
 		array_push($radio, $this->label('status-label', 'Status', ['class' => 'required']));
 		array_push($radio, '<div>');
 		array_push($radio, '  <div class="custom-radio custom-control">');
-		array_push($radio,      $this->radio('status', '1', ($value === config('constants.STATUS_ACTIVE')) ? true : false, ['class' => 'custom-control-input', 'id' => 'status-active']));
+		array_push($radio,      $this->radio('status', '1', ($value === config('constants.STATUS.ACTIVE')) ? true : false, ['class' => 'custom-control-input', 'id' => 'status-active']));
 		array_push($radio,      $this->label('status-active', 'Ativo no site', ['class' => 'custom-control-label']));
 		array_push($radio, '  </div>');
 		array_push($radio, '  <div class="custom-radio custom-control">');
-		array_push($radio,      $this->radio('status', '0', ($value === config('constants.STATUS_INACTIVE')) ? true : false, ['class' => 'custom-control-input', 'id' => 'status-inactive']));
+		array_push($radio,      $this->radio('status', '0', ($value === config('constants.STATUS.INACTIVE')) ? true : false, ['class' => 'custom-control-input', 'id' => 'status-inactive']));
 		array_push($radio,      $this->label('status-inactive', 'Inativo no site', ['class' => 'custom-control-label']));
 		array_push($radio, '  </div>');
 		array_push($radio, '</div>');

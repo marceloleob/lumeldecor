@@ -49,7 +49,7 @@ class CategoryRepository extends BaseRepository
 	public function loadMenu()
 	{
 		$categories = $this->query()
-			->where('status', config('constants.STATUS_ACTIVE'))
+			->where('status', config('constants.STATUS.ACTIVE'))
 			->orderBy('name')
 			->get();
 		// divide o resultado da busca em 3 blocos
@@ -66,7 +66,7 @@ class CategoryRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('name')
-			->where('status', config('constants.STATUS_ACTIVE'))
+			->where('status', config('constants.STATUS.ACTIVE'))
 			->pluck('name', 'id');
 	}
 }

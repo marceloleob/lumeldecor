@@ -16,9 +16,30 @@ return [
     // PAGINATION
     'TOTAL_PAGE'             => 20,
 
-    // BUSINESS RULES
-    'STATUS_INACTIVE'        => 0,
-    'STATUS_ACTIVE'          => 1,
+	// BUSINESS RULES
+	'STATUS'                 => [
+		'INACTIVE'           => 0,
+		'ACTIVE'             => 1,
+	],
+	'FEATURED'               => [
+		'INACTIVE'           => 0,
+		'ACTIVE'             => 1,
+	],
+	'LAUNCH'                 => [
+		'INACTIVE'           => 0,
+		'ACTIVE'             => 1,
+	],
+	'DONE'                   => [
+		'INACTIVE'           => 0,
+		'ACTIVE'             => 1,
+	],
+	'SHOW'                   => [
+		'INACTIVE'           => 0,
+		'ACTIVE'             => 1,
+	],
+	'STOCK'                   => [
+		'CURRENT'             => 1,
+	],
 
     // IMAGES
     'PICTURES_SIZE'          => 3072000, // 3 MEGABYTES EM KB

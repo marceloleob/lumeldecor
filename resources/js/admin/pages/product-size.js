@@ -33,9 +33,7 @@ $(document).ready(function ()
 					required: true,
 				},
 				shi_width: {
-					required: function () {
-						return $('#shape-Q').is(':checked');
-					},
+					required: true,
 				},
 				shi_height: {
 					required: true,
@@ -52,18 +50,20 @@ $(document).ready(function ()
 		// Method cancels the event if it is cancelable
 		event.preventDefault();
 
-		var widthDiv    = $(this).closest('.card-body').find('.div-width');
-		var lengthDiv   = $(this).closest('.card-body').find('.div-length');
-		var lengthlabel = lengthDiv.find('label');
+		var widthInput  = $(this).closest('.card-body').find('.input-width');
+		var widthlabel  = $(this).closest('.card-body').find('.label-width');
+		var lengthlabel = $(this).closest('.card-body').find('.label-length');
 
 		if ($(this).val() === 'R') {
 			// esconde o campo de largura e altera o label do comprimento
-			widthDiv.addClass('hide');
+			widthInput.attr('disabled', true);
+			widthlabel.addClass('line-through');
 			lengthlabel.html('Diâmetro');
 
 		} else if ($(this).val() === 'Q') {
 			// mostra o campo de largura e altera o label do diametro
-			widthDiv.removeClass('hide');
+			widthInput.attr('disabled', false);
+			widthlabel.removeClass('line-through');
 			lengthlabel.html('Comprimento');
 		}
 	});
@@ -99,5 +99,18 @@ $(document).ready(function ()
 		event.preventDefault();
 
 		$('#shi_height').val($(this).val());
+	});
+
+	/**
+	 * Da foco nos botoes de cores ao lado dos respectivos tamanhos
+	 *
+	 */
+	$('.add-color').on('click', function (event) {
+		// Method cancels the event if it is cancelable
+		event.preventDefault();
+		$('html, body').animate({
+			scrollTop: 1000
+		}, 600);
+		return false;
 	});
 });

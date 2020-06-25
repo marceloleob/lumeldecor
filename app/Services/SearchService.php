@@ -23,8 +23,8 @@ class SearchService
 			->whereHas(
 				'product', function ($subQuery) use ($type, $search) {
 					$subQuery
-						->where('done', config('constants.STATUS_ACTIVE'))
-						->where('status', config('constants.STATUS_ACTIVE'));
+						->where('done', config('constants.DONE.ACTIVE'))
+						->where('status', config('constants.STATUS.ACTIVE'));
 
 					// executa o filtro pelo nome do produto
 					if ($type === 'nome') {
@@ -48,7 +48,7 @@ class SearchService
 					}
 				}
 			)
-			->where('status', config('constants.STATUS_ACTIVE'));
+			->where('status', config('constants.STATUS.ACTIVE'));
 
 		self::pagination($type, $search);
 		self::format();
@@ -96,12 +96,8 @@ class SearchService
 		// Percorre toda a Collection
 		self::$data->map(function ($collection) {
 
-			$collection->productId   = $collection->productSize->product->id;
-			$collection->productName = $collection->productSize->product->name;
-			$collection->size        = $collection->productSize->size;
-			// $collection->s_price     = number_format((float) $collection->s_price, 2, ',', '.');
 			// verifica se o item e lancamento
-			if ($collection->launch == config('constants.STATUS_ACTIVE')) {
+			if ($collection->launch == config('constants.LAUNCH.ACTIVE')) {
 				$collection->launch = '<span class="pr_flash"><i class="fas fa-rocket launch"></i></span>';
 			} else {
 				$collection->launch = '';

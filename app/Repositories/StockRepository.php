@@ -41,7 +41,7 @@ class StockRepository extends BaseRepository
 					}
 				}
 			)
-			->where('current', config('constants.STATUS_ACTIVE'))
+			->where('current', config('constants.STOCK.CURRENT'))
 			->orderByDesc('created_at');
 
         // cria uma collection com paginacao para montar o grid

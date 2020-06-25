@@ -72,7 +72,7 @@ class ToneRepository extends BaseRepository
 				'colors.name AS color'
 			)
 			->join('colors', 'tones.color_id', '=', 'colors.id')
-			->where('tones.status', config('constants.STATUS_ACTIVE'))
+			->where('tones.status', config('constants.STATUS.ACTIVE'))
 			->orderBy('colors.name')
 			->orderBy('tones.name')
 			->get();

@@ -53,7 +53,7 @@ class UserRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('name')
-			->where('status', config('constants.STATUS_ACTIVE'))
+			->where('status', config('constants.STATUS.ACTIVE'))
 			->pluck('name', 'id');
 	}
 }

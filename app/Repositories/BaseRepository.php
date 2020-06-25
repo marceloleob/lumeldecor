@@ -106,7 +106,7 @@ class BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection) {
 			// verifica se e inativo
-			if ($collection->status == config('constants.STATUS_ACTIVE')) {
+			if ($collection->status == config('constants.STATUS.ACTIVE')) {
                 // seta ativo como default
                 $collection->status = ['class' => 'success', 'label' => 'Ativo'];
                 $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];

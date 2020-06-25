@@ -92,7 +92,9 @@ a, a:hover, a:focus, a:visited {
 	-moz-transition: none;
 	transition: none;
 }
-
+.line-through {
+    text-decoration: line-through;
+}
 
 /**
 * -----------------------------------------------------------------------------

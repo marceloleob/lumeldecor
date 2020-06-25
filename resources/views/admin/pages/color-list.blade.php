@@ -20,7 +20,7 @@
 			@foreach ($data as $item)
 			<tr>
 				<td class="text-center text-muted">{!! $item->id !!}</td>
-				<td class="text-center"><img src="{!! asset('images/icons/' . $item->icon . '.png') !!}" /></td>
+				<td class="text-center"><img src="{!! asset('images/icons/' . $item->icon) !!}" /></td>
 				<td class="text-left">{!! $item->name !!}</td>
 				<td class="text-center"><div  class="badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 				<td class="text-center">

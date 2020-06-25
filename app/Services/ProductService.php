@@ -33,7 +33,7 @@ class ProductService
 		// cria uma slug
 		$data = [
 			'id'   => $productId,
-			'done' => config('constants.STATUS_ACTIVE'),
+			'done' => config('constants.DONE.ACTIVE'),
 		];
 
 		return (new ProductRepository())->store($data);
