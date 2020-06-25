@@ -37,6 +37,7 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('items', function (Blueprint $table) {
+			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict')->onUpdate('restrict');
 			$table->foreign('product_size_id')->references('id')->on('product_sizes')->onDelete('restrict')->onUpdate('restrict');
 			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('restrict')->onUpdate('restrict');
 		});
@@ -127,6 +128,8 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('items', function (Blueprint $table) {
+			$table->dropForeign('items_product_id_foreign');
+			$table->dropColumn('product_id');
 			$table->dropForeign('items_product_size_id_foreign');
 			$table->dropColumn('product_size_id');
 			$table->dropForeign('items_supplier_id_foreign');

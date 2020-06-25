@@ -5135,9 +5135,13 @@ footer .widget_title {
 .product_info {
 	padding: 15px 15px 10px;
 }
+// .product_price {
+// 	margin-bottom: 5px;
+// }
 .price {
 	color: #FF324D;
 	font-weight: 600;
+	font-size: 16px;
 }
 .product_price del {
 	font-size: 14px;
@@ -5152,9 +5156,6 @@ footer .widget_title {
 	display: inline-block;
 	color: #388e3c;
 	font-size: 14px;
-}
-.product_price {
-	margin-bottom: 5px;
 }
 /* BLOCO NOVO DE CORES E TAMANHOS */
 .product_infos {
@@ -5172,7 +5173,7 @@ footer .widget_title {
 	border-radius: 100%;
 	height: 15px;
 	width: 15px;
-	margin: 2px;
+	margin: 3px;
 	cursor: pointer;
 	text-decoration: none;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -5295,8 +5296,11 @@ footer .widget_title {
 	margin: 0 auto;
 }
 .product_img {
+	display: flex;
+	align-items: center;
 	position: relative;
 	overflow: hidden;
+	height: 281px;
 }
 .product_img::before {
 	content: "";
@@ -5310,8 +5314,7 @@ footer .widget_title {
 	transition: all 0.5s ease-in-out;
 	z-index: 1;
 }
-.product:hover .product_img:before,
-.product_box:hover .product_img:before {
+.product:hover .product_img:before, .product_box:hover .product_img:before {
 	opacity: 1;
 }
 .pr_action_btn li {

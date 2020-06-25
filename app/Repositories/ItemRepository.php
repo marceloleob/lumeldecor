@@ -24,12 +24,8 @@ class ItemRepository extends BaseRepository
 	public function findByParentsId($productId, $productSizeId)
 	{
 		return $this->query()
-			->with('productSize')
-			->whereHas('productSize', function ($subQuery) use ($productId, $productSizeId) {
-				$subQuery
-					->where('product_id', $productId)
-					->where('product_size_id', $productSizeId);
-			})
+			->where('product_id', $productId)
+			->where('product_size_id', $productSizeId)
 			->first();
 	}
 
@@ -42,7 +38,6 @@ class ItemRepository extends BaseRepository
 	public function findByProductSizeId($productSizeId)
 	{
 		$this->data = $this->query()
-			->with('productSize')
 			->where('product_size_id', $productSizeId)
 			->get();
 		// formata os registros da collection

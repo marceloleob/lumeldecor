@@ -196,34 +196,4 @@ class ItemService
 
 		return $itemE;
 	}
-
-
-	/**
-	 * Formata os itens para renderizar no Site
-	 *
-	 * @param \App\Models\Item
-	 * @return array
-	 */
-	public static function formatWebSite($items)
-	{
-		$array = [];
-		$count = 0;
-		// percorre os itens e monta um array com informacoes uteis para a view
-		foreach ($items as $item) {
-			// verifica quantas cores tem este item
-			$tones = ToneService::format($item->tones);
-			// monta os dados importantes do item
-			$array[] = [
-				'code'       => $item->code,
-				'picture'    => $item->picture,
-				's_price'    => number_format((float) $item->s_price, 2, ',', '.'),
-				'launch'     => $item->launch,
-				'tooltip'    => $tones['tooltip'],
-				'background' => $tones['background'],
-			];
-			$count++;
-		}
-
-		return $array;
-	}
 }

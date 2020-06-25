@@ -19,9 +19,9 @@
 	{{-- END HEADER --}}
 
 	{{-- START BREADCRUMB --}}
-	<div class="breadcrumb_section bg_lumel_gray page-title-mini">
+	{{-- <div class="breadcrumb_section bg_lumel_gray page-title-mini">
 		@include('site.partials.breadcrumb')
-	</div>
+	</div> --}}
 	{{-- END BREADCRUMB --}}
 
 	<div class="main_content">

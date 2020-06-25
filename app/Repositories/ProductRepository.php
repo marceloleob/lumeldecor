@@ -3,8 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Product;
-use App\Services\ProductSizeService;
-use App\Services\ToneService;
 use Illuminate\Http\Request;
 
 class ProductRepository extends BaseRepository
@@ -142,50 +140,5 @@ class ProductRepository extends BaseRepository
 			->where('status', config('constants.STATUS_ACTIVE'))
 			->get()
 			->pluck('name', 'id');
-	}
-
-	/**
-	 * Recupera todos os produtos referentes ao material informado
-	 *
-	 * @param string $search
-	 * @return array
-	 */
-	public function getProductsByMaterial($search)
-	{
-		$query = $this->query()
-			->whereHas(
-				'material', function ($subQuery) use ($search) {
-					$subQuery->where('slug', 'LIKE', '%' . $search . '%');
-				}
-			)
-			->where('done', config('constants.STATUS_ACTIVE'))
-			->where('status', config('constants.STATUS_ACTIVE'))
-			->inRandomOrder();
-
-        // cria uma collection com paginacao para montar o grid
-		$this->pagination($query, $search);
-		// formata os registros da collection
-		$this->formatWebSite();
-
-// dd($this->data);
-
-		$return['data']     = $this->data;
-		$return['paginate'] = $this->paginate;
-
-		return $return;
-	}
-
-	/**
-	 * Percorre a Collection e customiza dados para imprimir na view
-	 *
-	 * @return \Illuminate\Database\Eloquent\Collection
-	 */
-	public function formatWebSite()
-	{
-		// Percorre toda a Collection
-		$this->data->map(function ($collection)
-		{
-			$collection->pSizes = ProductSizeService::formatWebSite($collection->sizes);
-		});
 	}
 }

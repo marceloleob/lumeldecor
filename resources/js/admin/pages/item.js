@@ -28,7 +28,7 @@ $(document).ready(function ()
 				},
 				amount: {
 					required: function () {
-						return ($('#stock_id').length === 0);
+						return ($('#id').length === 0);
 					},
 					digits: true,
 				},
@@ -40,7 +40,7 @@ $(document).ready(function ()
 		});
 		jQuery.validator.addClassRules("custom-file-input", {
 			required: function () {
-				return ($('#stock_id').length === 0);
+				return ($('#id').length === 0);
 			},
 			extension: true,
 		});

@@ -18,7 +18,7 @@ class Item extends Model
      *
      * @var array
      */
-	// protected $with = ['product', 'items'];
+	// protected $with = ['product', 'productSize'];
 
 	/**
 	 * The attributes that are mass assignable.
@@ -27,6 +27,7 @@ class Item extends Model
 	 */
 	protected $fillable = [
 		'id',
+		'product_id',
 		'product_size_id',
 		'supplier_id',
 		'code',
@@ -43,7 +44,7 @@ class Item extends Model
 	 */
 	public function product()
 	{
-		return $this->belongsToThrough(ProductSize::class, Product::class);
+		return $this->belongsTo(Product::class);
 	}
 
 	/**

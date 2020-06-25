@@ -15,6 +15,7 @@ class CreateItemsTable extends Migration
 	{
 		Schema::create('items', function (Blueprint $table) {
 			$table->id();
+			$table->foreignId('product_id');
 			$table->foreignId('product_size_id');
 			$table->foreignId('supplier_id');
 			$table->string('code', 50);             // LM + MATERIAL (99) + CATEGORIA (99) + PRODUTO (99999) + COR (999999) + TAMANHO (PP, 0P, 0M, 0G, GG, 0U)

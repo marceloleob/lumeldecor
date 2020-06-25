@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="section">
+	<div class="section py_50">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-9">
@@ -34,12 +34,38 @@
 					<div class="row shop_container">
 
 						{{-- PRODUCT --}}
-						<div class="col-md-4 col-6">
+						@foreach ($data as $product)
+							<div class="col-md-4 col-6">
+								<div class="product">
+									{!! $product->launch !!}
+									<div class="product_img">
+										<a href="#">
+											<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $product->picture) !!}" alt="nome do produto">
+										</a>
+										<div class="product_action_box">
+											<ul class="list_none pr_action_btn">
+												<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i></a></li>
+												<li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+												<li><a href="#"><i class="icon-heart"></i></a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="product_info">
+										<h6 class="product_title"><a href="shop-product-detail.html">{!! $product->productName !!}</a></h6>
+										<div class="product_price">
+											<span class="price">R$ {!! $product->p_price !!}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						@endforeach
+
+						{{-- <div class="col-md-4 col-6">
 							<div class="product">
 								<span class="pr_flash"><i class="fas fa-rocket launch"></i></span>
 								<div class="product_img">
-									<a href="shop-product-detail.html">
-										<img src="{!! asset('assets/images/product_img2.jpg') !!}" alt="nome do produto">
+									<a href="#">
+										<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/2020-06-22-5ef10ea82e9d7.jpeg') !!}" alt="nome do produto">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
@@ -50,26 +76,50 @@
 									</div>
 								</div>
 								<div class="product_info">
-									<h6 class="product_title"><a href="shop-product-detail.html">Lether Gray Tuxedo</a></h6>
+									<h6 class="product_title"><a href="shop-product-detail.html">Bandeja de Cerâmica Lisa</a></h6>
 									<div class="product_price">
-										<span class="price">$55.00</span>
+										<span class="price">R$ 999,99</span>
 									</div>
-									<div class="product_infos">
-										<div class="product_color">
-											<span style="background-color: #847764" class="active"></span>
-											<span style="background-color: #0393B5"></span>
-											<span style="background-color: #DA323F"></span>
+								</div>
+							</div>
+						</div> --}}
+
+						{{-- <div class="col-md-4 col-6">
+							<div class="product">
+								<div class="product_img">
+									<a href="shop-product-detail.html">
+										<img src="{!! asset('assets/images/product_img1.jpg') !!}" alt="product_img1">
+									</a>
+									<div class="product_action_box">
+										<ul class="list_none pr_action_btn">
+											<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+											<li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+											<li><a href="#"><i class="icon-heart"></i></a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="product_info">
+									<h6 class="product_title"><a href="shop-product-detail.html">Caneca de Cerâmica</a></h6>
+									<div class="product_price">
+										<span class="price">R$ 15,00</span>
+										<del>R$ 25.00</del>
+										<div class="on_sale">
+											<span>35% Off</span>
 										</div>
-										<div class="product_size">
-											<span>P</span>
-											<span class="active">M</span>
-											<span>G</span>
-											{{-- <span class="alone">tamanho único</span> --}}
+									</div>
+									<div class="pr_desc">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
+									</div>
+									<div class="pr_switch_wrap">
+										<div class="product_color_switch">
+											<span class="active" data-color="#87554B" style="background-color: rgb(135, 85, 75);"></span>
+											<span data-color="#333333" style="background-color: rgb(51, 51, 51);"></span>
+											<span data-color="#DA323F" style="background-color: rgb(218, 50, 63);"></span>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 						{{-- END PRODUCT --}}
 
 					</div>
@@ -79,12 +129,6 @@
 					<div class="row">
 						<div class="col-12">
 							{!! $paginate !!}
-							<ul class="pagination mt-3 justify-content-center pagination_style1">
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#"><i class="linearicons-arrow-right"></i></a></li>
-							</ul>
 						</div>
 					</div>
 					{{-- END PAGINATION --}}
@@ -148,7 +192,7 @@
 								</li>
 							</ul>
 						</div>
-						<div class="widget">
+						{{-- <div class="widget">
 							<h5 class="widget_title">Tamanhos</h5>
 							<div class="product_size_switch">
 								<span>PP</span>
@@ -158,7 +202,7 @@
 								<span>GG</span>
 								<span>U</span>
 							</div>
-						</div>
+						</div> --}}
 						<div class="widget">
 							<h5 class="widget_title">Cores</h5>
 							<div class="product_color_switch">

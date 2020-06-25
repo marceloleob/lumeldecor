@@ -719,11 +719,10 @@ require('../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 	/*===================================*
 	29. ONLOAD POPUP JS
 	*===================================*/
-	$(window).on('load',function(){
+	$(window).on('load',function() {
 		setTimeout(function() {
 			$("#onload-popup").modal('show', {}, 500);
 		}, 3000);
-
 	});
 
 
