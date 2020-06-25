@@ -33,22 +33,42 @@ class SearchService
 					// executa o filtro pelo material
 					if ($type === 'material') {
 						$subQuery->whereHas(
-							'material', function ($subQuery) use ($search) {
-								$subQuery->where('slug', 'LIKE', '%' . $search . '%');
+							'material', function ($subQuery) use ($search)
+							{
+								$subQuery->where('slug', $search);
 							}
 						);
 					}
 					// executa o filtro pelo categoria
 					if ($type === 'categoria') {
 						$subQuery->whereHas(
-							'category', function ($subQuery) use ($search) {
-								$subQuery->where('slug', 'LIKE', '%' . $search . '%');
+							'category', function ($subQuery) use ($search)
+							{
+								$subQuery->where('slug', $search);
 							}
 						);
 					}
 				}
 			)
 			->where('status', config('constants.STATUS.ACTIVE'));
+
+		// executa o filtro pelo tema
+		if ($type === 'tema') {
+			self::$query->whereHas('themes', function ($subQuery) use ($search)
+			{
+				$subQuery->where('slug', $search);
+			});
+		}
+		// executa o filtro pelo cor
+		if ($type === 'cor') {
+			self::$query->whereHas('tones', function ($subQuery) use ($search)
+			{
+				$subQuery->whereHas('colors', function ($subSubQuery) use ($search)
+				{
+					$subSubQuery->where('slug', $search);
+				});
+			});
+		}
 
 		self::pagination($type, $search);
 		self::format();

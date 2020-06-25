@@ -144,13 +144,13 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::put('promocao/atualizar/{id}', 'OfferPromotionController@update')->name('promotion.update');
 	Route::get('promocao/status/{id}', 'OfferPromotionController@changeStatus')->name('promotion.status');
 
-	// 	// Orders
-	// 	Route::get('encomenda/lista', 'OrderController@index')->name('order.list');
-	// 	Route::any('encomenda/busca', 'OrderController@index')->name('order.search');
-	// 	Route::get('encomenda/nova', 'OrderController@index')->name('order.create');
-	// 	Route::post('encomenda/salvar', 'OrderController@store')->name('order.store');
-	// 	Route::get('encomenda/editar/{id}/{page}', 'OrderController@edit')->name('order.edit');
-	// 	Route::get('encomenda/status/{id}', 'OrderController@changeStatus')->name('order.status');
+		// // Orders
+		// Route::get('encomenda/lista', 'OrderController@index')->name('order.list');
+		// Route::any('encomenda/busca', 'OrderController@index')->name('order.search');
+		// Route::get('encomenda/nova', 'OrderController@index')->name('order.create');
+		// Route::post('encomenda/salvar', 'OrderController@store')->name('order.store');
+		// Route::get('encomenda/editar/{id}/{page}', 'OrderController@edit')->name('order.edit');
+		// Route::get('encomenda/status/{id}', 'OrderController@changeStatus')->name('order.status');
 
 	// 	// Contact Message
 	// 	Route::get('mensagem/lista', 'ContactMessageController@index')->name('message.list');

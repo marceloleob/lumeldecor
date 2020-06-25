@@ -51,6 +51,9 @@
 			<li>
 				<a href="{!! route('stock.list') !!}" class="{!! (request()->is('admin/estoque/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-warehouse icon-gradient bg-plum-plate"></i> Estoques</a>
 			</li>
+			{{-- <li>
+				<a href="{!! route('order.list') !!}" class="{!! (request()->is('admin/encomenda/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-dolly"></i> Encomendas</a>
+			</li> --}}
 
 			<li class="app-sidebar__heading">ITENS</li>
 			<li>
@@ -78,9 +81,6 @@
 				</ul>
 			</li>
 			{{--
-			<li>
-				<a href="{!! route('order.list') !!}" class="{!! (request()->is('admin/encomenda/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-dolly"></i> Encomendas</a>
-			</li>
 			<li>
 				<a href="{!! route('message.list') !!}" class="{!! (request()->is('admin/mensagem/*')) ? 'mm-active' : '' !!}"><i class="metismenu-icon fas fa-envelope"></i> Mensagens</a>
 			</li>

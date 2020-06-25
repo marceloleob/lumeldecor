@@ -32,7 +32,6 @@
 
 					{{-- LIST --}}
 					<div class="row shop_container">
-
 						{{-- PRODUCT --}}
 						@foreach ($data as $product)
 							<div class="col-md-4 col-6">
@@ -75,7 +74,6 @@
 							</div>
 						@endforeach
 						{{-- END PRODUCT --}}
-
 					</div>
 					{{-- END LIST --}}
 
