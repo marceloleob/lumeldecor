@@ -33,31 +33,28 @@ class ProductController extends Controller
 	 */
 	public function show($type, $search)
 	{
-		$params = SearchService::getProducts($type, $search);
+		$params = SearchService::productList($type, $search);
 
 		$params['page']  = 'material';
 		$params['title'] = 'Cerâmicas';
 
 		return view('site.pages.product')->with($params);
 	}
+
+	/**
+	 * Product Detail
+	 *
+	 * @param string $slug
+	 * @param string $sku
+	 * @return void
+	 */
+	public function detail($slug, $sku)
+	{
+		$params = SearchService::productDetail($slug, $sku);
+
+		$params['page']  = 'material';
+		$params['title'] = 'Cerâmicas';
+
+		return view('site.pages.product-detail')->with($params);
+	}
 }
-
-
-/*
-"id" => 4
-"product_id" => 1
-"product_size_id" => 3
-"supplier_id" => 1
-"code" => "LM0203000010000510G"
-"picture" => "2020-06-24-5ef3dbd6d9b48.jpeg"
-"p_price" => "26.40"
-"s_price" => "54,00"
-"launch" => ""
-"status" => 1
-"productId" => 1
-"productName" => "Bandeja de Cerâmica Lisa"
-"size" => "G"
-"tooltip" => "Azul Céu"
-"background" => "background-color: #87CEFA;"
-]
-*/

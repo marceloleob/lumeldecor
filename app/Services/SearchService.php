@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Item;
+use App\Models\ProductSize;
 
 class SearchService
 {
@@ -17,11 +18,12 @@ class SearchService
 	 * @param string $search
 	 * @return array
 	 */
-	public static function getProducts($type, $search)
+	public static function productList($type, $search)
 	{
 		self::$query = Item::inRandomOrder()
 			->whereHas(
-				'product', function ($subQuery) use ($type, $search) {
+				'product', function ($subQuery) use ($type, $search)
+				{
 					$subQuery
 						->where('done', config('constants.DONE.ACTIVE'))
 						->where('status', config('constants.STATUS.ACTIVE'));
@@ -114,18 +116,53 @@ class SearchService
 	public static function format()
 	{
 		// Percorre toda a Collection
-		self::$data->map(function ($collection) {
-
+		self::$data->map(function ($collection)
+		{
 			// verifica se o item e lancamento
 			if ($collection->launch == config('constants.LAUNCH.ACTIVE')) {
 				$collection->launch = '<span class="pr_flash"><i class="fas fa-rocket launch"></i></span>';
 			} else {
 				$collection->launch = '';
 			}
-			// recupera as cores do item para mostrar na lista
-			$tones = ToneService::format($collection->tones);
-			$collection->tooltip    = $tones['tooltip'];
-			$collection->background = $tones['background'];
 		});
+	}
+
+    /**
+     * Retorna as informacoes importantes para renderizar os detalhes de um produto
+	 *
+	 * @param string $slug
+	 * @param string $sku
+     * @return array
+     */
+	public static function productDetail($slug, $sku)
+	{
+		// recupera os detalhes do item
+		$item = Item::with('tones')->where('code', $sku)->firstOrFail();
+		// recupera os tamanhos disponiveis do item
+		$sizes = ProductSize::whereHas(
+			'product', function ($subQuery) use ($slug)
+			{
+				$subQuery->where('slug', $slug);
+			})
+			->get();
+		// recupera todos os itens iguais para extrair as cores disponiveis
+		$colors = Item::where('product_id', $item->product_id)
+			->where('product_size_id', $item->product_size_id)
+			->get()
+			->map(function ($item)
+			{
+				$tones = ToneService::format($item->tones);
+				$item->colorId    = $tones['colorId'];
+				$item->tooltip    = $tones['tooltip'];
+				$item->background = $tones['background'];
+
+				return $item;
+			});
+
+		return [
+			'item'   => $item,
+			'sizes'  => $sizes,
+			'colors' => $colors,
+		];
 	}
 }

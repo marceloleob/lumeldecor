@@ -12,18 +12,18 @@
 						<div class="col-12">
 							<div class="product_header">
 								<div class="product_header_left">
-									<div class="custom_select">
+									{{-- <div class="custom_select">
 										{!! Form::selectSort('sort', old('sort', 'best-seller'), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
-									</div>
+									</div> --}}
 								</div>
 								<div class="product_header_right">
 									<div class="products_view">
 										<a href="javascript:Void(0);" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>
 										<a href="javascript:Void(0);" class="shorting_icon list"><i class="ti-layout-list-thumb"></i></a>
 									</div>
-									<div class="custom_select">
+									{{-- <div class="custom_select">
 										{!! Form::selectShow('show', '', ['class' => 'form-control selectpicker', 'title' => 'Mostrar']) !!}
-									</div>
+									</div> --}}
 								</div>
 							</div>
 						</div>
@@ -33,38 +33,38 @@
 					{{-- LIST --}}
 					<div class="row shop_container">
 						{{-- PRODUCT --}}
-						@foreach ($data as $product)
+						@foreach ($data as $item)
 							<div class="col-md-4 col-6">
 								<div class="product">
-									{!! $product->launch !!}
+									{!! $item->launch !!}
 									<div class="product_img">
-										<a href="#">
-											<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $product->picture) !!}" alt="nome do produto">
+										<a href="{!! route('product.detail', [$item->product->slug, $item->code]) !!}">
+											<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!}">
 										</a>
 										<div class="product_action_box">
 											<ul class="list_none pr_action_btn">
 												<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i></a></li>
-												<li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+												<li><a href="{!! route('product.detail', [$item->product->slug, $item->code]) !!}"><i class="icon-magnifier-add"></i></a></li>
 												<li><a href="#"><i class="icon-heart"></i></a></li>
 											</ul>
 										</div>
 									</div>
 									<div class="product_info">
-										<h6 class="product_title"><a href="shop-product-detail.html">{!! $product->product->name !!}</a></h6>
+										<h6 class="product_title"><a href="{!! route('product.detail', [$item->product->slug, $item->code]) !!}">{!! $item->product->name !!}</a></h6>
 										<div class="product_price">
-											<span class="price">R$ {!! $product->s_price !!}</span>
-											<del>R$ 25.00</del>
+											<span class="price">R$ {!! $item->s_price !!}</span>
+											{{-- <del>R$ 25.00</del> --}}
 											<div class="on_sale">
-												<span>35% Off</span>
+												{{-- <span>35% Off</span> --}}
 											</div>
 										</div>
 										<div class="pr_desc">
-											<p>{!! $product->product->description !!}</p>
+											<p>{!! $item->product->description !!}</p>
 										</div>
 										<div class="list_product_action_box">
 											<ul class="list_none pr_action_btn">
 												<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Comprar</a></li>
-												<li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+												<li><a href="{!! route('product.detail', [$item->product->slug, $item->code]) !!}"><i class="icon-magnifier-add"></i></a></li>
 												<li><a href="#"><i class="icon-heart"></i></a></li>
 											</ul>
 										</div>

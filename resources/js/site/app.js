@@ -17,8 +17,8 @@ require('../../../node_modules/parallax-js/dist/parallax.min.js');
 require('../../../node_modules/jquery-countdown/dist/jquery.countdown.min.js');
 // jQuery Appear
 require('../../../node_modules/jquery.appear/jquery.appear.js');
-// Slick
-require('../../../node_modules/slick/finder.js');
+// Slick-Slider
+require('../../../node_modules/slick-carousel/slick/slick.min.js');
 // jQuery Zoom Plugin (elevatezoom)
 require('../../../node_modules/@oroinc/elevatezoom/jquery.elevatezoom.js');
 // Isotope
@@ -167,13 +167,13 @@ require('../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 	$(window).on('scroll', function() {
 		var scroll = $(window).scrollTop();
 
-	    if (scroll >= 150) {
-	        $('.header_sticky_bar').removeClass('d-none');
+		if (scroll >= 150) {
+			$('.header_sticky_bar').removeClass('d-none');
 			$('header.no-sticky').removeClass('nav-fixed');
 
-	    } else {
-	        $('.header_sticky_bar').addClass('d-none');
-	    }
+		} else {
+			$('.header_sticky_bar').addClass('d-none');
+		}
 	});
 
 	var setHeight = function() {

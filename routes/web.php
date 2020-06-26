@@ -39,6 +39,7 @@ Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
 	Route::post('enviar-contato', 'ContactController@send')->name('contact.send');
 	// Produtos
 	Route::any('produto/{type}/{search}', 'ProductController@show')->name('product.show');
+	Route::get('detalhes/{slug}/{sku}', 'ProductController@detail')->name('product.detail');
 });
 
 

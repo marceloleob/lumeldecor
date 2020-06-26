@@ -37,6 +37,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::pattern('type', '\b(nome|material|categoria|cor|tema)\b');
         Route::pattern('search', '[a-z\-]+');
+        Route::pattern('sku', '^(LM){1}([0-9]){15}([P0G])([PMG])');
 
         parent::boot();
     }

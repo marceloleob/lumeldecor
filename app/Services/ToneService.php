@@ -28,6 +28,7 @@ class ToneService
 		}
 
 		return [
+			'colorId'    => $tones[0]->id,
 			'tooltip'    => $tooltip,
 			'background' => $background,
 		];

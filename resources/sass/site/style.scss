@@ -5133,7 +5133,7 @@ footer .widget_title {
 	border-radius: 100%;
 }
 .product_info {
-	padding: 15px 15px 10px;
+	padding: 15px;
 }
 // .product_price {
 // 	margin-bottom: 5px;
@@ -5608,7 +5608,7 @@ footer .widget_title {
 	font-size: 14px;
 	margin-bottom: 3px;
 }
-.product_size_switch span.active {
+.product_size_switch span.active, .product_size_switch span:hover {
 	border-color: #FF324D;
 	background-color: #ff324d;
 	color: #fff;
