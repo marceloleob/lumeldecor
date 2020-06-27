@@ -15,8 +15,8 @@ class ContactController extends Controller
 	public function index()
 	{
 		$params = [
-			'page'  => 'contact',
-			'title' => 'Contato',
+			'title'   => 'Contato',
+			'current' => 'contact',
 		];
 
 		return view('site.pages.contact')->with($params);

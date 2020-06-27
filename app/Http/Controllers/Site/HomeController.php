@@ -25,8 +25,8 @@ class HomeController extends Controller
 	public function index()
 	{
 		$params = [
-			'page'  => 'home',
-			'title' => 'Lumel Decor',
+			'title'   => '',
+			'current' => 'home',
 		];
 
 		return view('site.pages.home')->with($params);

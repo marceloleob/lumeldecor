@@ -94,7 +94,7 @@ require('../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 		$(window).on('scroll', function() {
 			var scroll = $(window).scrollTop();
 
-			if (scroll >= 150) {
+			if (scroll >= 100) {
 				$('header.fixed-top').addClass('nav-fixed');
 
 				if ($('#navCatContent').data('page') === 'home') {
@@ -167,7 +167,7 @@ require('../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 	$(window).on('scroll', function() {
 		var scroll = $(window).scrollTop();
 
-		if (scroll >= 150) {
+		if (scroll >= 100) {
 			$('.header_sticky_bar').removeClass('d-none');
 			$('header.no-sticky').removeClass('nav-fixed');
 
@@ -426,6 +426,7 @@ require('../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 		{
 			var $slick_carousel = $(this);
 			$slick_carousel.slick({
+				adaptiveHeight: true,
 				arrows: $slick_carousel.data("arrows"),
 				dots: $slick_carousel.data("dots"),
 				infinite: $slick_carousel.data("infinite"),

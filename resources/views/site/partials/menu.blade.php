@@ -10,10 +10,10 @@
 					<button type="button" data-toggle="collapse" data-target="#navCatContent" aria-expanded="false" class="categories_btn">
 						<i class="linearicons-menu"></i> <span>Todos os Materiais</span>
 					</button>
-					<div id="navCatContent" class="{!! ($page === 'home') ? 'nav_cat' : '' !!} navbar collapse" data-page="{!! $page !!}">
+					<div id="navCatContent" class="{!! ($current === 'home') ? 'nav_cat' : '' !!} navbar collapse" data-page="{!! $current !!}">
 						<ul>
 							@foreach ($menu['materials'] as $material)
-								<li><a class="dropdown-item nav-link nav_item" href="{!! route('product.show', ['material', $material['slug']]) !!}"><i class="ico-heart"></i> <span class="heart">{!! $material['name'] !!}</span></a></li>
+								<li><a class="dropdown-item nav-link nav_item {!! ($current === $material['slug']) ? 'active' : '' !!}" href="{!! route('product.show', ['material', $material['slug']]) !!}"><i class="ico-heart"></i> <span class="heart">{!! $material['name'] !!}</span></a></li>
 							@endforeach
 						</ul>
 					</div>
@@ -30,30 +30,30 @@
 					<div class="collapse navbar-collapse mobile_side_menu" id="navbarSidetoggle">
 						<ul class="navbar-nav">
 							<li>
-								<a class="nav-link nav_item {!! ($page === 'home') ? 'active' : '' !!}" href="{!! route('home') !!}">Início</a>
+								<a class="nav-link nav_item {!! ($current === 'home') ? 'active' : '' !!}" href="{!! route('home') !!}">Início</a>
 							</li>
 							<li class="dropdown dropdown-mega-menu">
-								<a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Categorias</a>
+								<a class="dropdown-toggle nav-link {!! (request()->is('*categoria*')) ? 'active' : '' !!}" href="#" data-toggle="dropdown">Categorias</a>
 								<div class="dropdown-menu">
 									<ul class="mega-menu d-lg-flex">
 										<li class="mega-menu-col col-lg-4">
 											<ul>
 												@foreach ($menu['categories'][0] as $category)
-													<li><a href="{!! route('product.show', ['categoria', $category['slug']]) !!}" class="dropdown-item nav-link nav_item">{!! $category['name'] !!}</a></li>
+													<li><a href="{!! route('product.show', ['categoria', $category['slug']]) !!}" class="dropdown-item nav-link nav_item {!! ($current === $category['slug']) ? 'active' : '' !!}">{!! $category['name'] !!}</a></li>
 												@endforeach
 											</ul>
 										</li>
 										<li class="mega-menu-col col-lg-4">
 											<ul>
 												@foreach ($menu['categories'][1] as $category)
-													<li><a href="{!! route('product.show', ['categoria', $category['slug']]) !!}" class="dropdown-item nav-link nav_item">{!! $category['name'] !!}</a></li>
+													<li><a href="{!! route('product.show', ['categoria', $category['slug']]) !!}" class="dropdown-item nav-link nav_item {!! ($current === $category['slug']) ? 'active' : '' !!}">{!! $category['name'] !!}</a></li>
 												@endforeach
 											</ul>
 										</li>
 										<li class="mega-menu-col col-lg-4">
 											<ul>
 												@foreach ($menu['categories'][2] as $category)
-													<li><a href="{!! route('product.show', ['categoria', $category['slug']]) !!}" class="dropdown-item nav-link nav_item">{!! $category['name'] !!}</a></li>
+													<li><a href="{!! route('product.show', ['categoria', $category['slug']]) !!}" class="dropdown-item nav-link nav_item {!! ($current === $category['slug']) ? 'active' : '' !!}">{!! $category['name'] !!}</a></li>
 												@endforeach
 											</ul>
 										</li>
@@ -61,23 +61,25 @@
 								</div>
 							</li>
 							<li class="dropdown">
-								<a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Cores</a>
+								<a class="dropdown-toggle nav-link {!! (request()->is('*cor*')) ? 'active' : '' !!}" href="#" data-toggle="dropdown">Cores</a>
 								<div class="dropdown-menu">
 									<ul>
 										@foreach ($menu['colors'] as $color)
 											<li>
-												<a href="{!! route('product.show', ['cor', $color['slug']]) !!}" class="dropdown-item nav-link nav_item"><img src="{!! asset('images/icons/' . $color['icon']) !!}" class="colors" /> {!! $color['name'] !!}</a>
+												<a href="{!! route('product.show', ['cor', $color['slug']]) !!}" class="dropdown-item nav-link nav_item {!! ($current === $color['slug']) ? 'active' : '' !!}">
+													<img src="{!! asset('images/icons/' . $color['icon']) !!}" class="colors" /> {!! $color['name'] !!}
+												</a>
 											</li>
 										@endforeach
 									</ul>
 								</div>
 							</li>
 							<li class="dropdown">
-								<a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Temas</a>
+								<a class="dropdown-toggle nav-link {!! (request()->is('*tema*')) ? 'active' : '' !!}" href="#" data-toggle="dropdown">Temas</a>
 								<div class="dropdown-menu">
 									<ul>
 										@foreach ($menu['themes'] as $theme)
-											<li><a href="{!! route('product.show', ['tema', $theme['slug']]) !!}" class="dropdown-item nav-link nav_item">{!! $theme['name'] !!}</a></li>
+											<li><a href="{!! route('product.show', ['tema', $theme['slug']]) !!}" class="dropdown-item nav-link nav_item {!! ($current === $theme['slug']) ? 'active' : '' !!}">{!! $theme['name'] !!}</a></li>
 										@endforeach
 									</ul>
 								</div>
@@ -86,14 +88,14 @@
 								<a class="dropdown-toggle nav-link {!! (request()->is('*lumel-decor*')) ? 'active' : '' !!}" href="#" data-toggle="dropdown">Lumel Decor</a>
 								<div class="dropdown-menu">
 									<ul>
-										<li><a class="dropdown-item nav-link nav_item {!! ($page === 'about') ? 'active' : '' !!}" href="{!! route('about') !!}">Sobre nós</a></li>
-										<li><a class="dropdown-item nav-link nav_item {!! ($page === 'faq') ? 'active' : '' !!}" href="{!! route('faq') !!}">Perguntas Frequentes</a></li>
-										<li><a class="dropdown-item nav-link nav_item {!! ($page === 'terms') ? 'active' : '' !!}" href="{!! route('terms') !!}">Termos e Condições</a></li>
+										<li><a class="dropdown-item nav-link nav_item {!! ($current === 'about') ? 'active' : '' !!}" href="{!! route('about') !!}">Sobre nós</a></li>
+										<li><a class="dropdown-item nav-link nav_item {!! ($current === 'faq') ? 'active' : '' !!}" href="{!! route('faq') !!}">Perguntas Frequentes</a></li>
+										<li><a class="dropdown-item nav-link nav_item {!! ($current === 'terms') ? 'active' : '' !!}" href="{!! route('terms') !!}">Termos e Condições</a></li>
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a class="nav-link nav_item {!! ($page === 'contact') ? 'active' : '' !!}" href="{!! route('contact') !!}">Contato</a>
+								<a class="nav-link nav_item {!! ($current === 'contact') ? 'active' : '' !!}" href="{!! route('contact') !!}">Contato</a>
 							</li>
 						</ul>
 					</div>

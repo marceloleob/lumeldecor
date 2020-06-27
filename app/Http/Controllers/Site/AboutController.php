@@ -15,8 +15,8 @@ class AboutController extends Controller
 	public function index()
 	{
 		$params = [
-			'page'  => 'about',
-			'title' => 'Sobre nós',
+			'title'   => 'Sobre nós',
+			'current' => 'about',
 		];
 
 		return view('site.pages.about')->with($params);

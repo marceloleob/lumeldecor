@@ -15,8 +15,8 @@ class TermsController extends Controller
 	public function index()
 	{
 		$params = [
-			'page'  => 'terms',
-			'title' => 'Termos e Condições',
+			'title'   => 'Termos e Condições',
+			'current' => 'terms',
 		];
 
 		return view('site.pages.terms')->with($params);

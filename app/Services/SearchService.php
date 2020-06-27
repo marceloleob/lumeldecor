@@ -2,8 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\Category;
+use App\Models\Color;
 use App\Models\Item;
+use App\Models\Material;
 use App\Models\ProductSize;
+use App\Models\Theme;
 
 class SearchService
 {
@@ -54,13 +58,6 @@ class SearchService
 			)
 			->where('status', config('constants.STATUS.ACTIVE'));
 
-		// executa o filtro pelo tema
-		if ($type === 'tema') {
-			self::$query->whereHas('themes', function ($subQuery) use ($search)
-			{
-				$subQuery->where('slug', $search);
-			});
-		}
 		// executa o filtro pelo cor
 		if ($type === 'cor') {
 			self::$query->whereHas('tones', function ($subQuery) use ($search)
@@ -71,12 +68,24 @@ class SearchService
 				});
 			});
 		}
+		// executa o filtro pelo tema
+		if ($type === 'tema') {
+			self::$query->whereHas('themes', function ($subQuery) use ($search)
+			{
+				$subQuery->where('slug', $search);
+			});
+		}
 
+		// cria a paginacao
 		self::pagination($type, $search);
+		// formata os dados
 		self::format();
 
 		return [
+			'type'     => $type,
+			'current'  => $search,
 			'data'     => self::$data,
+			'title'    => self::setTitleList($type, $search),
 			'paginate' => self::$paginate,
 		];
 	}
@@ -127,42 +136,105 @@ class SearchService
 		});
 	}
 
+	/**
+	 * Recupera o nome correspondente da pagina de lista de produtos
+	 *
+	 * @param string $type
+	 * @param string $search
+	 * @return string
+	 */
+	public static function setTitleList($type, $search)
+	{
+		if ($type === 'material') {
+			return 'Produtos de ' . Material::where('slug', $search)->first()->name;
+		}
+		if ($type === 'categoria') {
+			return 'Lista de ' . Category::where('slug', $search)->first()->name;
+		}
+		if ($type === 'cor') {
+			return 'Produtos com tons de "' . Color::where('slug', $search)->first()->name . '"';
+		}
+		if ($type === 'tema') {
+			return 'Produtos do tema "' . Theme::where('slug', $search)->first()->name . '"';
+		}
+	}
+
     /**
      * Retorna as informacoes importantes para renderizar os detalhes de um produto
 	 *
+	 * @param string $type
+	 * @param string $search
 	 * @param string $slug
+	 * @param string $size
 	 * @param string $sku
      * @return array
      */
-	public static function productDetail($slug, $sku)
+	public static function productDetail($type, $search, $slug, $size, $sku)
 	{
-		// recupera os detalhes do item
-		$item = Item::with('tones')->where('code', $sku)->firstOrFail();
+		if (!empty($sku)) {
+			// recupera os detalhes do item pelo codigo
+			$item = Item::where('code', $sku)->firstOrFail();
+		} else {
+			// recupera os detalhes do item pelo tamanho
+			$item = Item::whereHas(
+				'product', function ($subQuery) use ($slug)
+				{
+					$subQuery->where('slug', $slug);
+				})
+				->whereHas(
+				'productSize', function ($subQuery) use ($size)
+				{
+					$subQuery
+						->where('size', $size)
+						->orderBy('size');
+				})
+				->firstOrFail();
+		}
+
 		// recupera os tamanhos disponiveis do item
 		$sizes = ProductSize::whereHas(
 			'product', function ($subQuery) use ($slug)
 			{
 				$subQuery->where('slug', $slug);
 			})
-			->get();
+			->get()
+			->map(function ($size) use ($item)
+			{
+				if ($size->size === $item->productSize->size) {
+					$size->active = 'class="active"';
+				} else {
+					$size->active = '';
+				}
+
+				return $size;
+			});
+
 		// recupera todos os itens iguais para extrair as cores disponiveis
 		$colors = Item::where('product_id', $item->product_id)
 			->where('product_size_id', $item->product_size_id)
 			->get()
-			->map(function ($item)
+			->map(function ($color) use ($item)
 			{
-				$tones = ToneService::format($item->tones);
-				$item->colorId    = $tones['colorId'];
-				$item->tooltip    = $tones['tooltip'];
-				$item->background = $tones['background'];
+				$tones = ToneService::format($color->tones);
+				$color->tooltip    = $tones['tooltip'];
+				$color->background = $tones['background'];
 
-				return $item;
+				if ($color->id === $item->id) {
+					$color->active = 'class="active"';
+				} else {
+					$color->active = '';
+				}
+
+				return $color;
 			});
 
 		return [
-			'item'   => $item,
-			'sizes'  => $sizes,
-			'colors' => $colors,
+			'type'    => $type,
+			'current' => $search,
+			'item'    => $item,
+			'sizes'   => $sizes,
+			'colors'  => $colors,
+			'title'   => $item->product->name . ' - ' . $item->productSize->size,
 		];
 	}
 }

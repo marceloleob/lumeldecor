@@ -15,8 +15,8 @@ class FaqController extends Controller
 	public function index()
 	{
 		$params = [
-			'page'  => 'faq',
-			'title' => 'Perguntas Frequentes',
+			'title'   => 'Perguntas Frequentes',
+			'current' => 'faq',
 		];
 
 		return view('site.pages.faq')->with($params);

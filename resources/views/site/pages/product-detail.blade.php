@@ -1,8 +1,12 @@
-@extends('site.layouts.pages')
+@extends('site.layouts.pages-product')
+
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{!! route('product.show', [$type, $current]) !!}">Lista dos Produtos</a></li>
+<li class="breadcrumb-item active">Detalhes do Produto</li>
+@endsection
 
 @section('content')
-
-	<div class="section py_50">
+	<div class="section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-6 mb-4 mb-md-0">
@@ -10,7 +14,7 @@
 						<div id="pr_item_gallery" class="product_gallery_item slick_slider" data-vertical="true" data-vertical-swiping="true" data-slides-to-show="5" data-slides-to-scroll="1" data-infinite="false">
 							<div class="item">
 								<a href="#" class="product_gallery_item active" data-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}">
-									<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!}" />
+									<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
 								</a>
 							</div>
 							<div class="item">
@@ -28,10 +32,20 @@
 									<img src="{!! asset('assets/images/product_small_img4.jpg') !!}" alt="product_small_img4" />
 								</a>
 							</div>
+							<div class="item">
+								<a href="#" class="product_gallery_item" data-image="{!! asset('assets/images/product_img1-4') !!}.jpg" data-zoom-image="{!! asset('assets/images/product_zoom_img4.jpg') !!}">
+									<img src="{!! asset('assets/images/product_small_img4.jpg') !!}" alt="product_small_img4" />
+								</a>
+							</div>
+							<div class="item">
+								<a href="#" class="product_gallery_item" data-image="{!! asset('assets/images/product_img1-4') !!}.jpg" data-zoom-image="{!! asset('assets/images/product_zoom_img4.jpg') !!}">
+									<img src="{!! asset('assets/images/product_small_img4.jpg') !!}" alt="product_small_img4" />
+								</a>
+							</div>
 						</div>
 						<div class="product_img_box">
-							<img id="product_img" src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!}" />
-							<a href="#" class="product_img_zoom" title="{!! $item->product->name !!}">
+							<img id="product_img" src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}" />
+							<a href="#" class="product_img_zoom" title="{!! $item->product->name !!} - {!! $item->productSize->size !!}">
 								<span class="linearicons-zoom-in"></span>
 							</a>
 						</div>
@@ -40,7 +54,8 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="pr_detail">
 						<div class="product_description">
-							<h4 class="product_title"><a href="#">{!! $item->product->name !!}</a></h4>
+							<h4 class="product_title"><a href="#">{!! $item->product->name !!} - {!! $item->productSize->size !!}</a></h4>
+
 							<div class="product_price">
 								<span class="price">R$ {!! $item->s_price !!}</span>
 								{{-- <del>R$ 25.00</del> --}}
@@ -48,39 +63,43 @@
 									{{-- <span>35% Off</span> --}}
 								</div>
 							</div>
-							<div class="pr_desc">
-								<p>&nbsp;</p>
-							</div>
-							<div class="product_sort_info">
-								<ul>
-									<li><i class="linearicons-shield-check"></i> 1 Year AL Jazeera Brand Warranty</li>
-									<li><i class="linearicons-sync"></i> 30 Day Return Policy</li>
-									<li><i class="linearicons-bag-dollar"></i> Cash on Delivery available</li>
-								</ul>
+
+							<div class="rating_wrap">
+								{{-- <div class="rating">
+									<div class="product_rate" style="width:80%"></div>
+								</div>
+								<span class="rating_num">(21)</span> --}}
 							</div>
 
+							<div class="pr_desc">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
+							</div>
+
+							<div class="product_sort_info">
+								<ul>
+									<li><i class="linearicons-shield-check"></i> Compre com segurança.</li>
+									<li><i class="linearicons-sync"></i> Leia nossa <a href="{!! route('terms') !!}" target="_blank">Política de Devolução</a></li>
+									<li><i class="linearicons-store"></i> Se preferir, pode retirar o produto em nossa loja.</li>
+								</ul>
+							</div>
 							<div class="pr_switch_wrap">
-								<span class="switch_lable">Color</span>
+								<span class="switch_lable">Cores disponíveis:</span>
 								<div class="product_color_switch">
-									@foreach ($colors as $color)
-										@if ($color->colorId === $item->tones[0]->id)
-											<span style="{!! $color->background !!}" class="active"></span>
-										@else
-											<span style="{!! $color->background !!}"></span>
-										@endif
+									@foreach ($colors as $colorItem)
+										<a href="{!! route('product.detail', [$type, $current, $colorItem->product->slug, $colorItem->productSize->size, $colorItem->code]) !!}">
+											<span style="{!! $colorItem->background !!}" {!! $colorItem->active !!} data-toggle="tooltip" data-placement="top" data-original-title="{!! $colorItem->tooltip !!}"></span>
+										</a>
 									@endforeach
 								</div>
 							</div>
 
 							<div class="pr_switch_wrap">
-								<span class="switch_lable">Size</span>
+								<span class="switch_lable">Tamanhos disponíveis:</span>
 								<div class="product_size_switch">
 									@foreach ($sizes as $size)
-										@if ($size->size === $item->productSize->size)
-											<span class="active">{!! $size->size !!}</span>
-										@else
-											<span>{!! $size->size !!}</span>
-										@endif
+										<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $size->size]) !!}">
+											<span {!! $size->active !!}>{!! $size->size !!}</span>
+										</a>
 									@endforeach
 								</div>
 							</div>
@@ -106,7 +125,6 @@
 							<li>Material: <a href="#">{!! $item->product->material->name !!}</a></li>
 							<li>Categoria: <a href="#">{!! $item->product->category->name !!}</a></li>
 						</ul>
-
 						<div class="product_share">
 							<span>Compartilhe:</span>
 							<ul class="social_icons">
@@ -393,5 +411,4 @@
 			</div>
 		</div>
 	</div>
-
 @endsection

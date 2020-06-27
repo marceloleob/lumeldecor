@@ -1,8 +1,11 @@
-@extends('site.layouts.pages')
+@extends('site.layouts.pages-product')
+
+@section('breadcrumb')
+<li class="breadcrumb-item active">Lista dos Produtos</li>
+@endsection
 
 @section('content')
-
-	<div class="section py_50">
+	<div class="section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-9">
@@ -38,19 +41,19 @@
 								<div class="product">
 									{!! $item->launch !!}
 									<div class="product_img">
-										<a href="{!! route('product.detail', [$item->product->slug, $item->code]) !!}">
+										<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}">
 											<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!}">
 										</a>
 										<div class="product_action_box">
 											<ul class="list_none pr_action_btn">
 												<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i></a></li>
-												<li><a href="{!! route('product.detail', [$item->product->slug, $item->code]) !!}"><i class="icon-magnifier-add"></i></a></li>
+												<li><a href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}"><i class="icon-magnifier-add"></i></a></li>
 												<li><a href="#"><i class="icon-heart"></i></a></li>
 											</ul>
 										</div>
 									</div>
 									<div class="product_info">
-										<h6 class="product_title"><a href="{!! route('product.detail', [$item->product->slug, $item->code]) !!}">{!! $item->product->name !!}</a></h6>
+										<h6 class="product_title"><a href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}">{!! $item->product->name !!}</a></h6>
 										<div class="product_price">
 											<span class="price">R$ {!! $item->s_price !!}</span>
 											{{-- <del>R$ 25.00</del> --}}
@@ -64,7 +67,7 @@
 										<div class="list_product_action_box">
 											<ul class="list_none pr_action_btn">
 												<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Comprar</a></li>
-												<li><a href="{!! route('product.detail', [$item->product->slug, $item->code]) !!}"><i class="icon-magnifier-add"></i></a></li>
+												<li><a href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}"><i class="icon-magnifier-add"></i></a></li>
 												<li><a href="#"><i class="icon-heart"></i></a></li>
 											</ul>
 										</div>
@@ -186,5 +189,4 @@
 			</div>
 		</div>
 	</div>
-
 @endsection

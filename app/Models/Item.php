@@ -18,7 +18,7 @@ class Item extends Model
      *
      * @var array
      */
-	// protected $with = ['product', 'productSize'];
+	protected $with = ['tones', 'themes'];
 
 	/**
 	 * The attributes that are mass assignable.

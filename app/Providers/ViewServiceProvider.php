@@ -27,14 +27,15 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
 		// Retorna a localizacao do usuario
-		View::composer('*', function ($view) {
+		View::composer('*', function ($view)
+		{
 			$view->with('locale', str_replace('_', '-', strtolower(App::getLocale())));
 		});
 
 		// binda o site para renderizar o menu
-		View::composer('site.*', function()
+		View::composer('site.*', function($view)
 		{
-			View::share('menu', MenuService::render());
+			$view->with('menu', MenuService::render());
 		});
     }
 }
