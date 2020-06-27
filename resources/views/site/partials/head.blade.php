@@ -15,6 +15,9 @@
 <meta name="description" content="Somos uma loja especializada em vendas de artigos para festas e decorações. Aqui você encontrará tudo que precisa para decorar seu ambiente, desde cerâmica, louças, MDF, luminárias, personagens e vários outros itens para decoração." />
 <meta name="csrf-token" content="{!! csrf_token() !!}" />
 <meta name="robots" content="index, follow" />
+{{-- Open Graph tags of Facebook --}}
+@yield('facebook')
+
 {{-- ICO --}}
 <link rel="shortcut icon" href="{!! asset('favicon.ico') !!}" />
 {{-- <link rel="shortcut icon" type="image/x-icon" href="{!! Html::style('assets/images/favicon.png') !!} --}}

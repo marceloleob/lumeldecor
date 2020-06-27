@@ -1,5 +1,9 @@
 @extends('site.layouts.pages')
 
+@section('breadcrumb')
+<li class="breadcrumb-item active">Contato</li>
+@endsection
+
 @section('js-custom')
 {!! Html::script('js/forms/jquery.validate.' . $locale . '.js', ['defer' => 'defer']) !!}
 {!! Html::script('js/forms/jquery.masks.' . $locale . '.js', ['defer' => 'defer']) !!}
@@ -8,7 +12,7 @@
 
 @section('content')
 	{{-- START SECTION CONTACT --}}
-	<div class="section pb_70">
+	<div class="section">
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-4 col-md-6">
@@ -108,5 +112,4 @@
 		</div>
 	</div>
 	{{-- END SECTION CONTACT --}}
-
 @endsection

@@ -1,8 +1,12 @@
 @extends('site.layouts.pages')
 
-@section('content')
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="#">Lumel Decor</a></li>
+<li class="breadcrumb-item active">Termos e Condições</li>
+@endsection
 
-{{-- STAT SECTION FAQ --}}
+@section('content')
+	{{-- STAT SECTION FAQ --}}
 	<div class="section">
 		<div class="container">
 			<div class="row">
@@ -106,7 +110,5 @@
 			</div>
 		</div>
 	</div>
-{{-- END SECTION FAQ --}}
-
-
+	{{-- END SECTION FAQ --}}
 @endsection

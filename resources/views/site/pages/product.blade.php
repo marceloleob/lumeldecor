@@ -1,4 +1,4 @@
-@extends('site.layouts.pages-product')
+@extends('site.layouts.pages')
 
 @section('breadcrumb')
 <li class="breadcrumb-item active">Lista dos Produtos</li>

@@ -5520,23 +5520,75 @@ footer .widget_title {
 .product-image {
     position: relative;
 }
-.pr_detail .pr_desc {
-    display: inline-block;
+
+.pr_detail .product_description {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
 }
-.pr_detail .pr_desc p {
-    margin-bottom: 15px;
-}
-.pr_detail .rating_wrap {
-    float: right;
-	margin-top: 7px;
+.pr_detail .product_description .price_rating {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .pr_detail .product_price {
-    float: left;
+	justify-content: flex-start;
 }
 .pr_detail .price {
     vertical-align: middle;
     font-size: 26px;
 }
+.pr_detail .rating_wrap {
+	justify-content: flex-end;
+}
+.pr_detail .pr_switch_wrap {
+	display: flex;
+	align-items: center;
+	padding: 7px 0;
+}
+.pr_detail .pr_switch_wrap .switch_lable {
+    vertical-align: middle;
+}
+
+.pr_detail .shipping-price {
+	display: flex;
+	flex-wrap: nowrap;
+}
+.pr_detail .shipping-price .zipcode {
+	display: flex;
+	align-self: stretch;
+}
+.pr_detail .shipping-price span {
+	display: flex;
+	align-items: center;
+}
+.pr_detail .pr_desc {
+    display: inline-block;
+}
+.pr_detail .pr_desc p {
+    margin-bottom: 14px;
+}
+
+.product_size_switch span {
+	cursor: pointer;
+	text-transform: uppercase;
+	width: 32px;
+	display: inline-block;
+	border: 2px solid #ddd;
+	text-align: center;
+	height: 32px;
+	line-height: 28px;
+	font-size: 14px;
+	margin-bottom: 3px;
+}
+.product_size_switch span.active, .product_size_switch span:hover {
+	border-color: #FF324D;
+	background-color: #ff324d;
+	color: #fff;
+}
+
+
+
 .cart-product-quantity {
 	margin: 7px 10px 7px 0;
 	display: table;
@@ -5592,26 +5644,6 @@ footer .widget_title {
 .switch_lable {
     float: left;
     margin-right: 10px;
-}
-.pr_detail .pr_switch_wrap {
-    margin-bottom: 10px;
-}
-.product_size_switch span {
-	cursor: pointer;
-	text-transform: uppercase;
-	width: 32px;
-	display: inline-block;
-	border: 2px solid #ddd;
-	text-align: center;
-	height: 32px;
-	line-height: 28px;
-	font-size: 14px;
-	margin-bottom: 3px;
-}
-.product_size_switch span.active, .product_size_switch span:hover {
-	border-color: #FF324D;
-	background-color: #ff324d;
-	color: #fff;
 }
 .list_brand li {
 	list-style: none;

@@ -59,7 +59,7 @@ class SearchService
 			->where('status', config('constants.STATUS.ACTIVE'));
 
 		// executa o filtro pelo cor
-		if ($type === 'cor') {
+		if ($type === 'tons') {
 			self::$query->whereHas('tones', function ($subQuery) use ($search)
 			{
 				$subQuery->whereHas('colors', function ($subSubQuery) use ($search)
@@ -85,7 +85,7 @@ class SearchService
 			'type'     => $type,
 			'current'  => $search,
 			'data'     => self::$data,
-			'title'    => self::setTitleList($type, $search),
+			'title'    => self::setTitle($type, $search),
 			'paginate' => self::$paginate,
 		];
 	}
@@ -143,7 +143,7 @@ class SearchService
 	 * @param string $search
 	 * @return string
 	 */
-	public static function setTitleList($type, $search)
+	public static function setTitle($type, $search)
 	{
 		if ($type === 'material') {
 			return 'Produtos de ' . Material::where('slug', $search)->first()->name;
@@ -151,7 +151,7 @@ class SearchService
 		if ($type === 'categoria') {
 			return 'Lista de ' . Category::where('slug', $search)->first()->name;
 		}
-		if ($type === 'cor') {
+		if ($type === 'tons') {
 			return 'Produtos com tons de "' . Color::where('slug', $search)->first()->name . '"';
 		}
 		if ($type === 'tema') {
@@ -173,10 +173,17 @@ class SearchService
 	{
 		if (!empty($sku)) {
 			// recupera os detalhes do item pelo codigo
-			$item = Item::where('code', $sku)->firstOrFail();
+			$item = tap(Item::where('code', $sku)->firstOrFail(), function ($item)
+				{
+					$tones = ToneService::format($item->tones);
+					$item->tooltip    = $tones['tooltip'];
+					$item->background = $tones['background'];
+				});
+
 		} else {
+
 			// recupera os detalhes do item pelo tamanho
-			$item = Item::whereHas(
+			$item = tap(Item::whereHas(
 				'product', function ($subQuery) use ($slug)
 				{
 					$subQuery->where('slug', $slug);
@@ -188,7 +195,12 @@ class SearchService
 						->where('size', $size)
 						->orderBy('size');
 				})
-				->firstOrFail();
+				->firstOrFail(), function ($item)
+				{
+					$tones = ToneService::format($item->tones);
+					$item->tooltip    = $tones['tooltip'];
+					$item->background = $tones['background'];
+				});
 		}
 
 		// recupera os tamanhos disponiveis do item

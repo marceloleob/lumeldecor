@@ -61,12 +61,12 @@
 								</div>
 							</li>
 							<li class="dropdown">
-								<a class="dropdown-toggle nav-link {!! (request()->is('*cor*')) ? 'active' : '' !!}" href="#" data-toggle="dropdown">Cores</a>
+								<a class="dropdown-toggle nav-link {!! (request()->is('*tons*')) ? 'active' : '' !!}" href="#" data-toggle="dropdown">Cores</a>
 								<div class="dropdown-menu">
 									<ul>
 										@foreach ($menu['colors'] as $color)
 											<li>
-												<a href="{!! route('product.show', ['cor', $color['slug']]) !!}" class="dropdown-item nav-link nav_item {!! ($current === $color['slug']) ? 'active' : '' !!}">
+												<a href="{!! route('product.show', ['tons', $color['slug']]) !!}" class="dropdown-item nav-link nav_item {!! ($current === $color['slug']) ? 'active' : '' !!}">
 													<img src="{!! asset('images/icons/' . $color['icon']) !!}" class="colors" /> {!! $color['name'] !!}
 												</a>
 											</li>

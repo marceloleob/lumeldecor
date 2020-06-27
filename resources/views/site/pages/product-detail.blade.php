@@ -1,9 +1,22 @@
-@extends('site.layouts.pages-product')
+@extends('site.layouts.pages')
+
+{{-- @section('facebook')
+<meta property="og:url"         content="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}" />
+<meta property="og:type"        content="website" />
+<meta property="og:title"       content="{!! $title !!}" />
+<meta property="og:description" content="Your description" />
+<meta property="og:image"       content="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" />
+@endsection --}}
 
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{!! route('product.show', [$type, $current]) !!}">Lista dos Produtos</a></li>
 <li class="breadcrumb-item active">Detalhes do Produto</li>
 @endsection
+
+{{-- @section('js-custom')
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v7.0&appId=2921606597937895&autoLogAppEvents=1" nonce="gxJZNA8c"></script>
+@endsection --}}
 
 @section('content')
 	<div class="section">
@@ -53,37 +66,30 @@
 				</div>
 				<div class="col-lg-6 col-md-6">
 					<div class="pr_detail">
-						<div class="product_description">
-							<h4 class="product_title"><a href="#">{!! $item->product->name !!} - {!! $item->productSize->size !!}</a></h4>
 
-							<div class="product_price">
-								<span class="price">R$ {!! $item->s_price !!}</span>
-								{{-- <del>R$ 25.00</del> --}}
-								<div class="on_sale">
-									{{-- <span>35% Off</span> --}}
+						<div class="product_description mb-4">
+							<h4 class="product_title mb-3">
+								<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}">{!! $item->product->name !!} - {!! $item->productSize->size !!}</a>
+							</h4>
+
+							<div class="price_rating mb-4">
+								<div class="product_price">
+									<span class="price">R$ {!! $item->s_price !!}</span>
+									{{-- <del>R$ 25.00</del> --}}
+									<div class="on_sale">
+										{{-- <span>35% Off</span> --}}
+									</div>
+								</div>
+								<div class="rating_wrap">
+									<div class="rating">
+										<div class="product_rate" style="width:100%"></div>
+									</div>
+									{{-- <span class="rating_num">(21)</span> --}}
 								</div>
 							</div>
 
-							<div class="rating_wrap">
-								{{-- <div class="rating">
-									<div class="product_rate" style="width:80%"></div>
-								</div>
-								<span class="rating_num">(21)</span> --}}
-							</div>
-
-							<div class="pr_desc">
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
-							</div>
-
-							<div class="product_sort_info">
-								<ul>
-									<li><i class="linearicons-shield-check"></i> Compre com segurança.</li>
-									<li><i class="linearicons-sync"></i> Leia nossa <a href="{!! route('terms') !!}" target="_blank">Política de Devolução</a></li>
-									<li><i class="linearicons-store"></i> Se preferir, pode retirar o produto em nossa loja.</li>
-								</ul>
-							</div>
 							<div class="pr_switch_wrap">
-								<span class="switch_lable">Cores disponíveis:</span>
+								<span class="switch_lable">Cores:</span>
 								<div class="product_color_switch">
 									@foreach ($colors as $colorItem)
 										<a href="{!! route('product.detail', [$type, $current, $colorItem->product->slug, $colorItem->productSize->size, $colorItem->code]) !!}">
@@ -94,7 +100,7 @@
 							</div>
 
 							<div class="pr_switch_wrap">
-								<span class="switch_lable">Tamanhos disponíveis:</span>
+								<span class="switch_lable">Tamanhos:</span>
 								<div class="product_size_switch">
 									@foreach ($sizes as $size)
 										<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $size->size]) !!}">
@@ -103,41 +109,62 @@
 									@endforeach
 								</div>
 							</div>
-
 						</div>
+
 						<hr />
 						<div class="cart_extra">
 							<div class="cart-product-quantity">
 								<div class="quantity">
-									<input type="button" value="-" class="minus">
-									<input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
-									<input type="button" value="+" class="plus">
+									<input type="button" value="-" class="minus" />
+									<input type="text" name="quantity" value="1" title="Qtde" class="qty" size="4" />
+									<input type="button" value="+" class="plus" />
 								</div>
 							</div>
 							<div class="cart_btn">
-								<button class="btn btn-fill-out btn-addtocart" type="button"><i class="icon-basket-loaded"></i> Comprar</button>
+								<button class="btn btn-fill-out btn-addtocart" type="button"><i class="fas fa-cart-plus"></i> Comprar</button>
 								<a class="add_wishlist" href="#"><i class="icon-heart"></i></a>
 							</div>
 						</div>
 						<hr />
-						<ul class="product-meta">
-							<li>Código: <a href="#">{!! $item->code !!}</a></li>
-							<li>Material: <a href="#">{!! $item->product->material->name !!}</a></li>
-							<li>Categoria: <a href="#">{!! $item->product->category->name !!}</a></li>
-						</ul>
+
+						<div class="shipping-price mb-4">
+							<span>CEP:</span>
+							<input type="text" class="zipcode mx-2" name="zipcode" size="6" />
+							<span>-</span>
+							<input type="text" class="zipcode ml-2" name="zipcode" size="4" />
+							<button class="btn btn-line-fill btn-sm ml-3" type="button"><i class="fas fa-shipping-fast"></i> Calcular Frete</button>
+						</div>
+						<div class="shipping-result mb-4">
+							&nbsp;
+						</div>
+
+						<div class="product_sort_info">
+							<ul>
+								<li><i class="linearicons-shield-check"></i> Compre com segurança.</li>
+								{{-- <li><i class="linearicons-sync"></i> Leia nossa <a href="{!! route('terms') !!}" target="_blank">Política de Devolução</a></li> --}}
+								<li><i class="linearicons-store"></i> Se preferir, pode retirar o produto em nossa loja.</li>
+								<li><i class="linearicons-magic-wand"></i> A cor deste produto pode variar dependendo do ajuste do seu monitor.</li>
+							</ul>
+						</div>
+
+						{{-- <div class="pr_desc">
+							<p>A cor deste produto pode variar dependendo da qualidade e ajuste do seu monitor.</p>
+						</div>
+
 						<div class="product_share">
 							<span>Compartilhe:</span>
 							<ul class="social_icons">
 								<li><a href="#"><i class="ion-social-facebook"></i></a></li>
+								<li><div class="fb-like" data-href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}" data-width="" data-layout="button" data-action="like" data-size="large" data-share="false"></div></li>
 								<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
 							</ul>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-12">
-					<div class="large_divider clearfix"></div>
+					<div class="medium_divider clearfix"></div>
 				</div>
 			</div>
 			<div class="row">
@@ -145,33 +172,56 @@
 					<div class="tab-style3">
 						<ul class="nav nav-tabs" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="Description-tab" data-toggle="tab" href="#Description" role="tab" aria-controls="Description" aria-selected="true">Descrição</a>
+								<a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Descrição</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="Additional-info-tab" data-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">Informações Adicionais</a>
+								<a class="nav-link" id="infos-tab" data-toggle="tab" href="#infos" role="tab" aria-controls="infos" aria-selected="false">Informações</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="dimensions-tab" data-toggle="tab" href="#dimensions" role="tab" aria-controls="dimensions" aria-selected="false">Dimensões</a>
 							</li>
 						</ul>
 						<div class="tab-content shop_info_tab">
-							<div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
+							<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
 								{!! $item->product->description !!}
 							</div>
-							<div class="tab-pane fade" id="Additional-info" role="tabpanel" aria-labelledby="Additional-info-tab">
+							<div class="tab-pane fade" id="infos" role="tabpanel" aria-labelledby="infos-tab">
 								<table class="table table-bordered">
 									<tr>
-										<td>Capacity</td>
-										<td>5 Kg</td>
+										<td width="15%">Código</td><td width="85%">{!! $item->code !!}</td>
 									</tr>
 									<tr>
-										<td>Color</td>
-										<td>Black, Brown, Red,</td>
+										<td>Material</td><td>{!! $item->product->material->name !!}</td>
 									</tr>
 									<tr>
-										<td>Water Resistant</td>
-										<td>Yes</td>
+										<td>Categoria</td><td>{!! $item->product->category->name !!}</td>
 									</tr>
 									<tr>
-										<td>Material</td>
-										<td>Artificial Leather</td>
+										<td>Cor</td><td>{!! $item->tooltip !!}</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td><td>*A cor deste produto pode variar dependendo do ajuste do seu monitor.</td>
+									</tr>
+								</table>
+							</div>
+							<div class="tab-pane fade" id="dimensions" role="tabpanel" aria-labelledby="dimensions-tab">
+								<table class="table table-bordered">
+									<tr>
+										<td width="15%">Tamanho</td><td width="85%">{!! $item->productSize->size !!}</td>
+									</tr>
+									<tr>
+										<td>Peso</td><td>{!! $item->productSize->weight !!} Kg</td>
+									</tr>
+									<tr>
+										<td>{!! ($item->productSize->shape === 'Q') ? 'Comprimento' : 'Diâmetro' !!}</td><td>{!! $item->productSize->pro_length !!} cm</td>
+									</tr>
+									@if ($item->productSize->shape === 'Q')
+									<tr>
+										<td>Largura</td><td>{!! $item->productSize->pro_width !!} cm</td>
+									</tr>
+									@endif
+									<tr>
+										<td>Altura</td><td>{!! $item->productSize->pro_height !!} cm</td>
 									</tr>
 								</table>
 							</div>
@@ -218,7 +268,7 @@
 									</div>
 									<div class="rating_wrap">
 										<div class="rating">
-											<div class="product_rate" style="width:80%"></div>
+											<div class="product_rate" style="width:85%"></div>
 										</div>
 										<span class="rating_num">(21)</span>
 									</div>
@@ -389,7 +439,7 @@
 									</div>
 									<div class="rating_wrap">
 										<div class="rating">
-											<div class="product_rate" style="width:80%"></div>
+											<div class="product_rate" style="width:85%"></div>
 										</div>
 										<span class="rating_num">(21)</span>
 									</div>
