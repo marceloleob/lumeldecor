@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
 	// Produtos
 	Route::any('produto/{type}/{search}', 'ProductController@show')->name('product.show');
 	Route::get('detalhes/{type}/{search}/{slug}/{size}/{sku?}', 'ProductController@detail')->name('product.detail');
+	Route::post('product/zipcode', 'ProductController@zipcode');
 });
 
 
@@ -66,7 +67,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('categoria/editar/{id}', 'CategoryController@edit')->name('category.edit');
 	Route::put('categoria/atualizar/{id}', 'CategoryController@update')->name('category.update');
 	Route::get('categoria/status/{id}', 'CategoryController@changeStatus')->name('category.status');
-	Route::post('category/options', 'CategoryController@options');
 	// Products
 	Route::get('produto/listar', 'ProductController@index')->name('product.list');
 	Route::any('produto/buscar', 'ProductController@index')->name('product.search');

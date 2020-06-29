@@ -20,7 +20,7 @@
 
 {{-- ICO --}}
 <link rel="shortcut icon" href="{!! asset('favicon.ico') !!}" />
-{{-- <link rel="shortcut icon" type="image/x-icon" href="{!! Html::style('assets/images/favicon.png') !!} --}}
+{{-- <link rel="shortcut icon" type="image/x-icon" href="{!! asset('images/favicon/favicon.png') !!} --}}
 
 {{-- GOOGLE FONTS --}}
 {!! Html::style('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap') !!}

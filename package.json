@@ -39,6 +39,7 @@
         "jquery-maskmoney": "^3.0.2",
         "jquery-validation": "^1.19.1",
         "jquery.appear": "^1.0.1",
+        "jquery.maskedinput": "^1.4.1",
         "magnific-popup": "^1.1.0",
         "metismenu": "^3.0.6",
         "moment": "^2.26.0",

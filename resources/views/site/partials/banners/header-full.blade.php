@@ -2,7 +2,7 @@
 <div class="banner_section slide_medium shop_banner_slider staggered-animation-wrap">
 	<div id="carouselExampleControls" class="carousel slide carousel-fade light_arrow" data-ride="carousel">
 		<div class="carousel-inner">
-			<div class="carousel-item background_bg active" data-img-src="assets/images/banner16.jpg">
+			<div class="carousel-item background_bg active" data-img-src="images/help/banner16.jpg">
 				<div class="banner_slide_content banner_content_inner">
 					<div class="container">
 						<div class="row">
@@ -17,7 +17,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="carousel-item background_bg" data-img-src="assets/images/banner17.jpg">
+			<div class="carousel-item background_bg" data-img-src="images/help/banner17.jpg">
 				<div class="banner_slide_content banner_content_inner">
 					<div class="container">
 						<div class="row">
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="carousel-item background_bg" data-img-src="assets/images/banner18.jpg">
+			<div class="carousel-item background_bg" data-img-src="images/help/banner18.jpg">
 				<div class="banner_slide_content banner_content_inner">
 					<div class="container">
 						<div class="row">

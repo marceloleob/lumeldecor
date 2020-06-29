@@ -109,12 +109,12 @@
 								<ul class="cart_list">
 									<li>
 										<a href="#" class="item_remove"><i class="ion-close"></i></a>
-										<a href="#"><img src="{!! asset('assets/images/cart_thamb1.jpg') !!}" alt="cart_thumb1">Variable product 001</a>
+										<a href="#"><img src="{!! asset('images/help/cart_thamb1.jpg') !!}" alt="cart_thumb1">Variable product 001</a>
 										<span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>78.00</span>
 									</li>
 									<li>
 										<a href="#" class="item_remove"><i class="ion-close"></i></a>
-										<a href="#"><img src="{!! asset('assets/images/cart_thamb2.jpg') !!}" alt="cart_thumb2">Ornare sed consequat</a>
+										<a href="#"><img src="{!! asset('images/help/cart_thamb2.jpg') !!}" alt="cart_thumb2">Ornare sed consequat</a>
 										<span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>81.00</span>
 									</li>
 								</ul>

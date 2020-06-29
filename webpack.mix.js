@@ -24,56 +24,51 @@ const mix = require('laravel-mix');
 
 	// ADMIN AND WEBSITE
 	mix
-		.sass('resources/sass/app.scss', 'public/css')
-		.js('resources/js/forms/jquery.masks.pt-br.js', 'public/js/forms')
-		.js('resources/js/forms/jquery.validate.pt-br.js', 'public/js/forms');
+		.sass('resources/assets/sass/app.scss', 'public/css')
+		.js('resources/assets/js/forms/jquery.masks.pt-br.js', 'public/js/forms')
+		.js('resources/assets/js/forms/jquery.validate.pt-br.js', 'public/js/forms');
 
 
 	// SITE FILES
 	mix
-	.js('resources/js/site/app.js', 'public/js/site')
-	.js('resources/js/libs/modernizr-custom.js', 'public/js/libs')
+	.js('resources/assets/js/site/app.js', 'public/js/site')
+	.js('resources/assets/js/libs/modernizr-custom.js', 'public/js/libs')
 	.js([
-		'resources/js/site/pages/contact.js',
+		'resources/assets/js/site/pages/contact.js',
 	], 'public/js/site/pages.js')
-	.sass('resources/sass/site/app.scss', 'public/css/site')
-	.sass('resources/sass/site/animate.scss', 'public/css/site')
-	.sass('resources/sass/site/style.scss', 'public/css/site')
-	.sass('resources/sass/site/responsive.scss', 'public/css/site')
+	.sass('resources/assets/sass/site/app.scss', 'public/css/site')
+	.sass('resources/assets/sass/site/animate.scss', 'public/css/site')
+	.sass('resources/assets/sass/site/style.scss', 'public/css/site')
+	.sass('resources/assets/sass/site/responsive.scss', 'public/css/site')
 	.styles([
-		'resources/sass/icons/ionicons.min.css',
-		'resources/sass/icons/themify-icons.css',
-		'resources/sass/icons/linearicons.css',
-		'resources/sass/icons/flaticon.css',
-		'resources/sass/icons/simple-line-icons.css',
-		// 'resources/sass/icons/slick.css',
-		// 'resources/sass/icons/slick-theme.css',
+		'resources/assets/sass/icons/ionicons.min.css',
+		'resources/assets/sass/icons/themify-icons.css',
+		'resources/assets/sass/icons/linearicons.css',
+		'resources/assets/sass/icons/flaticon.css',
+		'resources/assets/sass/icons/simple-line-icons.css',
 	], 'public/css/icons.css')
-	.copy('resources/fonts/vendor', 'public/fonts/vendor');
+	.copy('resources/assets/fonts/vendor', 'public/fonts/vendor');
 
 
 	// ADMIN FILES
 	mix
-		.js('resources/js/admin/app.js', 'public/js/admin')
+		.js('resources/assets/js/admin/app.js', 'public/js/admin')
 		.js([
-			'resources/js/admin/ajax/reason.js'
-		], 'public/js/admin/ajax.js')
-		.js([
-			'resources/js/admin/pages/campaign.js',
-			'resources/js/admin/pages/category.js',
-			'resources/js/admin/pages/color.js',
-			'resources/js/admin/pages/item.js',
-			'resources/js/admin/pages/material.js',
-			'resources/js/admin/pages/offer-coupon.js',
-			'resources/js/admin/pages/offer-promotion.js',
-			'resources/js/admin/pages/product.js',
-			'resources/js/admin/pages/product-size.js',
-			'resources/js/admin/pages/promotion.js',
-			'resources/js/admin/pages/stock.js',
-			'resources/js/admin/pages/theme.js',
+			'resources/assets/js/admin/pages/campaign.js',
+			'resources/assets/js/admin/pages/category.js',
+			'resources/assets/js/admin/pages/color.js',
+			'resources/assets/js/admin/pages/item.js',
+			'resources/assets/js/admin/pages/material.js',
+			'resources/assets/js/admin/pages/offer-coupon.js',
+			'resources/assets/js/admin/pages/offer-promotion.js',
+			'resources/assets/js/admin/pages/product.js',
+			'resources/assets/js/admin/pages/product-size.js',
+			'resources/assets/js/admin/pages/promotion.js',
+			'resources/assets/js/admin/pages/stock.js',
+			'resources/assets/js/admin/pages/theme.js',
 		], 'public/js/admin/pages.js')
-		.copy('resources/sass/admin/architect-ui.min.css', 'public/css/admin')
-		.sass('resources/sass/admin/app.scss', 'public/css/admin');
+		.copy('resources/assets/sass/admin/architect-ui.min.css', 'public/css/admin')
+		.sass('resources/assets/sass/admin/app.scss', 'public/css/admin');
 
 
 	// mix.autoload({

@@ -49,7 +49,7 @@
 							<i class="linearicons-tablet2"></i>
 						</div>
 						<div class="contact_text">
-							<span>Phone</span>
+							<span>Telefone</span>
 							<p>
 								31 99514-0615 <br />
 								&nbsp;
@@ -94,7 +94,7 @@
 									{!! Form::textarea('message', old('message'), ['class' => 'form-control textarea', 'placeholder' => 'Seu texto *', 'rows' => '7']) !!}
 								</div>
 								<div class="col-md-12">
-									<button type="submit" title="Submit Your Message!" class="btn btn-fill-out" id="submitButton" name="submit" value="Submit">Send Message</button>
+									<button type="submit" title="Submit Your Message!" class="btn btn-fill-out" id="submitButton" name="submit" value="Submit">Enviar</button>
 								</div>
 								<div class="col-md-12">
 									<div id="alert-msg" class="alert-msg text-center"></div>

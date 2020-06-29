@@ -13,65 +13,48 @@
 <li class="breadcrumb-item active">Detalhes do Produto</li>
 @endsection
 
-{{-- @section('js-custom')
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v7.0&appId=2921606597937895&autoLogAppEvents=1" nonce="gxJZNA8c"></script>
-@endsection --}}
+@section('js-custom')
+{!! Html::script('js/forms/jquery.validate.' . $locale . '.js', ['defer' => 'defer']) !!}
+{!! Html::script('js/forms/jquery.masks.' . $locale . '.js', ['defer' => 'defer']) !!}
+{!! Html::script('js/site/pages.js', ['defer' => 'defer']) !!}
+{{-- <div id="fb-root"></div> --}}
+{{-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v7.0&appId=2921606597937895&autoLogAppEvents=1" nonce="gxJZNA8c"></script> --}}
+@stop
 
 @section('content')
 	<div class="section">
 		<div class="container">
 			<div class="row">
+				{{-- PICTURES --}}
 				<div class="col-lg-6 col-md-6 mb-4 mb-md-0">
 					<div class="product-image vertical_gallery">
 						<div id="pr_item_gallery" class="product_gallery_item slick_slider" data-vertical="true" data-vertical-swiping="true" data-slides-to-show="5" data-slides-to-scroll="1" data-infinite="false">
+							{{-- THUMBNAILS --}}
 							<div class="item">
 								<a href="#" class="product_gallery_item active" data-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}">
 									<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
 								</a>
 							</div>
-							<div class="item">
-								<a href="#" class="product_gallery_item" data-image="{!! asset('assets/images/product_img1-2') !!}.jpg" data-zoom-image="{!! asset('assets/images/product_zoom_img2.jpg') !!}">
-									<img src="{!! asset('assets/images/product_small_img2.jpg') !!}" alt="product_small_img2" />
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="product_gallery_item" data-image="{!! asset('assets/images/product_img1-3') !!}.jpg" data-zoom-image="{!! asset('assets/images/product_zoom_img3.jpg') !!}">
-									<img src="{!! asset('assets/images/product_small_img3.jpg') !!}" alt="product_small_img3" />
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="product_gallery_item" data-image="{!! asset('assets/images/product_img1-4') !!}.jpg" data-zoom-image="{!! asset('assets/images/product_zoom_img4.jpg') !!}">
-									<img src="{!! asset('assets/images/product_small_img4.jpg') !!}" alt="product_small_img4" />
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="product_gallery_item" data-image="{!! asset('assets/images/product_img1-4') !!}.jpg" data-zoom-image="{!! asset('assets/images/product_zoom_img4.jpg') !!}">
-									<img src="{!! asset('assets/images/product_small_img4.jpg') !!}" alt="product_small_img4" />
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="product_gallery_item" data-image="{!! asset('assets/images/product_img1-4') !!}.jpg" data-zoom-image="{!! asset('assets/images/product_zoom_img4.jpg') !!}">
-									<img src="{!! asset('assets/images/product_small_img4.jpg') !!}" alt="product_small_img4" />
-								</a>
-							</div>
+							{{-- THUMBNAILS --}}
 						</div>
+						{{-- REGULAR --}}
 						<div class="product_img_box">
 							<img id="product_img" src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}" />
 							<a href="#" class="product_img_zoom" title="{!! $item->product->name !!} - {!! $item->productSize->size !!}">
 								<span class="linearicons-zoom-in"></span>
 							</a>
 						</div>
+						{{-- REGULAR --}}
 					</div>
 				</div>
+				{{-- PICTURES --}}
+
 				<div class="col-lg-6 col-md-6">
 					<div class="pr_detail">
-
 						<div class="product_description mb-4">
 							<h4 class="product_title mb-3">
 								<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}">{!! $item->product->name !!} - {!! $item->productSize->size !!}</a>
 							</h4>
-
 							<div class="price_rating mb-4">
 								<div class="product_price">
 									<span class="price">R$ {!! $item->s_price !!}</span>
@@ -80,14 +63,12 @@
 										{{-- <span>35% Off</span> --}}
 									</div>
 								</div>
-								<div class="rating_wrap">
-									<div class="rating">
-										<div class="product_rate" style="width:100%"></div>
+								@if ($item->launch)
+									<div class="product_launch">
+										<span class="badge badge-pill"><i class="fas fa-rocket pr-1"></i> Lançamento</span>
 									</div>
-									{{-- <span class="rating_num">(21)</span> --}}
-								</div>
+								@endif
 							</div>
-
 							<div class="pr_switch_wrap">
 								<span class="switch_lable">Cores:</span>
 								<div class="product_color_switch">
@@ -98,7 +79,6 @@
 									@endforeach
 								</div>
 							</div>
-
 							<div class="pr_switch_wrap">
 								<span class="switch_lable">Tamanhos:</span>
 								<div class="product_size_switch">
@@ -127,13 +107,16 @@
 						</div>
 						<hr />
 
-						<div class="shipping-price mb-4">
-							<span>CEP:</span>
-							<input type="text" class="zipcode mx-2" name="zipcode" size="6" />
-							<span>-</span>
-							<input type="text" class="zipcode ml-2" name="zipcode" size="4" />
-							<button class="btn btn-line-fill btn-sm ml-3" type="button"><i class="fas fa-shipping-fast"></i> Calcular Frete</button>
-						</div>
+						{!! Form::open(['id' => 'form-zipcode', 'method' => 'POST']) !!}
+							<div class="shipping-price mb-4">
+								<span>CEP:</span>
+								{!! Form::text('zipcode', old('zipcode'), ['class' => 'zipcode mx-2 numbersOnly', 'size' => '10', 'maxlength' => '9']) !!}
+								{{-- <span>-</span> --}}
+								{{-- {!! Form::text('code', old('code'), ['class' => 'zipcode mx-2', 'size' => '4', 'maxlength' => '3']) !!} --}}
+								{!! Form::button('<i class="fas fa-shipping-fast"></i> Calcular Frete', ['class' => 'btn btn-line-fill btn-sm ml-3']) !!}
+							</div>
+						{!! Form::close() !!}
+
 						<div class="shipping-result mb-4">
 							&nbsp;
 						</div>
@@ -141,32 +124,20 @@
 						<div class="product_sort_info">
 							<ul>
 								<li><i class="linearicons-shield-check"></i> Compre com segurança.</li>
-								{{-- <li><i class="linearicons-sync"></i> Leia nossa <a href="{!! route('terms') !!}" target="_blank">Política de Devolução</a></li> --}}
 								<li><i class="linearicons-store"></i> Se preferir, pode retirar o produto em nossa loja.</li>
 								<li><i class="linearicons-magic-wand"></i> A cor deste produto pode variar dependendo do ajuste do seu monitor.</li>
 							</ul>
 						</div>
-
-						{{-- <div class="pr_desc">
-							<p>A cor deste produto pode variar dependendo da qualidade e ajuste do seu monitor.</p>
-						</div>
-
-						<div class="product_share">
-							<span>Compartilhe:</span>
-							<ul class="social_icons">
-								<li><a href="#"><i class="ion-social-facebook"></i></a></li>
-								<li><div class="fb-like" data-href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}" data-width="" data-layout="button" data-action="like" data-size="large" data-share="false"></div></li>
-								<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-							</ul>
-						</div> --}}
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-12">
 					<div class="medium_divider clearfix"></div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-12">
 					<div class="tab-style3">
@@ -229,6 +200,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-12">
 					<div class="small_divider"></div>
@@ -236,17 +208,18 @@
 					<div class="medium_divider"></div>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-12">
 					<div class="heading_s1">
-						<h3>Releted Products</h3>
+						<h3>Produtos Relacionados</h3>
 					</div>
 					<div class="releted_product_slider carousel_slider owl-carousel owl-theme" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
 						<div class="item">
 							<div class="product">
 								<div class="product_img">
 									<a href="shop-product-detail.html">
-										<img src="{!! asset('assets/images/product_img1.jpg') !!}" alt="product_img1">
+										<img src="{!! asset('images/help/product_img1.jpg') !!}" alt="product_img1">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
@@ -289,7 +262,7 @@
 							<div class="product">
 								<div class="product_img">
 									<a href="shop-product-detail.html">
-										<img src="{!! asset('assets/images/product_img2.jpg') !!}" alt="product_img2">
+										<img src="{!! asset('images/help/product_img2.jpg') !!}" alt="product_img2">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
@@ -333,7 +306,7 @@
 								<span class="pr_flash">New</span>
 								<div class="product_img">
 									<a href="shop-product-detail.html">
-										<img src="{!! asset('assets/images/product_img3.jpg') !!}" alt="product_img3">
+										<img src="{!! asset('images/help/product_img3.jpg') !!}" alt="product_img3">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
@@ -374,7 +347,7 @@
 							<div class="product">
 								<div class="product_img">
 									<a href="shop-product-detail.html">
-										<img src="{!! asset('assets/images/product_img4.jpg') !!}" alt="product_img4">
+										<img src="{!! asset('images/help/product_img4.jpg') !!}" alt="product_img4">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
@@ -417,7 +390,7 @@
 							<div class="product">
 								<div class="product_img">
 									<a href="shop-product-detail.html">
-										<img src="{!! asset('assets/images/product_img5.jpg') !!}" alt="product_img5">
+										<img src="{!! asset('images/help/product_img5.jpg') !!}" alt="product_img5">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
