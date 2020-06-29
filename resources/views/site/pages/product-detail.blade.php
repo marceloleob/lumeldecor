@@ -1,25 +1,9 @@
 @extends('site.layouts.pages')
 
-{{-- @section('facebook')
-<meta property="og:url"         content="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}" />
-<meta property="og:type"        content="website" />
-<meta property="og:title"       content="{!! $title !!}" />
-<meta property="og:description" content="Your description" />
-<meta property="og:image"       content="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" />
-@endsection --}}
-
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{!! route('product.show', [$type, $current]) !!}">Lista dos Produtos</a></li>
 <li class="breadcrumb-item active">Detalhes do Produto</li>
 @endsection
-
-@section('js-custom')
-{!! Html::script('js/forms/jquery.validate.' . $locale . '.js', ['defer' => 'defer']) !!}
-{!! Html::script('js/forms/jquery.masks.' . $locale . '.js', ['defer' => 'defer']) !!}
-{!! Html::script('js/site/pages.js', ['defer' => 'defer']) !!}
-{{-- <div id="fb-root"></div> --}}
-{{-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v7.0&appId=2921606597937895&autoLogAppEvents=1" nonce="gxJZNA8c"></script> --}}
-@stop
 
 @section('content')
 	<div class="section">
@@ -111,8 +95,6 @@
 							<div class="shipping-price mb-4">
 								<span>CEP:</span>
 								{!! Form::text('zipcode', old('zipcode'), ['class' => 'zipcode mx-2 numbersOnly', 'size' => '10', 'maxlength' => '9']) !!}
-								{{-- <span>-</span> --}}
-								{{-- {!! Form::text('code', old('code'), ['class' => 'zipcode mx-2', 'size' => '4', 'maxlength' => '3']) !!} --}}
 								{!! Form::button('<i class="fas fa-shipping-fast"></i> Calcular Frete', ['class' => 'btn btn-line-fill btn-sm ml-3']) !!}
 							</div>
 						{!! Form::close() !!}

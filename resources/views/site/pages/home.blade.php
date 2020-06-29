@@ -1,7 +1,6 @@
 @extends('site.layouts.home')
 
 @section('content')
-
 	{{-- START SECTION LAUNCH --}}
 	<div class="section py_50">
 		<div class="container">
@@ -623,5 +622,4 @@
 		</div>
 	</div>
 	{{-- END SECTION BEST SELLERS --}}
-
 @endsection

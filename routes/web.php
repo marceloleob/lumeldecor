@@ -38,8 +38,8 @@ Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
 	Route::get('contato', 'ContactController@index')->name('contact');
 	Route::post('enviar-contato', 'ContactController@send')->name('contact.send');
 	// Produtos
-	Route::any('produto/{type}/{search}', 'ProductController@show')->name('product.show');
-	Route::get('detalhes/{type}/{search}/{slug}/{size}/{sku?}', 'ProductController@detail')->name('product.detail');
+	Route::any('produto/{table}/{slug}', 'ProductController@show')->name('product.show');
+	Route::get('detalhes/{table}/{slug}/{product}/{size}/{sku?}', 'ProductController@detail')->name('product.detail');
 	Route::post('product/zipcode', 'ProductController@zipcode');
 });
 

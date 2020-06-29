@@ -22,8 +22,10 @@ require('../../../../node_modules/metismenu/dist/metismenu');
 	EFETUA O LOGOUT DO SISTEMA
 	/*===================================*/
 	$( document ).ready(function() {
-		$('.logout').click(function (e) {
-			e.preventDefault();
+		$('.logout').click(function (event) {
+			// Method cancels the event if it is cancelable
+			event.preventDefault();
+			// executa o logout
 			document.getElementById('form-logout').submit();
 		});
 	});

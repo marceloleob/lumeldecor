@@ -1736,8 +1736,8 @@ button:focus {
 .social_icons li a {
 	font-size: 18px;
 	color: #687188;
-	height: 36px;
-	width: 36px;
+	height: 37px;
+	width: 37px;
 	line-height: 34px;
 	display: inline-block;
 	text-align: center;
@@ -2719,6 +2719,9 @@ input.text {
 }
 .contact_phone span {
 	color: #16181b;
+}
+.contact_phone:hover i {
+	color: #4caf50;
 }
 .banner_content_inner {
 	padding: 50px;

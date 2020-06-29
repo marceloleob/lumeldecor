@@ -4,12 +4,6 @@
 <li class="breadcrumb-item active">Contato</li>
 @endsection
 
-@section('js-custom')
-{!! Html::script('js/forms/jquery.validate.' . $locale . '.js', ['defer' => 'defer']) !!}
-{!! Html::script('js/forms/jquery.masks.' . $locale . '.js', ['defer' => 'defer']) !!}
-{!! Html::script('js/site/pages.js', ['defer' => 'defer']) !!}
-@stop
-
 @section('content')
 	{{-- START SECTION CONTACT --}}
 	<div class="section">

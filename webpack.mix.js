@@ -35,6 +35,8 @@ const mix = require('laravel-mix');
 	.js('resources/assets/js/libs/modernizr-custom.js', 'public/js/libs')
 	.js([
 		'resources/assets/js/site/pages/contact.js',
+		'resources/assets/js/site/pages/home.js',
+		'resources/assets/js/site/pages/product-detail.js',
 	], 'public/js/site/pages.js')
 	.sass('resources/assets/sass/site/app.scss', 'public/css/site')
 	.sass('resources/assets/sass/site/animate.scss', 'public/css/site')

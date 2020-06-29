@@ -18,39 +18,39 @@ class SearchService
 	/**
 	 * Recupera todos os produtos referentes ao material informado
 	 *
-	 * @param string $type
-	 * @param string $search
+	 * @param string $table
+	 * @param string $slug
 	 * @return array
 	 */
-	public static function productList($type, $search)
+	public static function productList($table, $slug)
 	{
 		self::$query = Item::inRandomOrder()
 			->whereHas(
-				'product', function ($subQuery) use ($type, $search)
+				'product', function ($subQuery) use ($table, $slug)
 				{
 					$subQuery
 						->where('done', config('constants.DONE.ACTIVE'))
 						->where('status', config('constants.STATUS.ACTIVE'));
 
 					// executa o filtro pelo nome do produto
-					if ($type === 'nome') {
-						$subQuery->where('name', 'LIKE', '%' . $search . '%');
+					if ($table === 'produto') {
+						$subQuery->where('name', 'LIKE', '%' . $slug . '%');
 					}
 					// executa o filtro pelo material
-					if ($type === 'material') {
+					if ($table === 'material') {
 						$subQuery->whereHas(
-							'material', function ($subQuery) use ($search)
+							'material', function ($subQuery) use ($slug)
 							{
-								$subQuery->where('slug', $search);
+								$subQuery->where('slug', $slug);
 							}
 						);
 					}
 					// executa o filtro pelo categoria
-					if ($type === 'categoria') {
+					if ($table === 'categoria') {
 						$subQuery->whereHas(
-							'category', function ($subQuery) use ($search)
+							'category', function ($subQuery) use ($slug)
 							{
-								$subQuery->where('slug', $search);
+								$subQuery->where('slug', $slug);
 							}
 						);
 					}
@@ -59,33 +59,33 @@ class SearchService
 			->where('status', config('constants.STATUS.ACTIVE'));
 
 		// executa o filtro pelo cor
-		if ($type === 'tons') {
-			self::$query->whereHas('tones', function ($subQuery) use ($search)
+		if ($table === 'tons') {
+			self::$query->whereHas('tones', function ($subQuery) use ($slug)
 			{
-				$subQuery->whereHas('colors', function ($subSubQuery) use ($search)
+				$subQuery->whereHas('colors', function ($subSubQuery) use ($slug)
 				{
-					$subSubQuery->where('slug', $search);
+					$subSubQuery->where('slug', $slug);
 				});
 			});
 		}
 		// executa o filtro pelo tema
-		if ($type === 'tema') {
-			self::$query->whereHas('themes', function ($subQuery) use ($search)
+		if ($table === 'tema') {
+			self::$query->whereHas('themes', function ($subQuery) use ($slug)
 			{
-				$subQuery->where('slug', $search);
+				$subQuery->where('slug', $slug);
 			});
 		}
 
 		// cria a paginacao
-		self::pagination($type, $search);
+		self::pagination($table, $slug);
 		// formata os dados
 		self::format();
 
 		return [
-			'type'     => $type,
-			'current'  => $search,
+			'type'     => $table,
+			'current'  => $slug,
 			'data'     => self::$data,
-			'title'    => self::setTitle($type, $search),
+			'title'    => self::setTitle($table, $slug),
 			'paginate' => self::$paginate,
 		];
 	}
@@ -93,26 +93,16 @@ class SearchService
     /**
      * Handler paginator
 	 *
-	 * @param string $type
-	 * @param string $search
+	 * @param string $table
+	 * @param string $slug
      * @return void
      */
-	public static function pagination($type, $search)
+	public static function pagination($table, $slug)
 	{
 		// recupera os dados paginados
 		self::$data = self::$query->paginate(10);
 		// adiciona parametro do filtro no paginate
-		if ($type === 'nome') {
-            self::$data->appends(['search' => $search]);
-		}
-		// adiciona parametro do filtro no paginate
-		if ($type === 'material') {
-            self::$data->appends(['material' => $search]);
-		}
-		// adiciona parametro do filtro no paginate
-		if ($type === 'categoria') {
-            self::$data->appends(['categoria' => $search]);
-		}
+		self::$data->appends([$table => $slug]);
         // constroi o paginate para a view
 		self::$paginate = self::$data;
 	}
@@ -139,37 +129,40 @@ class SearchService
 	/**
 	 * Recupera o nome correspondente da pagina de lista de produtos
 	 *
-	 * @param string $type
-	 * @param string $search
+	 * @param string $table
+	 * @param string $slug
 	 * @return string
 	 */
-	public static function setTitle($type, $search)
+	public static function setTitle($table, $slug)
 	{
-		if ($type === 'material') {
-			return 'Produtos de ' . Material::where('slug', $search)->first()->name;
+		if ($table === 'produto') {
+			return '"' . Material::where('slug', $slug)->first()->name . '"';
 		}
-		if ($type === 'categoria') {
-			return 'Lista de ' . Category::where('slug', $search)->first()->name;
+		if ($table === 'material') {
+			return 'Produtos de ' . Material::where('slug', $slug)->first()->name;
 		}
-		if ($type === 'tons') {
-			return 'Produtos com tons de "' . Color::where('slug', $search)->first()->name . '"';
+		if ($table === 'categoria') {
+			return 'Lista de ' . Category::where('slug', $slug)->first()->name;
 		}
-		if ($type === 'tema') {
-			return 'Produtos do tema "' . Theme::where('slug', $search)->first()->name . '"';
+		if ($table === 'tons') {
+			return 'Produtos com tons de "' . Color::where('slug', $slug)->first()->name . '"';
+		}
+		if ($table === 'tema') {
+			return 'Produtos do tema "' . Theme::where('slug', $slug)->first()->name . '"';
 		}
 	}
 
     /**
      * Retorna as informacoes importantes para renderizar os detalhes de um produto
 	 *
-	 * @param string $type
-	 * @param string $search
+	 * @param string $table
 	 * @param string $slug
+	 * @param string $product
 	 * @param string $size
 	 * @param string $sku
      * @return array
      */
-	public static function productDetail($type, $search, $slug, $size, $sku)
+	public static function productDetail($table, $slug, $product, $size, $sku)
 	{
 		if (!empty($sku)) {
 			// recupera os detalhes do item pelo codigo
@@ -184,9 +177,9 @@ class SearchService
 
 			// recupera os detalhes do item pelo tamanho
 			$item = tap(Item::whereHas(
-				'product', function ($subQuery) use ($slug)
+				'product', function ($subQuery) use ($product)
 				{
-					$subQuery->where('slug', $slug);
+					$subQuery->where('slug', $product);
 				})
 				->whereHas(
 				'productSize', function ($subQuery) use ($size)
@@ -205,9 +198,9 @@ class SearchService
 
 		// recupera os tamanhos disponiveis do item
 		$sizes = ProductSize::whereHas(
-			'product', function ($subQuery) use ($slug)
+			'product', function ($subQuery) use ($product)
 			{
-				$subQuery->where('slug', $slug);
+				$subQuery->where('slug', $product);
 			})
 			->get()
 			->map(function ($size) use ($item)
@@ -241,8 +234,8 @@ class SearchService
 			});
 
 		return [
-			'type'    => $type,
-			'current' => $search,
+			'type'    => $table,
+			'current' => $slug,
 			'item'    => $item,
 			'sizes'   => $sizes,
 			'colors'  => $colors,
