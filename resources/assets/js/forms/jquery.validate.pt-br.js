@@ -70,7 +70,7 @@ $.extend($.validator, {
 $(document).ready(function()
 {
 	/**
-	 * Bloqueia numeros
+	 * Somente letras
 	 */
 	jQuery.validator.addMethod("lettersOnly", function(value, element) {
         return this.optional(element) || /^[a-zâêôãõáéíóúà ]+$/i.test(value);
@@ -78,11 +78,18 @@ $(document).ready(function()
     }, '&Eacute; permitido digitar somente letras.');
 
 	/**
-	 * Bloqueia letras
+	 * Somente numeros
 	 */
     jQuery.validator.addMethod("numbersOnly", function (value, element) {
         return this.optional(element) || /^[0-9]+$/i.test(value);
     }, '&Eacute; permitido digitar somente n&uacute;meros.');
+
+	/**
+	 * Somente cep
+	 */
+    jQuery.validator.addMethod("zipOnly", function (value, element) {
+        return this.optional(element) || /^\d{5}[-]\d{3}$/i.test(value);
+    }, 'CEP inv&aacute;lido.');
 
 	/**
 	 * Somente telefone
@@ -93,7 +100,7 @@ $(document).ready(function()
     }, 'Este n&uacute;mero de telefone n&atilde;o &eacute; v&aacute;lido.');
 
 	/**
-	 * Bloqueia letras
+	 * Bloqueia decimais
 	 */
     jQuery.validator.addMethod("decimalOnly", function (value, element) {
         return this.optional(element) || /^\d+,\d{2}$/i.test(value);

@@ -31,7 +31,7 @@
 										<a href="{!! route('product-size.edit', [$item->productId, $item->id]) !!}" class="border-0 btn-icon btn-icon-only btn-pill btn btn-outline-info"><strong>{!! $item->size !!}</strong></a>
 									</td>
 									<td class="text-center">{!! $item->shape !!}</td>
-									<td class="text-center">{!! $item->weight !!}</td>
+									<td class="text-center">{!! $item->weightFormatted !!}</td>
 									<td class="text-center">
 										<a href="{!! route('product-size.edit', [$item->productId, $item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary mr-2" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="far fa-edit"></i></a>
 										<a href="{!! route('item.create', [$item->productId, $item->id]) !!}" class="btn-icon btn btn-outline-alternate"><i class="fas fa-tags pr-1"></i> Cores</a>

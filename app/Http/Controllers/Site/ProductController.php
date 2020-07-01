@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Site\ZipCodeRequest;
 use App\Repositories\ProductRepository;
 use App\Services\SearchService;
+use App\Services\ShippingService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -53,5 +55,16 @@ class ProductController extends Controller
 		$params = SearchService::productDetail($table, $slug, $product, $size, $sku);
 
 		return view('site.pages.product-detail')->with($params);
+	}
+
+	/**
+	 * Return calc of Correios
+	 *
+	 * @param ZipCodeRequest $request
+	 * @return array
+	 */
+	public function calculator(ZipCodeRequest $request)
+	{
+		return ShippingService::handle($request->all());
 	}
 }

@@ -55,7 +55,7 @@
 									<div class="product_info">
 										<h6 class="product_title"><a href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}">{!! $item->product->name !!}</a></h6>
 										<div class="product_price">
-											<span class="price">R$ {!! $item->s_price !!}</span>
+											<span class="price">R$ {!! $item->sPriceFormatted !!}</span>
 											{{-- <del>R$ 25.00</del> --}}
 											<div class="on_sale">
 												{{-- <span>35% Off</span> --}}

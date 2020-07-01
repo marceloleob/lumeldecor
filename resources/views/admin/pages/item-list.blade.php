@@ -31,7 +31,7 @@
 										<div class="colors" style="{!! $item->background !!}" data-toggle="tooltip" data-placement="bottom" data-original-title="{!! $item->tooltip !!}"></div>
 									</td>
 									<td class="text-left">{!! $item->productName !!} - {!! $item->size !!}</td>
-									<td class="text-center">R$ {!! $item->s_price !!}</td>
+									<td class="text-center">R$ {!! $item->sPriceFormatted !!}</td>
 									<td class="text-center">{!! $item->launch !!}</td>
 									<td class="text-center"><div  class="badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 									<td class="text-center">

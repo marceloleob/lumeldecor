@@ -13,11 +13,11 @@ class Item extends Model
 	 */
 	public $timestamps = false;
 
-    /**
-     * The relationships that should always be loaded.
-     *
-     * @var array
-     */
+	/**
+	 * The relationships that should always be loaded.
+	 *
+	 * @var array
+	 */
 	protected $with = ['tones', 'themes'];
 
 	/**
@@ -111,24 +111,44 @@ class Item extends Model
 	}
 
 	/**
-     * Get the p_price formated
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getPPriceAttribute($value)
-    {
-        return number_format((float) $value, 2, ',', '.');
-    }
+	 * Get the p_price
+	 *
+	 * @param  string  $value
+	 * @return float
+	 */
+	public function getPPriceAttribute($value)
+	{
+		return (float) $value;
+	}
 
 	/**
-     * Get the s_price formated
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getSPriceAttribute($value)
-    {
-        return number_format((float) $value, 2, ',', '.');
-    }
+	 * Get the s_price
+	 *
+	 * @param  string  $value
+	 * @return float
+	 */
+	public function getSPriceAttribute($value)
+	{
+		return (float) $value;
+	}
+
+	/**
+	 * Get the p_price formatted
+	 *
+	 * @return string
+	 */
+	public function getPPriceFormattedAttribute()
+	{
+		return number_format($this->p_price, 2, ',', '.');
+	}
+
+	/**
+	 * Get the s_price formatted
+	 *
+	 * @return string
+	 */
+	public function getSPriceFormattedAttribute()
+	{
+		return number_format($this->s_price, 2, ',', '.');
+	}
 }

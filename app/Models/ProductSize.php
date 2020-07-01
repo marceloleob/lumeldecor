@@ -13,11 +13,11 @@ class ProductSize extends Model
 	 */
 	public $timestamps = false;
 
-    /**
-     * The relationships that should always be loaded.
-     *
-     * @var array
-     */
+	/**
+	 * The relationships that should always be loaded.
+	 *
+	 * @var array
+	 */
 	// protected $with = ['product', 'items'];
 
 	/**
@@ -58,79 +58,149 @@ class ProductSize extends Model
 	}
 
 	/**
-     * Get the weight formated
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getWeightAttribute($value)
-    {
-        return number_format($value, 3, ',', '.');
-    }
+	 * Get the weight
+	 *
+	 * @param  string  $value
+	 * @return float
+	 */
+	public function getWeightAttribute($value)
+	{
+		return (float) $value;
+	}
 
 	/**
-     * Get the pro_height formated
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getProHeightAttribute($value)
-    {
-        return number_format($value, 2, ',', '.');
-    }
+	 * Get the weight formatted
+	 *
+	 * @return string
+	 */
+	public function getWeightFormattedAttribute()
+	{
+		return number_format($this->weight, 3, ',', '.');
+	}
 
 	/**
-     * Get the pro_width formated
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getProWidthAttribute($value)
-    {
-        return number_format($value, 2, ',', '.');
-    }
+	 * Get the pro_height
+	 *
+	 * @param  string  $value
+	 * @return float
+	 */
+	public function getProHeightAttribute($value)
+	{
+		return (float) $value;
+	}
 
 	/**
-     * Get the pro_length formated
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getProLengthAttribute($value)
-    {
-        return number_format($value, 2, ',', '.');
-    }
+	 * Get the pro_height formatted
+	 *
+	 * @return string
+	 */
+	public function getProHeightFormattedAttribute()
+	{
+		return number_format($this->pro_height, 2, ',', '.');
+	}
 
 	/**
-     * Get the shi_height formated
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getShiHeightAttribute($value)
-    {
-        return number_format($value, 2, ',', '.');
-    }
+	 * Get the pro_width
+	 *
+	 * @param  string  $value
+	 * @return float
+	 */
+	public function getProWidthAttribute($value)
+	{
+		return (float) $value;
+	}
 
 	/**
-     * Get the shi_width formated
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getShiWidthAttribute($value)
-    {
-        return number_format($value, 2, ',', '.');
-    }
+	 * Get the pro_width formatted
+	 *
+	 * @return string
+	 */
+	public function getProWidthFormattedAttribute()
+	{
+		return number_format($this->pro_width, 2, ',', '.');
+	}
 
 	/**
-     * Get the shi_length formated
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getShiLengthAttribute($value)
-    {
-        return number_format($value, 2, ',', '.');
-    }
+	 * Get the pro_length
+	 *
+	 * @param  string  $value
+	 * @return float
+	 */
+	public function getProLengthAttribute($value)
+	{
+		return (float) $value;
+	}
+
+	/**
+	 * Get the pro_length formatted
+	 *
+	 * @return string
+	 */
+	public function getProLengthFormattedAttribute()
+	{
+		return number_format($this->pro_length, 2, ',', '.');
+	}
+
+	/**
+	 * Get the shi_height
+	 *
+	 * @param  string  $value
+	 * @return float
+	 */
+	public function getShiHeightAttribute($value)
+	{
+		return (float) $value;
+	}
+
+	/**
+	 * Get the shi_height formatted
+	 *
+	 * @return string
+	 */
+	public function getShiHeightFormattedAttribute()
+	{
+		return number_format($this->shi_height, 2, ',', '.');
+	}
+
+	/**
+	 * Get the shi_width
+	 *
+	 * @param  string  $value
+	 * @return float
+	 */
+	public function getShiWidthAttribute($value)
+	{
+		return (float) $value;
+	}
+
+	/**
+	 * Get the shi_width formatted
+	 *
+	 * @return string
+	 */
+	public function getShiWidthFormattedAttribute()
+	{
+		return number_format($this->shi_width, 2, ',', '.');
+	}
+
+	/**
+	 * Get the shi_length
+	 *
+	 * @param  string  $value
+	 * @return float
+	 */
+	public function getShiLengthAttribute($value)
+	{
+		return (float) $value;
+	}
+
+	/**
+	 * Get the shi_length formatted
+	 *
+	 * @return string
+	 */
+	public function getShiLengthFormattedAttribute()
+	{
+		return number_format($this->shi_length, 2, ',', '.');
+	}
 }

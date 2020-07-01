@@ -72,11 +72,8 @@ class ItemService
 	{
 		$class  = 'success';
 
-		$sPrice = (float) str_replace(',', '.', $collection->s_price);
-		$pPrice = (float) str_replace(',', '.', $collection->p_price);
-
-		$gross  = ($sPrice - $pPrice);
-		$profit = (($gross * 100) / $pPrice);
+		$gross  = ($collection->s_price - $collection->p_price);
+		$profit = (($gross * 100) / $collection->p_price);
 
 		// verifica se o lucro foi bom ou ruim
 		if ($profit <= 10) {

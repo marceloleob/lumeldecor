@@ -56,7 +56,7 @@
 								<div class="position-relative form-group">
 									{!! Form::label('weight', 'Peso', ['class' => 'required']) !!}
 									<div class="input-group">
-										{!! Form::text('weight', old('weight', $data->weight), ['class' => 'form-control weight']) !!}
+										{!! Form::text('weight', old('weight', $data->weightFormatted), ['class' => 'form-control weight']) !!}
 										<div class="input-group-append"><span class="input-group-text">kg</span></div>
 									</div>
 									{!! Form::notification('weight', $errors) !!}
@@ -66,7 +66,7 @@
 								<div class="position-relative form-group">
 									{!! Form::label('pro_length', ((old('shape', $data->shape) === 'R') ? 'Diâmetro' : 'Comprimento'), ['class' => 'required label-length']) !!}
 									<div class="input-group">
-										{!! Form::text('pro_length', old('pro_length', $data->pro_length), ['class' => 'form-control decimal', 'placeholder' => 'Produto']) !!}
+										{!! Form::text('pro_length', old('pro_length', $data->proLengthFormatted), ['class' => 'form-control decimal', 'placeholder' => 'Produto']) !!}
 										<div class="input-group-append"><span class="input-group-text">cm</span></div>
 									</div>
 									{!! Form::notification('pro_length', $errors) !!}
@@ -74,7 +74,7 @@
 								<div class="position-relative form-group">
 									{!! Form::label('shi_length', 'Comprimento', ['class' => 'required']) !!}
 									<div class="input-group">
-										{!! Form::text('shi_length', old('shi_length', $data->shi_length), ['class' => 'form-control decimal', 'placeholder' => 'Embalagem']) !!}
+										{!! Form::text('shi_length', old('shi_length', $data->shiLengthFormatted), ['class' => 'form-control decimal', 'placeholder' => 'Embalagem']) !!}
 										<div class="input-group-append"><span class="input-group-text">cm</span></div>
 									</div>
 									{!! Form::notification('shi_length', $errors) !!}
@@ -84,7 +84,7 @@
 								<div class="position-relative form-group">
 									{!! Form::label('pro_width', 'Largura', ['class' => 'required label-width' . ((old('shape', $data->shape) === 'R') ? ' line-through' : '')]) !!}
 									<div class="input-group">
-										{!! Form::text('pro_width', old('pro_width', $data->pro_width), ['class' => 'form-control decimal input-width', 'placeholder' => 'Produto', 'disabled' => ((old('shape', $data->shape) === 'R') ? true : false)]) !!}
+										{!! Form::text('pro_width', old('pro_width', $data->proWidthFormatted), ['class' => 'form-control decimal input-width', 'placeholder' => 'Produto', 'disabled' => ((old('shape', $data->shape) === 'R') ? true : false)]) !!}
 										<div class="input-group-append"><span class="input-group-text">cm</span></div>
 									</div>
 									{!! Form::notification('pro_width', $errors) !!}
@@ -92,7 +92,7 @@
 								<div class="position-relative form-group">
 									{!! Form::label('shi_width', 'Largura', ['class' => 'required']) !!}
 									<div class="input-group">
-										{!! Form::text('shi_width', old('shi_width', $data->shi_width), ['class' => 'form-control decimal', 'placeholder' => 'Embalagem']) !!}
+										{!! Form::text('shi_width', old('shi_width', $data->shiWidthFormatted), ['class' => 'form-control decimal', 'placeholder' => 'Embalagem']) !!}
 										<div class="input-group-append"><span class="input-group-text">cm</span></div>
 									</div>
 									{!! Form::notification('shi_width', $errors) !!}
@@ -102,7 +102,7 @@
 								<div class="position-relative form-group">
 									{!! Form::label('pro_height', 'Altura', ['class' => 'required']) !!}
 									<div class="input-group">
-										{!! Form::text('pro_height', old('pro_height', $data->pro_height), ['class' => 'form-control decimal', 'placeholder' => 'Produto']) !!}
+										{!! Form::text('pro_height', old('pro_height', $data->proHeightFormatted), ['class' => 'form-control decimal', 'placeholder' => 'Produto']) !!}
 										<div class="input-group-append"><span class="input-group-text">cm</span></div>
 									</div>
 									{!! Form::notification('pro_height', $errors) !!}
@@ -110,7 +110,7 @@
 								<div class="position-relative form-group">
 									{!! Form::label('shi_height', 'Altura', ['class' => 'required']) !!}
 									<div class="input-group">
-										{!! Form::text('shi_height', old('shi_height', $data->shi_height), ['class' => 'form-control decimal', 'placeholder' => 'Embalagem']) !!}
+										{!! Form::text('shi_height', old('shi_height', $data->shiHeightFormatted), ['class' => 'form-control decimal', 'placeholder' => 'Embalagem']) !!}
 										<div class="input-group-append"><span class="input-group-text">cm</span></div>
 									</div>
 									{!! Form::notification('shi_height', $errors) !!}

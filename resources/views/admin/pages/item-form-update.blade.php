@@ -56,7 +56,7 @@
 											{!! Form::label('s_price', 'Preço no Site', ['class' => 'required']) !!}
 											<div class="input-group">
 												<div class="input-group-prepend"><span class="input-group-text">R$</span></div>
-												{!! Form::text('s_price', old('s_price', $data->s_price), ['class' => 'form-control decimal', 'id' => 's_price']) !!}
+												{!! Form::text('s_price', old('s_price', $data->sPriceFormatted), ['class' => 'form-control decimal', 'id' => 's_price']) !!}
 											</div>
 											{!! Form::notification('s_price', $errors) !!}
 										</div>
@@ -64,7 +64,7 @@
 											{!! Form::label('p_price', 'Preço no Fornecedor', ['class' => 'required']) !!}
 											<div class="input-group">
 												<div class="input-group-prepend"><span class="input-group-text">R$</span></div>
-												{!! Form::text('p_price', old('p_price', $data->p_price), ['class' => 'form-control decimal']) !!}
+												{!! Form::text('p_price', old('p_price', $data->pPriceFormatted), ['class' => 'form-control decimal']) !!}
 											</div>
 											{!! Form::notification('p_price', $errors) !!}
 										</div>

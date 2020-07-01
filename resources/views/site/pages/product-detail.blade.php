@@ -35,13 +35,13 @@
 
 				<div class="col-lg-6 col-md-6">
 					<div class="pr_detail">
-						<div class="product_description mb-4">
+						<div class="product_description mb-3">
 							<h4 class="product_title mb-3">
 								<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}">{!! $item->product->name !!} - {!! $item->productSize->size !!}</a>
 							</h4>
 							<div class="price_rating mb-4">
 								<div class="product_price">
-									<span class="price">R$ {!! $item->s_price !!}</span>
+									<span class="price">R$ {!! $item->sPriceFormatted !!}</span>
 									{{-- <del>R$ 25.00</del> --}}
 									<div class="on_sale">
 										{{-- <span>35% Off</span> --}}
@@ -52,6 +52,12 @@
 										<span class="badge badge-pill"><i class="fas fa-rocket pr-1"></i> Lançamento</span>
 									</div>
 								@endif
+							</div>
+							<div class="product_sort_info">
+								<ul>
+									<li><i class="linearicons-shield-check"></i> Compre com segurança.</li>
+									<li><i class="linearicons-store"></i> Se preferir, pode retirar o produto em nossa loja.</li>
+								</ul>
 							</div>
 							<div class="pr_switch_wrap">
 								<span class="switch_lable">Cores:</span>
@@ -67,7 +73,7 @@
 								<span class="switch_lable">Tamanhos:</span>
 								<div class="product_size_switch">
 									@foreach ($sizes as $size)
-										<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $size->size]) !!}">
+										<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $size->size, $size->items[0]->code]) !!}">
 											<span {!! $size->active !!}>{!! $size->size !!}</span>
 										</a>
 									@endforeach
@@ -80,36 +86,27 @@
 							<div class="cart-product-quantity">
 								<div class="quantity">
 									<input type="button" value="-" class="minus" />
-									<input type="text" name="quantity" value="1" title="Qtde" class="qty" size="4" />
+									<input type="text" name="quantity" id="quantity" value="1" class="qty" size="4" />
 									<input type="button" value="+" class="plus" />
 								</div>
 							</div>
 							<div class="cart_btn">
 								<button class="btn btn-fill-out btn-addtocart" type="button"><i class="fas fa-cart-plus"></i> Comprar</button>
-								<a class="add_wishlist" href="#"><i class="icon-heart"></i></a>
+								<a class="add_wishlist" href="#"><i class="icon-heart px-2"></i></a> Favoritos
 							</div>
 						</div>
 						<hr />
 
-						{!! Form::open(['id' => 'form-zipcode', 'method' => 'POST']) !!}
-							<div class="shipping-price mb-4">
+						{!! Form::open(['id' => 'form-zipcode', 'method' => 'GET']) !!}
+							<div class="shipping-price mb-2">
 								<span>CEP:</span>
-								{!! Form::text('zipcode', old('zipcode'), ['class' => 'zipcode mx-2 numbersOnly', 'size' => '10', 'maxlength' => '9']) !!}
-								{!! Form::button('<i class="fas fa-shipping-fast"></i> Calcular Frete', ['class' => 'btn btn-line-fill btn-sm ml-3']) !!}
+								{!! Form::text('zipcode', old('zipcode'), ['class' => 'zipcode mx-2 zipOnly', 'id' => 'zipcode', 'size' => '10', 'maxlength' => '9']) !!}
+								{!! Form::button('<i class="fas fa-shipping-fast"></i> Calcular Frete', ['class' => 'btn btn-line-fill btn-sm ml-3 btn-calculator']) !!}
+								{!! Form::hidden('item', $item->id, ['id' => 'item']) !!}
 							</div>
 						{!! Form::close() !!}
 
-						<div class="shipping-result mb-4">
-							&nbsp;
-						</div>
-
-						<div class="product_sort_info">
-							<ul>
-								<li><i class="linearicons-shield-check"></i> Compre com segurança.</li>
-								<li><i class="linearicons-store"></i> Se preferir, pode retirar o produto em nossa loja.</li>
-								<li><i class="linearicons-magic-wand"></i> A cor deste produto pode variar dependendo do ajuste do seu monitor.</li>
-							</ul>
-						</div>
+						<div class="shipping-result"></div>
 					</div>
 				</div>
 			</div>
@@ -153,7 +150,7 @@
 										<td>Cor</td><td>{!! $item->tooltip !!}</td>
 									</tr>
 									<tr>
-										<td>&nbsp;</td><td>*A cor deste produto pode variar dependendo do ajuste do seu monitor.</td>
+										<td>&nbsp;</td><td><i class="linearicons-magic-wand pr-2 text_default"></i> A cor deste produto pode variar dependendo do ajuste do seu monitor.</td>
 									</tr>
 								</table>
 							</div>
@@ -163,18 +160,18 @@
 										<td width="15%">Tamanho</td><td width="85%">{!! $item->productSize->size !!}</td>
 									</tr>
 									<tr>
-										<td>Peso</td><td>{!! $item->productSize->weight !!} Kg</td>
+										<td>Peso</td><td>{!! $item->productSize->weightFormatted !!} Kg</td>
 									</tr>
 									<tr>
-										<td>{!! ($item->productSize->shape === 'Q') ? 'Comprimento' : 'Diâmetro' !!}</td><td>{!! $item->productSize->pro_length !!} cm</td>
+										<td>{!! ($item->productSize->shape === 'Q') ? 'Comprimento' : 'Diâmetro' !!}</td><td>{!! $item->productSize->proLengthFormatted !!} cm</td>
 									</tr>
 									@if ($item->productSize->shape === 'Q')
 									<tr>
-										<td>Largura</td><td>{!! $item->productSize->pro_width !!} cm</td>
+										<td>Largura</td><td>{!! $item->productSize->proWidthFormatted !!} cm</td>
 									</tr>
 									@endif
 									<tr>
-										<td>Altura</td><td>{!! $item->productSize->pro_height !!} cm</td>
+										<td>Altura</td><td>{!! $item->productSize->proHeightFormatted !!} cm</td>
 									</tr>
 								</table>
 							</div>

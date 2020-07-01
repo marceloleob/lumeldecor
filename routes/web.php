@@ -40,7 +40,7 @@ Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
 	// Produtos
 	Route::any('produto/{table}/{slug}', 'ProductController@show')->name('product.show');
 	Route::get('detalhes/{table}/{slug}/{product}/{size}/{sku?}', 'ProductController@detail')->name('product.detail');
-	Route::post('product/zipcode', 'ProductController@zipcode');
+	Route::post('product/calculator', 'ProductController@calculator');
 });
 
 

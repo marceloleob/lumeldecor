@@ -23,3 +23,47 @@
 	background-color: #FFF !important;
 	border: 1px solid #ced4da;
 }
+
+/**
+* -----------------------------------------------------------------------------
+* MESSAGE FEEDBACK
+* -----------------------------------------------------------------------------
+*/
+.form .required::after {
+	position: absolute;
+	content: "\f069";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	font-size: 6px;
+	color: #bd362f;
+	padding: 3px;
+}
+.has-error input,
+.has-error textarea,
+.has-error select,
+.has-error [type="file"].custom-file-input + label,
+.has-error .input-group-addon {
+	border: 1px solid #bd362f !important;
+}
+.has-error .help-block {
+	display: block;
+	margin-top: 7px;
+	color: #bd362f;
+	font-size: 13px;
+}
+.has-error .help-block::before {
+    position: relative;
+    content: "\F00D";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #bd362f;
+    padding-right: 8px;
+}
+.has-success
+.has-success input,
+.has-success textarea,
+.has-success select,
+.has-success .custom-file-input,
+.has-success .input-group-addon {
+	border: 1px solid #6E8847 !important;
+}
