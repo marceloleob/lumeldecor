@@ -22,16 +22,35 @@ $(document).ready(function ()
 		$('.btn-calculator').click(function (event) {
 			// Method cancels the event if it is cancelable
 			event.preventDefault();
-
-			if ($('#item').val() === '' || $('#zipcode').val() === '') {
-				$('.shipping-result').html('<span class="text_default error">É necessário digitar o CEP</span>');
-				return false;
-			}
-
-			$('.shipping-result').html('<span class="loading"></span>');
-
-			calculator($('#item').val(), $('#zipcode').val(), $('#quantity').val());
+			// verifica se pode calcular o frete
+			zipcode();
 		});
+
+		$('#zipcode').keypress(function (event) {
+			// Method cancels the event if it is cancelable
+			event.preventDefault();
+
+			if (event.which === 13) {
+				// verifica se pode calcular o frete
+				zipcode();
+			}
+		});
+	}
+
+	/**
+	 * Executa o metodo para checar se pode calcular o frete
+	 *
+	 */
+	function zipcode()
+	{
+		if ($('#item').val() === '' || $('#zipcode').val() === '') {
+			$('.shipping-result').html('<span class="text_default error">É necessário digitar o CEP</span>');
+			return false;
+		}
+
+		$('.shipping-result').html('<span class="loading"></span>');
+
+		calculator($('#item').val(), $('#zipcode').val(), $('#quantity').val());
 	}
 
     /**
@@ -65,20 +84,3 @@ $(document).ready(function ()
         });
     }
 });
-
-/*
-SimpleXMLElement {#2476 ▼
-  +"Codigo": "04510"
-  +"Valor": "24,71"
-  +"PrazoEntrega": "8"
-  +"ValorSemAdicionais": "24,20"
-  +"ValorMaoPropria": "0,00"
-  +"ValorAvisoRecebimento": "0,00"
-  +"ValorValorDeclarado": "0,51"
-  +"EntregaDomiciliar": "S"
-  +"EntregaSabado": "N"
-  +"obsFim": SimpleXMLElement {#2567}
-  +"Erro": "0"
-  +"MsgErro": SimpleXMLElement {#2568}
-}
-*/
