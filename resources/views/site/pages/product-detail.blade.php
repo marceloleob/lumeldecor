@@ -97,6 +97,7 @@
 						</div>
 						<hr />
 
+						{!! var_dump(ini_get('allow_url_fopen')); !!}
 						{!! Form::open(['id' => 'form-zipcode', 'method' => 'GET']) !!}
 							<div class="shipping-price mb-2">
 								<span>CEP:</span>
