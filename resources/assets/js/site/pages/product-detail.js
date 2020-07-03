@@ -1,3 +1,5 @@
+const { isSet } = require("lodash");
+
 $(document).ready(function ()
 {
 	// Validacao do formulario
@@ -74,6 +76,12 @@ $(document).ready(function ()
 			},
 			success: function(response)
 			{
+				if (response.error) {
+					$('.shipping-result').html('<span class="text_default error">Erro ao consultar seu CEP nos Correios, por favor tente novamente mais tarde.</span>');
+					console.log(response.error);
+					return false;
+				}
+
 				var html  = '<div class="table-freight text_dark_gray">';
 					html += '<span><i class="far fa-calendar-alt text_default px-2"></i> PAC (' + response.PrazoEntrega + ' dias úteis)</span>';
 					html += '<span class="pr-2">R$ ' + response.Valor + '</span>';

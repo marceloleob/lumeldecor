@@ -124,10 +124,8 @@ class ShippingService
 			return json_encode($service);
 
 		} catch (Exception $exception) {
-
-			return $exception->getMessage();
+			return json_encode(['error' => $exception->getMessage()]);
 		}
-
 	}
 
 	/**
@@ -136,6 +134,7 @@ class ShippingService
 	 */
 	public static function handleXML()
 	{
+		dd(self::$params);
 		$url = self::$urlSoap;
 		// concatena os parametros na url
 		foreach (self::$params as $key => $param) {
