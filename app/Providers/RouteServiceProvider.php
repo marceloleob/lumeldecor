@@ -35,8 +35,8 @@ class RouteServiceProvider extends ServiceProvider
 		Route::pattern('productSizeId', '[0-9]+');
 		Route::pattern('itemId', '[0-9]+');
 
-        Route::pattern('table', '\b(produto|material|categoria|tons|tema)\b');
-        Route::pattern('slug', '[a-z\-]+');
+        Route::pattern('table', '\b(nome|material|categoria|tons|tema)\b');
+        Route::pattern('slug', '[a-zA-Z\-]+');
         Route::pattern('product', '[a-z\-]+');
         Route::pattern('size', '[A-Z\-]+');
         Route::pattern('sku', '^(LM){1}([0-9]){15}([P0G])([PMGU])');

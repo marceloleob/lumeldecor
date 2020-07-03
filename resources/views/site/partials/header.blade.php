@@ -11,13 +11,11 @@
 				<a href="https://wa.me/553195140615" target="_blank" sdata-toggle="tooltip" sdata-placement="top" sdata-original-title="Nosso WhatsApp"><i class="fab fa-whatsapp"></i> <span>31 99514-0615</span></a>
 			</div>
 			<div class="product_search_form">
-				{!! Form::open(['id' => 'form-search', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
-					<div class="input-group">
-						{!! Form::text('search', old('search'), ['class' => 'form-control', 'placeholder' => 'Procure pelo nome do produto..']) !!}
-						{!! Form::button('<i class="linearicons-magnifier"></i>', ['id', 'btn-search', 'class' => 'search_btn']) !!}
-					</div>
-					{!! Form::notification('search', $errors) !!}
-				{!! Form::close() !!}
+				<div class="input-group">
+					{!! Form::text('search', '', ['class' => 'form-control', 'id' => 'input-search', 'placeholder' => 'Procure pelo nome do produto..']) !!}
+					{!! Form::button('<i class="linearicons-magnifier"></i>', ['id' => 'btn-search', 'class' => 'search_btn']) !!}
+				</div>
+				{!! Form::hidden('url', route('home'), ['id' => 'url']) !!}
 			</div>
 		</div>
 	</div>

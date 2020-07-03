@@ -33,7 +33,7 @@ class SearchService
 						->where('status', config('constants.STATUS.ACTIVE'));
 
 					// executa o filtro pelo nome do produto
-					if ($table === 'produto') {
+					if ($table === 'nome') {
 						$subQuery->where('name', 'LIKE', '%' . $slug . '%');
 					}
 					// executa o filtro pelo material
@@ -135,8 +135,8 @@ class SearchService
 	 */
 	public static function setTitle($table, $slug)
 	{
-		if ($table === 'produto') {
-			return '"' . Material::where('slug', $slug)->first()->name . '"';
+		if ($table === 'nome') {
+			return strtoupper($slug);
 		}
 		if ($table === 'material') {
 			return 'Produtos de ' . Material::where('slug', $slug)->first()->name;

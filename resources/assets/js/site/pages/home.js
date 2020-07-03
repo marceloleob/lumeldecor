@@ -17,8 +17,24 @@ $(document).ready(function ()
 	$('#btn-search').click(function (event) {
 		// Method cancels the event if it is cancelable
 		event.preventDefault();
-
-		alert('tem certeza?');
+		// executa a busca
+		redirectSearch();
 	});
 
+	$('#input-search').keypress(function (event) {
+
+		if (event.which === 13) {
+			// executa a busca
+			redirectSearch();
+		}
+	});
+
+	function redirectSearch()
+	{
+		if ($('#input-search').val() === '') {
+			return false;
+		}
+
+		window.location = $('#url').val() + '/produto/nome/' + $('#input-search').val();
+	}
 });

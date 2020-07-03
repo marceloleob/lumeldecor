@@ -1,6 +1,6 @@
 
 {{-- modernizr js --}}
-{!! Html::script('js/libs/modernizr-custom.js') !!}
+{!! Html::script('js/modernizr-custom.js') !!}
 {{-- JS SYSTEM --}}
 {!! Html::script('js/site/app.js', ['defer' => 'defer']) !!}
 {{-- JS VALIDATION / MASKS --}}
