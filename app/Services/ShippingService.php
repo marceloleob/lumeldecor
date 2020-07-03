@@ -134,7 +134,6 @@ class ShippingService
 	 */
 	public static function handleXML()
 	{
-		dd(self::$params);
 		$url = self::$urlSoap;
 		// concatena os parametros na url
 		foreach (self::$params as $key => $param) {
