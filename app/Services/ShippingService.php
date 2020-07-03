@@ -49,13 +49,23 @@ class ShippingService
 	{
 		$item = (new ItemRepository())->findById($item);
 
+		// A largura não pode ser maior que 105 cm.
+		// A largura não pode ser inferior a 11 cm.
+		$width = ($item->productSize->shi_width > 11) ? $item->productSize->shi_width : 11;
+		// A altura não pode ser maior que 105 cm.
+		// A altura não pode ser inferior a 2 cm.
+		$height = ($item->productSize->shi_height > 2) ? $item->productSize->shi_height : 2;
+		// O comprimento não pode ser maior que 105 cm.
+		// O comprimento não pode ser inferior a 16 cm.
+		$length = ($item->productSize->shi_length > 16) ? $item->productSize->shi_length : 16;
+
 		$params = [
 			'nCdFormato'        => '1', // formato da embalagem (1 = caixa/pacote, 2 = rolo/prisma, 3 = envelope)
 			'nVlDiametro'       => '0',
 			'nVlPeso'           => ($item->productSize->weight * $quantity),
-			'nVlLargura'        => (int) $item->productSize->shi_width,
-			'nVlAltura'         => (int) $item->productSize->shi_height,
-			'nVlComprimento'    => (int) $item->productSize->shi_length,
+			'nVlLargura'        => $width,
+			'nVlAltura'         => $height,
+			'nVlComprimento'    => $length,
 			'nVlValorDeclarado' => ($item->s_price * $quantity),
 		];
 
@@ -118,7 +128,7 @@ class ShippingService
 			}
 
 			if ($service->Erro != '0') {
-				throw new Exception('Erro: ' . $service->MsgErro, 1);
+				throw new Exception('Erro: ' . $service->MsgErro . ' - Cod.: ' . $service->Erro, 1);
 			}
 
 			return json_encode($service);

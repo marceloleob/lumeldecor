@@ -145,11 +145,11 @@ class ProductSize extends Model
 	 * Get the shi_height
 	 *
 	 * @param  string  $value
-	 * @return float
+	 * @return integer
 	 */
 	public function getShiHeightAttribute($value)
 	{
-		return (float) $value;
+		return (int) $value;
 	}
 
 	/**
@@ -166,11 +166,11 @@ class ProductSize extends Model
 	 * Get the shi_width
 	 *
 	 * @param  string  $value
-	 * @return float
+	 * @return integer
 	 */
 	public function getShiWidthAttribute($value)
 	{
-		return (float) $value;
+		return (int) $value;
 	}
 
 	/**
@@ -187,11 +187,11 @@ class ProductSize extends Model
 	 * Get the shi_length
 	 *
 	 * @param  string  $value
-	 * @return float
+	 * @return integer
 	 */
 	public function getShiLengthAttribute($value)
 	{
-		return (float) $value;
+		return (int) $value;
 	}
 
 	/**
