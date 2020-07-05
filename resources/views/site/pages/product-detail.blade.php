@@ -1,7 +1,7 @@
 @extends('site.layouts.pages')
 
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{!! route('product.show', [$type, $current]) !!}">Lista dos Produtos</a></li>
+<li class="breadcrumb-item"><a href="{!! route('product.show', [$type, $current]) !!}">{!! $bread !!}</a></li>
 <li class="breadcrumb-item active">Detalhes do Produto</li>
 @endsection
 
@@ -146,6 +146,11 @@
 									<tr>
 										<td>Categoria</td><td>{!! $item->product->category->name !!}</td>
 									</tr>
+									@if (!empty($item->allThemes))
+									<tr>
+										<td>Temas</td><td>{!! $item->allThemes !!}</td>
+									</tr>
+									@endif
 									<tr>
 										<td>Cor</td><td>{!! $item->tooltip !!}</td>
 									</tr>
@@ -184,7 +189,7 @@
 				<div class="col-12">
 					<div class="small_divider"></div>
 					<div class="divider"></div>
-					<div class="medium_divider"></div>
+					<div class="large_divider"></div>
 				</div>
 			</div>
 

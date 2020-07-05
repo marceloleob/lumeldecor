@@ -21,4 +21,23 @@ class ThemeService
 
 		return (new ThemeRepository())->store($data);
 	}
+
+	/**
+	 * Recupera todos os temas e retorna formatado para CSS/HTML
+	 *
+	 * @param \App\Models\Tone
+	 * @return array
+	 */
+	public static function format($themes)
+	{
+		if ($themes->count() === 0) {
+			return null;
+		}
+
+		$all = [];
+		foreach ($themes as $theme) {
+			$all[] = $theme->name;
+		}
+		return implode(', ', $all);
+	}
 }

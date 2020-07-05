@@ -35,6 +35,6 @@ $(document).ready(function ()
 			return false;
 		}
 
-		window.location = $('#url').val() + '/produto/nome/' + $('#input-search').val();
+		window.location = $('#url').val() + '/produto/busca/' + $('#input-search').val();
 	}
 });

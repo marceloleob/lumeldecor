@@ -155,10 +155,13 @@ class ItemService
 			}
 		}
 
-		// verifica se foi informado algum Tema (nao obrigatorio)
-		if (isset($data['themes']) === true) {
+		// verifica se esta editando os temas
+		if (!empty($itemId)) {
 			// exclui todos os temas dete item
 			ItemTheme::where('item_id', $itemE->id)->delete();
+		}
+		// verifica se foi informado algum Tema (nao obrigatorio)
+		if (isset($data['themes']) === true) {
 			// salva o(s) tema(s) do item (array)
 			foreach ($data['themes'] as $themeId) {
 				$dataTheme = [

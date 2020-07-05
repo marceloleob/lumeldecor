@@ -33,7 +33,7 @@ class SearchService
 						->where('status', config('constants.STATUS.ACTIVE'));
 
 					// executa o filtro pelo nome do produto
-					if ($table === 'nome') {
+					if ($table === 'busca') {
 						$subQuery->where('name', 'LIKE', '%' . $slug . '%');
 					}
 					// executa o filtro pelo material
@@ -135,20 +135,22 @@ class SearchService
 	 */
 	public static function setTitle($table, $slug)
 	{
-		if ($table === 'nome') {
-			return strtoupper($slug);
+		$arrow = '<i class="ion ion-ios-arrow-forward"></i>';
+
+		if ($table === 'busca') {
+			return 'Busca ' . $arrow . ' ' . strtoupper($slug);
 		}
 		if ($table === 'material') {
-			return 'Produtos de ' . Material::where('slug', $slug)->first()->name;
+			return 'Material ' . $arrow . ' ' . Material::where('slug', $slug)->first()->name;
 		}
 		if ($table === 'categoria') {
-			return 'Lista de ' . Category::where('slug', $slug)->first()->name;
+			return 'Categoria ' . $arrow . ' ' . Category::where('slug', $slug)->first()->name;
 		}
 		if ($table === 'tons') {
-			return 'Produtos com tons de "' . Color::where('slug', $slug)->first()->name . '"';
+			return 'Cor ' . $arrow . ' ' . Color::where('slug', $slug)->first()->name;
 		}
 		if ($table === 'tema') {
-			return 'Produtos do tema "' . Theme::where('slug', $slug)->first()->name . '"';
+			return 'Tema ' . $arrow . ' ' . Theme::where('slug', $slug)->first()->name;
 		}
 	}
 
@@ -171,6 +173,8 @@ class SearchService
 					$tones = ToneService::format($item->tones);
 					$item->tooltip    = $tones['tooltip'];
 					$item->background = $tones['background'];
+
+					$item->allThemes = ThemeService::format($item->themes);
 				});
 
 		} else {
@@ -239,7 +243,8 @@ class SearchService
 			'item'    => $item,
 			'sizes'   => $sizes,
 			'colors'  => $colors,
-			'title'   => $item->product->name . ' - ' . $item->productSize->size,
+			'title'   => 'Detalhes do Produto',
+			'bread'   => self::setTitle($table, $slug),
 		];
 	}
 }

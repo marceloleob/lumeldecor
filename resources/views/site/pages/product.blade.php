@@ -15,18 +15,18 @@
 						<div class="col-12">
 							<div class="product_header">
 								<div class="product_header_left">
-									{{-- <div class="custom_select">
+									<div class="custom_select">
 										{!! Form::selectSort('sort', old('sort', 'best-seller'), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
-									</div> --}}
+									</div>
 								</div>
 								<div class="product_header_right">
 									<div class="products_view">
 										<a href="javascript:Void(0);" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>
 										<a href="javascript:Void(0);" class="shorting_icon list"><i class="ti-layout-list-thumb"></i></a>
 									</div>
-									{{-- <div class="custom_select">
+									<div class="custom_select">
 										{!! Form::selectShow('show', '', ['class' => 'form-control selectpicker', 'title' => 'Mostrar']) !!}
-									</div> --}}
+									</div>
 								</div>
 							</div>
 						</div>

@@ -2,7 +2,7 @@
 
 @section('content')
 	{{-- START SECTION LAUNCH --}}
-	<div class="section py_50">
+	<div class="section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -204,7 +204,7 @@
 	{{-- END SECTION LAUNCH --}}
 
 	{{-- START SECTION FEATURED --}}
-	<div class="section py_50">
+	<div class="section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -414,7 +414,7 @@
 	{{-- END SECTION BANNER --}}
 
 	{{-- START SECTION BEST SELLERS --}}
-	<div class="section py_50">
+	<div class="section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">

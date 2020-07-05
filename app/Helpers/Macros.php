@@ -136,7 +136,6 @@ class Macros extends FormBuilder
 			[
 				'type' => 'submit',
 				'class' => 'mb-2 mr-4 px-5 btn-icon btn-hover-shine btn btn-shadow btn-success btn-save btn-wide btn-pill'
-				// 'class' => 'mb-2 mr-4 px-4 btn-icon btn-hover-shine btn btn-shadow btn-outline-success'
 			]
 		);
 
@@ -247,10 +246,10 @@ class Macros extends FormBuilder
 	public function selectSort($name, $selected = null, $options = [])
 	{
 		$size = [
+			'alphabetic'  => 'Order aflfabética',
 			'best-seller' => 'Mais Vendidos',
-			'low-high'    => 'Menores Preços',
-			'high-low'    => 'Maiores Preços',
-			'lauch'       => 'Lançamentos',
+			'low-high'    => 'Menor preço',
+			'high-low'    => 'Maior preço',
 		];
 
 		return $this->select($name, $size, $selected, $options);
@@ -268,9 +267,9 @@ class Macros extends FormBuilder
 	public function selectShow($name, $selected = null, $options = [])
 	{
 		$size = [
-			'9'  => '9',
-			'18' => '18',
-			'27' => '27',
+			'15' => '15',
+			'30' => '30',
+			'60' => '60',
 		];
 
 		return $this->select($name, $size, $selected, $options);
