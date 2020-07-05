@@ -610,7 +610,8 @@ button:focus {
 	background-color: #FCDEE3 !important;
 }
 .bg_lumel_gray {
-	background-color: #F4F2F3 !important;
+	// background-color: #F4F2F3 !important;
+	background-color: #FFEFF2 !important;
 }
 .bg_tiffany {
 	background-color: #81D6DF !important;
@@ -1527,20 +1528,20 @@ button:focus {
 	z-index: 1030;
 }
 .header_wrap.nav-fixed {
-	box-shadow:  0 0 5px rgba(0, 0, 0, 0.15);
+	box-shadow:  0 0 15px rgba(0, 0, 0, 1.15);
 	position: fixed;
 	right: 0;
 	left: 0;
 	top: 0;
 	z-index: 1041;
-	-webkit-animation: slideInDown 0.65s cubic-bezier(0.23, 1, 0.32, 1);
-	-moz-animation: slideInDown 0.65s cubic-bezier(0.23, 1, 0.32, 1);
-	-o-animation: slideInDown 0.65s cubic-bezier(0.23, 1, 0.32, 1);
-	animation: slideInDown 0.65s cubic-bezier(0.23, 1, 0.32, 1);
-	-webkit-animation-fill-mode: none;
-	-moz-animation-fill-mode: none;
-	-o-animation-fill-mode: none;
-	animation-fill-mode: none;
+	// -webkit-animation: slideInDown 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+	// -moz-animation: slideInDown 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+	// -o-animation: slideInDown 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+	// animation: slideInDown 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+	// -webkit-animation-fill-mode: none;
+	// -moz-animation-fill-mode: none;
+	// -o-animation-fill-mode: none;
+	// animation-fill-mode: none;
 }
 .nav-fixed.border_bottom_tran {
 	border: 0;
@@ -2752,6 +2753,8 @@ input.text {
 *===================================*/
 .banner_section {
 	position: relative;
+	// adicionado pq o menu esta como "transparent_header"
+	margin-top: 162px;
 }
 .banner_content_wrap {
 	position: relative;
@@ -3001,7 +3004,6 @@ input.text {
     transform: scale(1) rotate(0deg);
   }
 }
-
 .header_with_topbar.transparent_header + .banner_section .banner_slide_content {
 	margin-top: 45px;
 }
@@ -4226,6 +4228,8 @@ footer .widget_title {
 .breadcrumb_section {
 	padding: 150px 0;
 	width: 100%;
+	// adicionado pq o menu esta como "transparent_header"
+	margin-top: 162px;
 }
 .breadcrumb_section.page-title-mini {
 	padding: 70px 0;
@@ -4237,9 +4241,9 @@ footer .widget_title {
 .page-title-mini .breadcrumb li {
 	font-size: 14px;
 }
-.header_wrap.transparent_header  + .breadcrumb_section {
-	padding-top: 200px;
-}
+// .header_wrap.transparent_header  + .breadcrumb_section {
+// 	padding-top: 200px;
+// }
 .header_wrap.transparent_header.header_with_topbar + .breadcrumb_section {
 	padding-top: 250px;
 }

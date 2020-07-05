@@ -32,7 +32,7 @@ const mix = require('laravel-mix');
 	// SITE FILES
 	mix
 	.js('resources/assets/js/site/app.js', 'public/js/site')
-	.js('resources/assets/js/libs/modernizr-custom.js', 'public/js/libs')
+	.js('resources/assets/js/modernizr-custom.js', 'public/js')
 	.js([
 		'resources/assets/js/site/pages/contact.js',
 		'resources/assets/js/site/pages/home.js',

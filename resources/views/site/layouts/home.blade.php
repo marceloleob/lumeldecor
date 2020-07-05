@@ -16,7 +16,8 @@
 	{{-- End Screen Load Popup Section --}}
 
 	{{-- START HEADER --}}
-	<header class="header_wrap fixed-top">
+	{{-- <header class="header_wrap fixed-top"> --}}
+	<header class="header_wrap fixed-top transparent_header">
 		@include('site.partials.header')
 		@include('site.partials.menu')
 	</header>

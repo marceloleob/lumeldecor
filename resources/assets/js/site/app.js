@@ -53,6 +53,7 @@ require('../../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 		}
 	});
 
+
 	/*===================================*
 	03. BANNERS ANIMATION JS
 	*===================================*/
@@ -97,9 +98,10 @@ require('../../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 		$(window).on('scroll', function() {
 			var scroll = $(window).scrollTop();
 
-			if (scroll >= 100) {
+			if (scroll >= 92) {
 				$('header.fixed-top').addClass('nav-fixed');
 
+				// esconde o menu de Materiais na home
 				if ($('#navCatContent').data('page') === 'home') {
 					$('#navCatContent').removeClass('nav_cat');
 				}
@@ -107,6 +109,7 @@ require('../../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 			} else {
 				$('header.fixed-top').removeClass('nav-fixed');
 
+				// mostra o menu de Materiais na home
 				if ($('#navCatContent').data('page') === 'home') {
 					$('#navCatContent').addClass('nav_cat');
 				}
@@ -140,8 +143,8 @@ require('../../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 	var navBar = $(".header_wrap");
 	var navbarLinks = navBar.find(".navbar-collapse ul li a.page-scroll");
 
-    $.each( navbarLinks, function() {
-
+	$.each( navbarLinks, function()
+	{
       var navbarLink = $(this);
 
         navbarLink.on('click', function () {
@@ -170,7 +173,7 @@ require('../../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 	$(window).on('scroll', function() {
 		var scroll = $(window).scrollTop();
 
-		if (scroll >= 100) {
+		if (scroll >= 92) {
 			$('.header_sticky_bar').removeClass('d-none');
 			$('header.no-sticky').removeClass('nav-fixed');
 
@@ -181,7 +184,7 @@ require('../../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 
 	var setHeight = function() {
 		var height_header = $(".header_wrap").height();
-		$('.header_sticky_bar').css({'height':height_header});
+		$('.header_sticky_bar').css({'height': height_header});
 	};
 
 	$(window).on('load', function() {
@@ -242,7 +245,7 @@ require('../../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 
 	/*===================================*
 	05. SMOOTH SCROLLING JS
-	*===================================*/
+	*===================================*
 	document.addEventListener("touchstart", function(e) {
 		console.log(e.defaultPrevented);  // will be false
 		e.preventDefault();   // does nothing since the listener is passive
@@ -265,9 +268,8 @@ require('../../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 			if ( location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname ) {
 				// Figure out element to scroll to
 				var target = $(this.hash),
-					speed= $(this).data("speed") || 800;
+					speed  = $(this).data("speed") || 800;
 					target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-
 				// Does a scroll target exist?
 				if (target.length) {
 					// Only prevent default if animation is actually gonna happen
@@ -353,7 +355,7 @@ require('../../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 	07. SCROLLUP JS
 	*===================================*/
 	$(window).on('scroll', function() {
-		if ($(this).scrollTop() > 150) {
+		if ($(this).scrollTop() > 400) {
 			$('.scrollup').fadeIn();
 		} else {
 			$('.scrollup').fadeOut();
@@ -498,7 +500,7 @@ require('../../../../node_modules/imagesloaded/imagesloaded.pkgd.min.js');
 
 	/*==============================================================
 	17. DROPDOWN JS
-	==============================================================*/
+	==============================================================*
 	if ($(".custome_select").length > 0) {
 
 		$( document ).ready(function()

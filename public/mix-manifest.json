@@ -9,7 +9,7 @@
     "/css/site/responsive.css": "/css/site/responsive.css",
     "/css/admin/app.css": "/css/admin/app.css",
     "/js/forms/jquery.validate.pt-br.js": "/js/forms/jquery.validate.pt-br.js",
-    "/js/libs/modernizr-custom.js": "/js/libs/modernizr-custom.js",
+    "/js/modernizr-custom.js": "/js/modernizr-custom.js",
     "/js/site/app.js": "/js/site/app.js",
     "/js/site/pages.js": "/js/site/pages.js",
     "/css/icons.css": "/css/icons.css",
