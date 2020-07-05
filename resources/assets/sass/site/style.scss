@@ -43,21 +43,21 @@ html, body {
 }
 body {
 	background: $body-bg none repeat scroll 0 0;
-    color: $fontGray;
+    color: $font-gray;
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
 }
 h1,h2,h3,h4,h5,h6 {
-	color: $fontDark;
+	color: $font-dark;
 	font-family: 'Roboto';
 }
 p {
-	color: $fontGray;
+	color: $font-gray;
 	line-height: 28px;
 	margin-bottom: 25px;
 }
 a {
-	color: $fontDark;
+	color: $font-dark;
 	text-decoration: none;
 	-webkit-transition: all 0.3s ease-in-out;
 	transition: all .3s ease-in-out;
@@ -575,10 +575,7 @@ button:focus {
 	background-color: #F1F3FB !important;
 }
 .bg_light_blue {
-	background-color: #EBF5FF !important;
-}
-.bg_light_blue2 {
-	background-color: #F4F9FC !important;
+	background-color: $light_blue !important;
 }
 .bg_blue {
 	background-color: #4382FF !important;
@@ -611,7 +608,7 @@ button:focus {
 	background-color: #FCDEE3 !important;
 }
 .bg_lumel_gray {
-	background-color: $lightPink !important;
+	background-color: $light-pink !important;
 }
 .bg_tiffany {
 	background-color: $tiffany !important;
@@ -2758,7 +2755,7 @@ input.text {
 }
 .banner_section_3 {
 	position: relative;
-	background-color: $lightPink;
+	background-color: $light-pink;
 	padding: 50px 0;
 }
 .banner_content_wrap {
@@ -7997,4 +7994,18 @@ blockquote p:last-child {
 }
 /*===================================*
   25.END TEXT TYPING STYLE
+*===================================*/
+
+
+/*===================================*
+  26.START ABOUT US
+*===================================*/
+.about_section {
+	position: relative;
+	background-color: $light-blue;
+	padding: 50px 0;
+}
+
+/*===================================*
+  26.END ABOUT US
 *===================================*/

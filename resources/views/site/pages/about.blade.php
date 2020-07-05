@@ -28,47 +28,49 @@
 	{{-- END SECTION ABOUT --}}
 
 	{{-- START SECTION WHY CHOOSE --}}
-	<div class="section bg_light_blue2 pb_70">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-6 col-md-8">
-					<div class="heading_s1 text-center">
-						<h2>Porque comprar com a gente?</h2>
-					</div>
-					<p class="text-center leads">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-lg-4 col-sm-6">
-					<div class="icon_box icon_box_style4 box_shadow1">
-						<div class="icon">
-							<i class="ti-pencil-alt"></i>
+	<div class="section">
+		<div class="about_section">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 col-md-8">
+						<div class="heading_s1 text-center">
+							<h2>Porque comprar com a gente?</h2>
 						</div>
-						<div class="icon_box_content">
-							<h5>Motivo 01</h5>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-						</div>
+						<p class="text-center leads">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
 					</div>
 				</div>
-				<div class="col-lg-4 col-sm-6">
-					<div class="icon_box icon_box_style4 box_shadow1">
-						<div class="icon">
-							<i class="ti-layers"></i>
-						</div>
-						<div class="icon_box_content">
-							<h5>Motivo 02</h5>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+				<div class="row justify-content-center">
+					<div class="col-lg-4 col-sm-6">
+						<div class="icon_box icon_box_style4 box_shadow1">
+							<div class="icon">
+								<i class="ti-pencil-alt"></i>
+							</div>
+							<div class="icon_box_content">
+								<h5>Motivo 01</h5>
+								<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6">
-					<div class="icon_box icon_box_style4 box_shadow1">
-						<div class="icon">
-							<i class="ti-email"></i>
+					<div class="col-lg-4 col-sm-6">
+						<div class="icon_box icon_box_style4 box_shadow1">
+							<div class="icon">
+								<i class="ti-layers"></i>
+							</div>
+							<div class="icon_box_content">
+								<h5>Motivo 02</h5>
+								<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+							</div>
 						</div>
-						<div class="icon_box_content">
-							<h5>Motivo 03</h5>
-							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+					</div>
+					<div class="col-lg-4 col-sm-6">
+						<div class="icon_box icon_box_style4 box_shadow1">
+							<div class="icon">
+								<i class="ti-email"></i>
+							</div>
+							<div class="icon_box_content">
+								<h5>Motivo 03</h5>
+								<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -78,7 +80,7 @@
 	{{-- END SECTION WHY CHOOSE --}}
 
 	{{-- START SECTION SHOP INFO --}}
-	<div class="section pb_70">
+	<div class="section">
 			<div class="container">
 				<div class="row no-gutters">
 					<div class="col-lg-4">

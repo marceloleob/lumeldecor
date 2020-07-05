@@ -57,7 +57,7 @@
 	{{-- END SECTION CONTACT --}}
 
 	{{-- START SECTION CONTACT --}}
-	<div class="section pt-0">
+	<div class="section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
