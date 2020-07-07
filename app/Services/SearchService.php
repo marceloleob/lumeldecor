@@ -221,6 +221,7 @@ class SearchService
 		// recupera todos os itens iguais para extrair as cores disponiveis
 		$colors = Item::where('product_id', $item->product_id)
 			->where('product_size_id', $item->product_size_id)
+			->where('status', config('constants.STATUS.ACTIVE'))
 			->get()
 			->map(function ($color) use ($item)
 			{

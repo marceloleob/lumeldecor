@@ -11,6 +11,7 @@ use App\Repositories\ItemToneRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductSizeRepository;
 use Exception;
+use Illuminate\Support\Facades\Crypt;
 
 class ItemService
 {
@@ -101,15 +102,15 @@ class ItemService
 			return str_pad($item, 2, '0', STR_PAD_LEFT);
 		});
 		// mescla os codigos (3 codigos no maximo)
-		$flattened = $tones->flatten()->implode('');
+		$colors = $tones->flatten()->implode('');
 
-		$materialCode = str_pad($product->material->id, 2, '0', STR_PAD_LEFT);
-		$categoryCode = str_pad($product->category->id, 2, '0', STR_PAD_LEFT);
-		$productCode  = str_pad($product->id, 5, '0', STR_PAD_LEFT);
-		$colorCode    = str_pad($flattened, 6, '0', STR_PAD_LEFT);
+		// $materialCode = str_pad($product->material->id, 2, '0', STR_PAD_LEFT);
+		// $categoryCode = str_pad($product->category->id, 2, '0', STR_PAD_LEFT);
+		$productCode  = str_pad($product->id, 4, '0', STR_PAD_LEFT);
+		$colorCode    = str_pad($colors, 6, '0', STR_PAD_LEFT);
 		$sizeCode     = str_pad($productSize->size, 2, '0', STR_PAD_LEFT);
 
-		return 'LM' . $materialCode . $categoryCode . $productCode . $colorCode . $sizeCode;
+		return 'LM' . $productCode . $sizeCode . $colorCode;
 	}
 
 	/**

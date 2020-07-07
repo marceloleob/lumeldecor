@@ -111,6 +111,16 @@ class Item extends Model
 	}
 
 	/**
+	 * Get the name of Product
+	 *
+	 * @return string
+	 */
+	public function getNameAttribute()
+	{
+		return $this->product->name;
+	}
+
+	/**
 	 * Get the p_price
 	 *
 	 * @param  string  $value

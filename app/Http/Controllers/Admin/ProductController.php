@@ -114,12 +114,12 @@ class ProductController extends Controller
     /**
      * Toggle the status storage.
      *
-     * @param  int  $productId
+     * @param  int  $id
      * @return Response
      */
-    public function changeStatus($productId)
+    public function changeStatus($id)
     {
-        $response = $this->repository->changeStatus($productId);
+        $response = $this->repository->changeStatus($id);
 
         return redirect()->route('product.list')->with($response);
     }

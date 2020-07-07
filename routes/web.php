@@ -41,6 +41,10 @@ Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
 	Route::any('produto/{table}/{slug}', 'ProductController@show')->name('product.show');
 	Route::get('detalhes/{table}/{slug}/{product}/{size}/{sku?}', 'ProductController@detail')->name('product.detail');
 	Route::post('product/calculator', 'ProductController@calculator');
+
+	Route::get('meus-favoritos', 'WhishListController@index')->name('whishlist');
+	Route::get('carrinho/{sku}/{qtdy?}', 'ShopCartController@index')->name('shopcart');
+	Route::get('finalizar-compra', 'CheckoutController@index')->name('checkout');
 });
 
 

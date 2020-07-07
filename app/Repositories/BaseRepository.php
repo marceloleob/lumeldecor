@@ -178,7 +178,6 @@ class BaseRepository
 
 			return [
 				'success' => 'O registro "<strong>' . $entity->name . '</strong>" foi ' . (($entity->status == true) ? 'ativado' : 'desativado!'),
-				'id'      => $entity->id,
 			];
 
 		} catch (Exception $exception) {
@@ -187,8 +186,7 @@ class BaseRepository
 			DB::rollback();
 			// retorna a entidade criada ou atualizada
 			return [
-				'danger'    => 'Erro ao ativar/desativar o registro de código ' . $id,
-				'exception' => $exception,
+				'danger' => 'Erro ao ativar/desativar o registro de código ' . $id,
 			];
 		}
 	}

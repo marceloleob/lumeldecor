@@ -5611,7 +5611,6 @@ footer .widget_title {
 .pr_detail .pr_desc p {
     margin-bottom: 14px;
 }
-
 .product_size_switch span {
 	cursor: pointer;
 	text-transform: uppercase;
@@ -5629,9 +5628,6 @@ footer .widget_title {
 	background-color: $default;
 	color: #fff;
 }
-
-
-
 .cart-product-quantity {
 	margin: 7px 10px 7px 0;
 	display: table;
@@ -5666,6 +5662,10 @@ footer .widget_title {
 	text-align: center;
 	padding: 0;
 	margin: 3px;
+}
+.quantity .minus:hover, .quantity .plus:hover {
+	background-color: #333;
+	color: #ddd;
 }
 .cart_extra {
 	display: -ms-flexbox;
@@ -6105,38 +6105,41 @@ footer .widget_title {
 .product-thumbnail img {
 	max-width: 100px;
 }
-.shop_cart_table th, .shop_cart_table td,
-.wishlist_table th, .wishlist_table td {
-	vertical-align: middle;
-	text-align: center;
+.shop_cart_table .table {
+	font-size: 14px;
 }
-.shop_cart_table th.product-name, .shop_cart_table td.product-name,
-.wishlist_table th.product-name, .wishlist_table td.product-name {
-	text-align: left;
-	text-transform: capitalize;
+.shop_cart_table .title, .shop_cart_table td, .wishlist_table .title, .wishlist_table td {
+	vertical-align: middle;
+}
+.shop_cart_table .title, .wishlist_table .title {
+	text-align: center;
+	font-weight: 600;
+}
+.shop_cart_table .product-price, .shop_cart_table .product-subtotal {
+	text-align: right;
+	font-weight: 600;
+}
+.shop_cart_table .product-quantity, .shop_cart_table .product-remove {
+	text-align: center;
 }
 .shop_cart_table .quantity {
 	margin: 0 auto;
 	display: -ms-flexbox;
 	display: flex;
+	justify-content: center;
 }
-.product-remove a i {
-	height: 30px;
-	width: 30px;
-	color: #292b2c;
-	display: inline-block;
-	line-height: 30px;
+.product-remove a {
 	text-align: center;
 	border-radius: 100%;
 	font-size: 14px;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	line-height: 30px;
 }
-.product-remove a i:hover {
-	background-color: #F00;
+.product-remove a:hover {
 	color: #fff;
-}
-.shop_cart_table td.product-price,
-.shop_cart_table td.product-subtotal {
-	font-weight: 600;
+	background-color: #d85040;
 }
 .shop_cart_table .table {
 	margin: 0;
@@ -6173,9 +6176,6 @@ label.label_info {
 	width: 100%;
 }
 .product-qty {
-	font-weight: 600;
-}
-.product-subtotal {
 	font-weight: 600;
 }
 .order_review {

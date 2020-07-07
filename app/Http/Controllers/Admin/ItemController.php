@@ -113,13 +113,14 @@ class ItemController extends Controller
      * Toggle the status storage.
      *
      * @param  int  $itemId
+     * @param  int  $productId
      * @param  int  $productSizeId
      * @return Response
      */
-    public function changeStatus($itemId, $productSizeId)
+    public function changeStatus($itemId, $productId, $productSizeId)
     {
         $response = $this->repository->changeStatus($itemId);
 
-        return redirect()->route('product-size.edit', $productSizeId)->with($response);
+        return redirect()->route('item.create', [$productId, $productSizeId])->with($response);
     }
 }

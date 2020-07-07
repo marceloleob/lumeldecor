@@ -19,6 +19,16 @@
 									<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
 								</a>
 							</div>
+							<div class="item">
+								<a href="#" class="product_gallery_item" data-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}">
+									<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
+								</a>
+							</div>
+							<div class="item">
+								<a href="#" class="product_gallery_item" data-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}">
+									<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
+								</a>
+							</div>
 							{{-- THUMBNAILS --}}
 						</div>
 						{{-- REGULAR --}}
@@ -91,8 +101,8 @@
 								</div>
 							</div>
 							<div class="cart_btn">
-								<button class="btn btn-fill-out btn-addtocart" type="button"><i class="fas fa-cart-plus"></i> Comprar</button>
-								<a class="add_wishlist" href="#"><i class="icon-heart px-2"></i></a> Favoritos
+								<a class="btn btn-fill-out btn-addtocart" href="{!! route('shopcart', $item->code) !!}"><i class="fas fa-cart-plus"></i> Comprar</a>
+								<a class="add_wishlist" href="{!! route('whishlist') !!}"><i class="icon-heart px-2"></i></a> Favoritos
 							</div>
 						</div>
 						<hr />
