@@ -42,7 +42,7 @@
 									{!! $item->launch !!}
 									<div class="product_img">
 										<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}">
-											<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!}">
+											<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!}">
 										</a>
 										<div class="product_action_box">
 											<ul class="list_none pr_action_btn">

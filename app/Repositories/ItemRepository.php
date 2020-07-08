@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Item;
+use App\Services\ItemService;
 use App\Services\ToneService;
 
 class ItemRepository extends BaseRepository
@@ -13,6 +14,45 @@ class ItemRepository extends BaseRepository
 	 * @var Entity
 	 */
 	protected $model = Item::class;
+
+	/**
+	 * Retorna os dados FORMATADO 'belongsToMany' referente a este modelo
+	 *
+	 * @param integer $productId
+	 * @param integer $productSizeId
+	 * @param integer $itemId
+	 * @return Entity
+	 */
+	public function findByIds($productId, $productSizeId, $itemId = null)
+	{
+		// verifica se esta editando
+		if (!empty($itemId)) {
+			// recupera o item pelo proprio codigo
+			$item = $this->findById($itemId);
+		} else {
+			// recupera o item pelo produto e tamanho
+			$item = $this->findByParentsId($productId, $productSizeId);
+		}
+		// retorna nulo caso nao tenha encontrado nada
+		if (empty($item)) {
+			return null;
+		}
+
+		$item->product_id = $item->productSize->product->id;
+		$item->tones      = $this->convertToArray($item->tones);
+		$item->themes     = $this->convertToArray($item->themes);
+		$item->profit     = ItemService::profit($item);
+
+		if ($item->pictures->count()) {
+			$item->pictureName0 = $item->pictures[0]->name;
+			$item->pictureCode1 = isset($item->pictures[1]) ? $item->pictures[1]->id : null;
+			$item->pictureName1 = isset($item->pictures[1]) ? $item->pictures[1]->name : null;
+			$item->pictureCode2 = isset($item->pictures[2]) ? $item->pictures[2]->id : null;
+			$item->pictureName2 = isset($item->pictures[2]) ? $item->pictures[2]->name : null;
+		}
+
+		return $item;
+	}
 
 	/**
 	 * Retorna os dados do item ja salvo para preencher o formulario de create
@@ -60,13 +100,13 @@ class ItemRepository extends BaseRepository
 			$collection->productName = $collection->productSize->product->name;
 			$collection->size        = $collection->productSize->size;
 			// verifica se o item e lancamento
-			if ($collection->launch == config('constants.LAUNCH.ACTIVE')) {
+			if ($collection->launch == config('constants.RULES.LAUNCH.YES')) {
 				$collection->launch = '<i class="fas fa-check"></i>';
 			} else {
 				$collection->launch = '<i class="fas fa-times"></i>';
 			}
 			// verifica se e inativo
-			if ($collection->status == config('constants.STATUS.ACTIVE')) {
+			if ($collection->status == config('constants.RULES.STATUS.ACTIVE')) {
 				// seta ativo como default
 				$collection->status = ['class' => 'success', 'label' => 'Ativo'];
 				$collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];

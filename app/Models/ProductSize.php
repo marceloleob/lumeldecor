@@ -37,6 +37,7 @@ class ProductSize extends Model
 		'shi_height',
 		'shi_width',
 		'shi_length',
+		'status',
 	];
 
 	/**

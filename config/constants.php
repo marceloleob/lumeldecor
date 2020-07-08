@@ -2,57 +2,67 @@
 
 return [
 
-    // DEVELOPER INFORMATION
-    'DEVELOPER_ID'           => 1,
-    'DEVELOPER_NAME'         => 'Marcelo Leopold Batista',
-    'DEVELOPER_EMAIL'        => 'marceloleob@gmail.com',
+	// DEVELOPER INFORMATION
+	'DEVELOPER' => [
+		'ID'    => 1,
+		'NAME'  => 'Marcelo Leopold',
+		'EMAIL' => 'marceloleob@gmail.com',
+	],
 
-    // COMPANY INFORMATION
-    'COMPANY_NAME'           => config('app.name'),
-    'COMPANY_EMAIL'          => 'contato@lumeldecor.com.br',
-    'COMPANY_SUBJECT_TO'     => 'Você recebeu um contato do site!',
-    'COMPANY_SUBJECT_FROM'   => config('app.name'),
+	// COMPANY INFORMATION
+	'COMPANY' => [
+		'NAME'  => config('app.name'),
+		'EMAIL' => 'contato@lumeldecor.com.br',
+	],
 
-    // PAGINATION
-    'TOTAL_PAGE'             => 20,
+	// PAGINATION
+	'PAGINATION' => [
+		'TOTAL' => 20,
+	],
+
+	// IMAGES
+	'PICTURES' => [
+		'SIZE_LIMIT'    => 3072000, // 3 MEGABYTES EM KB
+		'SIZE_MESSAGE'  => '3 MB',
+		'QUANTITY'      => 10,
+		'MAX_HEIGHT'    => 810,
+		'NOTAVAILABLE'  => 'images/no-available-370x278.png',
+		'STORAGE'       => [
+			'SMALLER'   => 'pictures/products/thumbnail',
+			'REGULAR'   => 'pictures/products/regular',
+			'BIGGER'    => 'pictures/products/bigger',
+		],
+	],
 
 	// BUSINESS RULES
-	'STATUS'                 => [
-		'INACTIVE'           => 0,
-		'ACTIVE'             => 1,
-	],
-	'FEATURED'               => [
-		'INACTIVE'           => 0,
-		'ACTIVE'             => 1,
-	],
-	'LAUNCH'                 => [
-		'INACTIVE'           => 0,
-		'ACTIVE'             => 1,
-	],
-	'DONE'                   => [
-		'INACTIVE'           => 0,
-		'ACTIVE'             => 1,
-	],
-	'SHOW'                   => [
-		'INACTIVE'           => 0,
-		'ACTIVE'             => 1,
-	],
-	'STOCK'                   => [
-		'CURRENT'             => 1,
-	],
-
-    // IMAGES
-    'PICTURES_SIZE'          => 3072000, // 3 MEGABYTES EM KB
-    'PICTURES_PATH_MSG'      => '3 MB',
-	'PICTURES_LIMIT'         => 30,
-	'PICTURES_MAX_HEIGHT'    => 800,
-    'PICTURES_NOTAVAILABLE'  => 'images/no-available-370x278.png',
-
-	// PATHS
-	'PICTURES_PATHS'         => [
-		'REGULAR'            => 'pictures/products/regular',
-		'THUMBNAIL'          => 'pictures/products/thumbnail',
-		'BIGGER'             => 'pictures/products/bigger',
+	'RULES' => [
+		'STATUS' => [
+			'INACTIVE' => 0,
+			'ACTIVE'   => 1,
+		],
+		'FEATURED' => [
+			'YES' => 1,
+			'NO'  => 0,
+		],
+		'LAUNCH' => [
+			'YES' => 1,
+			'NO'  => 0,
+		],
+		'DONE' => [
+			'YES' => 1,
+			'NO'  => 0,
+		],
+		'SHOW' => [
+			'YES' => 1,
+			'NO'  => 0,
+		],
+		'NATIONAL' => [
+			'YES' => 1,
+			'NO'  => 0,
+		],
+		'STOCK' => [
+			'CURRENT' => 1,
+		],
 	],
 
     // GOOGLE CONFIGS

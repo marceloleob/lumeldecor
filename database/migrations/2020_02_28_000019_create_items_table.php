@@ -18,8 +18,8 @@ class CreateItemsTable extends Migration
 			$table->foreignId('product_id');
 			$table->foreignId('product_size_id');
 			$table->foreignId('supplier_id');
-			$table->string('code', 50);             // LM + MATERIAL (99) + CATEGORIA (99) + PRODUTO (99999) + COR (999999) + TAMANHO (PP, 0P, 0M, 0G, GG, 0U)
-			$table->string('picture');              // Foto do item
+			$table->string('sku', 50);
+			$table->string('slug', 200)->unique();
 			$table->decimal('p_price', 8, 2);       // Preco no Fornecedor
 			$table->decimal('s_price', 8, 2);       // Preco no Site
 			$table->boolean('launch')->default(0);  // Lancamento

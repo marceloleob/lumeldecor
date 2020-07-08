@@ -19,12 +19,10 @@
 	<table class="table table-hover table-striped table-bordered dtr-inline align-middle mb-0">
 		<thead>
 			<tr>
-				<th width="8%" class="text-center">Código</th>
-				<th width="13%" class="text-left">Material</th>
-				<th width="13%" class="text-left">Categoria</th>
-				<th width="24%" class="text-left">Produto</th>
+				<th width="14%" class="text-left pl-3">Material</th>
+				<th width="14%" class="text-left">Categoria</th>
+				<th width="40%" class="text-left">Produto</th>
 				<th width="10%" class="text-center">Destaque</th>
-				<th width="10%" class="text-center">Lançamento</th>
 				<th width="10%" class="text-center">Status</th>
 				<th width="12%" class="text-center">Ações</th>
 			</tr>
@@ -32,12 +30,10 @@
 		<tbody>
 			@foreach ($data as $item)
 			<tr>
-				<td class="text-center text-muted">{!! $item->id !!}</td>
-				<td class="text-left">{!! $item->materialName !!}</td>
+				<td class="text-left pl-3">{!! $item->materialName !!}</td>
 				<td class="text-left">{!! $item->categoryName !!}</td>
 				<td class="text-left">{!! $item->productName !!}</td>
 				<td class="text-center">{!! $item->featured !!}</td>
-				<td class="text-center">{!! $item->launch !!}</td>
 				<td class="text-center"><div  class="badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 				<td class="text-center">
 					<a href="{!! route($page . '.edit', [$item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="far fa-edit"></i></a>

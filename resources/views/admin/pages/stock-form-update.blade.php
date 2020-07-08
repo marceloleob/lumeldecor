@@ -8,7 +8,7 @@
 @section('form')
 	<div class="row">
 		<div class="col-md-12">
-			{!! Form::open(['id' => 'form-' . $page, 'route' => $page . '.store', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
+			{!! Form::open(['id' => 'form-' . $page, 'route' => [$page . '.update', $data->id], 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
 				<div class="main-card mb-3 card">
 					<div class="card-body">
 
@@ -38,11 +38,11 @@
 											<div class="radio-options">
 												<div class="custom-radio custom-control custom-control-inline">
 													{!! Form::radio('action', 'I', (empty(old('action')) || old('action') === 'I') ? true : false, ['id' => 'action-I', 'class' => 'custom-control-input action']) !!}
-													{!! Form::label('action-I', 'Adicionar no Estoque', ['class' => 'custom-control-label']) !!}
+													{!! Form::label('action-I', 'Adicionar', ['class' => 'custom-control-label']) !!}
 												</div>
 												<div class="custom-radio custom-control custom-control-inline">
 													{!! Form::radio('action', 'O', (old('action') === 'O') ? true : false, ['id' => 'action-O', 'class' => 'custom-control-input action']) !!}
-													{!! Form::label('action-O', 'Remover do Estoque', ['class' => 'custom-control-label']) !!}
+													{!! Form::label('action-O', 'Remover', ['class' => 'custom-control-label']) !!}
 												</div>
 											</div>
 											{!! Form::notification('action', $errors) !!}
@@ -75,10 +75,9 @@
 				</div>
 				<div class="main-card mb-3 card">
 					<div class="card-button">
-						{!! Form::hidden('stock_id', $data->id, ['id' => 'stock_id']) !!}
 						{!! Form::hidden('product_id', $data->product_id, ['id' => 'product_id']) !!}
 						{!! Form::hidden('item_id', $data->item_id, ['id' => 'item_id']) !!}
-						{!! Form::buttons($page . '.list') !!}
+						{!! Form::buttons($page . '.list', $data->id) !!}
 					</div>
 				</div>
 			{!! Form::close() !!}

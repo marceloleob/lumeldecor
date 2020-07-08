@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Site'], function () {
 	Route::get('/', 'HomeController@waiting');
 });
 
+
 /**
  * Rotas do Site
  */
@@ -84,19 +85,20 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::post('produto/tamanho/salvar', 'ProductSizeController@store')->name('product-size.store');
 	Route::get('produto/tamanho/editar/{productId}/{productSizeId}', 'ProductSizeController@edit')->name('product-size.edit');
 	Route::put('produto/tamanho/atualizar/{productSizeId}', 'ProductSizeController@update')->name('product-size.update');
+	Route::get('produto/tamanho/status/{productId}/{productSizeId}', 'ProductSizeController@changeStatus')->name('product-size.status');
 	// Item
 	Route::get('item/cadastrar/{productId}/{productSizeId}', 'ItemController@create')->name('item.create');
 	Route::post('item/salvar', 'ItemController@store')->name('item.store');
 	Route::get('item/editar/{itemId}/{productId}/{productSizeId}', 'ItemController@edit')->name('item.edit');
 	Route::put('item/atualizar/{itemId}', 'ItemController@update')->name('item.update');
 	Route::get('item/status/{itemId}/{productId}/{productSizeId}', 'ItemController@changeStatus')->name('item.status');
+	Route::get('item/remover-foto/{pictureId}', 'ItemPictureController@destroy')->name('item-picture.remove');
 	// Stocks
 	Route::get('estoque/listar', 'StockController@index')->name('stock.list');
 	Route::get('estoque/mostrar/{itemId}', 'StockController@show')->name('stock.show');
 	Route::any('estoque/buscar', 'StockController@index')->name('stock.search');
-	Route::get('estoque/cadastrar/{id}', 'StockController@create')->name('stock.create');
-	Route::post('estoque/salvar', 'StockController@store')->name('stock.store');
-	// Reason
+	Route::get('estoque/editar/{id}', 'StockController@edit')->name('stock.edit');
+	Route::put('estoque/atualizar/{id}', 'StockController@update')->name('stock.update');
 	Route::post('reason/options', 'ReasonController@options');
 
 	// Colors

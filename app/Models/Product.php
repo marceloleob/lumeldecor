@@ -34,8 +34,8 @@ class Product extends Model
 		'picture',
 		'description',
 		'hashtag',
+		'national',
 		'featured',
-		'launch',
 		'done',
 		'status',
     ];
@@ -73,7 +73,8 @@ class Product extends Model
 	 */
 	public function items()
 	{
-		return $this->hasManyThrough(Item::class, ProductSize::class);
+		// return $this->hasManyThrough(Item::class, ProductSize::class);
+		return $this->hasMany(Item::class);
 	}
 
 	/**

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ItemRequest;
 use App\Repositories\ItemRepository;
-use App\Repositories\ProductSizeRepository;
 use App\Repositories\SupplierRepository;
 use App\Repositories\ThemeRepository;
 use App\Repositories\ToneRepository;
@@ -39,9 +38,8 @@ class ItemController extends Controller
     public function create($productId, $productSizeId)
     {
 		$params = [
-			'data'            => ItemService::findByIds($productId, $productSizeId),
-			'items'           => (new ItemRepository())->findByProductSizeId($productSizeId),
-			'productSize'     => (new ProductSizeRepository())->findById($productSizeId),
+			'data'            => $this->repository->findByIds($productId, $productSizeId),
+			'items'           => $this->repository->findByProductSizeId($productSizeId),
 			'optionstone'     => (new ToneRepository())->options(),
 			'optionstheme'    => (new ThemeRepository())->options(),
 			'optionssupplier' => (new SupplierRepository())->options(),
@@ -79,9 +77,8 @@ class ItemController extends Controller
     public function edit($itemId, $productId, $productSizeId)
     {
 		$params = [
-			'data'            => ItemService::findByIds($productId, $productSizeId, $itemId),
-			'items'           => (new ItemRepository())->findByProductSizeId($productSizeId),
-			'productSize'     => (new ProductSizeRepository())->findById($productSizeId),
+			'data'            => $this->repository->findByIds($productId, $productSizeId, $itemId),
+			'items'           => $this->repository->findByProductSizeId($productSizeId),
 			'optionstone'     => (new ToneRepository())->options(),
 			'optionstheme'    => (new ThemeRepository())->options(),
 			'optionssupplier' => (new SupplierRepository())->options(),

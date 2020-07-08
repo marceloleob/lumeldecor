@@ -39,12 +39,10 @@ class ItemRequest extends BaseRequest
         'p_price'         => 'money',
         's_price'         => 'money',
         'amount'          => 'cast:integer',
-        'picture'         => 'trim|lowercase',
-        'new_picture'     => 'trim|lowercase',
 		'launch'          => 'checkbox',
 		'status'          => 'checkbox',
-		// item color
-		'colors'          => 'cast:collection',
+		// item tone
+		'tones'           => 'cast:collection',
 		// item theme
 		'themes'          => 'cast:collection',
     ];
@@ -63,13 +61,13 @@ class ItemRequest extends BaseRequest
         'p_price'         => "required|regex:/^\d+(\.\d{1,2})?$/",
         's_price'         => 'required|regex:/^\d+(\.\d{1,2})?$/',
         'amount'          => 'integer',
-        'picture'         => 'required',
-        'new_picture'     => 'required_if:picture,false|image|mimes:jpeg,png,jpg,gif,svg|max:3072', // 3 MEGABYTES
-        // 'new_picture'     => 'required_if:picture,false|file|max:3072', // 3 MEGABYTES
+        'pictures.1'      => 'required_if:old_pictures.1.name,false|image|mimes:jpeg,png,jpg,gif,svg|max:3072',
+        'pictures.2'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:3072',
+        'pictures.3'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:3072',
 		'launch'          => 'boolean',
 		'status'          => 'boolean',
-		// item color
-		'colors'          => 'required',
+		// item tone
+		'tones'           => 'required',
 		// item theme
 		'themes'          => '',
     ];

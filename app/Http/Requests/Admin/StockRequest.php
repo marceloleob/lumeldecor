@@ -26,7 +26,7 @@ class StockRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'stock_id'   => 'cast:integer',
+        'id'         => 'cast:integer',
         'product_id' => 'cast:integer',
         'item_id'    => 'cast:integer',
         'reason_id'  => 'cast:integer',
@@ -40,7 +40,7 @@ class StockRequest extends BaseRequest
      * @var array
      */
     public static $validations = [
-        'stock_id'   => 'required|integer',
+        'id'         => 'required|integer',
         'product_id' => 'required|integer',
         'item_id'    => 'required|integer',
         'reason_id'  => 'required|integer',

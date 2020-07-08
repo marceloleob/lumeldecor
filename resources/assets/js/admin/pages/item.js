@@ -14,7 +14,7 @@ $(document).ready(function ()
 				product_size_id: {
 					required: true,
 				},
-				"colors[]": {
+				"tones[]": {
 					required: true,
 				},
 				supplier_id: {
@@ -38,7 +38,7 @@ $(document).ready(function ()
 
 			}
 		});
-		jQuery.validator.addClassRules("custom-file-input", {
+		jQuery.validator.addClassRules("required-file-input", {
 			required: function () {
 				return ($('#id').length === 0);
 			},
@@ -60,9 +60,12 @@ $(document).ready(function ()
 	 * Binda o campo do Preco no Site para calcular o Lucro
 	 *
 	 */
-	$('#s_price').blur(function () {
-		// executa a funcao apenas se existir os dois valores
-		if ($(this).val() !== '' && $('#p_price').val() !== '') {
+	$('#s_price').blur(function (event) {
+		// Method cancels the event if it is cancelable
+		event.preventDefault();
+		// verifica se os precos foram informados
+		if (validatePrices()) {
+			// calcula o lucro
 			calcProfit();
 		}
 	});
@@ -71,12 +74,30 @@ $(document).ready(function ()
 	 * Binda o campo do Preco no Fornecedor para calcular o Lucro
 	 *
 	 */
-	$('#p_price').blur(function () {
-		// executa a funcao apenas se existir os dois valores
-		if ($(this).val() !== '' && $('#s_price').val() !== '') {
+	$('#p_price').blur(function (event) {
+		// Method cancels the event if it is cancelable
+		event.preventDefault();
+		// verifica se os precos foram informados
+		if (validatePrices()) {
+			// calcula o lucro
 			calcProfit();
 		}
 	});
+
+	/**
+	 * Valida os campos de preco
+	 *
+	 * @return bool
+	 */
+	function validatePrices()
+	{
+		// executa a funcao apenas se existir os dois valores
+		if ($('#s_price').val() == '' || $('#s_price').val() == '0,00' || $('#p_price').val() == '' || $('#p_price').val() == '0,00') {
+			return false;
+		}
+
+		return true;
+	}
 
 	/**
 	 * Calcula o Lucro do item

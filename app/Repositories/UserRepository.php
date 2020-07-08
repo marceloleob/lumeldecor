@@ -30,7 +30,7 @@ class UserRepository extends BaseRepository
 				$subQuery->where('name', 'LIKE', '%' . $search . '%');
 			}
 		}])
-		->where('id', '<>', config('constants.DEVELOPER_ID'));
+		->where('id', '<>', config('constants.DEVELOPER.ID'));
 
         // cria uma collection com paginacao para montar o grid
 		$this->pagination($query, $search);
@@ -53,7 +53,7 @@ class UserRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('name')
-			->where('status', config('constants.STATUS.ACTIVE'))
+			->where('status', config('constants.RULES.STATUS.ACTIVE'))
 			->pluck('name', 'id');
 	}
 }

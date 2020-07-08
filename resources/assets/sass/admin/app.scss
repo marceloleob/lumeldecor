@@ -482,19 +482,44 @@ ul.button-checkbox {
 .custom-file-input {
 	cursor: pointer;
 }
-.card-box-picture {
+.row-pictures {
+	height: 180px;
+	margin-bottom: 7px;
+	padding: 10px;
+}
+.row-pictures:hover {
+	background-color: #F6F2FF;
+}
+.card-picture-example {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	// border: 1px solid #ced4da;
-	// border-radius: .25rem;
 }
-.card-box-picture img {
-	max-width: 100%;
-	max-height: 100%;
+.card-picture-example img {
+	max-width: 200px;
 }
-.item ul.button-checkbox {
-	padding-top: 29px;
+.cards-picture {
+	display: flex;
+}
+.cards-picture .picture {
+	display: flex;
+	background-color: #495057;
+	border-radius: .25rem;
+	height: 160px;
+	width: 150px;
+}
+.cards-picture .picture img {
+	display: block;
+	position: absolute;
+	border-radius: .25rem;
+	width: 10;
+}
+.cards-picture .remove {
+	display: flex;
+	padding: 32px 30px;
+}
+.cards-picture .remove a {
+	height: 2.3rem;
 }
 
 
@@ -585,7 +610,6 @@ ul.button-checkbox {
     color: #6c757d;
     margin: 0 0 .5rem;
 }
-// mmmmmmmmmmmmmmmmmm
 .vertical-timeline-element-content .vertical-timeline-element-date {
     display: block;
     position: absolute;
@@ -602,8 +626,6 @@ ul.button-checkbox {
     display: table;
     clear: both;
 }
-
-
 .badge {
     display: inline-block;
     padding: .25em .4em;

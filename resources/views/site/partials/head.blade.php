@@ -6,11 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>{!! Config::get('app.name') !!} - {!! $title !!}</title>
+<title>{!! Config::get('app.name') !!} {!! (!empty($title)) ? ' - ' . $title : '' !!}</title>
 
 {{-- METAS TAG --}}
-<meta name="author" content="{!! config('constants.DEVELOPER_NAME') . ' <' . config('constants.DEVELOPER_EMAIL') . '>' !!}" />
-<meta name="copyright" content="{!! config('constants.COMPANY_NAME') !!}" />
+<meta name="author" content="{!! config('constants.DEVELOPER.NAME') . ' <' . config('constants.DEVELOPER.EMAIL') . '>' !!}" />
+<meta name="copyright" content="{!! config('constants.COMPANY.NAME') !!}" />
 <meta name="keywords" content="decoracao, festas, artigos para festas, BH decoracao, MG decoracao, BH decoracoes, festas BH, festas criativas, artigos para festas, decoracao de festas, decor moderna, festa de luxo, festa em casa, loja de festas, festa infantil" />
 <meta name="description" content="Somos uma loja especializada em vendas de artigos para festas e decorações. Aqui você encontrará tudo que precisa para decorar seu ambiente, desde cerâmica, louças, MDF, luminárias, personagens e vários outros itens para decoração." />
 <meta name="csrf-token" content="{!! csrf_token() !!}" />

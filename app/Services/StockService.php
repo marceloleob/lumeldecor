@@ -62,15 +62,41 @@ class StockService
 	}
 
 	/**
-	 * Adiciona quantidade para um item
+	 * Adiciona quantidade para um item novo
 	 *
-	 * @param array $data
+	 * @param integer $itemId
+	 * @param integer $productId
+	 * @param integer $amount
 	 * @return \App\Models\Stock
 	 */
-    public static function store($data = [])
-    {
-		// verifica se esta inserindo um estoque de um NOVO ITEM
-		$balance = (int) isset($data['stock_id']) ? self::getNewBalace($data['stock_id'], $data['amount'], $data['action']) : $data['amount'];
+	public static function new($itemId, $productId, $amount)
+	{
+		// seta os dados relevantes para o estoque
+		$data = [
+			'product_id' => $productId,
+			'item_id'    => $itemId,
+			'reason_id'  => StockService::$_reason['NEW_ITEM'],
+			'amount'     => $amount,
+			'action'     => StockService::$_actions['INCOMING'],
+			'balance'    => $amount,
+		];
+
+		self::store($data);
+	}
+
+	/**
+	 * Adiciona ou Atualiza quantidade para um item
+	 *
+	 * @param array  $data
+	 * @param integer $data
+	 * @return \App\Models\Stock
+	 */
+	public static function store($data = [], $id = null)
+	{
+		// verifica se esta atualizando
+		if (!empty($id)) {
+			$data['balance'] = self::getNewBalace($data['stock_id'], $data['amount'], $data['action']);
+		}
 
 		// verifica se a acao e para adicionar ou remover do estoque
 		if ($data['action'] === self::$_actions['INCOMING']) {
@@ -83,12 +109,11 @@ class StockService
 		$data['user_id']  = UserService::getUserIdAuth();
 		$data['incoming'] = $incoming ?? null;
 		$data['overdraw'] = $overdraw ?? null;
-		$data['balance']  = $balance;
 
 		try {
-			// seta como "antigo" (current = 0) o atual registro de estoque deste item
-			if (isset($data['stock_id'])) {
-				Stock::where('id', $data['stock_id'])->update(['current' => config('constants.STATUS_INACTIVE')]);
+			// seta como "antigo" (current = 0) o registro atual para o "novo" entrar como (current = 1)
+			if (!empty($id)) {
+				Stock::where('id', $data['id'])->update(['current' => config('constants.RULES.STATUS.INACTIVE')]);
 			}
 
 			// cria um novo registro de estoque

@@ -13,16 +13,15 @@ class ImageService
 	 * Verifica se vai salvar uma nova imagem ou atualizar uma atual
 	 *
 	 * @param UploadedFile $picture
-	 * @param UploadedFile $newPicture
-	 * @param integer      $itemId
+	 * @param UploadedFile $oldPicture
 	 * @return string $name
 	 */
-	public static function store($picture, $newPicture = null, $itemId = null)
+	public static function store($picture, $oldPicture = null)
 	{
 		try {
 			// verifica se e para salvar ou atualizar a foto
-			if (!empty($itemId)) {
-				return self::update($picture, $newPicture);
+			if (!empty($oldPicture)) {
+				return self::update($picture, $oldPicture);
 			}
 
 			return self::create($picture);
@@ -43,7 +42,7 @@ class ImageService
 		// cria um nome para a imagem
 		$fileName = date('Y-m-d') . '-' . uniqid() . '.' . $picture->extension();
 		// salva a imagem na pasta Regular
-		$fullName = $picture->storeAS(config('constants.PICTURES_PATHS.REGULAR'), $fileName, 'public');
+		$fullName = $picture->storeAS(config('constants.PICTURES.STORAGE.REGULAR'), $fileName, 'public');
 		// redimensiona as imagens (bigger, regular e thumbnail)
 		self::resize($fullName, $fileName);
 
@@ -54,21 +53,19 @@ class ImageService
 	 * Atualiza a imagem no servidor
 	 *
 	 * @param string       $picture
-	 * @param UploadedFile $newPicture
+	 * @param UploadedFile $oldPicture
 	 * @return string $name
 	 */
-	public static function update($picture, $newPicture)
+	public static function update($picture, $oldPicture)
 	{
         // verifica se foi anexado uma nova imagem
-        if (empty($newPicture)) {
+        if (empty($oldPicture)) {
             return $picture;
 		}
 		// exclui a imagem atual
-		self::destroy($picture);
+		self::destroy($oldPicture);
 		// salva a nova imagem
-		$fileName = self::create($newPicture);
-
-		return $fileName;
+		return self::create($picture);
 	}
 
 	/**
@@ -79,9 +76,9 @@ class ImageService
      */
     public static function destroy($fileName)
     {
-		$pictureBigger    = config('constants.PICTURES_PATHS.BIGGER') . '/' . $fileName;
-		$pictureRegular   = config('constants.PICTURES_PATHS.REGULAR') . '/' . $fileName;
-		$pictureThumbnail = config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $fileName;
+		$pictureBigger    = config('constants.PICTURES.STORAGE.BIGGER') . '/' . $fileName;
+		$pictureRegular   = config('constants.PICTURES.STORAGE.REGULAR') . '/' . $fileName;
+		$pictureThumbnail = config('constants.PICTURES.STORAGE.SMALLER') . '/' . $fileName;
 		// verifica se a imagem atual existe no servidor
 		if (Storage::exists($pictureBigger) && Storage::exists($pictureRegular) && Storage::exists($pictureThumbnail)) {
 			// exclui as imagens
@@ -106,16 +103,16 @@ class ImageService
 		// salva uma nova imagem com o tamanho correto (Bigger)
 		$image->resize(810, 900, function ($constraint) {
 			$constraint->aspectRatio();
-		})->save('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $fileName);
+		})->save('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $fileName);
 
 		// salva uma nova imagem com o tamanho correto (Regular)
 		$image->resize(540, 600, function ($constraint) {
 			$constraint->aspectRatio();
-		})->save('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $fileName);
+		})->save('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $fileName);
 
 		// salva uma nova imagem com o tamanho correto (Thumbnail)
 		$image->resize(150, 160, function ($constraint) {
 			$constraint->aspectRatio();
-		})->save('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $fileName);
+		})->save('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $fileName);
 	}
 }

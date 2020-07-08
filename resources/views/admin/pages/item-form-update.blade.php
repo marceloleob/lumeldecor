@@ -12,31 +12,31 @@
 					<div class="card-body">
 						<ul class="forms-wizard mb-3">
 							<li class="nav-item nav-product">
-								<a href="{!! route('product.edit', $productSize->product->id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
+								<a href="{!! route('product.edit', $data->product->id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
 							</li>
 							<li class="nav-item nav-product">
-								<a href="{!! route('product-size.create', $productSize->product->id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
+								<a href="{!! route('product-size.create', $data->product->id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
 							</li>
 							<li class="nav-item nav-product active">
-								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Cor(es) do Produto</span></span>
+								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Itens do Produto</span></span>
 							</li>
 						</ul>
 
 						<div class="row mb-4">
 							<div class="col-md-12 d-flex px-3 py-2 my-2">
-								<div class="product-title">{!! $productSize->product->name !!} - {!! $productSize->size !!}</div>
+								<div class="product-title">{!! $data->product->name !!} - {!! $data->productSize->size !!}</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="position-relative form-group">
-									{!! Form::label('colors', 'Tons deste Item (máx.: 3 tons)', ['class' => 'required']) !!}
-									<select class="form-control selectpicker select-colors multiselect" id="colors[]" name="colors[]" multiple data-max-options="3" title="Selecione">
+									{!! Form::label('tones', 'Tons deste Item (máx.: 3 tons)', ['class' => 'required']) !!}
+									<select class="form-control selectpicker multiselect" id="tones[]" name="tones[]" multiple data-max-options="3" title="Selecione">
 										@foreach ($optionstone as $tone)
 											<option value="{!! $tone->id !!}" data-content="<span class='badge' style='background-color: {!! $tone->hexa !!}'>&nbsp;</span> &nbsp; {!! $tone->color !!} - {!! $tone->name !!}" {!! in_array($tone->id, $data->tones) ? 'selected' : '' !!}></option>
 										@endforeach
 									</select>
-									{!! Form::notification('colors', $errors) !!}
+									{!! Form::notification('tones', $errors) !!}
 								</div>
 								<div class="position-relative form-group">
 									{!! Form::label('supplier_id', 'Fornecedor', ['class' => 'required']) !!}
@@ -72,9 +72,10 @@
 									<div class="col-md-8">
 										<div class="form-row">
 											<div class="col-md-6">
-												<div class="position-relative form-group">
-													{!! Form::label('amount', 'Quantidade', ['class' => 'required']) !!}
-													{!! Form::number('amount', $data->amount, ['class' => 'form-control', 'readonly' => true]) !!}
+												<div class="position-relative form-group" data-toggle="tooltip" data-placement="top" data-original-title="Para editar a quantidade, você deve clicar na aba Estoques">
+													{!! Form::label('amount_fake', 'Quantidade', ['class' => 'required']) !!}
+													{!! Form::number('amount_fake', '', ['class' => 'form-control', 'readonly' => true]) !!}
+													{!! Form::notification('amount_fake', $errors) !!}
 												</div>
 											</div>
 										</div>
@@ -85,17 +86,17 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-row">
-									<div class="col-md-12">
-										<div class="position-relative form-group item">
-											<ul class="button-checkbox">
-												<li>
-													{!! Form::checkbox('launch', '1', (old('launch', $data->launch) ? true : false), ['id' => 'launch', 'class' => 'hide checks']) !!}
-													{!! Form::label('launch', 'Esta cor é um lançamento') !!}
-												</li>
-											</ul>
-										</div>
-									</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="position-relative form-group item">
+									<ul class="button-checkbox">
+										<li>
+											{!! Form::checkbox('launch', '1', (old('launch', $data->launch) ? true : false), ['id' => 'launch', 'class' => 'hide checks']) !!}
+											{!! Form::label('launch', 'Colocar este item como LANÇAMENTO na "Página Inicial" do site') !!}
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>
@@ -106,21 +107,77 @@
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
 
-						<h5 class="card-title pt-3">Foto do Produto</h5>
-						<div class="row">
+				<div class="main-card mb-3 card">
+					<div class="card-body">
+						<h5 class="card-title">Fotos deste Item</h5>
+						<div class="row row-pictures">
 							<div class="col-md-6">
 								<div class="position-relative form-group">
-									{!! Form::label('new_picture', 'Selecione uma nova foto, se quiser trocar - (810px X 900px)') !!}
-									{!! Form::file('new_picture', ['class' => 'form-control custom-file-input', 'id' => 'picture[file]']) !!}
-									{!! Form::hidden('picture', $data->picture, ['id' => 'picture']) !!}
-									{!! Form::label('picture[file]', '&nbsp;', ['class' => 'custom-file-label']) !!}
-									{!! Form::notification('new_picture', $errors) !!}
+									{!! Form::label('pictures[0]', 'Foto 01', ['class' => 'required']) !!}
+									{!! Form::file('pictures[0]', ['class' => 'form-control custom-file-input required-file-input', 'id' => 'picture_file[0]']) !!}
+									{!! Form::label('picture_file[0]', 'Clique aqui para selecionar uma foto', ['class' => 'custom-file-label']) !!}
+									{!! Form::notification('pictures[0]', $errors) !!}
+									{!! Form::hidden('old_pictures[0]', $data->pictureName0) !!}
 								</div>
 							</div>
 							<div class="col-md-6">
-								<div class="card-box-picture p-4">
-									<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $data->picture) !!}" alt="" />
+								<div class="cards-picture">
+									<div class="picture">
+										<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $data->pictureName0) !!}" alt="" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row row-pictures">
+							<div class="col-md-6">
+								<div class="position-relative form-group">
+									{!! Form::label('pictures[1]', 'Foto 02') !!}
+									{!! Form::file('pictures[1]', ['class' => 'form-control custom-file-input', 'id' => 'picture_file[1]']) !!}
+									{!! Form::label('picture_file[1]', 'Clique aqui para selecionar uma foto', ['class' => 'custom-file-label']) !!}
+									{!! Form::notification('pictures[1]', $errors) !!}
+									{!! Form::hidden('old_pictures[1]', $data->pictureName1) !!}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="cards-picture">
+									<div class="picture">
+										@if (isset($data->pictureName1))
+										<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $data->pictureName1) !!}" alt="" />
+										@endif
+									</div>
+									@if (isset($data->pictureName1))
+									<div class="remove">
+										<a href="{!! route('item-picture.remove', $data->pictureCode1) !!}" class="btn btn-transition btn-outline-danger"><i class="fas fa-ban pr-2"></i> Remover esta foto</a>
+									</div>
+									@endif
+								</div>
+							</div>
+						</div>
+						<div class="row row-pictures">
+							<div class="col-md-6">
+								<div class="position-relative form-group">
+									{!! Form::label('pictures[2]', 'Foto 03') !!}
+									{!! Form::file('pictures[2]', ['class' => 'form-control custom-file-input', 'id' => 'picture_file[2]']) !!}
+									{!! Form::label('picture_file[2]', 'Clique aqui para selecionar uma foto', ['class' => 'custom-file-label']) !!}
+									{!! Form::notification('pictures[2]', $errors) !!}
+									{!! Form::hidden('old_pictures[2]', $data->pictureName2) !!}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="cards-picture">
+									<div class="picture">
+										@if (isset($data->pictureName2))
+										<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $data->pictureName2) !!}" alt="" />
+										@endif
+									</div>
+									@if (isset($data->pictureName2))
+									<div class="remove">
+										<a href="{!! route('item-picture.remove', $data->pictureCode2) !!}" class="btn btn-transition btn-outline-danger"><i class="fas fa-ban pr-2"></i> Remover esta foto</a>
+									</div>
+									@endif
 								</div>
 							</div>
 						</div>
@@ -129,10 +186,10 @@
 
 				<div class="main-card mb-3 card">
 					<div class="card-button">
-						{!! Form::hidden('product_id', $productSize->product->id, ['id' => 'product_id']) !!}
-						{!! Form::hidden('product_size_id', $productSize->id, ['id' => 'product_size_id']) !!}
-						{!! Form::buttons('product-size.create', $data->id, ['back-show' => true, 'cancel-link-params' => $productSize->product->id]) !!}
-						<a href="{!! route('item.create', [$productSize->product->id, $productSize->id]) !!}" class="btn-hover-shine btn btn-shadow btn-alternate pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Cadastrar um item novo</a>
+						{!! Form::hidden('product_id', $data->product->id, ['id' => 'product_id']) !!}
+						{!! Form::hidden('product_size_id', $data->productSize->id, ['id' => 'product_size_id']) !!}
+						{!! Form::buttons('product-size.create', $data->id, ['back-show' => true, 'cancel-link-params' => $data->product->id]) !!}
+						<a href="{!! route('item.create', [$data->product->id, $data->productSize->id]) !!}" class="btn-hover-shine btn btn-shadow btn-alternate pr-4 pl-4 float-right"><i class="fas fa-plus-circle fa-w-10 pr-2"></i> Cadastrar um item novo</a>
 					</div>
 				</div>
 			{!! Form::close() !!}

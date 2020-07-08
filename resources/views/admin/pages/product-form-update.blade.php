@@ -19,7 +19,7 @@
 								<a href="{!! route('product-size.create', $data->id) !!}" class="nav-link"><em><i class="fas fa-ruler-combined"></i></em><span>Tamanho(s) do Produto</span></a>
 							</li>
 							<li class="nav-item nav-product">
-								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Cor(es) do Produto</span></span>
+								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Itens do Produto</span></span>
 							</li>
 						</ul>
 
@@ -44,12 +44,12 @@
 								<div class="position-relative form-group featured">
 									<ul class="button-checkbox">
 										<li>
-											{!! Form::checkbox('featured', '1', (old('featured', $data->featured) ? true : false), ['id' => 'featured', 'class' => 'hide']) !!}
-											{!! Form::label('featured', 'Destacar este produto no site') !!}
+											{!! Form::checkbox('national', '1', (old('national', $data->national) ? true : false), ['id' => 'national', 'class' => 'hide']) !!}
+											{!! Form::label('national', 'Produto nacional') !!}
 										</li>
 										<li>
-											{!! Form::checkbox('launch', 1, (old('launch', $data->launch) ? true : false), ['id' => 'launch', 'class' => 'hide']) !!}
-											{!! Form::label('launch', 'Este produto é um lançamento') !!}
+											{!! Form::checkbox('featured', '1', (old('featured', $data->featured) ? true : false), ['id' => 'featured', 'class' => 'hide']) !!}
+											{!! Form::label('featured', 'Colocar este produto como DESTAQUE na "Página Inicial" do site') !!}
 										</li>
 									</ul>
 								</div>

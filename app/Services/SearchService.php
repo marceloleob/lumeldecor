@@ -29,8 +29,8 @@ class SearchService
 				'product', function ($subQuery) use ($table, $slug)
 				{
 					$subQuery
-						->where('done', config('constants.DONE.ACTIVE'))
-						->where('status', config('constants.STATUS.ACTIVE'));
+						->where('done', config('constants.RULES.DONE.YES'))
+						->where('status', config('constants.RULES.STATUS.ACTIVE'));
 
 					// executa o filtro pelo nome do produto
 					if ($table === 'busca') {
@@ -41,7 +41,9 @@ class SearchService
 						$subQuery->whereHas(
 							'material', function ($subQuery) use ($slug)
 							{
-								$subQuery->where('slug', $slug);
+								$subQuery
+									->where('slug', $slug)
+									->where('status', config('constants.RULES.STATUS.ACTIVE'));
 							}
 						);
 					}
@@ -50,13 +52,15 @@ class SearchService
 						$subQuery->whereHas(
 							'category', function ($subQuery) use ($slug)
 							{
-								$subQuery->where('slug', $slug);
+								$subQuery
+									->where('slug', $slug)
+									->where('status', config('constants.RULES.STATUS.ACTIVE'));
 							}
 						);
 					}
 				}
 			)
-			->where('status', config('constants.STATUS.ACTIVE'));
+			->where('status', config('constants.RULES.STATUS.ACTIVE'));
 
 		// executa o filtro pelo cor
 		if ($table === 'tons') {
@@ -64,7 +68,9 @@ class SearchService
 			{
 				$subQuery->whereHas('colors', function ($subSubQuery) use ($slug)
 				{
-					$subSubQuery->where('slug', $slug);
+					$subSubQuery
+						->where('slug', $slug)
+						->where('status', config('constants.RULES.STATUS.ACTIVE'));
 				});
 			});
 		}
@@ -72,7 +78,9 @@ class SearchService
 		if ($table === 'tema') {
 			self::$query->whereHas('themes', function ($subQuery) use ($slug)
 			{
-				$subQuery->where('slug', $slug);
+				$subQuery
+					->where('slug', $slug)
+					->where('status', config('constants.RULES.STATUS.ACTIVE'));
 			});
 		}
 
@@ -118,7 +126,7 @@ class SearchService
 		self::$data->map(function ($collection)
 		{
 			// verifica se o item e lancamento
-			if ($collection->launch == config('constants.LAUNCH.ACTIVE')) {
+			if ($collection->launch == config('constants.RULES.LAUNCH.YES')) {
 				$collection->launch = '<span class="pr_flash"><i class="fas fa-rocket launch"></i></span>';
 			} else {
 				$collection->launch = '';
@@ -168,12 +176,14 @@ class SearchService
 	{
 		if (!empty($sku)) {
 			// recupera os detalhes do item pelo codigo
-			$item = tap(Item::where('code', $sku)->firstOrFail(), function ($item)
+			$item = tap(Item::where('sku', $sku)->firstOrFail(), function ($item)
 				{
+					$item->nationality = ($item->national === config('constants.RULES.NATIONAL.YES')) ? 'Brasil' : 'Importado';
+					// formata as cores do produto
 					$tones = ToneService::format($item->tones);
 					$item->tooltip    = $tones['tooltip'];
 					$item->background = $tones['background'];
-
+					// formata os temas do produto
 					$item->allThemes = ThemeService::format($item->themes);
 				});
 
@@ -194,9 +204,13 @@ class SearchService
 				})
 				->firstOrFail(), function ($item)
 				{
+					$item->nationality = ($item->national === config('constants.RULES.NATIONAL.YES')) ? 'Brasil' : 'Importado';
+					// formata as cores do produto
 					$tones = ToneService::format($item->tones);
 					$item->tooltip    = $tones['tooltip'];
 					$item->background = $tones['background'];
+					// formata os temas do produto
+					$item->allThemes = ThemeService::format($item->themes);
 				});
 		}
 
@@ -221,7 +235,7 @@ class SearchService
 		// recupera todos os itens iguais para extrair as cores disponiveis
 		$colors = Item::where('product_id', $item->product_id)
 			->where('product_size_id', $item->product_size_id)
-			->where('status', config('constants.STATUS.ACTIVE'))
+			->where('status', config('constants.RULES.STATUS.ACTIVE'))
 			->get()
 			->map(function ($color) use ($item)
 			{

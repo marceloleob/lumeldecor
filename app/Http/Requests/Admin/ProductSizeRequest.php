@@ -45,6 +45,7 @@ class ProductSizeRequest extends BaseRequest
         'shi_length' => 'float',
         'shi_width'  => 'float|nullable',
         'shi_height' => 'float',
+		'status'     => 'checkbox',
     ];
 
     /**
@@ -64,6 +65,7 @@ class ProductSizeRequest extends BaseRequest
         'pro_height' => "required|regex:/^\d+(\.\d{1,2})?$/",
         'shi_length' => "required|regex:/^\d+(\.\d{1,2})?$/",
         'shi_width'  => "nullable|regex:/^\d+(\.\d{1,2})?$/",
-        'shi_height' => "required|regex:/^\d+(\.\d{1,2})?$/",
+		'shi_height' => "required|regex:/^\d+(\.\d{1,2})?$/",
+		'status'     => 'boolean',
     ];
 }

@@ -18,7 +18,7 @@ class Item extends Model
 	 *
 	 * @var array
 	 */
-	protected $with = ['tones', 'themes'];
+	protected $with = ['tones', 'themes', 'pictures'];
 
 	/**
 	 * The attributes that are mass assignable.
@@ -30,8 +30,8 @@ class Item extends Model
 		'product_id',
 		'product_size_id',
 		'supplier_id',
-		'code',
-		'picture',
+		'sku',
+		'slug',
 		'p_price',
 		's_price',
 		'launch',
@@ -81,6 +81,15 @@ class Item extends Model
 	public function themes()
 	{
 		return $this->belongsToMany(Theme::class, 'item_themes');
+	}
+
+	/**
+	 * Get the pictures about this item.
+	 *
+	 */
+	public function pictures()
+	{
+		return $this->hasMany(ItemPicture::class);
 	}
 
 	/**

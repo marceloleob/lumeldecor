@@ -50,13 +50,13 @@ class ThemeRepository extends BaseRepository
 		$this->data->map(function ($collection)
 		{
 			// verifica se o tema vai aparecer na home
-			if ($collection->show == config('constants.SHOW.ACTIVE')) {
+			if ($collection->show == config('constants.RULES.SHOW.YES')) {
 				$collection->show = '<i class="fas fa-check"></i>';
 			} else {
 				$collection->show = '<i class="fas fa-times"></i>';
 			}
 			// verifica se e inativo
-			if ($collection->status == config('constants.STATUS.ACTIVE')) {
+			if ($collection->status == config('constants.RULES.STATUS.ACTIVE')) {
                 // seta ativo como default
                 $collection->status = ['class' => 'success', 'label' => 'Ativo'];
                 $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
@@ -77,7 +77,7 @@ class ThemeRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('name')
-			->where('status', config('constants.STATUS.ACTIVE'))
+			->where('status', config('constants.RULES.STATUS.ACTIVE'))
 			->pluck('name', 'id');
 	}
 
@@ -89,8 +89,8 @@ class ThemeRepository extends BaseRepository
 	public function loadMenu()
 	{
 		return $this->query()
-			->where('status', config('constants.STATUS.ACTIVE'))
-			->where('show', config('constants.SHOW.ACTIVE'))
+			->where('status', config('constants.RULES.STATUS.ACTIVE'))
+			->where('show', config('constants.RULES.SHOW.YES'))
 			->orderBy('name')
 			->get();
 	}

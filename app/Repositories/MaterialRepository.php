@@ -48,7 +48,7 @@ class MaterialRepository extends BaseRepository
 	public function loadMenu()
 	{
 		return $this->query()
-			->where('status', config('constants.STATUS.ACTIVE'))
+			->where('status', config('constants.RULES.STATUS.ACTIVE'))
 			->orderBy('name')
 			->get();
 	}
@@ -62,7 +62,7 @@ class MaterialRepository extends BaseRepository
 	{
 		return $this->query()
 			->orderBy('name')
-			->where('status', config('constants.STATUS.ACTIVE'))
+			->where('status', config('constants.RULES.STATUS.ACTIVE'))
 			->pluck('name', 'id');
 	}
 }

@@ -57,6 +57,11 @@ class ToneRepository extends BaseRepository
 		];
 	}
 
+	public function whereIn($collection)
+	{
+		return $this->query()->whereIn('id', $collection)->get();
+	}
+
 	/**
 	 * Monta as opcoes do select box
 	 *
@@ -72,7 +77,7 @@ class ToneRepository extends BaseRepository
 				'colors.name AS color'
 			)
 			->join('colors', 'tones.color_id', '=', 'colors.id')
-			->where('tones.status', config('constants.STATUS.ACTIVE'))
+			->where('tones.status', config('constants.RULES.STATUS.ACTIVE'))
 			->orderBy('colors.name')
 			->orderBy('tones.name')
 			->get();

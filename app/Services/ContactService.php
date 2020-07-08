@@ -23,7 +23,7 @@ class ContactService extends BaseService
 			Mail::send('emails.pages.contact.tobusiness', $data, function ($message) {
 				// seta os paramentros no email
 				$message
-					->to(config('constants.COMPANY_EMAIL'), config('constants.COMPANY_NAME'))
+					->to(config('constants.COMPANY.EMAIL'), config('constants.COMPANY.NAME'))
 					->subject(trans('pages/contact.email.company.subject'));
 			});
 

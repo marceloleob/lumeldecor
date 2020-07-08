@@ -35,6 +35,7 @@ class ProductRequest extends BaseRequest
         'name'        => 'trim|escape',
         'description' => 'trim|escape|strip_tags',
         'hashtag'     => 'trim|cast:string',
+		'national'    => 'checkbox',
 		'featured'    => 'checkbox',
 		'status'      => 'checkbox',
     ];
@@ -51,6 +52,7 @@ class ProductRequest extends BaseRequest
         'name'        => 'required|min:2|max:150|unique:products',
         'description' => 'max:3000',
         'hashtag'     => '',
+        'national'    => 'boolean',
         'featured'    => 'boolean',
         'status'      => 'boolean',
 	];

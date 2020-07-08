@@ -56,33 +56,33 @@ class StockController extends Controller
 		return view('admin.pages.stock-show', ['page' => 'stock'])->with('show', $history);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function create($id)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
 	{
 		$params = [
 			'data' => $this->repository->findById($id),
 			'optionsreason' => (new ReasonRepository())->options('I'),
 		];
 
-		return view('admin.pages.stock-form-create', ['page' => 'stock'])->with($params);
+		return view('admin.pages.stock-form-update', ['page' => 'stock'])->with($params);
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  StockRequest  $request
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function store(StockRequest $request)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  StockRequest  $request
+     * @param  int  $id
+     * @return Response
+     */
+    public function update(StockRequest $request, $id)
 	{
 		// save
-		$entity = StockService::store($request->all());
+		$entity = StockService::store($request->all(), $id);
 		// verifica se salvou
 		if (! isset($entity->id)) {
 			return back()->withInput()->with('danger', 'Erro ao atualizar o estoque, tente novamente!');

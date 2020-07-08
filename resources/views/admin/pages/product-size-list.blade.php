@@ -16,11 +16,12 @@
 						<table class="table table-hover table-striped table-bordered dtr-inline align-middle mb-0">
 							<thead>
 								<tr>
-									<th width="55%" class="text-left">Produto</th>
+									<th width="50%" class="text-left">Produto</th>
 									<th width="10%" class="text-center">Tamanho</th>
 									<th width="10%" class="text-center">Formato</th>
-									<th width="10%" class="text-center">Peso</th>
-									<th width="15%" class="text-center">Ações</th>
+									<th width="8%" class="text-center">Peso</th>
+									<th width="12%" class="text-center">Ações</th>
+									<th width="10%" class="text-center">&nbsp;</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -34,6 +35,9 @@
 									<td class="text-center">{!! $item->weightFormatted !!}</td>
 									<td class="text-center">
 										<a href="{!! route('product-size.edit', [$item->productId, $item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary mr-2" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="far fa-edit"></i></a>
+										<a href="{!! route('product-size.status', [$item->productId, $item->id]) !!}" class="border-0 btn-transition btn {!! $item->styles['class'] !!}"><i class="fas {!! $item->styles['label'] !!}"></i></a>
+									</td>
+									<td class="text-center">
 										<a href="{!! route('item.create', [$item->productId, $item->id]) !!}" class="btn-icon btn btn-outline-alternate"><i class="fas fa-tags pr-1"></i> Cores</a>
 									</td>
 								</tr>

@@ -103,4 +103,18 @@ class ProductSizeController extends Controller
 
         return redirect()->route('product-size.create', $request->product_id)->with('success', 'Tamanho do produto atualizado com sucesso!');
 	}
+
+    /**
+     * Toggle the status storage.
+     *
+     * @param  int  $productId
+     * @param  int  $productSizeId
+     * @return Response
+     */
+    public function changeStatus($productId, $productSizeId)
+    {
+        $response = $this->repository->changeStatus($productSizeId);
+
+        return redirect()->route('product-size.create', $productId)->with($response);
+    }
 }

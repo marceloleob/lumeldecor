@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Repositories\ToneRepository;
+
 class ToneService
 {
 	/**
@@ -31,5 +33,23 @@ class ToneService
 			'tooltip'    => $tooltip,
 			'background' => $background,
 		];
+	}
+
+	/**
+	 * Recupera as cores e retorna formatado para CSS/HTML
+	 *
+	 * @param Tone $collecion
+	 * @return array
+	 */
+	public static function namesByIds($collecion)
+	{
+		$array = [];
+		$tones = (new ToneRepository)->whereIn($collecion);
+
+		foreach ($tones as $tone) {
+			$array[] = $tone->name;
+		}
+
+		return $array;
 	}
 }

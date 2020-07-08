@@ -21,21 +21,4 @@ class ProductService
 
 		return (new ProductRepository())->store($data);
 	}
-
-	/**
-	 * Altera o status do cadastro para concluido
-	 *
-	 * @param integer $productId
-	 * @return \App\Models\Product
-	 */
-	public static function complete($productId)
-	{
-		// cria uma slug
-		$data = [
-			'id'   => $productId,
-			'done' => config('constants.DONE.ACTIVE'),
-		];
-
-		return (new ProductRepository())->store($data);
-	}
 }

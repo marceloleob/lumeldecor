@@ -9,8 +9,8 @@
 <title>{!! Config::get('app.name') !!}</title>
 
 {{-- METAS TAG --}}
-<meta name="author" content="{!! config('constants.DEVELOPER_NAME') . ' <' . config('constants.DEVELOPER_EMAIL') . '>' !!}" />
-<meta name="copyright" content="{!! config('constants.COMPANY_NAME') !!}" />
+<meta name="author" content="{!! config('constants.DEVELOPER.NAME') . ' <' . config('constants.DEVELOPER.EMAIL') . '>' !!}" />
+<meta name="copyright" content="{!! config('constants.COMPANY.NAME') !!}" />
 <meta name="description" content="">
 <meta name="csrf-token" content="{!! csrf_token() !!}" />
 

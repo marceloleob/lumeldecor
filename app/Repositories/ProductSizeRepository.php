@@ -44,6 +44,16 @@ class ProductSizeRepository extends BaseRepository
 			$collection->productId   = $collection->product->id;
 			$collection->productName = $collection->product->name;
 			$collection->shape       = ($collection->shape === 'R') ? 'Redondo' : 'Quadrado';
+			// verifica se e inativo
+			if ($collection->status == config('constants.RULES.STATUS.ACTIVE')) {
+				// seta ativo como default
+				$collection->status = ['class' => 'success', 'label' => 'Ativo'];
+				$collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
+			} else {
+				// seta inativo como default
+				$collection->status = ['class' => 'danger', 'label' => 'Inativo'];
+				$collection->styles = ['class' => 'btn-outline-success', 'label' => 'far fa-check-circle'];
+			}
 		});
 	}
 

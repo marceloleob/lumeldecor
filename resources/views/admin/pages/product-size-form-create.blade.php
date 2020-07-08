@@ -19,7 +19,7 @@
 								<span class="nav-link"><em><i class="fas fa-ruler-combined"></i></em><span>Tamanho(s) do Produto</span></span>
 							</li>
 							<li class="nav-item nav-product add-color">
-								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Cor(es) do Produto</span></span>
+								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Itens do Produto</span></span>
 							</li>
 						</ul>
 
@@ -118,7 +118,7 @@
 							</div>
 							<div class="col-md-4">
 								<div class="card-box-example p-4">
-									<img src="{!! asset('images/box.jpeg') !!}" alt="" />
+									<img src="{!! asset('images/admin/box.jpeg') !!}" alt="" />
 								</div>
 							</div>
 						</div>

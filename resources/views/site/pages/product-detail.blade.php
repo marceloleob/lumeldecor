@@ -15,25 +15,25 @@
 						<div id="pr_item_gallery" class="product_gallery_item slick_slider" data-vertical="true" data-vertical-swiping="true" data-slides-to-show="5" data-slides-to-scroll="1" data-infinite="false">
 							{{-- THUMBNAILS --}}
 							<div class="item">
-								<a href="#" class="product_gallery_item active" data-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}">
-									<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
+								<a href="#" class="product_gallery_item active" data-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $item->picture) !!}">
+									<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
 								</a>
 							</div>
 							<div class="item">
-								<a href="#" class="product_gallery_item" data-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}">
-									<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
+								<a href="#" class="product_gallery_item" data-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $item->picture) !!}">
+									<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
 								</a>
 							</div>
 							<div class="item">
-								<a href="#" class="product_gallery_item" data-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}">
-									<img src="{!! asset('storage/' . config('constants.PICTURES_PATHS.THUMBNAIL') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
+								<a href="#" class="product_gallery_item" data-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $item->picture) !!}">
+									<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
 								</a>
 							</div>
 							{{-- THUMBNAILS --}}
 						</div>
 						{{-- REGULAR --}}
 						<div class="product_img_box">
-							<img id="product_img" src="{!! asset('storage/' . config('constants.PICTURES_PATHS.REGULAR') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES_PATHS.BIGGER') . '/' . $item->picture) !!}" />
+							<img id="product_img" src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $item->picture) !!}" />
 							<a href="#" class="product_img_zoom" title="{!! $item->product->name !!} - {!! $item->productSize->size !!}">
 								<span class="linearicons-zoom-in"></span>
 							</a>
@@ -149,6 +149,9 @@
 								<table class="table table-bordered">
 									<tr>
 										<td width="15%">Código</td><td width="85%">{!! $item->code !!}</td>
+									</tr>
+									<tr>
+										<td>Nacionalidade</td><td>{!! $item->product->nationality !!}</td>
 									</tr>
 									<tr>
 										<td>Material</td><td>{!! $item->product->material->name !!}</td>

@@ -43,7 +43,7 @@ class BaseRepository
      */
     public function __construct()
     {
-        $this->total = config('constants.TOTAL_PAGE');
+        $this->total = config('constants.PAGINATION.TOTAL');
 	}
 
     /**
@@ -77,6 +77,33 @@ class BaseRepository
 		return $this->query()->where('id', $id)->firstOrFail();
 	}
 
+	/**
+	 * Retorna os dados referente a este modelo
+	 *
+	 * @param string $name
+	 * @return Entity
+	 */
+	public function findByName($name)
+	{
+		return $this->query()->where('name', $name)->firstOrFail();
+	}
+
+	/**
+	 * Percorre a Collection e customiza os dados para imprimir na view como array
+	 *
+	 * @param Collection $collection
+	 * @param string     $field
+	 * @return array
+	 */
+	public static function convertToArray($collection, $field = 'id')
+	{
+		$array = [];
+		foreach ($collection as $model) {
+			$array[] = $model->$field;
+		}
+		return $array;
+	}
+
     /**
      * Handler paginator
      *
@@ -106,7 +133,7 @@ class BaseRepository
 		// Percorre toda a Collection
 		$this->data->map(function ($collection) {
 			// verifica se e inativo
-			if ($collection->status == config('constants.STATUS.ACTIVE')) {
+			if ($collection->status == config('constants.RULES.STATUS.ACTIVE')) {
                 // seta ativo como default
                 $collection->status = ['class' => 'success', 'label' => 'Ativo'];
                 $collection->styles = ['class' => 'btn-outline-danger', 'label' => 'fas fa-ban'];
