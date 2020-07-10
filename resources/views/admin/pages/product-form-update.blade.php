@@ -33,7 +33,6 @@
 								<div class="position-relative form-group">
 									{!! Form::label('category_id', 'Categoria', ['class' => 'required']) !!}
 									{!! Form::select('category_id', $optionscategory, old('category_id', $data->category->id), ['class' => 'form-control selectpicker', 'title' => 'Selecione']) !!}
-									{!! Form::hidden('category_id_hide', $data->category->id) !!}
 									{!! Form::notification('category_id', $errors) !!}
 								</div>
 								<div class="position-relative form-group">

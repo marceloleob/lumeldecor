@@ -15,7 +15,7 @@
 								<a href="{!! route('product.edit', $productSize->product_id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
 							</li>
 							<li class="nav-item nav-product">
-								<a href="{!! route('product-size.create', $productSize->product_id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
+								<a href="{!! route('product-size.create', $productSize->product_id) !!}" class="nav-link"><em><i class="fas fa-ruler-combined"></i></em><span>Tamanho(s) do Produto</span></a>
 							</li>
 							<li class="nav-item nav-product active">
 								<span class="nav-link"><em><i class="fas fa-tags"></i></em><span>Itens do Produto</span></span>

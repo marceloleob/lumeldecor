@@ -3,7 +3,7 @@
 @section('icon', 'fas fa-ruler-combined')
 @section('title', 'Tamanhos do Produto')
 @section('subheading', 'Formulário para cadastrar as informações referentes ao tamanho do produto.')
-@section('btn-back', route('product.edit', $infos['id']))
+@section('btn-back', route('product.edit', $product->id))
 
 @section('form')
 	<div class="row">
@@ -13,7 +13,7 @@
 					<div class="card-body">
 						<ul class="forms-wizard mb-3">
 							<li class="nav-item nav-product">
-								<a href="{!! route('product.edit', $infos['id']) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
+								<a href="{!! route('product.edit', $product->id) !!}" class="nav-link"><em><i class="fas fa-cubes"></i></em><span>Informações do Produto</span></a>
 							</li>
 							<li class="nav-item nav-product active">
 								<span class="nav-link"><em><i class="fas fa-ruler-combined"></i></em><span>Tamanho(s) do Produto</span></span>
@@ -25,7 +25,7 @@
 
 						<div class="row mb-4">
 							<div class="col-md-12 d-flex px-3 py-2 my-2">
-								<div class="product-title">{!! $infos['name'] !!}</div>
+								<div class="product-title">{!! $product->name !!}</div>
 							</div>
 						</div>
 						<div class="row">
@@ -127,8 +127,8 @@
 
 				<div class="main-card mb-3 card">
 					<div class="card-button">
-						{!! Form::hidden('product_id', $infos['id'], ['id' => 'product_id']) !!}
-						{!! Form::buttons('product.edit', null, ['back-show' => true, 'cancel-link-params' => $infos['id']]) !!}
+						{!! Form::hidden('product_id', $product->id, ['id' => 'product_id']) !!}
+						{!! Form::buttons('product.edit', null, ['back-show' => true, 'cancel-link-params' => $product->id]) !!}
 					</div>
 				</div>
 			{!! Form::close() !!}
