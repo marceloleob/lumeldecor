@@ -66,7 +66,7 @@ $(document).ready(function ()
 	{
 		// carrega o combo
 		$.ajax({
-			url: '../../../../../product/calculator',
+			url: '../../../../product/calculator',
 			type: 'POST',
             dataType: 'json',
 			data: {

@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
 			'user_rule_id' => 1,
 			'name'         => 'Marcelo Leopold',
 			'email'        => 'marceloleob@gmail.com',
-			'password'     => bcrypt('marcelo06'),
+			'password'     => bcrypt('Marcelo#06'),
 			'status'       => 1,
 		]);
 		User::create([

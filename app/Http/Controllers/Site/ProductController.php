@@ -30,12 +30,12 @@ class ProductController extends Controller
 	 * Product List
 	 *
 	 * @param string $table
-	 * @param string $slug
+	 * @param string $search
 	 * @return Response
 	 */
-	public function show($table, $slug)
+	public function show($table, $search)
 	{
-		$params = SearchService::productList($table, $slug);
+		$params = SearchService::productList($table, $search);
 
 		return view('site.pages.product')->with($params);
 	}
@@ -44,16 +44,14 @@ class ProductController extends Controller
 	 * Product Detail
 	 *
 	 * @param string $table
+	 * @param string $search
 	 * @param string $slug
-	 * @param string $product
-	 * @param string $size
-	 * @param string $sku
 	 * @return Response
 	 */
-	public function detail($table, $slug, $product, $size, $sku = null)
+	public function detail($table, $search, $slug)
 	{
-		$params = SearchService::productDetail($table, $slug, $product, $size, $sku);
-
+		$params = SearchService::productDetail($table, $search, $slug);
+// dd($params);
 		return view('site.pages.product-detail')->with($params);
 	}
 

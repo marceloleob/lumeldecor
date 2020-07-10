@@ -24,6 +24,7 @@ class ProductSizeRepository extends BaseRepository
 		$this->data = $this->query()
 			->with('product')
 			->where('product_id', $productId)
+			->orderBy('size', 'DESC')
 			->get();
 		// formata os registros da collection
 		$this->format();

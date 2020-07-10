@@ -36,11 +36,12 @@ class RouteServiceProvider extends ServiceProvider
 		Route::pattern('itemId', '[0-9]+');
 
         Route::pattern('table', '\b(busca|material|categoria|tons|tema)\b');
-        Route::pattern('slug', '[a-zA-Z\-]+');
-        Route::pattern('product', '[a-z\-]+');
-        Route::pattern('size', '[A-Z\-]+');
+        Route::pattern('search', '[a-zA-Z\-]+');
+		Route::pattern('slug', '[a-z\-]+');
+
+        // Route::pattern('size', '[A-Z\-]+');
         // Route::pattern('sku', '^(LM){1}([0-9]){15}([P0G])([PMGU])');
-        Route::pattern('sku', '^(LM){1}([0-9]){4}([P0G])([PMGU])([0-9]){6}');
+        // Route::pattern('sku', '^(LM){1}([0-9]){4}([P0G])([PMGU])([0-9]){6}');
 
 		Route::pattern('qtdy', '[0-9]+');
 

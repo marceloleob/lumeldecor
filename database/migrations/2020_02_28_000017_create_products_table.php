@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
 			$table->string('picture', 100)->nullable();
 			$table->text('description');
 			$table->text('hashtag')->nullable();
-			$table->boolean('national')->default(1);
+			$table->boolean('national')->default(0);
 			$table->boolean('featured')->default(0);
 			$table->boolean('done')->default(0);
 			$table->boolean('status')->default(1);

@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
 			ProductsTableSeeder::class,
 			ProductSizesTableSeeder::class,
 			ItemsTableSeeder::class,
+			ItemPicturesTableSeeder::class,
 			ItemThemesTableSeeder::class,
 			ItemTonesTableSeeder::class,
 			CampaignItemsTableSeeder::class,

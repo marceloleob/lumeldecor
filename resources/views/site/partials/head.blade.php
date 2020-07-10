@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>{!! Config::get('app.name') !!} {!! (!empty($title)) ? ' - ' . $title : '' !!}</title>
+<title>{!! Config::get('app.name') !!} - {!! implode(' - ', $title) !!}</title>
 
 {{-- METAS TAG --}}
 <meta name="author" content="{!! config('constants.DEVELOPER.NAME') . ' <' . config('constants.DEVELOPER.EMAIL') . '>' !!}" />

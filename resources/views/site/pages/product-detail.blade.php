@@ -1,7 +1,7 @@
 @extends('site.layouts.pages')
 
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{!! route('product.show', [$type, $current]) !!}">{!! $bread !!}</a></li>
+<li class="breadcrumb-item"><a href="{!! route('product.show', [$type, $current]) !!}">{!! implode(': ', $bread) !!}</a></li>
 <li class="breadcrumb-item active">Detalhes do Produto</li>
 @endsection
 
@@ -14,26 +14,18 @@
 					<div class="product-image vertical_gallery">
 						<div id="pr_item_gallery" class="product_gallery_item slick_slider" data-vertical="true" data-vertical-swiping="true" data-slides-to-show="5" data-slides-to-scroll="1" data-infinite="false">
 							{{-- THUMBNAILS --}}
-							<div class="item">
-								<a href="#" class="product_gallery_item active" data-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $item->picture) !!}">
-									<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="product_gallery_item" data-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $item->picture) !!}">
-									<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="product_gallery_item" data-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->picture) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $item->picture) !!}">
-									<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
-								</a>
-							</div>
+							@foreach ($item->pictures as $key => $picture)
+								<div class="item">
+									<a href="#" class="product_gallery_item {!! ($key === 0) ? 'active' : '' !!}" data-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $picture->name) !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $picture->name) !!}">
+										<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.SMALLER') . '/' . $picture->name) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" />
+									</a>
+								</div>
+							@endforeach
 							{{-- THUMBNAILS --}}
 						</div>
 						{{-- REGULAR --}}
 						<div class="product_img_box">
-							<img id="product_img" src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->picture) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $item->picture) !!}" />
+							<img id="product_img" src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->pictures[0]->name) !!}" alt="{!! $item->product->name !!} - {!! $item->productSize->size !!}" data-zoom-image="{!! asset('storage/' . config('constants.PICTURES.STORAGE.BIGGER') . '/' . $item->pictures[0]->name) !!}" />
 							<a href="#" class="product_img_zoom" title="{!! $item->product->name !!} - {!! $item->productSize->size !!}">
 								<span class="linearicons-zoom-in"></span>
 							</a>
@@ -47,7 +39,7 @@
 					<div class="pr_detail">
 						<div class="product_description mb-3">
 							<h4 class="product_title mb-3">
-								<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $item->productSize->size, $item->code]) !!}">{!! $item->product->name !!} - {!! $item->productSize->size !!}</a>
+								<a href="{!! route('product.detail', [$type, $current, $item->slug]) !!}">{!! $item->product->name !!} - {!! $item->productSize->size !!}</a>
 							</h4>
 							<div class="price_rating mb-4">
 								<div class="product_price">
@@ -73,7 +65,7 @@
 								<span class="switch_lable">Cores:</span>
 								<div class="product_color_switch">
 									@foreach ($colors as $colorItem)
-										<a href="{!! route('product.detail', [$type, $current, $colorItem->product->slug, $colorItem->productSize->size, $colorItem->code]) !!}">
+										<a href="{!! route('product.detail', [$type, $current, $colorItem->slug]) !!}">
 											<span style="{!! $colorItem->background !!}" {!! $colorItem->active !!} data-toggle="tooltip" data-placement="top" data-original-title="{!! $colorItem->tooltip !!}"></span>
 										</a>
 									@endforeach
@@ -83,7 +75,7 @@
 								<span class="switch_lable">Tamanhos:</span>
 								<div class="product_size_switch">
 									@foreach ($sizes as $size)
-										<a href="{!! route('product.detail', [$type, $current, $item->product->slug, $size->size, $size->items[0]->code]) !!}">
+										<a href="{!! route('product.detail', [$type, $current, $size->items[0]->slug]) !!}">
 											<span {!! $size->active !!}>{!! $size->size !!}</span>
 										</a>
 									@endforeach
@@ -101,7 +93,7 @@
 								</div>
 							</div>
 							<div class="cart_btn">
-								<a class="btn btn-fill-out btn-addtocart" href="{!! route('shopcart', $item->code) !!}"><i class="fas fa-cart-plus"></i> Comprar</a>
+								<a class="btn btn-fill-out btn-addtocart" href="{!! route('shopcart', $item->slug) !!}"><i class="fas fa-cart-plus"></i> Comprar</a>
 								<a class="add_wishlist" href="{!! route('whishlist') !!}"><i class="icon-heart px-2"></i></a> Favoritos
 							</div>
 						</div>
@@ -148,10 +140,10 @@
 							<div class="tab-pane fade" id="infos" role="tabpanel" aria-labelledby="infos-tab">
 								<table class="table table-bordered">
 									<tr>
-										<td width="15%">Código</td><td width="85%">{!! $item->code !!}</td>
+										<td width="15%">Código</td><td width="85%">{!! $item->sku !!}</td>
 									</tr>
 									<tr>
-										<td>Nacionalidade</td><td>{!! $item->product->nationality !!}</td>
+										<td>Nacionalidade</td><td>{!! $item->nationality !!}</td>
 									</tr>
 									<tr>
 										<td>Material</td><td>{!! $item->product->material->name !!}</td>

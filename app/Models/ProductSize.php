@@ -18,7 +18,7 @@ class ProductSize extends Model
 	 *
 	 * @var array
 	 */
-	// protected $with = ['product', 'items'];
+	protected $with = ['items'];
 
 	/**
 	 * The attributes that are mass assignable.
