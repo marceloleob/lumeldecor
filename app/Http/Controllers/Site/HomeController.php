@@ -25,7 +25,7 @@ class HomeController extends Controller
 	public function index()
 	{
 		$params = [
-			'title'   => '',
+			'title'   => null,
 			'current' => 'home',
 		];
 

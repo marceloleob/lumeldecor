@@ -15,7 +15,7 @@ class AboutController extends Controller
 	public function index()
 	{
 		$params = [
-			'title'   => 'Sobre nós',
+			'title'   => ['Sobre nós'],
 			'current' => 'about',
 		];
 

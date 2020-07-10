@@ -15,7 +15,7 @@ class ShopCartController extends Controller
 	public function index()
 	{
 		$params = [
-			'title'   => 'Carrinho',
+			'title'   => ['Carrinho'],
 			'current' => 'shopcart',
 		];
 

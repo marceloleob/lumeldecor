@@ -15,7 +15,7 @@ class TermsController extends Controller
 	public function index()
 	{
 		$params = [
-			'title'   => 'Termos e Condições',
+			'title'   => ['Termos e Condições'],
 			'current' => 'terms',
 		];
 

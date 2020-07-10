@@ -15,7 +15,7 @@ class ContactController extends Controller
 	public function index()
 	{
 		$params = [
-			'title'   => 'Contato',
+			'title'   => ['Contato'],
 			'current' => 'contact',
 		];
 

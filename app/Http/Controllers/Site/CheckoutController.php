@@ -15,7 +15,7 @@ class CheckoutController extends Controller
 	public function index()
 	{
 		$params = [
-			'title'   => 'Finalizar Compra',
+			'title'   => ['Finalizar Compra'],
 			'current' => 'checkout',
 		];
 

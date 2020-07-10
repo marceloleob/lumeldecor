@@ -15,7 +15,7 @@ class FaqController extends Controller
 	public function index()
 	{
 		$params = [
-			'title'   => 'Perguntas Frequentes',
+			'title'   => ['Perguntas Frequentes'],
 			'current' => 'faq',
 		];
 

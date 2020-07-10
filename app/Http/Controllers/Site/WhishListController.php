@@ -15,7 +15,7 @@ class WhishListController extends Controller
 	public function index()
 	{
 		$params = [
-			'title'   => 'Meus Favoritos',
+			'title'   => ['Meus Favoritos'],
 			'current' => 'whishlist',
 		];
 
