@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Stock;
+use App\Models\Newsletter;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class StocksTableSeeder extends Seeder
+class NewslettersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class StocksTableSeeder extends Seeder
     public function run()
     {
 		// limpa a tabela
-		DB::table('stocks')->delete();
+		DB::table('newsletters')->delete();
     }
 }

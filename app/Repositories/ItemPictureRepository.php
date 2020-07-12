@@ -46,12 +46,12 @@ class ItemPictureRepository extends BaseRepository
 	/**
 	 * Exclui a imagem no servidor e no banco de dados
 	 *
-	 * @param integer $id
+	 * @param  string $picture
 	 * @return Item
 	 */
-	public function delete($id)
+	public function delete($picture)
 	{
-		$picture = $this->findById($id);
+		$picture = $this->findByName($picture);
 		// exclui as fotos (pequena, media e grande)
 		ImageService::destroy($picture->name);
 		// exclui no banco de dados

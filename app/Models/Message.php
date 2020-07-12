@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class Message extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,19 +20,11 @@ class Employee extends Model
 	 */
 	protected $fillable = [
 		'id',
-		'user_id',
-		'document',
-		'telephone',
-		'cellphone',
-		'status',
+		'name',
+		'email',
+		'phone',
+		'subject',
+		'text',
+		'read',
 	];
-
-	/**
-	 * Get the user that owns the customer.
-	 *
-	 */
-	public function user()
-	{
-		return $this->belongsTo(User::class);
-	}
 }

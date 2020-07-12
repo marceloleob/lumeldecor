@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserRulesTable extends Migration
+class CreateNewslettersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateUserRulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_rules', function (Blueprint $table) {
-            $table->id();
-			$table->string('name', 100);
-			$table->boolean('status')->default(1);
+        Schema::create('newsletters', function (Blueprint $table) {
+			$table->id();
+			$table->foreignId('user_id');
+			$table->string('user_ip', 15);
+			$table->string('email')->unique();
+			$table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ class CreateUserRulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_rules');
+        Schema::dropIfExists('newsletters');
     }
 }

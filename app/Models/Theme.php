@@ -41,7 +41,7 @@ class Theme extends Model
 	 */
 	public function campaigns()
 	{
-		return $this->hasMany(CampaignItem::class);
+		return $this->hasMany(Campaign::class);
 	}
 
 	/**

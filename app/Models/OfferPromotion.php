@@ -24,7 +24,6 @@ class OfferPromotion extends Model
 		'material_id',
 		'category_id',
 		'theme_id',
-		'campaign_id',
 		'product_id',
 		'item_id',
 		'name',
@@ -72,15 +71,6 @@ class OfferPromotion extends Model
 	public function theme()
 	{
 		return $this->belongsTo(Theme::class);
-	}
-
-	/**
-	 * Get the campaign that owns the promotion.
-	 *
-	 */
-	public function campaign()
-	{
-		return $this->belongsTo(Campaign::class);
 	}
 
 	/**

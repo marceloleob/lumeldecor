@@ -26,12 +26,12 @@ class ItemPictureController extends Controller
     /**
      * Remove the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  string $picture
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($picture)
     {
-		$item = $this->repository->delete($id);
+		$item = $this->repository->delete($picture);
 
 		return redirect()->route('item.edit', [$item->id, $item->product_id, $item->product_size_id])->with('success', 'Foto excluída com sucesso!');
 	}

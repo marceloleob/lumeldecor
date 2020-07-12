@@ -111,15 +111,6 @@ class Item extends Model
 	}
 
 	/**
-	 * Get the campaign about this item.
-	 *
-	 */
-	public function campaign()
-	{
-		return $this->hasOne(CampaignItem::class);
-	}
-
-	/**
 	 * Get the name of Product
 	 *
 	 * @return string

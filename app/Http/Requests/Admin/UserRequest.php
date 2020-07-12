@@ -29,12 +29,12 @@ class UserRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'id'           => 'cast:integer',
-        'user_rule_id' => 'cast:integer',
-        'name'         => 'trim|escape',
-        'email'        => 'trim|escape|lowercase',
-        'password'     => 'trim',
-        'status'       => 'checkbox|cast:boolean',
+        'id'       => 'cast:integer',
+        'rule_id'  => 'cast:integer',
+        'name'     => 'trim|escape',
+        'email'    => 'trim|escape|lowercase',
+        'password' => 'trim',
+        'status'   => 'checkbox|cast:boolean',
     ];
 
     /**
@@ -43,12 +43,12 @@ class UserRequest extends BaseRequest
      * @var array
      */
     public static $validations = [
-		'id'           => 'integer',
-		'user_rule_id' => 'required|integer',
-        'name'         => 'required|string|min:2|max:100',
-        'email'        => 'required|string|min:3|max:100|email|unique:users',
-        'password'     => 'required|string|min:6|confirmed',
-        'status'       => 'boolean',
+		'id'       => 'integer',
+		'rule_id'  => 'required|integer',
+        'name'     => 'required|string|min:2|max:100',
+        'email'    => 'required|string|min:3|max:100|email|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+        'status'   => 'boolean',
 	];
 
     /**

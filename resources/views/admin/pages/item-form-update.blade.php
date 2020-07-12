@@ -150,7 +150,7 @@
 									</div>
 									@if (isset($data->pictureName1))
 									<div class="remove">
-										<a href="{!! route('item-picture.remove', $data->pictureCode1) !!}" class="btn btn-transition btn-outline-danger"><i class="fas fa-ban pr-2"></i> Remover esta foto</a>
+										<a href="{!! route('item-picture.remove', $data->pictureName1) !!}" class="btn btn-transition btn-outline-danger"><i class="fas fa-ban pr-2"></i> Remover esta foto</a>
 									</div>
 									@endif
 								</div>
@@ -175,7 +175,7 @@
 									</div>
 									@if (isset($data->pictureName2))
 									<div class="remove">
-										<a href="{!! route('item-picture.remove', $data->pictureCode2) !!}" class="btn btn-transition btn-outline-danger"><i class="fas fa-ban pr-2"></i> Remover esta foto</a>
+										<a href="{!! route('item-picture.remove', $data->pictureName2) !!}" class="btn btn-transition btn-outline-danger"><i class="fas fa-ban pr-2"></i> Remover esta foto</a>
 									</div>
 									@endif
 								</div>

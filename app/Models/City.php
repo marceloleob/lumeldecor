@@ -35,20 +35,20 @@ class City extends Model
 	}
 
 	/**
+	 * Get the users about this city.
+	 *
+	 */
+	public function users()
+	{
+		return $this->hasMany(UserAddress::class);
+	}
+
+	/**
 	 * Get the supplier about this city.
 	 *
 	 */
 	public function suppliers()
 	{
 		return $this->hasMany(Supplier::class);
-	}
-
-	/**
-	 * Get the customer about this city.
-	 *
-	 */
-	public function customers()
-	{
-		return $this->hasMany(CustomerAddress::class);
 	}
 }

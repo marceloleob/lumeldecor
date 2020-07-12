@@ -18,11 +18,11 @@ class SupplierContactsTableSeeder extends Seeder
 		// cria os registros
 		SupplierContact::create([
 			'supplier_id' => 1,
-			'name'        => 'Lucy Silveria Braga',
+			'name'        => 'Alguém Blabla',
 			'email'       => 'lucy@fornecedorteste.com.br',
 			'telephone'   => '(11) 3333-3333',
 			'cellphone'   => '(11) 99999-9999',
-			'position'    => 'Proprietária',
+			'position'    => 'Gerente',
 		]);
     }
 }

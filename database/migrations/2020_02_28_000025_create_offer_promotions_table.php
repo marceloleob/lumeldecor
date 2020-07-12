@@ -18,7 +18,6 @@ class CreateOfferPromotionsTable extends Migration
 			$table->foreignId('material_id')->nullable();
 			$table->foreignId('category_id')->nullable();
 			$table->foreignId('theme_id')->nullable();
-			$table->foreignId('campaign_id')->nullable();
 			$table->foreignId('item_id')->nullable();
 			$table->foreignId('product_id')->nullable();
 			$table->string('name', 150)->unique();

@@ -15,18 +15,5 @@ class ProductsTableSeeder extends Seeder
 	{
 		// limpa a tabela
 		DB::table('products')->delete();
-		// cria os registros
-		// Product::create([
-		// 	'category_id' => 2,
-		// 	'category_id' => 3,
-		// 	'name'        => 'Lisa Sextavada',
-		// 	'slug'        => 'bandeja-lisa-sextavada-de-ceramica',
-		// 	'picture'     => null,
-		// 	'description' => 'Aqui vai a descrição do produto!',
-		// 	'hashtag'     => 'hashtagteste',
-		// 	'featured'    => 1,
-		// 	'launch'      => 0,
-		// 	'status'      => 1,
-		// ]);
 	}
 }

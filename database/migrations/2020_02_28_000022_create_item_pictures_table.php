@@ -14,7 +14,6 @@ class CreateItemPicturesTable extends Migration
     public function up()
     {
         Schema::create('item_pictures', function (Blueprint $table) {
-			$table->id();
 			$table->foreignId('item_id');
 			$table->string('name', 200)->unique();
         });

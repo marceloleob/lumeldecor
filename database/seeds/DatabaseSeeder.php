@@ -15,20 +15,20 @@ class DatabaseSeeder extends Seeder
 			StatesTableSeeder::class,
 			CitiesTableSeeder::class,
 
-			UserRulesTableSeeder::class,
+			RulesTableSeeder::class,
 			UsersTableSeeder::class,
-			CustomersTableSeeder::class,
-			CustomerAddressesTableSeeder::class,
-			EmployeesTableSeeder::class,
+			UserContactsTableSeeder::class,
+			UserAddressesTableSeeder::class,
 			SuppliersTableSeeder::class,
 			SupplierContactsTableSeeder::class,
 
-			ContactMessagesTableSeeder::class,
+			MessagesTableSeeder::class,
+			NewslettersTableSeeder::class,
 
+			CampaignsTableSeeder::class,
 			ColorsTableSeeder::class,
 			TonesTableSeeder::class,
 			ThemesTableSeeder::class,
-			CampaignsTableSeeder::class,
 
 			MaterialsTableSeeder::class,
 			CategoriesTableSeeder::class,
@@ -36,10 +36,10 @@ class DatabaseSeeder extends Seeder
 			ProductsTableSeeder::class,
 			ProductSizesTableSeeder::class,
 			ItemsTableSeeder::class,
-			ItemPicturesTableSeeder::class,
-			ItemThemesTableSeeder::class,
 			ItemTonesTableSeeder::class,
-			CampaignItemsTableSeeder::class,
+			ItemThemesTableSeeder::class,
+			ItemPicturesTableSeeder::class,
+
 			ReasonsTableSeeder::class,
 			StocksTableSeeder::class,
 

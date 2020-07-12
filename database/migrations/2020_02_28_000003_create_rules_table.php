@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCampaignItemsTable extends Migration
+class CreateRulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateCampaignItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('campaign_items', function (Blueprint $table) {
+        Schema::create('rules', function (Blueprint $table) {
             $table->id();
-			$table->foreignId('campaign_id');
-			$table->foreignId('theme_id')->nullable();
-			$table->foreignId('item_id')->nullable();
+			$table->string('name', 100);
+			$table->boolean('status')->default(1);
         });
     }
 
@@ -28,6 +27,6 @@ class CreateCampaignItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campaign_items');
+        Schema::dropIfExists('rules');
     }
 }

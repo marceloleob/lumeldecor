@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ContactMessage extends Model
+class Newsletter extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,11 +20,17 @@ class ContactMessage extends Model
 	 */
 	protected $fillable = [
 		'id',
-		'name',
+		'user_id',
+		'user_ip',
 		'email',
-		'phone',
-		'subject',
-		'text',
-		'read',
 	];
+
+	/**
+	 * Get the user that owns the newsletter.
+	 *
+	 */
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CustomerAddress extends Model
+class UserAddress extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -20,7 +20,7 @@ class CustomerAddress extends Model
 	 */
 	protected $fillable = [
 		'id',
-		'customer_id',
+		'user_id',
 		'city_id',
 		'address',
 		'number',
@@ -33,16 +33,16 @@ class CustomerAddress extends Model
 	];
 
 	/**
-	 * Get the customer that owns the customer.
+	 * Get the user that owns the address.
 	 *
 	 */
-	public function customer()
+	public function user()
 	{
-		return $this->belongsTo(Customer::class);
+		return $this->belongsTo(User::class);
 	}
 
 	/**
-	 * Get the city that owns the customer.
+	 * Get the city that owns the address.
 	 *
 	 */
 	public function city()

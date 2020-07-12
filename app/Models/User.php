@@ -6,8 +6,6 @@ use App\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
-use Exception;
 
 class User extends Authenticatable
 {
@@ -20,7 +18,7 @@ class User extends Authenticatable
 	 */
 	protected $fillable = [
 		'id',
-		'user_rule_id',
+		'rule_id',
 		'name',
 		'email',
 		'password',
@@ -63,25 +61,34 @@ class User extends Authenticatable
 	 */
 	public function rules()
 	{
-		return $this->belongsTo(UserRule::class, 'user_rule_id');
+		return $this->belongsTo(Rule::class);
 	}
 
 	/**
-	 * Get the customers about this user.
+	 * Get the addresses about this user.
 	 *
 	 */
-	public function customers()
+	public function addresses()
 	{
-		return $this->hasMany(Customer::class);
+		return $this->hasMany(UserAddress::class, 'user_id', 'id');
 	}
 
 	/**
-	 * Get the employees about this user.
+	 * Get the contacts about this user.
 	 *
 	 */
-	public function employees()
+	public function contacts()
 	{
-		return $this->hasMany(Employee::class);
+		return $this->hasMany(UserContact::class, 'user_id', 'id');
+	}
+
+	/**
+	 * Get the newsletter about this user.
+	 *
+	 */
+	public function newsletter()
+	{
+		return $this->hasMany(Newsletter::class, 'user_id', 'id');
 	}
 
 	/**

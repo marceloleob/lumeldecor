@@ -15,6 +15,7 @@ class CreateCampaignsTable extends Migration
 	{
 		Schema::create('campaigns', function (Blueprint $table) {
 			$table->id();
+			$table->foreignId('theme_id');
 			$table->string('name', 150)->unique();
 			$table->smallInteger('start_day');
 			$table->smallInteger('start_month');

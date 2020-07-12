@@ -27,7 +27,7 @@ class CreateSuppliersTable extends Migration
 			$table->string('comp', 20)->nullable();
 			$table->string('neighborhood', 100);
 			$table->string('zipcode', 8);
-			$table->string('website', 100)->nullable();
+			$table->string('website', 200)->nullable();
 			$table->boolean('status')->default(1);
 		});
 	}

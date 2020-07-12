@@ -23,7 +23,7 @@ class SuppliersTableSeeder extends Seeder
 			'document'     => '55778781000131',
 			'company'      => 'Fornecedor Teste',
 			'phone'        => '1133333333',
-			'email'        => 'lucy@fornecedorteste.com.br',
+			'email'        => 'teste@fornecedorteste.com.br',
 			'address'      => 'Rua Teste',
 			'number'       => '99',
 			'comp'         => 'galpão',

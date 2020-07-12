@@ -20,6 +20,7 @@ class Campaign extends Model
 	 */
 	protected $fillable = [
 		'id',
+		'theme_id',
 		'name',
 		'start_day',
 		'start_month',
@@ -29,20 +30,11 @@ class Campaign extends Model
 	];
 
 	/**
-	 * Get the items about this campaign.
+	 * Get the themes that owns the campaign.
 	 *
 	 */
-	public function items()
+	public function themes()
 	{
-		return $this->hasMany(CampaignItem::class);
-	}
-
-	/**
-	 * Get the promotions about this campaign.
-	 *
-	 */
-	public function promotions()
-	{
-		return $this->hasMany(OfferPromotion::class);
+		return $this->belongsTo(Theme::class);
 	}
 }

@@ -45,9 +45,7 @@ class ItemRepository extends BaseRepository
 
 		if ($item->pictures->count()) {
 			$item->pictureName0 = $item->pictures[0]->name;
-			$item->pictureCode1 = isset($item->pictures[1]) ? $item->pictures[1]->id : null;
 			$item->pictureName1 = isset($item->pictures[1]) ? $item->pictures[1]->name : null;
-			$item->pictureCode2 = isset($item->pictures[2]) ? $item->pictures[2]->id : null;
 			$item->pictureName2 = isset($item->pictures[2]) ? $item->pictures[2]->name : null;
 		}
 

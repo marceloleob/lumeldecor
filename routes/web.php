@@ -93,7 +93,8 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('item/editar/{itemId}/{productId}/{productSizeId}', 'ItemController@edit')->name('item.edit');
 	Route::put('item/atualizar/{itemId}', 'ItemController@update')->name('item.update');
 	Route::get('item/status/{itemId}/{productId}/{productSizeId}', 'ItemController@changeStatus')->name('item.status');
-	Route::get('item/remover-foto/{pictureId}', 'ItemPictureController@destroy')->name('item-picture.remove');
+	// Images
+	Route::get('item/remover-foto/{picture}', 'ItemPictureController@destroy')->name('item-picture.remove');
 	// Stocks
 	Route::get('estoque/listar', 'StockController@index')->name('stock.list');
 	Route::get('estoque/mostrar/{itemId}', 'StockController@show')->name('stock.show');
@@ -101,7 +102,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('estoque/editar/{id}', 'StockController@edit')->name('stock.edit');
 	Route::put('estoque/atualizar/{id}', 'StockController@update')->name('stock.update');
 	Route::post('reason/options', 'ReasonController@options');
-
 	// Colors
 	Route::get('cor/listar', 'ColorController@index')->name('color.list');
 	Route::any('cor/buscar', 'ColorController@index')->name('color.search');
@@ -126,6 +126,8 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'admin
 	Route::get('tema/editar/{id}', 'ThemeController@edit')->name('theme.edit');
 	Route::put('tema/atualizar/{id}', 'ThemeController@update')->name('theme.update');
 	Route::get('tema/status/{id}', 'ThemeController@changeStatus')->name('theme.status');
+
+
 
 	// Campaign
 	Route::get('campanha/listar', 'CampaignController@index')->name('campaign.list');

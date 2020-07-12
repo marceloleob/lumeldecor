@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class UserContact extends Model
 {
 	/**
 	 * Indicates if the model should be timestamped.
@@ -28,20 +28,11 @@ class Customer extends Model
 	];
 
 	/**
-	 * Get the user that owns the customer.
+	 * Get the user that owns the contact.
 	 *
 	 */
 	public function user()
 	{
 		return $this->belongsTo(User::class);
-	}
-
-	/**
-	 * Get the address about this customer.
-	 *
-	 */
-	public function address()
-	{
-		return $this->hasMany(CustomerAddress::class);
 	}
 }
