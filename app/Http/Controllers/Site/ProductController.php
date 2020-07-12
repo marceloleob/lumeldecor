@@ -12,21 +12,6 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 	/**
-	 * @var ProductRepository
-	 */
-	private $repository;
-
-	/**
-	 * Constructor
-	 *
-	 * @param ProductRepository $repository
-	 */
-	public function __construct(ProductRepository $repository)
-	{
-		$this->repository = $repository;
-	}
-
-	/**
 	 * Product List
 	 *
 	 * @param string $table
@@ -51,7 +36,7 @@ class ProductController extends Controller
 	public function detail($table, $search, $slug)
 	{
 		$params = SearchService::productDetail($table, $search, $slug);
-// dd($params);
+
 		return view('site.pages.product-detail')->with($params);
 	}
 

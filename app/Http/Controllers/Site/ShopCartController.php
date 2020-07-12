@@ -3,21 +3,23 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Services\ShopCartService;
 use Illuminate\Http\Request;
 
 class ShopCartController extends Controller
 {
 	/**
-	 * Home page
+	 * Shop Cart List
 	 *
-	 * @return void
+	 * @param string $table
+	 * @param string $search
+	 * @param string $slug
+	 * @param integer $qtdy
+	 * @return Response
 	 */
-	public function index()
+	public function index($table, $search, $slug, $qtdy = 1)
 	{
-		$params = [
-			'title'   => ['Carrinho'],
-			'current' => 'shopcart',
-		];
+		$params = ShopCartService::store($table, $search, $slug, $qtdy);
 
 		return view('site.pages.shopcart')->with($params);
 	}

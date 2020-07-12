@@ -6,7 +6,8 @@
 @endsection
 
 @section('content')
-	<div class="section">
+	{{-- START SECTION DETAIL --}}
+	<div class="section pt_50">
 		<div class="container">
 			<div class="row">
 				{{-- PICTURES --}}
@@ -39,7 +40,7 @@
 					<div class="pr_detail">
 						<div class="product_description mb-3">
 							<h4 class="product_title mb-3">
-								<a href="{!! route('product.detail', [$type, $current, $item->slug]) !!}">{!! $item->product->name !!} - {!! $item->productSize->size !!}</a>
+								{!! $item->product->name !!} - {!! $item->productSize->size !!}
 							</h4>
 							<div class="price_rating mb-4">
 								<div class="product_price">
@@ -93,7 +94,7 @@
 								</div>
 							</div>
 							<div class="cart_btn">
-								<a class="btn btn-fill-out btn-addtocart" href="{!! route('shopcart', $item->slug) !!}"><i class="fas fa-cart-plus"></i> Comprar</a>
+								<a class="btn btn-fill-out btn-addtocart" href="{!! route('shopcart', [$type, $current, $item->slug]) !!}"><i class="fas fa-cart-plus"></i> Comprar</a>
 								<a class="add_wishlist" href="{!! route('whishlist') !!}"><i class="icon-heart px-2"></i></a> Favoritos
 							</div>
 						</div>
@@ -423,4 +424,5 @@
 			</div>
 		</div>
 	</div>
+	{{-- END SECTION DETAIL --}}
 @endsection

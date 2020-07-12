@@ -2,12 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Category;
-use App\Models\Color;
 use App\Models\Item;
-use App\Models\Material;
 use App\Models\ProductSize;
-use App\Models\Theme;
 
 class SearchService
 {
@@ -93,7 +89,7 @@ class SearchService
 			'type'     => $table,
 			'current'  => $search,
 			'data'     => self::$data,
-			'title'    => self::setTitle($table, $search),
+			'title'    => BreadCrumbService::setTitle($table, $search),
 			'paginate' => self::$paginate,
 		];
 	}
@@ -132,32 +128,6 @@ class SearchService
 				$collection->launch = '';
 			}
 		});
-	}
-
-	/**
-	 * Recupera o nome correspondente da pagina de lista de produtos
-	 *
-	 * @param string $table
-	 * @param string $search
-	 * @return string
-	 */
-	public static function setTitle($table, $search)
-	{
-		if ($table === 'busca') {
-			return ['Busca', strtoupper($search)];
-		}
-		if ($table === 'material') {
-			return ['Material', Material::where('slug', $search)->first()->name];
-		}
-		if ($table === 'categoria') {
-			return ['Categoria', Category::where('slug', $search)->first()->name];
-		}
-		if ($table === 'tons') {
-			return ['Cor', Color::where('slug', $search)->first()->name];
-		}
-		if ($table === 'tema') {
-			return ['Tema', Theme::where('slug', $search)->first()->name];
-		}
 	}
 
     /**
@@ -227,7 +197,7 @@ class SearchService
 			'sizes'   => $sizes,
 			'colors'  => $colors,
 			'title'   => ['Detalhes do Produto'],
-			'bread'   => self::setTitle($table, $search),
+			'bread'   => BreadCrumbService::setTitle($table, $search),
 		];
 	}
 }

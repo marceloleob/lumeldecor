@@ -1,17 +1,18 @@
 @extends('site.layouts.pages')
 
 @section('breadcrumb')
+<li class="breadcrumb-item"><a href="{!! route('product.show', [$type, $current]) !!}">{!! implode(': ', $bread) !!}</a></li>
 <li class="breadcrumb-item active">Meu carrinho</li>
 @endsection
 
 @section('content')
 	{{-- START SECTION SHOP --}}
-	<div class="section">
+	<div class="section pt_50">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="table-responsive shop_cart_table">
-						<table class="table">
+						<table class="table table-bordered">
 							<thead>
 								<tr>
 									<td class="title" width="10%">&nbsp;</td>
