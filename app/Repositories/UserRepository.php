@@ -16,23 +16,22 @@ class UserRepository extends BaseRepository
 	/**
 	 * Executa a busca para a listagem com paginacao e filtro
 	 *
+	 * @param  string $scope
 	 * @param  string $search
 	 * @return array
 	 */
-	public function all($search = null)
+	public function all($scope, $search = null)
 	{
-		$query = $this->query()->with(['rules' => function ($subQuery) use ($search)
-		{
-			$subQuery->orderBy('name');
-			// verifica se buscou algum item especifico
-			if (!empty($search)) {
-				// executa a busca
-				$subQuery->where('name', 'LIKE', '%' . $search . '%');
-			}
-		}])
-		->where('id', '<>', config('constants.DEVELOPER.ID'));
+		$query = $this->query()
+			->orderBy('name')
+			->$scope();
 
-        // cria uma collection com paginacao para montar o grid
+		// verifica se buscou algum item especifico
+		if (!empty($search)) {
+			$query->where('name', 'LIKE', '%' . $search . '%');
+		}
+
+		// cria uma collection com paginacao para montar o grid
 		$this->pagination($query, $search);
 		// formata os registros da collection
 		$this->format();

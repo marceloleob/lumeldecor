@@ -4,22 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\EmployeeRequest;
-use App\Repositories\EmployeeRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
 	/**
-	 * @var EmployeeRepository
+	 * @var UserRepository
 	 */
 	private $repository;
 
 	/**
 	 * Constructor
 	 *
-	 * @param EmployeeRepository $repository
+	 * @param UserRepository $repository
 	 */
-	public function __construct(EmployeeRepository $repository)
+	public function __construct(UserRepository $repository)
 	{
 		$this->repository = $repository;
 	}
@@ -32,7 +32,7 @@ class EmployeeController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$params = $this->repository->all($request->search);
+		$params = $this->repository->all('employee', $request->search);
 
 		return view('admin.pages.employee-list', ['page' => 'employee'])->with($params);
 	}

@@ -32,7 +32,7 @@ class UserController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$params = $this->repository->all($request->search);
+		$params = $this->repository->all('all', $request->search);
 
 		return view('admin.pages.user-list', ['page' => 'user'])->with($params);
 	}

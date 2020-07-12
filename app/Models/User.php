@@ -45,6 +45,13 @@ class User extends Authenticatable
 	];
 
 	/**
+	 * The relationships that should always be loaded.
+	 *
+	 * @var array
+	 */
+	protected $with = ['rule', 'contact', 'address'];
+
+	/**
 	 * Send the password reset notification.
 	 *
 	 * @param  string  $token
@@ -59,7 +66,7 @@ class User extends Authenticatable
 	 * Get the rule that owns the user.
 	 *
 	 */
-	public function rules()
+	public function rule()
 	{
 		return $this->belongsTo(Rule::class);
 	}
@@ -68,18 +75,18 @@ class User extends Authenticatable
 	 * Get the addresses about this user.
 	 *
 	 */
-	public function addresses()
+	public function address()
 	{
-		return $this->hasMany(UserAddress::class, 'user_id', 'id');
+		return $this->hasOne(UserAddress::class, 'user_id', 'id');
 	}
 
 	/**
 	 * Get the contacts about this user.
 	 *
 	 */
-	public function contacts()
+	public function contact()
 	{
-		return $this->hasMany(UserContact::class, 'user_id', 'id');
+		return $this->hasOne(UserContact::class, 'user_id', 'id');
 	}
 
 	/**
@@ -88,7 +95,7 @@ class User extends Authenticatable
 	 */
 	public function newsletter()
 	{
-		return $this->hasMany(Newsletter::class, 'user_id', 'id');
+		return $this->hasOne(Newsletter::class, 'user_id', 'id');
 	}
 
 	/**
@@ -98,5 +105,51 @@ class User extends Authenticatable
 	public function stock()
 	{
 		return $this->hasMany(Stock::class);
+	}
+
+    /**
+     * Scope a query to only customers.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeCustomer($query)
+    {
+        return $query->where('rule_id', Rule::$_rule['CUSTOMER']);
+	}
+
+    /**
+     * Scope a query to only employees.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeEmployee($query)
+    {
+        return $query->whereIn('rule_id', [
+			Rule::$_rule['ADMIN'],
+			Rule::$_rule['EMPLOYEE']
+		])
+		->where('id', '<>', config('constants.DEVELOPER.ID'));
+	}
+
+    /**
+     * Scope a query to only all users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAll($query)
+    {
+        return $query->whereIn('rule_id', [
+			Rule::$_rule['ADMIN'],
+			Rule::$_rule['EMPLOYEE'],
+			Rule::$_rule['CUSTOMER']
+		])
+		->where('id', '<>', config('constants.DEVELOPER.ID'))
+		->with(['rule' => function ($subQuery)
+		{
+			$subQuery->orderBy('name');
+		}]);
 	}
 }

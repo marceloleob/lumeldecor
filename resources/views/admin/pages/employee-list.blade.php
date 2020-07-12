@@ -21,9 +21,9 @@
 			@foreach ($data as $item)
 			<tr>
 				<td class="text-center text-muted">{!! $item->id !!}</td>
-				<td class="text-left">{!! $item->user->name !!}</td>
-				<td class="text-left">{!! $item->user->email !!}</td>
-				<td class="text-center">{!! $item->cellphone !!}</td>
+				<td class="text-left">{!! $item->name !!}</td>
+				<td class="text-left">{!! $item->email !!}</td>
+				<td class="text-center">{!! $item->contact->cellphone !!}</td>
 				<td class="text-center"><div  class="badge badge-{!! $item->status['class'] !!}">{!! $item->status['label'] !!}</div></td>
 				<td class="text-center">
 					<a href="{!! route($page . '.edit', [$item->id]) !!}" class="border-0 btn-transition btn btn-outline-primary" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="far fa-edit"></i></a>

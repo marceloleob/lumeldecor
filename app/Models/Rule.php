@@ -25,6 +25,17 @@ class Rule extends Model
 	];
 
 	/**
+	 * Get the static value of table
+	 *
+	 * @var array
+	 */
+	public static $_rule = [
+		'ADMIN'    => 1,
+		'EMPLOYEE' => 2,
+		'CUSTOMER' => 3,
+	];
+
+	/**
 	 * Get the users about this rule.
 	 *
 	 */

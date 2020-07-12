@@ -4,22 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CustomerRequest;
-use App\Repositories\CustomerRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
 	/**
-	 * @var CustomerRepository
+	 * @var UserRepository
 	 */
 	private $repository;
 
 	/**
 	 * Constructor
 	 *
-	 * @param CustomerRepository $repository
+	 * @param UserRepository $repository
 	 */
-	public function __construct(CustomerRepository $repository)
+	public function __construct(UserRepository $repository)
 	{
 		$this->repository = $repository;
 	}
@@ -32,7 +32,7 @@ class CustomerController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$params = $this->repository->all($request->search);
+		$params = $this->repository->all('customer', $request->search);
 
 		return view('admin.pages.customer-list', ['page' => 'customer'])->with($params);
 	}
