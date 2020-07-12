@@ -20,7 +20,6 @@ class OfferPromotionsTableSeeder extends Seeder
 			'material_id' => 2,
 			'category_id' => null,
 			'theme_id'    => null,
-			'campaign_id' => null,
 			'product_id'  => null,
 			'item_id'     => null,
 			'name'        => 'Promoção em todos os itens de Cerâmica do Site!',

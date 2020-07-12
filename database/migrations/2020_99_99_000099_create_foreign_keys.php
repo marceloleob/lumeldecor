@@ -42,7 +42,7 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('newsletters', function (Blueprint $table) {
-			$table->foreign('item_id')->references('id')->on('items')->onDelete('no action');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('no action');
 		});
 
 		Schema::table('offer_promotions', function (Blueprint $table) {
@@ -136,8 +136,8 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('newsletters', function (Blueprint $table) {
-			$table->dropForeign('newsletters_item_id_foreign');
-			$table->dropColumn('item_id');
+			$table->dropForeign('newsletters_user_id_foreign');
+			$table->dropColumn('user_id');
 		});
 
 		Schema::table('offer_promotions', function (Blueprint $table) {

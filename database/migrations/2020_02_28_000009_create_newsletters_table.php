@@ -15,7 +15,7 @@ class CreateNewslettersTable extends Migration
     {
         Schema::create('newsletters', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('user_id');
+			$table->foreignId('user_id')->nullable();
 			$table->string('user_ip', 15);
 			$table->string('email')->unique();
 			$table->timestamps();

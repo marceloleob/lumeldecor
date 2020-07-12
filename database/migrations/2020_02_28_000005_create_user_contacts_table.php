@@ -17,8 +17,8 @@ class CreateUserContactsTable extends Migration
 			$table->id();
 			$table->foreignId('user_id');
 			$table->string('document', 14)->unique();
-			$table->string('telephone', 14);
-			$table->string('cellphone', 15)->nullable();
+			$table->string('telephone', 14)->nullable();
+			$table->string('cellphone', 15);
 			$table->boolean('status')->default(0);
 			$table->timestamps();
         });

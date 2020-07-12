@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder
 			MessagesTableSeeder::class,
 			NewslettersTableSeeder::class,
 
-			CampaignsTableSeeder::class,
 			ColorsTableSeeder::class,
 			TonesTableSeeder::class,
 			ThemesTableSeeder::class,
+			CampaignsTableSeeder::class,
 
 			MaterialsTableSeeder::class,
 			CategoriesTableSeeder::class,

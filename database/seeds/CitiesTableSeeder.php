@@ -14,7 +14,7 @@ class CitiesTableSeeder extends Seeder
     public function run()
     {
 		// limpa a tabela
-		DB::table('cities')->delete();
+		// DB::table('cities')->delete();
 		// cria os registros
 		City::create(['state_id' => 1, 'name' => 'Acrelândia', 'capital' => 0]);
 		City::create(['state_id' => 1, 'name' => 'Assis Brasil', 'capital' => 0]);
