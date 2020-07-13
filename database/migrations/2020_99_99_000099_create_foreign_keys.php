@@ -62,6 +62,11 @@ class CreateForeignKeys extends Migration
 			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
 		});
 
+		Schema::table('shop_carts', function (Blueprint $table) {
+			$table->foreign('shop_cookie_id')->references('id')->on('shop_cookies')->onDelete('cascate');
+			$table->foreign('item_id')->references('id')->on('items')->onDelete('no action');
+		});
+
 		Schema::table('stocks', function (Blueprint $table) {
 			$table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
 			$table->foreign('item_id')->references('id')->on('items')->onDelete('restrict');
@@ -163,6 +168,13 @@ class CreateForeignKeys extends Migration
 		Schema::table('product_sizes', function (Blueprint $table) {
 			$table->dropForeign('product_sizes_product_id_foreign');
 			$table->dropColumn('product_id');
+		});
+
+		Schema::table('shop_carts', function (Blueprint $table) {
+			$table->dropForeign('shop_carts_shop_cookie_id_foreign');
+			$table->dropColumn('shop_cookie_id');
+			$table->dropForeign('shop_carts_item_id_foreign');
+			$table->dropColumn('item_id');
 		});
 
 		Schema::table('stocks', function (Blueprint $table) {

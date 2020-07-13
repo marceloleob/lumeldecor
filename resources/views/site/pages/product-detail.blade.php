@@ -94,8 +94,8 @@
 								</div>
 							</div>
 							<div class="cart_btn">
-								<a class="btn btn-fill-out btn-addtocart" href="{!! route('shopcart', [$type, $current, $item->slug]) !!}"><i class="fas fa-cart-plus"></i> Comprar</a>
-								<a class="add_wishlist" href="{!! route('whishlist') !!}"><i class="icon-heart px-2"></i></a> Favoritos
+								<a class="btn btn-fill-out btn-addtocart" href="javascript:Void(0);" data-href="{!! route('shopcart', [$type, $current, $item->slug]) !!}"><i class="fas fa-cart-plus"></i> Comprar</a>
+								<a class="add_wishlist" href="javascript:Void(0);" data-href="{!! route('whishlist') !!}"><i class="icon-heart px-2"></i></a> Favoritos
 							</div>
 						</div>
 						<hr />

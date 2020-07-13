@@ -15,6 +15,16 @@ $(document).ready(function ()
 		});
 	}
 
+	$('.btn-addtocart').click(function (event) {
+		// Method cancels the event if it is cancelable
+		event.preventDefault();
+
+		var qtdy = $('#quantity').val();
+		var href = $(this).data('href');
+
+		window.location = href + '/' + qtdy;
+	});
+
 	/**
 	 * Binda o botao para calcular o Frete
 	 *

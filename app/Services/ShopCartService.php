@@ -23,7 +23,7 @@ class ShopCartService
 			'item_id'  => $item->id,
 			'user_id'  => (int) UserService::getUserIdAuth(),
 			'user_ip'  => request()->ip(),
-			'quantity' => $qtdy,
+			'quantity' => (int) $qtdy,
 		];
 
 		dump($data);
