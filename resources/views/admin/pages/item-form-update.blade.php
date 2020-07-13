@@ -3,6 +3,7 @@
 @section('icon', 'fas fa-tags')
 @section('title', 'Cores do Produto')
 @section('subheading', 'Formulário para editar as informações referentes à cor do produto.')
+@section('btn-back', route('product-size.create', $data->product->id))
 
 @section('form')
 	<div class="row">
