@@ -21,6 +21,9 @@ class ItemThemeRepository extends BaseRepository
 	 */
 	public function handle($itemId, $themes)
 	{
+		if (empty($themes)) {
+			return false;
+		}
 		// exclui todos os temas deste item
 		$this->delete($itemId);
 		// salva todos os temas postados

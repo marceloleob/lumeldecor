@@ -10,6 +10,11 @@
 	<div class="section pt_50">
 		<div class="container">
 			<div class="row">
+				<div class="col-md-12">
+					{!! Form::boxNotification($errors) !!}
+				</div>
+			</div>
+			<div class="row">
 				{{-- PICTURES --}}
 				<div class="col-lg-6 col-md-6 mb-4 mb-md-0">
 					<div class="product-image vertical_gallery">
@@ -84,30 +89,36 @@
 							</div>
 						</div>
 
-						<hr />
-						<div class="cart_extra">
-							<div class="cart-product-quantity">
-								<div class="quantity">
-									<input type="button" value="-" class="minus" />
-									<input type="text" name="quantity" id="quantity" value="1" class="qty" size="4" />
-									<input type="button" value="+" class="plus" />
+						{!! Form::open(['id' => 'form-shop', 'route' => 'shopcart.add', 'method' => 'POST', 'role' => 'form', 'class' => 'form']) !!}
+							<hr />
+							<div class="cart_extra">
+								<div class="cart-product-quantity">
+									<div class="quantity">
+										{!! Form::button('-', ['type' => 'button', 'class' => 'minus']) !!}
+										{!! Form::text('quantity', '1', ['id' => 'quantity', 'class' => 'qty', 'size' => '4']) !!}
+										{!! Form::button('+', ['type' => 'button', 'class' => 'plus']) !!}
+									</div>
+								</div>
+								<div class="cart_btn">
+									{!! Form::hidden('type', $type) !!}
+									{!! Form::hidden('current', $current) !!}
+									{!! Form::hidden('slug', $item->slug) !!}
+									{!! Form::button('<i class="fas fa-cart-plus"></i> Comprar', ['type' => 'submit', 'class' => 'btn btn-fill-out btn-addtocart']) !!}
+									{{-- <a class="btn btn-fill-out btn-addtocart" href="javascript:Void(0);" data-href="{!! route('shopcart', [$type, $current, $item->slug]) !!}"><i class="fas fa-cart-plus"></i> Comprar</a> --}}
+									<a class="add_wishlist" href="javascript:Void(0);" data-href="{!! route('whishlist') !!}"><i class="icon-heart px-2"></i></a> Favoritos
 								</div>
 							</div>
-							<div class="cart_btn">
-								<a class="btn btn-fill-out btn-addtocart" href="javascript:Void(0);" data-href="{!! route('shopcart', [$type, $current, $item->slug]) !!}"><i class="fas fa-cart-plus"></i> Comprar</a>
-								<a class="add_wishlist" href="javascript:Void(0);" data-href="{!! route('whishlist') !!}"><i class="icon-heart px-2"></i></a> Favoritos
-							</div>
-						</div>
-						<hr />
+							<hr />
+						{!! Form::close() !!}
 
-						{!! Form::open(['id' => 'form-zipcode', 'method' => 'GET']) !!}
+						{{-- {!! Form::open(['id' => 'form-zipcode', 'method' => 'GET']) !!} --}}
 							<div class="shipping-price mb-2">
 								<span>CEP:</span>
 								{!! Form::text('zipcode', old('zipcode'), ['class' => 'zipcode mx-2 zipOnly', 'id' => 'zipcode', 'size' => '10', 'maxlength' => '9']) !!}
 								{!! Form::button('<i class="fas fa-shipping-fast"></i> Calcular Frete', ['class' => 'btn btn-line-fill btn-sm ml-3 btn-calculator']) !!}
 								{!! Form::hidden('item', $item->id, ['id' => 'item']) !!}
 							</div>
-						{!! Form::close() !!}
+						{{-- {!! Form::close() !!} --}}
 
 						<div class="shipping-result"></div>
 					</div>

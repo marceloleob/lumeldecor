@@ -10,6 +10,11 @@
 	<div class="section pt_50">
 		<div class="container">
 			<div class="row">
+				<div class="col-md-12">
+					{!! Form::boxNotification($errors) !!}
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-12">
 					<div class="table-responsive shop_cart_table">
 						<table class="table table-bordered">

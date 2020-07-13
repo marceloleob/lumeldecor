@@ -86,7 +86,7 @@
 							<div class="widget-subheading">Total do mês de maio</div>
 						</div>
 						<div class="widget-content-right">
-							<div class="widget-numbers text-success">R$ 15.962,87</div>
+							<div class="widget-numbers text-success">R$ 962,87</div>
 						</div>
 					</div>
 				</div>

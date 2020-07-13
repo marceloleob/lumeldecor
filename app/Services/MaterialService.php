@@ -21,4 +21,17 @@ class MaterialService
 
 		return (new MaterialRepository())->store($data);
 	}
+
+	/**
+	 * Retorna o nome do material
+	 *
+	 * @param string $slug
+	 * @return string
+	 */
+	public static function getNameBySlug($slug)
+	{
+		$material = (new MaterialRepository())->findBySlug($slug);
+
+		return $material->name;
+	}
 }

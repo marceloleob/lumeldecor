@@ -68,6 +68,22 @@ class ItemRepository extends BaseRepository
 	}
 
 	/**
+	 * Retorna todos os itens de um carrinho de compras
+	 *
+	 * @param  string $ip
+	 * @return Entity
+	 */
+	public function findByShopCartIp($ip)
+	{
+		return $this->query()
+			->whereHas('shopCart', function ($subQuery) use ($ip)
+			{
+				$subQuery->where('user_ip', $ip);
+			})
+			->get();
+	}
+
+	/**
 	 * Retorna todos os itens de um tamanho de produto
 	 *
 	 * @param integer $productSizeId

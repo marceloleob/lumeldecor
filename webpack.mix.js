@@ -25,31 +25,32 @@ const mix = require('laravel-mix');
 	// ADMIN AND WEBSITE
 	mix
 		.sass('resources/assets/sass/app.scss', 'public/css')
+		.js('resources/assets/js/modernizr-custom.js', 'public/js')
 		.js('resources/assets/js/forms/jquery.masks.pt-br.js', 'public/js/forms')
-		.js('resources/assets/js/forms/jquery.validate.pt-br.js', 'public/js/forms');
+		.js('resources/assets/js/forms/jquery.validate.pt-br.js', 'public/js/forms')
+		.js('resources/assets/js/forms/jquery.forms.js', 'public/js/forms/app.js');
 
 
 	// SITE FILES
 	mix
-	.js('resources/assets/js/site/app.js', 'public/js/site')
-	.js('resources/assets/js/modernizr-custom.js', 'public/js')
-	.js([
-		'resources/assets/js/site/pages/contact.js',
-		'resources/assets/js/site/pages/home.js',
-		'resources/assets/js/site/pages/product-detail.js',
-	], 'public/js/site/pages.js')
-	.sass('resources/assets/sass/site/app.scss', 'public/css/site')
-	.sass('resources/assets/sass/site/animate.scss', 'public/css/site')
-	.sass('resources/assets/sass/site/style.scss', 'public/css/site')
-	.sass('resources/assets/sass/site/responsive.scss', 'public/css/site')
-	.styles([
-		'resources/assets/sass/icons/ionicons.min.css',
-		'resources/assets/sass/icons/themify-icons.css',
-		'resources/assets/sass/icons/linearicons.css',
-		'resources/assets/sass/icons/flaticon.css',
-		'resources/assets/sass/icons/simple-line-icons.css',
-	], 'public/css/icons.css')
-	.copy('resources/assets/fonts/vendor', 'public/fonts/vendor');
+		.js('resources/assets/js/site/app.js', 'public/js/site')
+		.js([
+			'resources/assets/js/site/pages/contact.js',
+			'resources/assets/js/site/pages/home.js',
+			'resources/assets/js/site/pages/product-detail.js',
+		], 'public/js/site/pages.js')
+		.sass('resources/assets/sass/site/app.scss', 'public/css/site')
+		.sass('resources/assets/sass/site/animate.scss', 'public/css/site')
+		.sass('resources/assets/sass/site/style.scss', 'public/css/site')
+		.sass('resources/assets/sass/site/responsive.scss', 'public/css/site')
+		.styles([
+			'resources/assets/sass/icons/ionicons.min.css',
+			'resources/assets/sass/icons/themify-icons.css',
+			'resources/assets/sass/icons/linearicons.css',
+			'resources/assets/sass/icons/flaticon.css',
+			'resources/assets/sass/icons/simple-line-icons.css',
+		], 'public/css/icons.css')
+		.copy('resources/assets/fonts/vendor', 'public/fonts/vendor');
 
 
 	// ADMIN FILES

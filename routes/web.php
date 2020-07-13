@@ -44,7 +44,8 @@ Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
 	// Produtos
 	Route::any('produto/{table}/{search}', 'ProductController@show')->name('product.show');
 	Route::get('detalhes/{table}/{search}/{slug}', 'ProductController@detail')->name('product.detail');
-	Route::get('carrinho/{table}/{search}/{slug}/{qtdy?}', 'ShopCartController@index')->name('shopcart');
+	Route::get('carrinho', 'ShopCartController@show')->name('shopcart.show');
+	Route::post('carrinho', 'ShopCartController@add')->name('shopcart.add');
 	Route::get('finalizar-compra', 'CheckoutController@index')->name('checkout');
 	Route::get('meus-favoritos', 'WhishListController@index')->name('whishlist');
 });

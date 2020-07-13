@@ -6,13 +6,16 @@
 @section('btn-add', route($page . '.create'))
 
 @section('search')
-	<div class="position-relative mr-2">
-		{!! Form::select('material_id', $optionsmaterial, ($material ?? ''), ['class' => 'selectpicker', 'title' => 'Selecione um Material']) !!}
+<div class="col-md-3">
+	<div class="position-relative form-group">
+		{!! Form::select('material_id', $optionsmaterial, ($material ?? ''), ['class' => 'form-control selectpicker', 'title' => 'Selecione um Material']) !!}
 	</div>
-	<div class="position-relative mr-2">
-		{!! Form::select('category_id', $optionscategory, ($category ?? ''), ['class' => 'selectpicker', 'title' => 'Selecione uma Categoria']) !!}
-		{!! Form::hidden('category_id_hide', ($category ?? '')) !!}
+</div>
+<div class="col-md-3">
+	<div class="position-relative form-group">
+		{!! Form::select('category_id', $optionscategory, ($category ?? ''), ['class' => 'form-control selectpicker', 'title' => 'Selecione uma Categoria']) !!}
 	</div>
+</div>
 @endsection
 
 @section('table')

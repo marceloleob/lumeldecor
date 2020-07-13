@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Stock;
 use App\Repositories\StockRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Exception;
@@ -111,13 +110,19 @@ class StockService
 		$data['overdraw'] = $overdraw ?? null;
 
 		try {
-			// seta como "antigo" (current = 0) o registro atual para o "novo" entrar como (current = 1)
+			$repository = (new StockRepository());
+
+			// verifica se esta atualizando
 			if (!empty($id)) {
-				Stock::where('id', $data['id'])->update(['current' => config('constants.RULES.STATUS.INACTIVE')]);
+				// recupera o stock atual
+				$stock = $repository->findById($data['id']);
+				// seta como "antigo" (current = 0) o registro atual para o "novo" entrar como (current = 1)
+				$stock->current = config('constants.RULES.STATUS.INACTIVE');
+				$stock->save();
 			}
 
 			// cria um novo registro de estoque
-			return (new StockRepository())->store($data);
+			return $repository->store($data);
 
 		} catch (Exception $exception) {
 			return $exception->getMessage();

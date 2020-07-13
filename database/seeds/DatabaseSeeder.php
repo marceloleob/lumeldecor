@@ -47,7 +47,6 @@ class DatabaseSeeder extends Seeder
 			OfferPromotionsTableSeeder::class,
 
 			ShopCartsTableSeeder::class,
-			ShopCookiesTableSeeder::class,
 		]);
 	}
 }

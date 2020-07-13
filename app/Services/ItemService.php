@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Item;
 use App\Repositories\ItemPictureRepository;
 use App\Repositories\ItemRepository;
 use App\Repositories\ItemThemeRepository;
@@ -39,15 +38,16 @@ class ItemService
         try {
 			// salva ou atualiza os dados
 			$item = (new ItemRepository)->store($data);
+
 			// verifica se salvou
-			if (!$item instanceof Item) {
-				throw new Exception($item, 1);
+			if (false === isset($item->id)) {
+				throw new Exception('Erro ao salvar o item.', 1);
 			}
 
 			// vincula as tonalidades ao item
 			(new ItemToneRepository)->handle($item->id, $data['tones']);
 			// vincula os temas ao item
-			(new ItemThemeRepository)->handle($item->id, $data['themes']);
+			(new ItemThemeRepository)->handle($item->id, $data['themes'] ?? null);
 			// vincula as fotos ao item
 			(new ItemPictureRepository)->handle($item->id, $data['pictures'], $data['old_pictures'] ?? null);
 

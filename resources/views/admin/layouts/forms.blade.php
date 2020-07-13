@@ -1,8 +1,11 @@
 @extends('admin.layouts.app')
 
 @section('js-custom')
+{{-- JS VALIDATION / MASKS --}}
 {!! Html::script('js/forms/jquery.validate.' . $locale . '.js', ['defer' => 'defer']) !!}
 {!! Html::script('js/forms/jquery.masks.' . $locale . '.js', ['defer' => 'defer']) !!}
+{!! Html::script('js/forms/app.js', ['defer' => 'defer']) !!}
+{{-- JS CUSTOM INTERNAL PAGES --}}
 {!! Html::script('js/admin/pages.js', ['defer' => 'defer']) !!}
 @stop
 

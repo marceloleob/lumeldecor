@@ -14,25 +14,23 @@ class ShopCart extends Model
 	public $timestamps = true;
 
 	/**
+	 * The relationships that should always be loaded.
+	 *
+	 * @var array
+	 */
+	protected $with = ['item'];
+
+	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
 	protected $fillable = [
-		'shop_cookie_id',
-		'item_id',
 		'user_ip',
+		'item_id',
 		'quantity',
+		'expirate_at',
 	];
-
-	/**
-	 * Get the cookie that owns this shopcart.
-	 *
-	 */
-	public function shopCookie()
-	{
-		return $this->belongsTo(ShopCookie::class);
-	}
 
 	/**
 	 * Get the item that the shopcart belongs to.
@@ -40,6 +38,6 @@ class ShopCart extends Model
 	 */
 	public function item()
 	{
-		return $this->belongsTo(Item::class);
+		return $this->belongsTo(Item::class, 'item_id', 'id');
 	}
 }

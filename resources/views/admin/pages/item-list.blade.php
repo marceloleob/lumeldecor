@@ -17,11 +17,11 @@
 							<thead>
 								<tr>
 									<th width="8%" class="text-center">Cores</th>
-									<th width="44%" class="text-center">Produto</th>
-									<th width="15%" class="text-center">Preço no Site</th>
+									<th width="49%" class="text-center">Produto</th>
+									<th width="13%" class="text-center">Preço no Site</th>
 									<th width="10%" class="text-center">Lançamento</th>
 									<th width="8%" class="text-center">Status</th>
-									<th width="10%" class="text-center">Ações</th>
+									<th width="12%" class="text-center">Ações</th>
 								</tr>
 							</thead>
 							<tbody>

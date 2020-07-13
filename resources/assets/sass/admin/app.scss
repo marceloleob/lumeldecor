@@ -222,6 +222,13 @@ ul.button-checkbox {
 * LISTS
 * -----------------------------------------------------------------------------
 */
+.card-search-pane-right.navbar {
+	padding: 0 1rem;
+	margin-top: 15px;
+}
+.card-search-pane-right .form {
+	width: 100%;
+}
 .card-search-pane-right {
 	display: flex;
 	justify-content: flex-end;
@@ -229,14 +236,20 @@ ul.button-checkbox {
 	white-space: nowrap;
 	width: 100%;
 }
-.card-search-pane-right .search {
-	width: 220px;
+.card-search-pane-right .form-row {
+	justify-content: flex-end;
 }
 .card-search-pane-right .bootstrap-select {
 	text-transform: initial !important;
 }
-.card-search-pane-right .selectpicker {
-	width: 300px;
+.card-search-pane-right .form-search-fields {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+}
+.card-search-pane-right .form-search-fields .search {
+	width: 48%;
 }
 .table .td-color {
 	display: flex;

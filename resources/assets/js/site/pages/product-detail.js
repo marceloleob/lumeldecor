@@ -2,28 +2,42 @@ const { isSet } = require("lodash");
 
 $(document).ready(function ()
 {
-	// Validacao do formulario
-	if ($('#form-zipcode').length) {
+	// Validacao do formulario de compra
+	if ($('#form-shop').length) {
 		// validation
-		$('#form-zipcode').validate({
+		$('#form-shop').validate({
 			rules: {
-				zipcode: {
+				quantity: {
 					required: true,
-					minlength: 8,
+					digits: true,
+					min: 1,
 				},
 			}
 		});
 	}
 
-	$('.btn-addtocart').click(function (event) {
-		// Method cancels the event if it is cancelable
-		event.preventDefault();
+	// Validacao do formulario de consulta frete
+	// if ($('#form-zipcode').length) {
+	// 	// validation
+	// 	$('#form-zipcode').validate({
+	// 		rules: {
+	// 			zipcode: {
+	// 				required: true,
+	// 				minlength: 8,
+	// 			},
+	// 		}
+	// 	});
+	// }
 
-		var qtdy = $('#quantity').val();
-		var href = $(this).data('href');
+	// $('.btn-addtocart').click(function (event) {
+	// 	// Method cancels the event if it is cancelable
+	// 	event.preventDefault();
 
-		window.location = href + '/' + qtdy;
-	});
+	// 	var qtdy = $('#quantity').val();
+	// 	var href = $(this).data('href');
+
+	// 	window.location = href + '/' + qtdy;
+	// });
 
 	/**
 	 * Binda o botao para calcular o Frete

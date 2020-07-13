@@ -111,6 +111,15 @@ class Item extends Model
 	}
 
 	/**
+	 * Get the shopcart about this item.
+	 *
+	 */
+	public function shopCart()
+	{
+		return $this->hasOne(ShopCart::class);
+	}
+
+	/**
 	 * Get the name of Product
 	 *
 	 * @return string

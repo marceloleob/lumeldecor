@@ -1628,6 +1628,8 @@ button:focus {
 	top: 100% !important;
 	left: auto !important;
 	right: 0;
+	box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+    border-radius: 1%;
 }
 .navbar-nav .dropdown-menu.cart_box.show {
 	-webkit-transform: scale(1) !important;
@@ -1693,7 +1695,7 @@ button:focus {
 }
 .cart_buttons {
 	margin: 0;
-	padding: 10px 15px 20px;
+	padding: 10px 15px;
 	text-align: center;
 }
 .cart_buttons .view-cart, .cart_buttons .checkout {

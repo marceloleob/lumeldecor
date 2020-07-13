@@ -23,6 +23,19 @@ class ThemeService
 	}
 
 	/**
+	 * Retorna o nome do tema
+	 *
+	 * @param string $slug
+	 * @return string
+	 */
+	public static function getNameBySlug($slug)
+	{
+		$theme = (new ThemeRepository())->findBySlug($slug);
+
+		return $theme->name;
+	}
+
+	/**
 	 * Recupera todos os temas e retorna formatado para CSS/HTML
 	 *
 	 * @param \App\Models\Tone

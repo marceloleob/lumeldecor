@@ -21,4 +21,17 @@ class ColorService
 
 		return (new ColorRepository())->store($data);
 	}
+
+	/**
+	 * Retorna o nome da cor
+	 *
+	 * @param string $slug
+	 * @return string
+	 */
+	public static function getNameBySlug($slug)
+	{
+		$color = (new ColorRepository())->findBySlug($slug);
+
+		return $color->name;
+	}
 }

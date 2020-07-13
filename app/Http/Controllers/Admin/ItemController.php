@@ -65,7 +65,7 @@ class ItemController extends Controller
 			return back()->withInput()->with('danger', $entity['message']);
 		}
 
-        return redirect()->route('item.create', [$request->product_id, $request->product_size_id])->with('success', 'Cor do produto cadastrada com sucesso!');
+        return redirect()->route('item.create', [$request->product_id, $request->product_size_id])->with('success', 'Item do produto cadastrado com sucesso!');
 	}
 
 	/**
@@ -105,7 +105,7 @@ class ItemController extends Controller
 			return back()->withInput()->with('danger', $entity['message']);
 		}
 
-		return redirect()->route('item.create', [$request->product_id, $request->product_size_id])->with('success', 'Cor do produto atualizada com sucesso!');
+		return redirect()->route('item.create', [$request->product_id, $request->product_size_id])->with('success', 'Item do produto atualizado com sucesso!');
 	}
 
     /**

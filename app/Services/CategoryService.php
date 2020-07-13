@@ -21,4 +21,17 @@ class CategoryService
 
 		return (new CategoryRepository())->store($data);
 	}
+
+	/**
+	 * Retorna o nome da categoria
+	 *
+	 * @param string $slug
+	 * @return string
+	 */
+	public static function getNameBySlug($slug)
+	{
+		$category = (new CategoryRepository())->findBySlug($slug);
+
+		return $category->name;
+	}
 }

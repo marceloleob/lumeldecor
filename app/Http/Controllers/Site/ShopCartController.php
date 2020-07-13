@@ -11,16 +11,31 @@ class ShopCartController extends Controller
 	/**
 	 * Shop Cart List
 	 *
-	 * @param string $table
-	 * @param string $search
-	 * @param string $slug
-	 * @param integer $qtdy
 	 * @return Response
 	 */
-	public function index($table, $search, $slug, $qtdy = 1)
+	public function show()
 	{
-		$params = ShopCartService::store($table, $search, $slug, $qtdy);
+		$params = ShopCartService::show();
 
 		return view('site.pages.shopcart')->with($params);
 	}
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function add(Request $request)
+    {
+		// save
+		$params = ShopCartService::add($request->all());
+		// verifica se salvou
+		if (false === $params) {
+			return back()->withInput()->with('danger', 'Erro no seu carrinho de compras, por favor tente novamente!');
+		}
+
+		return view('site.pages.shopcart')->with($params);
+		// return redirect()->route('shopcart.show')->with($params);
+    }
 }

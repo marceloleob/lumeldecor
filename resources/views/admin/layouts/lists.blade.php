@@ -37,17 +37,17 @@
 
 				<div class="card-header">Lista
 					<nav class="navbar card-search-pane-right">
-						{!! Form::open(['id' => 'form-search', 'route' => $page . '.search', 'method' => 'POST', 'class' => 'form-inline my-2 my-lg-0']) !!}
+						{!! Form::open(['id' => 'form-search', 'route' => $page . '.search', 'method' => 'POST', 'class' => 'form']) !!}
 							<div class="form-row">
+								{{-- OUTROS FILTROS --}}
 								@yield('search')
-								<div class="position-relative mr-2">
-								{!! Form::text('search', ($search ?? ''), ['class' => 'form-control search', 'placeholder' => 'Procurar por nome']) !!}
-								</div>
-								<div class="position-relative mr-2">
-									{!! Form::button('<i class="fas fa-search btn-icon-wrapper pr-1"></i> BUSCAR', ['type' => 'submit', 'class' => 'btn btn-icon btn-dark pl-2']) !!}
-								</div>
-								<div class="position-relative">
-									<a href="{!! route($page . '.list') !!}" class="btn btn-icon btn-dark pl-2"><i class="fas fa-backspace btn-icon-wrapper pr-1"></i> Limpar</a>
+								{{-- FILTRO POR NOME --}}
+								<div class="col-xl-5 col-lg-6 col-md-6">
+									<div class="form-search-fields">
+										{!! Form::text('search', ($search ?? ''), ['class' => 'form-control search mr-2', 'placeholder' => 'Procurar por nome']) !!}
+										{!! Form::button('<i class="fas fa-search btn-icon-wrapper pr-1"></i> BUSCAR', ['type' => 'submit', 'class' => 'btn btn-icon btn-dark mr-2']) !!}
+										<a href="{!! route($page . '.list') !!}" class="btn btn-icon btn-dark"><i class="fas fa-backspace btn-icon-wrapper pr-1"></i> Limpar</a>
+									</div>
 								</div>
 							</div>
 						{!! Form::close() !!}

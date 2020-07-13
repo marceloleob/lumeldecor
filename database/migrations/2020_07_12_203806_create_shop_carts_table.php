@@ -14,11 +14,11 @@ class CreateShopCartsTable extends Migration
     public function up()
     {
         Schema::create('shop_carts', function (Blueprint $table) {
-			$table->foreignId('shop_cookie_id');
+			$table->string('user_ip', 15)->index();
 			$table->foreignId('item_id');
-			$table->string('user_ip', 15);
 			$table->smallInteger('quantity');
-            $table->timestamps();
+			$table->timestamps();
+			$table->date('expirate_at');
         });
     }
 

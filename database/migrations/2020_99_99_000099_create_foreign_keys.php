@@ -63,7 +63,6 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('shop_carts', function (Blueprint $table) {
-			$table->foreign('shop_cookie_id')->references('id')->on('shop_cookies')->onDelete('cascate');
 			$table->foreign('item_id')->references('id')->on('items')->onDelete('no action');
 		});
 
@@ -171,8 +170,6 @@ class CreateForeignKeys extends Migration
 		});
 
 		Schema::table('shop_carts', function (Blueprint $table) {
-			$table->dropForeign('shop_carts_shop_cookie_id_foreign');
-			$table->dropColumn('shop_cookie_id');
 			$table->dropForeign('shop_carts_item_id_foreign');
 			$table->dropColumn('item_id');
 		});

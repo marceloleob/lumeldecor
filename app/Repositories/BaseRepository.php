@@ -89,6 +89,17 @@ class BaseRepository
 	}
 
 	/**
+	 * Retorna os dados referente a este modelo
+	 *
+	 * @param string $slug
+	 * @return Entity
+	 */
+	public function findBySlug($slug)
+	{
+		return $this->query()->where('slug', $slug)->firstOrFail();
+	}
+
+	/**
 	 * Percorre a Collection e customiza os dados para imprimir na view como array
 	 *
 	 * @param Collection $collection
