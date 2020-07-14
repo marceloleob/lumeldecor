@@ -151,7 +151,7 @@ class SearchService
 				// formata os temas do produto
 				$item->allThemes = ThemeService::format($item->themes);
 				// nacionalidade
-				$item->nationality = ($item->national === config('constants.RULES.NATIONAL.YES')) ? 'Brasil' : 'Importado';
+				$item->nationality = ($item->product->national === config('constants.RULES.NATIONAL.YES')) ? 'Brasil' : 'Importado';
 			});
 
 		// recupera os tamanhos disponiveis do item

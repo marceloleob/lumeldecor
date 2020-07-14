@@ -29,7 +29,6 @@ class TrackingService
      * Atributos do rastreio de mercadorias
      */
     private $soapRastro;
-    private $objeto;
 
     /*
      * Método Construtor da classe
@@ -37,9 +36,9 @@ class TrackingService
     public function __construct()
     {
         $this->nCdEmpresa = '';
-        $this->sDsSenha = '';
+        $this->sDsSenha   = '';
         $this->nCdServico = '04014,04510';
-        $this->sCepOrigem = '88063301';
+        $this->sCepOrigem = '30570000'; // 88063301
         $this->nCdFormato = 1;
         $this->nVlLargura = '0';
     }

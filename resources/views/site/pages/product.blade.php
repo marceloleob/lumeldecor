@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<div class="section">
+	<div class="section pt_50">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-9">
