@@ -63,10 +63,10 @@
 						<div class="heading_s1 mb-3">
 							<h6>Escolher Frete</h6>
 						</div>
-						{!! Form::open(['id' => 'form-zipcode', 'method' => 'GET', 'class' => 'field_form shipping_calculator']) !!}
+						{!! Form::open(['id' => 'form-teste', 'method' => 'GET', 'class' => 'field_form shipping_calculator']) !!}
 							<div class="form-row">
 								<div class="col-lg-6 form-group">
-									{!! Form::text('zipcode', old('zipcode'), ['class' => 'form-control zipcode mx-2 zipOnly', 'id' => 'zipcode', 'size' => '10', 'maxlength' => '9']) !!}
+									{!! Form::text('zipcode', old('zipcode', session('zipcode')), ['class' => 'form-control zipcode mx-2 zipOnly', 'id' => 'zipcode', 'size' => '10', 'maxlength' => '9']) !!}
 								</div>
 								<div class="col-lg-6 form-group">
 									{!! Form::button('<i class="fas fa-shipping-fast"></i> Calcular Frete', ['class' => 'btn btn-line-fill btn-sm ml-3 btn-shipping-full']) !!}

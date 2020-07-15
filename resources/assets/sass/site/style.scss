@@ -5591,25 +5591,25 @@ footer .widget_title {
 .pr_detail .shipping-price .zipcode {
 	display: flex;
 	align-self: stretch;
-	padding: 2px 6px 0 10px;
+	padding: 2px 10px;
 }
 .pr_detail .shipping-price span {
 	display: flex;
 	align-items: center;
 }
-.pr_detail .shipping-result {
+.shipping-result {
 	display: flex;
 	flex-direction: column;
 }
-.pr_detail .shipping-result .error {
+.shipping-result .error {
 	display: inline-block;
 }
-.pr_detail .shipping-result .loading {
+.shipping-result .loading {
 	display: flex;
 	align-self: center;
 	padding: 35px 0;
 }
-.pr_detail .shipping-result .table-freight {
+.shipping-result .table-freight {
 	display: flex;
 	justify-content: space-between;
 	background-color: #F4F2F3;

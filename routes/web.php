@@ -20,9 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Site'], function () {
 	// Home
 	Route::get('/', 'HomeController@waiting');
-
-	// Calcula frete
-	Route::post('product/calculator', 'ProductController@calculator');
 });
 
 
@@ -49,6 +46,8 @@ Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
 	Route::post('carrinho', 'ShopCartController@add')->name('shopcart.add');
 	Route::get('finalizar-compra', 'CheckoutController@index')->name('checkout');
 	Route::get('meus-favoritos', 'WhishListController@index')->name('whishlist');
+	// Calcula frete
+	Route::post('shipping/calculator', 'ShippingController@calculator');
 });
 
 

@@ -17,6 +17,8 @@ class ShippingController extends Controller
 	 */
 	public function calculator(ZipCodeRequest $request)
 	{
+		$this->setSession('zipcode', $request->zipcode);
+return $request->zipcode;
 		return ShippingService::handle($request->all());
 	}
 }

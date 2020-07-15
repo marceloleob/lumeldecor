@@ -30,49 +30,49 @@ $(document).ready(function ()
 	 */
 	function handleShippingFull()
 	{
-		if ($('#item').val() === '' || $('#zipcode').val() === '') {
+		if ($('#zipcode').val() === '') {
 			$('.shipping-result').html('<span class="text_default error">É necessário digitar o CEP</span>');
 			return false;
 		}
 
 		$('.shipping-result').html('<span class="loading"></span>');
 
-		calcShippingFull($('#item').val(), $('#zipcode').val(), $('#quantity').val());
+		calcShippingFull($('#zipcode').val(), $('#quantity').val());
 	}
 
     /**
 	 * Funcao que executa o ajax
      *
-	 * @param integer item
 	 * @param integer zipcode
 	 * @param integer quantity
 	 */
-	function calcShippingFull(item, zipcode, quantity)
+	function calcShippingFull(zipcode, quantity)
 	{
 		// carrega o combo
 		$.ajax({
-			url: '../../../product/calculator',
+			url: 'shipping/calculator',
 			type: 'POST',
             dataType: 'json',
 			data: {
-				item: item,
+				item: '',
 				zipcode: zipcode,
 				quantity: quantity,
 			},
 			success: function(response)
 			{
-				if (response.error) {
-					$('.shipping-result').html('<span class="text_default error">Erro ao consultar seu CEP nos Correios, por favor tente novamente mais tarde.</span>');
-					console.log(response.error);
-					return false;
-				}
+				console.log(response);
+				// if (response.error) {
+				// 	$('.shipping-result').html('<span class="text_default error">Erro ao consultar seu CEP nos Correios, por favor tente novamente mais tarde.</span>');
+				// 	console.log(response.error);
+				// 	return false;
+				// }
 
-				var html  = '<div class="table-freight text_dark_gray">';
-					html += '<span><i class="far fa-calendar-alt text_default px-2"></i> PAC (' + response.PrazoEntrega + ' dias úteis)</span>';
-					html += '<span class="pr-2">R$ ' + response.Valor + '</span>';
-					html += '</div>';
+				// var html  = '<div class="table-freight text_dark_gray">';
+				// 	html += '<span><i class="far fa-calendar-alt text_default px-2"></i> PAC (' + response.PrazoEntrega + ' dias úteis)</span>';
+				// 	html += '<span class="pr-2">R$ ' + response.Valor + '</span>';
+				// 	html += '</div>';
 
-				$('.shipping-result').html(html);
+				// $('.shipping-result').html(html);
             }
         });
 	}

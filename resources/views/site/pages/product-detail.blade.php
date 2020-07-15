@@ -108,14 +108,14 @@
 							<hr />
 						{!! Form::close() !!}
 
-						{{-- {!! Form::open(['id' => 'form-zipcode', 'method' => 'GET']) !!} --}}
+						{!! Form::open(['id' => 'form-zipcode', 'method' => 'GET']) !!}
 							<div class="shipping-price mb-2">
 								<span>CEP:</span>
-								{!! Form::text('zipcode', old('zipcode'), ['class' => 'zipcode mx-2 zipOnly', 'id' => 'zipcode', 'size' => '10', 'maxlength' => '9']) !!}
+								{!! Form::text('zipcode', old('zipcode', session('zipcode')), ['class' => 'zipcode mx-2 zipOnly', 'id' => 'zipcode', 'size' => '10', 'maxlength' => '9']) !!}
 								{!! Form::button('<i class="fas fa-shipping-fast"></i> Calcular Frete', ['class' => 'btn btn-line-fill btn-sm ml-3 btn-shipping']) !!}
 								{!! Form::hidden('item', $item->id, ['id' => 'item']) !!}
 							</div>
-						{{-- {!! Form::close() !!} --}}
+						{!! Form::close() !!}
 
 						<div class="shipping-result"></div>
 					</div>

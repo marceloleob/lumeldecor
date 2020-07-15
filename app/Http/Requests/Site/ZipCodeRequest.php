@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Site;
 
+use App\Filters\Nullable;
 use App\Filters\NumberOnly;
 use App\Http\Requests\BaseRequest;
 
@@ -20,7 +21,8 @@ class ZipCodeRequest extends BaseRequest
      * @var array
      */
     public static $customFilters = [
-		'numberonly' => NumberOnly::class
+		'nullable'   => Nullable::class,
+		'numberonly' => NumberOnly::class,
 	];
 
     /**
@@ -29,7 +31,7 @@ class ZipCodeRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'item'     => 'cast:integer',
+        'item'     => 'nullable',
         'zipcode'  => 'trim|escape|numberonly',
         'quantity' => 'cast:integer',
     ];
@@ -40,7 +42,7 @@ class ZipCodeRequest extends BaseRequest
      * @var array
      */
     public static $validations = [
-        'item'     => 'required|integer',
+        'item'     => 'integer',
         'zipcode'  => 'required|max:8',
         'quantity' => 'required|integer',
 	];

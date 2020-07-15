@@ -104,7 +104,7 @@
 					<ul class="navbar-nav attr-nav align-items-center">
 						<li><a href="#" class="nav-link"><i class="linearicons-user"></i></a></li>
 						<li><a href="#" class="nav-link"><i class="linearicons-heart"></i><span class="wishlist_count">0</span></a></li>
-						<li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">{!! $cart['count'] !!}</span></a>
+						<li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="{!! route('shopcart.show') !!}" data-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">{!! $cart['count'] !!}</span></a>
 							<div class="cart_box dropdown-menu dropdown-menu-right">
 								<ul class="cart_list">
 									@foreach ($cart['items'] as $item)
