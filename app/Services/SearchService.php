@@ -12,28 +12,42 @@ class SearchService
 	public static $paginate;
 
 	/**
+	 * Armazena em sessao o modulo que o usuario esta procurando
+	 *
+	 * @param string $module
+	 * @param string $search
+	 * @return void
+	 */
+	public static function setSession($module, $search)
+	{
+		session('module', $module);
+		session('search', $search);
+	}
+
+	/**
 	 * Recupera todos os produtos referentes ao material informado
 	 *
-	 * @param string $table
+	 * @param string $module
 	 * @param string $search
 	 * @return array
 	 */
-	public static function productList($table, $search)
+	public static function productList($module, $search)
 	{
+		// salva
 		self::$query = Item::inRandomOrder()
 			->whereHas(
-				'product', function ($subQuery) use ($table, $search)
+				'product', function ($subQuery) use ($module, $search)
 				{
 					$subQuery
 						->where('done', config('constants.RULES.DONE.YES'))
 						->where('status', config('constants.RULES.STATUS.ACTIVE'));
 
 					// executa o filtro pelo nome do produto
-					if ($table === 'busca') {
+					if ($module === 'busca') {
 						$subQuery->where('name', 'LIKE', '%' . $search . '%');
 					}
 					// executa o filtro pelo material
-					if ($table === 'material') {
+					if ($module === 'material') {
 						$subQuery->whereHas(
 							'material', function ($subQuery) use ($search)
 							{
@@ -44,7 +58,7 @@ class SearchService
 						);
 					}
 					// executa o filtro pelo categoria
-					if ($table === 'categoria') {
+					if ($module === 'categoria') {
 						$subQuery->whereHas(
 							'category', function ($subQuery) use ($search)
 							{
@@ -59,7 +73,7 @@ class SearchService
 			->where('status', config('constants.RULES.STATUS.ACTIVE'));
 
 		// executa o filtro pelo cor
-		if ($table === 'tons') {
+		if ($module === 'tons') {
 			self::$query->whereHas('tones', function ($subQuery) use ($search)
 			{
 				$subQuery->whereHas('colors', function ($subSubQuery) use ($search)
@@ -71,7 +85,7 @@ class SearchService
 			});
 		}
 		// executa o filtro pelo tema
-		if ($table === 'tema') {
+		if ($module === 'tema') {
 			self::$query->whereHas('themes', function ($subQuery) use ($search)
 			{
 				$subQuery
@@ -81,15 +95,13 @@ class SearchService
 		}
 
 		// cria a paginacao
-		self::pagination($table, $search);
+		self::pagination($module, $search);
 		// formata os dados
 		self::format();
 
 		return [
-			'type'     => $table,
-			'current'  => $search,
 			'data'     => self::$data,
-			'title'    => BreadCrumbService::setTitle($table, $search),
+			'title'    => BreadCrumbService::setTitle(),
 			'paginate' => self::$paginate,
 		];
 	}
@@ -97,16 +109,16 @@ class SearchService
     /**
      * Handler paginator
 	 *
-	 * @param string $table
+	 * @param string $module
 	 * @param string $search
      * @return void
      */
-	public static function pagination($table, $search)
+	public static function pagination($module, $search)
 	{
 		// recupera os dados paginados
 		self::$data = self::$query->paginate(10);
 		// adiciona parametro do filtro no paginate
-		self::$data->appends([$table => $search]);
+		self::$data->appends([$module => $search]);
         // constroi o paginate para a view
 		self::$paginate = self::$data;
 	}
@@ -133,13 +145,10 @@ class SearchService
     /**
      * Retorna as informacoes importantes para renderizar os detalhes de um produto
 	 *
-	 * @param string $table
-	 * @param string $search
 	 * @param string $slug
-	 * @param string $size
      * @return array
      */
-	public static function productDetail($table, $search, $slug, $size = null)
+	public static function productDetail($slug)
 	{
 		// recupera os detalhes do item pelo codigo
 		$item = tap(Item::where('slug', $slug)->firstOrFail(), function ($item)
@@ -191,13 +200,11 @@ class SearchService
 			});
 
 		return [
-			'type'    => $table,
-			'current' => $search,
 			'item'    => $item,
 			'sizes'   => $sizes,
 			'colors'  => $colors,
 			'title'   => ['Detalhes do Produto'],
-			'bread'   => BreadCrumbService::setTitle($table, $search),
+			'bread'   => BreadCrumbService::setTitle(),
 		];
 	}
 }

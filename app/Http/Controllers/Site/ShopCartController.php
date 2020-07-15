@@ -17,7 +17,7 @@ class ShopCartController extends Controller
 	{
 		$params = ShopCartService::show();
 
-		return view('site.pages.shopcart')->with($params);
+		return view('site.pages.shopcart', ['current' => session('search')])->with($params);
 	}
 
     /**
@@ -30,12 +30,12 @@ class ShopCartController extends Controller
     {
 		// save
 		$params = ShopCartService::add($request->all());
+
 		// verifica se salvou
-		if (false === $params) {
+		if ($params === false) {
 			return back()->withInput()->with('danger', 'Erro no seu carrinho de compras, por favor tente novamente!');
 		}
 
-		return view('site.pages.shopcart')->with($params);
-		// return redirect()->route('shopcart.show')->with($params);
+		return redirect()->route('shopcart.show')->with($params);
     }
 }

@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Site\ZipCodeRequest;
-use App\Repositories\ProductRepository;
 use App\Services\SearchService;
-use App\Services\ShippingService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,40 +11,30 @@ class ProductController extends Controller
 	/**
 	 * Product List
 	 *
-	 * @param string $table
+	 * @param string $module
 	 * @param string $search
 	 * @return Response
 	 */
-	public function show($table, $search)
+	public function show($module, $search)
 	{
-		$params = SearchService::productList($table, $search);
+		$this->setSession('module', $module);
+		$this->setSession('search', $search);
 
-		return view('site.pages.product')->with($params);
+		$params = SearchService::productList($module, $search);
+
+		return view('site.pages.product', ['current' => $search])->with($params);
 	}
 
 	/**
 	 * Product Detail
 	 *
-	 * @param string $table
-	 * @param string $search
 	 * @param string $slug
 	 * @return Response
 	 */
-	public function detail($table, $search, $slug)
+	public function detail($slug)
 	{
-		$params = SearchService::productDetail($table, $search, $slug);
+		$params = SearchService::productDetail($slug);
 
-		return view('site.pages.product-detail')->with($params);
-	}
-
-	/**
-	 * Return calc of Correios
-	 *
-	 * @param ZipCodeRequest $request
-	 * @return array
-	 */
-	public function calculator(ZipCodeRequest $request)
-	{
-		return ShippingService::handle($request->all());
+		return view('site.pages.product-detail', ['current' => session('search')])->with($params);
 	}
 }

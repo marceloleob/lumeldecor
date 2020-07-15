@@ -40,4 +40,24 @@ class ShopCart extends Model
 	{
 		return $this->belongsTo(Item::class, 'item_id', 'id');
 	}
+
+	/**
+	 * Get the sub_total
+	 *
+	 * @return float
+	 */
+	public function getSubTotalAttribute()
+	{
+		return (float) ($this->item->s_price * $this->quantity);
+	}
+
+	/**
+	 * Get the sub_total formatted
+	 *
+	 * @return string
+	 */
+	public function getSubTotalFormattedAttribute()
+	{
+		return number_format(($this->item->s_price * $this->quantity), 2, ',', '.');
+	}
 }

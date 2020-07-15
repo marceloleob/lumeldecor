@@ -30,13 +30,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+		// admin
         Route::pattern('id', '[0-9]+');
         Route::pattern('productId', '[0-9]+');
 		Route::pattern('productSizeId', '[0-9]+');
 		Route::pattern('itemId', '[0-9]+');
 		Route::pattern('picture', '[0-9a-z\-]*\.(jpg|jpeg|gif|png)');
 
-        Route::pattern('table', '\b(busca|material|categoria|tons|tema)\b');
+		// site
+        Route::pattern('module', '\b(busca|material|categoria|tons|tema)\b');
         Route::pattern('search', '[a-zA-Z\-]+');
 		Route::pattern('slug', '[a-z\-]+');
 		Route::pattern('qtdy', '[0-9]+');
@@ -44,8 +46,6 @@ class RouteServiceProvider extends ServiceProvider
         // Route::pattern('size', '[A-Z\-]+');
         // Route::pattern('sku', '^(LM){1}([0-9]){15}([P0G])([PMGU])');
         // Route::pattern('sku', '^(LM){1}([0-9]){4}([P0G])([PMGU])([0-9]){6}');
-
-		Route::pattern('qtdy', '[0-9]+');
 
         parent::boot();
     }

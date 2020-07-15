@@ -41,19 +41,19 @@
 								<div class="product">
 									{!! $item->launch !!}
 									<div class="product_img">
-										<a href="{!! route('product.detail', [$type, $current, $item->slug]) !!}">
+										<a href="{!! route('product.detail', $item->slug) !!}">
 											<img src="{!! asset('storage/' . config('constants.PICTURES.STORAGE.REGULAR') . '/' . $item->pictures[0]->name) !!}" alt="{!! $item->product->name !!}">
 										</a>
 										<div class="product_action_box">
 											<ul class="list_none pr_action_btn">
 												<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i></a></li>
-												<li><a href="{!! route('product.detail', [$type, $current, $item->slug]) !!}"><i class="icon-magnifier-add"></i></a></li>
+												<li><a href="{!! route('product.detail', $item->slug) !!}"><i class="icon-magnifier-add"></i></a></li>
 												<li><a href="#"><i class="icon-heart"></i></a></li>
 											</ul>
 										</div>
 									</div>
 									<div class="product_info">
-										<h6 class="product_title"><a href="{!! route('product.detail', [$type, $current, $item->slug]) !!}">{!! $item->product->name !!}</a></h6>
+										<h6 class="product_title"><a href="{!! route('product.detail', $item->slug) !!}">{!! $item->product->name !!}</a></h6>
 										<div class="product_price">
 											<span class="price">R$ {!! $item->sPriceFormatted !!}</span>
 											{{-- <del>R$ 25.00</del> --}}
@@ -67,7 +67,7 @@
 										<div class="list_product_action_box">
 											<ul class="list_none pr_action_btn">
 												<li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Comprar</a></li>
-												<li><a href="{!! route('product.detail', [$type, $current, $item->slug]) !!}"><i class="icon-magnifier-add"></i></a></li>
+												<li><a href="{!! route('product.detail', $item->slug) !!}"><i class="icon-magnifier-add"></i></a></li>
 												<li><a href="#"><i class="icon-heart"></i></a></li>
 											</ul>
 										</div>

@@ -1,32 +1,16 @@
-// const { isSet } = require("lodash");
-
 $(document).ready(function ()
 {
-	// Validacao do formulario de compra
-	if ($('#form-shop').length) {
-		// validation
-		$('#form-shop').validate({
-			rules: {
-				quantity: {
-					required: true,
-					digits: true,
-					min: 1,
-				},
-			}
-		});
-	}
-
 	/**
 	 * Binda o botao para calcular o Frete
 	 *
 	 */
-	if ($('.btn-shipping').length)
+	if ($('.btn-shipping-full').length)
 	{
-		$('.btn-shipping').click(function (event) {
+		$('.btn-shipping-full').click(function (event) {
 			// Method cancels the event if it is cancelable
 			event.preventDefault();
 			// verifica se pode calcular o frete
-			handleShipping();
+			handleShippingFull();
 		});
 
 		$('#zipcode').keypress(function (event) {
@@ -35,7 +19,7 @@ $(document).ready(function ()
 
 			if (event.which === 13) {
 				// verifica se pode calcular o frete
-				handleShipping();
+				handleShippingFull();
 			}
 		});
 	}
@@ -44,7 +28,7 @@ $(document).ready(function ()
 	 * Executa o metodo para checar se pode calcular o frete
 	 *
 	 */
-	function handleShipping()
+	function handleShippingFull()
 	{
 		if ($('#item').val() === '' || $('#zipcode').val() === '') {
 			$('.shipping-result').html('<span class="text_default error">É necessário digitar o CEP</span>');
@@ -53,7 +37,7 @@ $(document).ready(function ()
 
 		$('.shipping-result').html('<span class="loading"></span>');
 
-		calcShipping($('#item').val(), $('#zipcode').val(), $('#quantity').val());
+		calcShippingFull($('#item').val(), $('#zipcode').val(), $('#quantity').val());
 	}
 
     /**
@@ -63,11 +47,11 @@ $(document).ready(function ()
 	 * @param integer zipcode
 	 * @param integer quantity
 	 */
-	function calcShipping(item, zipcode, quantity)
+	function calcShippingFull(item, zipcode, quantity)
 	{
 		// carrega o combo
 		$.ajax({
-			url: '../../../../product/calculator',
+			url: '../../../product/calculator',
 			type: 'POST',
             dataType: 'json',
 			data: {
@@ -91,5 +75,5 @@ $(document).ready(function ()
 				$('.shipping-result').html(html);
             }
         });
-    }
+	}
 });

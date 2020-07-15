@@ -38,6 +38,7 @@ const mix = require('laravel-mix');
 			'resources/assets/js/site/pages/contact.js',
 			'resources/assets/js/site/pages/home.js',
 			'resources/assets/js/site/pages/product-detail.js',
+			'resources/assets/js/site/pages/shopcart.js',
 		], 'public/js/site/pages.js')
 		.sass('resources/assets/sass/site/app.scss', 'public/css/site')
 		.sass('resources/assets/sass/site/animate.scss', 'public/css/site')

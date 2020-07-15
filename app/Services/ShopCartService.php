@@ -31,7 +31,13 @@ class ShopCartService
 	 */
 	public static function show()
 	{
-		return (new ItemRepository)->findByShopCartIp(request()->ip());
+		$items = (new ItemRepository)->findByShopCartIp(request()->ip());
+
+		return [
+			'items' => $items,
+			'title' => ['Carrinho'],
+			'bread' => BreadCrumbService::setTitle(),
+		];
 	}
 
 	/**
@@ -78,15 +84,9 @@ class ShopCartService
 			// efetiva a transacao
 			DB::commit();
 
-			session(['success' => $item->product->name . ' ' . $item->productSize->size . ' foi ' . $action . ' no seu carrinho!']);
+			return ['success' => $item->product->name . ' ' . $item->productSize->size . ' foi ' . $action . ' no seu carrinho!'];
 
-			return [
-				'type'    => $params['type'],
-				'current' => $params['current'],
-				'item'    => $item,
-				'title'   => ['Carrinho'],
-				'bread'   => BreadCrumbService::setTitle($params['type'], $params['current']),
-			];
+			return true;
 
 		} catch (Exception $exception) {
 			// descarta a transacao

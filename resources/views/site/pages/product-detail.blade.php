@@ -1,7 +1,7 @@
 @extends('site.layouts.pages')
 
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{!! route('product.show', [$type, $current]) !!}">{!! implode(': ', $bread) !!}</a></li>
+<li class="breadcrumb-item"><a href="{!! route('product.show', [session('module'), session('search')]) !!}">{!! implode(': ', $bread) !!}</a></li>
 <li class="breadcrumb-item active">Detalhes do Produto</li>
 @endsection
 
@@ -71,7 +71,7 @@
 								<span class="switch_lable">Cores:</span>
 								<div class="product_color_switch">
 									@foreach ($colors as $colorItem)
-										<a href="{!! route('product.detail', [$type, $current, $colorItem->slug]) !!}">
+										<a href="{!! route('product.detail', $colorItem->slug) !!}">
 											<span style="{!! $colorItem->background !!}" {!! $colorItem->active !!} data-toggle="tooltip" data-placement="top" data-original-title="{!! $colorItem->tooltip !!}"></span>
 										</a>
 									@endforeach
@@ -81,7 +81,7 @@
 								<span class="switch_lable">Tamanhos:</span>
 								<div class="product_size_switch">
 									@foreach ($sizes as $size)
-										<a href="{!! route('product.detail', [$type, $current, $size->items[0]->slug]) !!}">
+										<a href="{!! route('product.detail', $size->items[0]->slug) !!}">
 											<span {!! $size->active !!}>{!! $size->size !!}</span>
 										</a>
 									@endforeach
@@ -100,11 +100,8 @@
 									</div>
 								</div>
 								<div class="cart_btn">
-									{!! Form::hidden('type', $type) !!}
-									{!! Form::hidden('current', $current) !!}
 									{!! Form::hidden('slug', $item->slug) !!}
 									{!! Form::button('<i class="fas fa-cart-plus"></i> Comprar', ['type' => 'submit', 'class' => 'btn btn-fill-out btn-addtocart']) !!}
-									{{-- <a class="btn btn-fill-out btn-addtocart" href="javascript:Void(0);" data-href="{!! route('shopcart', [$type, $current, $item->slug]) !!}"><i class="fas fa-cart-plus"></i> Comprar</a> --}}
 									<a class="add_wishlist" href="javascript:Void(0);" data-href="{!! route('whishlist') !!}"><i class="icon-heart px-2"></i></a> Favoritos
 								</div>
 							</div>
@@ -115,7 +112,7 @@
 							<div class="shipping-price mb-2">
 								<span>CEP:</span>
 								{!! Form::text('zipcode', old('zipcode'), ['class' => 'zipcode mx-2 zipOnly', 'id' => 'zipcode', 'size' => '10', 'maxlength' => '9']) !!}
-								{!! Form::button('<i class="fas fa-shipping-fast"></i> Calcular Frete', ['class' => 'btn btn-line-fill btn-sm ml-3 btn-calculator']) !!}
+								{!! Form::button('<i class="fas fa-shipping-fast"></i> Calcular Frete', ['class' => 'btn btn-line-fill btn-sm ml-3 btn-shipping']) !!}
 								{!! Form::hidden('item', $item->id, ['id' => 'item']) !!}
 							</div>
 						{{-- {!! Form::close() !!} --}}

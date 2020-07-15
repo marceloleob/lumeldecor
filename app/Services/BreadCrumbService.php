@@ -7,26 +7,24 @@ class BreadCrumbService
 	/**
 	 * Recupera o nome correspondente da pagina de lista de produtos
 	 *
-	 * @param string $table
-	 * @param string $search
-	 * @return string
+	 * @return array
 	 */
-	public static function setTitle($table, $search)
+	public static function setTitle()
 	{
-		if ($table === 'busca') {
-			return ['Busca', strtoupper($search)];
-		}
-		if ($table === 'material') {
-			return ['Material', MaterialService::getNameBySlug($search)];
-		}
-		if ($table === 'categoria') {
-			return ['Categoria', CategoryService::getNameBySlug($search)];
-		}
-		if ($table === 'tons') {
-			return ['Cor', ColorService::getNameBySlug($search)];
-		}
-		if ($table === 'tema') {
-			return ['Tema', ThemeService::getNameBySlug($search)];
+		switch (session('module')) {
+
+			case 'busca' :
+				return ['Busca', strtoupper(session('search'))];
+			case 'material' :
+				return ['Material', MaterialService::getNameBySlug(session('search'))];
+			case 'categoria' :
+				return ['Categoria', CategoryService::getNameBySlug(session('search'))];
+			case 'tons' :
+				return ['Cor', ColorService::getNameBySlug(session('search'))];
+			case 'tema' :
+				return ['Tema', ThemeService::getNameBySlug(session('search'))];
+			default :
+				return '';
 		}
 	}
 }

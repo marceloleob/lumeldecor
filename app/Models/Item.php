@@ -141,6 +141,16 @@ class Item extends Model
 	}
 
 	/**
+	 * Get the p_price formatted
+	 *
+	 * @return string
+	 */
+	public function getPPriceFormattedAttribute()
+	{
+		return number_format($this->p_price, 2, ',', '.');
+	}
+
+	/**
 	 * Get the s_price
 	 *
 	 * @param  string  $value
@@ -149,16 +159,6 @@ class Item extends Model
 	public function getSPriceAttribute($value)
 	{
 		return (float) $value;
-	}
-
-	/**
-	 * Get the p_price formatted
-	 *
-	 * @return string
-	 */
-	public function getPPriceFormattedAttribute()
-	{
-		return number_format($this->p_price, 2, ',', '.');
 	}
 
 	/**
