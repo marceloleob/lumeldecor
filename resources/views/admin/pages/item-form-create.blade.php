@@ -3,7 +3,7 @@
 @section('icon', 'fas fa-tags')
 @section('title', 'Cores do Produto')
 @section('subheading', 'Formulário para cadastrar as informações referentes às cores do produto.')
-@section('btn-back', route('product-size.create', $data->product_id))
+@section('btn-back', route('product-size.create', $productSize->product_id))
 
 @section('form')
 	<div class="row">
