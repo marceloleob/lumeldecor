@@ -1,5 +1,9 @@
 $(document).ready(function ()
 {
+
+
+
+
 	/**
 	 * Binda o botao para calcular o Frete
 	 *
@@ -10,7 +14,7 @@ $(document).ready(function ()
 			// Method cancels the event if it is cancelable
 			event.preventDefault();
 			// verifica se pode calcular o frete
-			handleShippingFull();
+			handleAll();
 		});
 
 		$('#zipcode').keypress(function (event) {
@@ -19,7 +23,7 @@ $(document).ready(function ()
 
 			if (event.which === 13) {
 				// verifica se pode calcular o frete
-				handleShippingFull();
+				handleAll();
 			}
 		});
 	}
@@ -28,7 +32,7 @@ $(document).ready(function ()
 	 * Executa o metodo para checar se pode calcular o frete
 	 *
 	 */
-	function handleShippingFull()
+	function handleAll()
 	{
 		if ($('#zipcode').val() === '') {
 			$('.shipping-result').html('<span class="text_default error">É necessário digitar o CEP</span>');
@@ -37,7 +41,7 @@ $(document).ready(function ()
 
 		$('.shipping-result').html('<span class="loading"></span>');
 
-		calcShippingFull($('#zipcode').val(), $('#quantity').val());
+		calcAll($('#zipcode').val(), $('#quantity').val());
 	}
 
     /**
@@ -46,34 +50,29 @@ $(document).ready(function ()
 	 * @param integer zipcode
 	 * @param integer quantity
 	 */
-	function calcShippingFull(zipcode, quantity)
+	function calcAll(zipcode, quantity)
 	{
-		// carrega o combo
+		// carrega os dados do frete
 		$.ajax({
-			url: 'shipping/calculator',
+			url: 'shipping/calculator/all',
 			type: 'POST',
             dataType: 'json',
-			data: {
-				item: '',
-				zipcode: zipcode,
-				quantity: quantity,
-			},
+			data: $('#form-shipping-all').serialize(),
 			success: function(response)
 			{
-				console.log(response);
-				// if (response.error) {
-				// 	$('.shipping-result').html('<span class="text_default error">Erro ao consultar seu CEP nos Correios, por favor tente novamente mais tarde.</span>');
-				// 	console.log(response.error);
-				// 	return false;
-				// }
+				if (response.error) {
+					$('.shipping-result').html('<span class="text_default error">Erro ao consultar seu CEP nos Correios, por favor tente novamente mais tarde.</span>');
+					console.log(response.error);
+					return false;
+				}
 
-				// var html  = '<div class="table-freight text_dark_gray">';
-				// 	html += '<span><i class="far fa-calendar-alt text_default px-2"></i> PAC (' + response.PrazoEntrega + ' dias úteis)</span>';
-				// 	html += '<span class="pr-2">R$ ' + response.Valor + '</span>';
-				// 	html += '</div>';
+				var html  = '<div class="table-freight text_dark_gray">';
+					html += '<span><i class="far fa-calendar-alt text_default px-2"></i> PAC (' + response.PrazoEntrega + ' dias úteis)</span>';
+					html += '<span class="pr-2">R$ ' + response.Valor + '</span>';
+					html += '</div>';
 
-				// $('.shipping-result').html(html);
+				$('.shipping-result').html(html);
             }
-        });
+		});
 	}
 });

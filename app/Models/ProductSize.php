@@ -76,7 +76,7 @@ class ProductSize extends Model
 	 */
 	public function getWeightFormattedAttribute()
 	{
-		return number_format($this->weight, 3, ',', '.');
+		return number_format($this->weight, 2, ',', '.');
 	}
 
 	/**

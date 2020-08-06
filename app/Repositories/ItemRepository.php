@@ -23,7 +23,7 @@ class ItemRepository extends BaseRepository
 	 * @param integer $itemId
 	 * @return Entity
 	 */
-	public function findByIds($productId, $productSizeId, $itemId = null)
+	public function findByAlgumaCoisa($productId, $productSizeId, $itemId = null)
 	{
 		// verifica se esta editando
 		if (!empty($itemId)) {
@@ -136,4 +136,18 @@ class ItemRepository extends BaseRepository
 			$collection->background = $tones['background'];
 		});
 	}
+
+
+	/**
+	 * Retorna os dados referente a este modelo
+	 *
+	 * @param integer|array $ids
+	 * @return Entity
+	 */
+	public function findByIds($id)
+	{
+		return $this->query()->whereIn('id', $id)->get();
+	}
+
+
 }

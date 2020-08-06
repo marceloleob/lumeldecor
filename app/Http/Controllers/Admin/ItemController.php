@@ -39,7 +39,7 @@ class ItemController extends Controller
     public function create($productId, $productSizeId)
     {
 		$params = [
-			'data'            => $this->repository->findByIds($productId, $productSizeId),
+			'data'            => $this->repository->findByAlgumaCoisa($productId, $productSizeId),
 			'items'           => $this->repository->findByProductSizeId($productSizeId),
 			'productSize'     => (new ProductSizeRepository)->findById($productSizeId),
 			'optionstone'     => (new ToneRepository())->options(),
@@ -79,7 +79,7 @@ class ItemController extends Controller
     public function edit($itemId, $productId, $productSizeId)
     {
 		$params = [
-			'data'            => $this->repository->findByIds($productId, $productSizeId, $itemId),
+			'data'            => $this->repository->findByAlgumaCoisa($productId, $productSizeId, $itemId),
 			'items'           => $this->repository->findByProductSizeId($productSizeId),
 			'optionstone'     => (new ToneRepository())->options(),
 			'optionstheme'    => (new ThemeRepository())->options(),

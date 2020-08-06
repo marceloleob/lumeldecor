@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests\Site;
 
-use App\Filters\Nullable;
 use App\Filters\NumberOnly;
 use App\Http\Requests\BaseRequest;
 
-class ZipCodeRequest extends BaseRequest
+class ShippingOneRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,7 +20,6 @@ class ZipCodeRequest extends BaseRequest
      * @var array
      */
     public static $customFilters = [
-		'nullable'   => Nullable::class,
 		'numberonly' => NumberOnly::class,
 	];
 
@@ -31,9 +29,9 @@ class ZipCodeRequest extends BaseRequest
      * @var array
      */
     public static $filters = [
-        'item'     => 'nullable',
-        'zipcode'  => 'trim|escape|numberonly',
+        'item'     => 'cast:integer',
         'quantity' => 'cast:integer',
+        'zipcode'  => 'trim|escape|numberonly',
     ];
 
     /**
@@ -42,8 +40,8 @@ class ZipCodeRequest extends BaseRequest
      * @var array
      */
     public static $validations = [
-        'item'     => 'integer',
-        'zipcode'  => 'required|max:8',
+        'item'     => 'required|integer',
         'quantity' => 'required|integer',
+        'zipcode'  => 'required|max:8',
 	];
 }

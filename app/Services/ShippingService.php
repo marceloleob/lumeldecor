@@ -41,35 +41,97 @@ class ShippingService
 	/**
 	 * Seta os parametros do item selecionado
 	 *
-	 * @param integer $item
-	 * @param integer $quantity
+	 * @param  integer|array $item
+	 * @param  integer|array $quantity
 	 * @return void
 	 */
 	public static function itemParams($item, $quantity)
 	{
-		$item = (new ItemRepository())->findById($item);
+		// verifica se vai buscar mais de um item
+		if (is_array($item)) {
+			$data = self::getByIds($item, $quantity);
+		} else {
+			$data = self::getById($item, $quantity);
+		}
 
 		// A largura não pode ser maior que 105 cm.
 		// A largura não pode ser inferior a 11 cm.
-		$width = ($item->productSize->shi_width > 11) ? $item->productSize->shi_width : 11;
+		$data['width']  = ($data['width'] < 11)   ? 11 : $data['width'];
+		$data['width']  = ($data['width'] <= 105) ? $data['width'] : 0;  // erro
 		// A altura não pode ser maior que 105 cm.
 		// A altura não pode ser inferior a 2 cm.
-		$height = ($item->productSize->shi_height > 2) ? $item->productSize->shi_height : 2;
+		$data['height'] = ($data['height'] < 2)    ? 2 : $data['height'];
+		$data['height'] = ($data['height'] <= 105) ? $data['height'] : 0;  // erro
 		// O comprimento não pode ser maior que 105 cm.
 		// O comprimento não pode ser inferior a 16 cm.
-		$length = ($item->productSize->shi_length > 16) ? $item->productSize->shi_length : 16;
+		$data['length'] = ($data['length'] < 16)   ? 16 : $data['length'];
+		$data['length'] = ($data['length'] <= 105) ? $data['length'] : 0;  // erro
 
 		$params = [
 			'nCdFormato'        => '1', // formato da embalagem (1 = caixa/pacote, 2 = rolo/prisma, 3 = envelope)
 			'nVlDiametro'       => '0',
-			'nVlPeso'           => ($item->productSize->weight * $quantity),
-			'nVlLargura'        => $width,
-			'nVlAltura'         => $height,
-			'nVlComprimento'    => $length,
-			'nVlValorDeclarado' => ($item->s_price * $quantity),
+			'nVlPeso'           => $data['weight'],
+			'nVlLargura'        => $data['width'],
+			'nVlAltura'         => $data['height'],
+			'nVlComprimento'    => $data['length'],
+			'nVlValorDeclarado' => $data['price'],
 		];
 
 		self::$params = array_merge(self::$params, $params);
+	}
+
+	/**
+	 * Recupera os parametros do item selecionado
+	 *
+	 * @param  integer $item
+	 * @param  integer $quantity
+	 * @return array
+	 */
+	public static function getById($item, $quantity)
+	{
+		$item = (new ItemRepository())->findById($item);
+
+		return [
+			'width'  => $item->productSize->shi_width,
+			'height' => $item->productSize->shi_height,
+			'length' => $item->productSize->shi_length,
+			'weight' => ($item->productSize->weight * $quantity),
+			'price'  => ($item->s_price * $quantity),
+		];
+	}
+
+	/**
+	 * Recupera os parametros dos itens selecionados
+	 *
+	 * @param  array $item
+	 * @param  array $quantity
+	 * @return array
+	 */
+	public static function getByIds($item, $quantity)
+	{
+		$items = (new ItemRepository())->findByIds($item);
+
+		$totalCubic  = 0;
+		$totalWeight = 0;
+		$totalPrice  = 0;
+		$rootCubic   = 0;
+
+		foreach ($items as $key => $item) {
+			$totalCubic  += ($item->productSize->shi_width * $item->productSize->shi_height * $item->productSize->shi_length * $quantity[$key]);
+			$totalWeight += ($item->productSize->weight * $quantity[$key]);
+			$totalPrice  += ($item->s_price * $quantity[$key]);
+		}
+
+		// calcula a raiz cubica em centimetros do volume cubico de todos os itens juntos
+		$rootCubic = round(pow($totalCubic, 1 / 3), 2);
+
+		return [
+			'width'  => $rootCubic,
+			'height' => $rootCubic,
+			'length' => $rootCubic,
+			'weight' => $totalWeight,
+			'price'  => $totalPrice,
+		];
 	}
 
 	/**
@@ -91,12 +153,12 @@ class ShippingService
 	/**
 	 * Metodo responsavel por criar todos os parametros necessarios
 	 *
-	 * @param integer $params
-	 * @param string  $params
-	 * @param integer $quantity
+	 * @param  integer|array $item
+	 * @param  integer|array $quantity
+	 * @param  string        $zipcode
 	 * @return void
 	 */
-	public static function setParams($item, $zipcode, $quantity)
+	public static function setParams($item, $quantity, $zipcode)
 	{
 		self::defaultParams();
 
@@ -108,12 +170,13 @@ class ShippingService
 	/**
 	 * Metodo para fazer o orcamento do frete
 	 *
-	 * @param array $params
+	 * @param  array $params
+	 * @return json
 	 */
 	public static function handle($params = [], $method = 'xml')
 	{
 		// seta os parametros
-		self::setParams($params['item'], $params['zipcode'], $params['quantity']);
+		self::setParams($params['item'], $params['quantity'], $params['zipcode']);
 
 		try {
 			switch ($method) {
@@ -141,6 +204,7 @@ class ShippingService
 	/**
 	 * Metodo para fazer o orcamento do frete
 	 *
+	 * @return callback
 	 */
 	public static function handleXML()
 	{
@@ -158,6 +222,7 @@ class ShippingService
 	/**
 	 * Metodo para fazer o orcamento do frete
 	 *
+	 * @return callback
 	 */
 	public static function handleSoap()
 	{

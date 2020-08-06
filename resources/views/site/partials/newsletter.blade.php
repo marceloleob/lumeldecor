@@ -4,7 +4,7 @@
 			<div class="row align-items-center">
 				<div class="col-md-4">
 					<div class="heading_s1 mb-md-0 heading_light">
-						<h3>Receba nossas Novidades</h3>
+						<h3>Receba nossas novidades!</h3>
 					</div>
 				</div>
 				<div class="col-md-8">

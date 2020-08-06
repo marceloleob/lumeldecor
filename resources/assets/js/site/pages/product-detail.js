@@ -26,7 +26,7 @@ $(document).ready(function ()
 			// Method cancels the event if it is cancelable
 			event.preventDefault();
 			// verifica se pode calcular o frete
-			handleShipping();
+			handleOne();
 		});
 
 		$('#zipcode').keypress(function (event) {
@@ -35,7 +35,7 @@ $(document).ready(function ()
 
 			if (event.which === 13) {
 				// verifica se pode calcular o frete
-				handleShipping();
+				handleOne();
 			}
 		});
 	}
@@ -44,7 +44,7 @@ $(document).ready(function ()
 	 * Executa o metodo para checar se pode calcular o frete
 	 *
 	 */
-	function handleShipping()
+	function handleOne()
 	{
 		if ($('#item').val() === '' || $('#zipcode').val() === '') {
 			$('.shipping-result').html('<span class="text_default error">É necessário digitar o CEP</span>');
@@ -53,7 +53,7 @@ $(document).ready(function ()
 
 		$('.shipping-result').html('<span class="loading"></span>');
 
-		calcShipping($('#item').val(), $('#zipcode').val(), $('#quantity').val());
+		calcOne($('#item').val(), $('#zipcode').val(), $('#quantity').val());
 	}
 
     /**
@@ -63,17 +63,17 @@ $(document).ready(function ()
 	 * @param integer zipcode
 	 * @param integer quantity
 	 */
-	function calcShipping(item, zipcode, quantity)
+	function calcOne(item, zipcode, quantity)
 	{
-		// carrega o combo
+		// carrega os dados do frete
 		$.ajax({
-			url: '../shipping/calculator',
+			url: '../shipping/calculator/one',
 			type: 'POST',
             dataType: 'json',
 			data: {
 				item: item,
-				zipcode: zipcode,
 				quantity: quantity,
+				zipcode: zipcode,
 			},
 			success: function(response)
 			{
