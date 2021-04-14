@@ -17,16 +17,17 @@ use Illuminate\Support\Facades\Route;
 /**
  * Rotas do Site
  */
-Route::group(['namespace' => 'Site'], function () {
-	// Home
-	Route::get('/', 'HomeController@waiting');
-});
+// Route::group(['namespace' => 'Site'], function () {
+// 	// Home
+// 	Route::get('/', 'HomeController@waiting');
+// });
 
 
 /**
  * Rotas do Site
  */
-Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
+// Route::group(['namespace' => 'Site', 'prefix' => 'teste'], function () {
+Route::group(['namespace' => 'Site'], function () {
 	// Home
 	Route::get('/', 'HomeController@index')->name('home');
 	// Institucional

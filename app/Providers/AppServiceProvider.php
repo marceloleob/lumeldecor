@@ -32,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
 		View::composer('site.*', function()
 		{
 			Paginator::defaultView('site.partials.paginator');
+			// new
+			//Paginator::useBootstrap();
 		});
     }
 }
