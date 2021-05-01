@@ -1,10 +1,12 @@
 <?php
 
-use App\Models\ItemPicture;
+namespace Database\Seeders;
+
+use App\Models\ItemTheme;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ItemPicturesTableSeeder extends Seeder
+class ItemThemesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +16,6 @@ class ItemPicturesTableSeeder extends Seeder
     public function run()
     {
 		// limpa a tabela
-		DB::table('item_pictures')->delete();
-		// cria os registros
+		DB::table('item_themes')->delete();
     }
 }

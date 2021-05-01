@@ -1,10 +1,12 @@
 <?php
 
-use App\Models\Item;
+namespace Database\Seeders;
+
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ItemsTableSeeder extends Seeder
+class ProductsTableSeeder extends Seeder
 {
 	/**
 	 * Run the database seeds.
@@ -14,6 +16,6 @@ class ItemsTableSeeder extends Seeder
 	public function run()
 	{
 		// limpa a tabela
-		DB::table('items')->delete();
+		DB::table('products')->delete();
 	}
 }

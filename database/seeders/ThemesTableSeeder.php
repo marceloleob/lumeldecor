@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Theme;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +24,6 @@ class ThemesTableSeeder extends Seeder
 		Theme::create(['name' => 'Namorados', 'slug' => Str::slug('Namorados'), 'show' => 1, 'status' => 1]);
 		Theme::create(['name' => 'São João', 'slug' => Str::slug('São João'), 'show' => 1, 'status' => 1]);
 		Theme::create(['name' => 'Natal', 'slug' => Str::slug('Natal'), 'show' => 1, 'status' => 1]);
-
 		Theme::create(['name' => 'A Bella e a Fera', 'slug' => Str::slug('A Bella e a Fera'), 'show' => 1, 'status' => 1]);
 		Theme::create(['name' => 'Bailarinas', 'slug' => Str::slug('Bailarinas'), 'show' => 1, 'status' => 1]);
 		Theme::create(['name' => 'Carros', 'slug' => Str::slug('Carros'), 'show' => 1, 'status' => 1]);

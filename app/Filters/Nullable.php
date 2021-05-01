@@ -2,9 +2,9 @@
 
 namespace App\Filters;
 
-use Waavi\Sanitizer\Contracts\Filter;
+// use Waavi\Sanitizer\Contracts\Filter;
 
-class Nullable implements Filter
+class Nullable //implements Filter
 {
     /**
      *  Formata dinheiro removendo a moeda e retornando um float
@@ -14,10 +14,11 @@ class Nullable implements Filter
      */
     public function apply($value, $options = [])
     {
-        if (empty($value) || $value == '') {
-            return null;
-        }
+        return false;
+        // if (empty($value) || $value == '') {
+        //     return null;
+        // }
 
-        return (int) $value;
+        // return (int) $value;
     }
 }

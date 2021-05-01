@@ -3,11 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Waavi\Sanitizer\Laravel\SanitizesInput;
+// use Waavi\Sanitizer\Laravel\SanitizesInput;
 
 abstract class BaseRequest extends FormRequest
 {
-    use SanitizesInput;
+    // use SanitizesInput;
 
     /**
      * Determine if the user is authorized to make this request.

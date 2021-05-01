@@ -2,9 +2,9 @@
 
 namespace App\Filters;
 
-use Waavi\Sanitizer\Contracts\Filter;
+// use Waavi\Sanitizer\Contracts\Filter;
 
-class Money implements Filter
+class Money //implements Filter
 {
     /**
      *  Formata dinheiro removendo a moeda e retornando um float
@@ -14,13 +14,15 @@ class Money implements Filter
      */
     public function apply($value, $options = [])
     {
-        // remove a sifra
-        $amount = trim(str_replace('R$', '', $value));
-        // verifica se foi informado algum valor
-        if (empty($amount)) {
-            return 0.00;
-        }
-        // retorna formatado
-        return (float) str_replace(',', '.', str_replace('.', '', $amount));
+        return false;
+
+        // // remove a sifra
+        // $amount = trim(str_replace('R$', '', $value));
+        // // verifica se foi informado algum valor
+        // if (empty($amount)) {
+        //     return 0.00;
+        // }
+        // // retorna formatado
+        // return (float) str_replace(',', '.', str_replace('.', '', $amount));
     }
 }

@@ -1,10 +1,12 @@
 <?php
 
-use App\Models\Newsletter;
+namespace Database\Seeders;
+
+use App\Models\ItemPicture;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class NewslettersTableSeeder extends Seeder
+class ItemPicturesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +16,7 @@ class NewslettersTableSeeder extends Seeder
     public function run()
     {
 		// limpa a tabela
-		DB::table('newsletters')->delete();
+		DB::table('item_pictures')->delete();
+		// cria os registros
     }
 }

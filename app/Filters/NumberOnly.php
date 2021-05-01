@@ -2,9 +2,9 @@
 
 namespace App\Filters;
 
-use Waavi\Sanitizer\Contracts\Filter;
+// use Waavi\Sanitizer\Contracts\Filter;
 
-class NumberOnly implements Filter
+class NumberOnly //implements Filter
 {
     /**
      *  Retorna somente os numeros em formato string
@@ -14,7 +14,8 @@ class NumberOnly implements Filter
      */
     public function apply($value, $options = [])
     {
-		return (string) preg_replace('/[^0-9]/', '', $value);
+        return false;
+		// return (string) preg_replace('/[^0-9]/', '', $value);
     }
 }
 

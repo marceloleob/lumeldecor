@@ -1,10 +1,12 @@
 <?php
 
-use App\Models\ShopCart;
+namespace Database\Seeders;
+
+use App\Models\ItemTone;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ShopCartsTableSeeder extends Seeder
+class ItemTonesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +16,6 @@ class ShopCartsTableSeeder extends Seeder
     public function run()
     {
 		// limpa a tabela
-		DB::table('shop_carts')->delete();
+		DB::table('item_tones')->delete();
     }
 }

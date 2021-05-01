@@ -2,9 +2,10 @@
 
 namespace App\Filters;
 
-use Waavi\Sanitizer\Contracts\Filter;
+// use Waavi\Sanitizer\Contracts\Filter;
 
-class Checkbox implements Filter
+// class Checkbox implements Filter
+class Checkbox
 {
     /**
      *  Formata dinheiro removendo a moeda e retornando um float
@@ -14,10 +15,12 @@ class Checkbox implements Filter
      */
     public function apply($value, $options = [])
     {
-        if (empty($value) || $value == '' || !isset($value) || $value == 'no') {
-            return false;
-        }
+        return false;
 
-        return (bool) $value;
+        // if (empty($value) || $value == '' || !isset($value) || $value == 'no') {
+        //     return false;
+        // }
+
+        // return (bool) $value;
     }
 }
