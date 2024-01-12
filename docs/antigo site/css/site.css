@@ -1,0 +1,113 @@
+
+/* - - - - - - - - - - - - - - - - HTML - - - - - - - - - - - - - - - - */
+
+body {
+	margin:0;
+	color:#978379;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 16px;
+	line-height: 18px;
+	background: #fceeed;
+	-webkit-text-size-adjust: none;
+}
+
+img {
+    border-style: none;
+    vertical-align: top;
+}
+
+a {
+    text-decoration:none;
+    color:#6e6e6e;
+}
+a:hover {
+    text-decoration:underline;
+}
+
+
+/* - - - - - - - - - - - - - - - - DIVS - - - - - - - - - - - - - - - - */
+
+#wrapper{
+	max-width:1244px;
+	height: 100%;
+    margin: 0 auto;
+}
+
+#header {
+	margin: 0 auto;
+    position: relative;
+}
+
+
+/* - - - - - - - - - - - - - - - - CLASSES - - - - - - - - - - - - - - - - */
+
+.clear{
+    clear: both;
+}
+
+.wrapper-holder {
+	padding: 0 28px 20px 28px;
+	box-shadow: 0px 0px 35px 15px #f2cdcb;
+	max-width: 1170px;
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+    margin: 30px 0 0 9px;
+}
+
+.header-holder{
+	width: 100%;
+	position: relative;
+    margin: 0 0 28px;
+}
+
+.logo {
+	display: block;
+	margin: 10px 0 0 10px;
+	background: url(../images/logo.png) no-repeat;
+	width: 500px;
+	height: 282px;
+    text-indent: -9999px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logo a {
+	display: block;
+	width: 214px;
+	height: 68px;
+}
+
+.btn{
+	line-height: 40px;
+	color: #fff;
+	text-align: center;
+	display: block;
+	border-radius: 5px;
+	behavior: url(css/PIE.htc);
+	font-size: 14px;
+	background: #5ab4de;
+}
+
+
+/* - - - - - - - - - - - - - - - - MAIN - - - - - - - - - - - - - - - - */
+
+.main{
+	max-width:1170px;
+	margin: 0 auto;
+	position:relative;
+}
+.content {
+    position: relative;
+	float: left;
+}
+.content img {
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+.content .info {
+	position: absolute;
+	z-index: 100;
+	top: 25%;
+	left: 9%;
+}

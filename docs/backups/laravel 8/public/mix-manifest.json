@@ -1,0 +1,18 @@
+{
+    "/js/admin/app.js": "/js/admin/app.js",
+    "/js/admin/pages.js": "/js/admin/pages.js",
+    "/js/forms/app.js": "/js/forms/app.js",
+    "/js/forms/jquery.masks.pt-br.js": "/js/forms/jquery.masks.pt-br.js",
+    "/js/forms/jquery.validate.pt-br.js": "/js/forms/jquery.validate.pt-br.js",
+    "/js/modernizr-custom.js": "/js/modernizr-custom.js",
+    "/css/app.css": "/css/app.css",
+    "/css/site/app.css": "/css/site/app.css",
+    "/css/site/animate.css": "/css/site/animate.css",
+    "/css/site/style.css": "/css/site/style.css",
+    "/css/site/responsive.css": "/css/site/responsive.css",
+    "/css/admin/app.css": "/css/admin/app.css",
+    "/js/site/app.js": "/js/site/app.js",
+    "/js/site/pages.js": "/js/site/pages.js",
+    "/css/icons.css": "/css/icons.css",
+    "/css/admin/architect-ui.min.css": "/css/admin/architect-ui.min.css"
+}

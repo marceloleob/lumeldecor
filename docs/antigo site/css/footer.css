@@ -1,0 +1,116 @@
+
+#footer {
+    max-width: 1226px;
+    overflow: hidden;
+	margin: 0 0 40px 9px;
+	position: relative;
+    padding: 0;
+    -webkit-box-shadow: 0px 15px 25px 15px rgba(242,205,203,0.8);
+    -moz-box-shadow: 0px 15px 25px 15px rgba(242,205,203,0.8);
+    box-shadow: 0px 15px 25px 15px rgba(242,205,203,0.8);
+}
+.footer-content {
+	background: #f0f0f0;
+    padding: 31px 31px 23px;
+	overflow: hidden;
+	color: #97989a;
+	font-size: 14px;
+	line-height: 16px;
+}
+.footer-content p {
+    margin: 0 0 15px;
+}
+.footer-content ul{
+	width: 70%;
+	float: left;
+}
+.footer-content ul li{
+	float: left;
+	width: 31.3%;
+	margin: 0 0 0 3%;
+}
+.footer-content ul li:first-child {
+    margin: 0;
+}
+.footer-content ul li span {
+	display: block;
+	color: #4eb7b2;
+	font-size: 18px;
+	line-height: 20px;
+	margin: 0 0 20px;
+}
+.footer-content ul li a {
+	color: #97989a;
+	font-size: 14px;
+	line-height: 16px;
+	border-bottom: 1px solid #4eb7b2;
+	padding: 0 0 5px;
+	margin: 0 0 5px;
+	display: block;
+}
+.footer-content ul li a:hover {
+    text-decoration: none;
+    color: #4eb7b2;
+}
+.footer-content ul li a.last {
+    border: none;
+}
+.footer-content ul.left_side {
+	float: left;
+	width: 770px;
+}
+.footer-content ul.left_side p {
+    line-height: 26px;
+}
+.footer-content ul.right_side{
+	float: right;
+	width: 270px;
+}
+.footer-content ul.right_side .social {
+	overflow: hidden;
+	margin: 0 0 18px;
+}
+.footer-content ul.right_side li {
+    width: 100%;
+}
+.footer-content ul.right_side .social a {
+	border-radius: 5px;
+	behavior: url(css/PIE.htc);
+	position: relative;
+	float: left;
+	margin: 0 0 0 20px;
+	color: #97989a;
+	padding:0 6px 0 45px;
+	font-size:14px;
+	line-height:32px;
+	border: 1px solid #4eb7b2;
+	width: 70px;
+}
+.footer-content ul.right_side .social a:hover {
+    color: #4eb7b2;
+}
+
+.footer-content .copy {
+    text-align: center;
+    color: #97989a;
+    margin-top: 40px;
+    padding: 5px;
+}
+
+.footer-content ul.right_side .social a.fb {
+    background: url(../images/icon_fb.png) no-repeat 7px 6px;
+    margin: 0;
+    padding-left: 42px;
+    width: 73px;
+}
+.footer-content ul.right_side .social a.im {
+    background: url(../images/icon_im.png) no-repeat 7px 6px;
+    padding-left: 42px;
+    width: 73px;
+}
+.footer-content ul.right_side .social a.wt {
+    background: url(../images/icon_wt.png) no-repeat 7px 6px;
+    margin: 0;
+    padding-left: 41px;
+    width: 75px;
+}
