@@ -87,25 +87,25 @@
 							<div class="col-md-3">
 								<div class="card-shadow-info border mb-3 card card-body border-info">
 									<h5 class="card-title">Boleira Cerâmica Lisa</h5>
-									<img src="{!! asset('images/products/boleira-ceramica-lisa.jpg') !!}" alt="">
+									<img src="{!! Vite::asset('resources/assets/images/products/boleira-ceramica-lisa.jpg') !!}" alt="">
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="card-shadow-info border mb-3 card card-body border-info">
 									<h5 class="card-title">Boleira Cerâmica Lisa</h5>
-									<img src="{!! asset('images/products/boleira-ceramica-lisa.jpg') !!}" alt="">
+									<img src="{!! Vite::asset('resources/assets/images/products/boleira-ceramica-lisa.jpg') !!}" alt="">
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="card-shadow-info border mb-3 card card-body border-info">
 									<h5 class="card-title">Boleira Cerâmica Lisa</h5>
-									<img src="{!! asset('images/products/boleira-ceramica-lisa.jpg') !!}" alt="">
+									<img src="{!! Vite::asset('resources/assets/images/products/boleira-ceramica-lisa.jpg') !!}" alt="">
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="card-shadow-info border mb-3 card card-body border-info">
 									<h5 class="card-title">Boleira Cerâmica Lisa</h5>
-									<img src="{!! asset('images/products/boleira-ceramica-lisa.jpg') !!}" alt="">
+									<img src="{!! Vite::asset('resources/assets/images/products/boleira-ceramica-lisa.jpg') !!}" alt="">
 								</div>
 							</div>
 						</div>

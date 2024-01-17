@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
 
 @section('js-custom')
-{{-- {!! Html::script('js/admin/canvas.js', ['defer' => 'defer']) !!} --}}
 @stop
 
 @section('content')

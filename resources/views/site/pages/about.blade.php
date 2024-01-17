@@ -12,7 +12,7 @@
 			<div class="row align-items-center">
 				<div class="col-lg-6">
 					<div class="about_img scene mb-4 mb-lg-0">
-						<img src="{!! asset('images/help/about_img.jpg') !!}" alt="about_img"/>
+						<img src="{!! Vite::asset('resources/assets/images/help/about_img.jpg') !!}" alt="about_img"/>
 					</div>
 				</div>
 				<div class="col-lg-6">

@@ -118,7 +118,7 @@
 							</div>
 							<div class="col-md-4">
 								<div class="card-box-example p-4">
-									<img src="{!! asset('images/admin/box.jpeg') !!}" alt="" />
+									<img src="{!! Vite::asset('resources/assets/images/admin/box.jpeg') !!}" alt="" />
 								</div>
 							</div>
 						</div>

@@ -130,7 +130,7 @@
 							</div>
 							<div class="col-md-5">
 								<div class="card-picture-example pt-4">
-									<img src="{!! asset('images/admin/image-sizes.png') !!}" alt="" />
+									<img src="{!! Vite::asset('resources/assets/images/admin/image-sizes.png') !!}" alt="" />
 									<p>O tamanho ideal da foto é de <span class="font-weight-bold">810px</span> (largura) X <span class="font-weight-bold">900px</span> (altura).</p>
 								</div>
 							</div>

@@ -173,7 +173,7 @@
 						<div class="widget">
 							<div class="shop_banner">
 								<div class="banner_img overlay_bg_20">
-									<img src="{!! asset('images/help/sidebar_banner_img.jpg') !!}" alt="sidebar_banner_img">
+									<img src="{!! Vite::asset('resources/assets/images/help/sidebar_banner_img.jpg') !!}" alt="sidebar_banner_img">
 								</div>
 								<div class="shop_bn_content2 text_white">
 									<h5 class="text-uppercase shop_subtitle">Novidade</h5>

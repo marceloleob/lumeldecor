@@ -5,7 +5,7 @@
         	<div class="col-lg-9 offset-lg-3">
                 <div id="carouselExampleControls" class="carousel slide light_arrow" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item background_bg active" data-img-src="{!! asset('images/help/banner4.jpg') !!}">
+                        <div class="carousel-item background_bg active" data-img-src="{!! Vite::asset('resources/assets/images/help/banner4.jpg') !!}">
                             <div class="banner_slide_content banner_content_inner">
                                 <div class="col-lg-8 col-10">
                                     <div class="banner_content overflow-hidden">
@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item background_bg" data-img-src="{!! asset('images/help/banner5.jpg') !!}">
+                        <div class="carousel-item background_bg" data-img-src="{!! Vite::asset('resources/assets/images/help/banner5.jpg') !!}">
                             <div class="banner_slide_content banner_content_inner">
                                 <div class="col-lg-8 col-10">
                                     <div class="banner_content overflow-hidden">
@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item background_bg" data-img-src="{!! asset('images/help/banner6.jpg') !!}">
+                        <div class="carousel-item background_bg" data-img-src="{!! Vite::asset('resources/assets/images/help/banner6.jpg') !!}">
                             <div class="banner_slide_content banner_content_inner">
                                 <div class="col-lg-8 col-10">
                                     <div class="banner_content overflow-hidden">

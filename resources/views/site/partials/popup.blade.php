@@ -7,7 +7,7 @@
                 </button>
                 <div class="row no-gutters">
                     <div class="col-sm-5">
-                    	<div class="background_bg h-100" data-img-src="{!! asset('images/help/popup_img.jpg') !!}"></div>
+                    	<div class="background_bg h-100" data-img-src="{!! Vite::asset('resources/assets/images/help/popup_img.jpg') !!}"></div>
                     </div>
                     <div class="col-sm-7">
                         <div class="popup_content">

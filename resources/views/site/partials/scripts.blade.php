@@ -1,11 +1,8 @@
-
-{{-- modernizr js --}}
-{!! Html::script('js/modernizr-custom.js') !!}
 {{-- JS SYSTEM --}}
-{!! Html::script('js/site/app.js', ['defer' => 'defer']) !!}
+{{-- <script src="js/site/app.js"></script> --}}
 {{-- JS VALIDATION / MASKS --}}
-{!! Html::script('js/forms/jquery.validate.' . $locale . '.js', ['defer' => 'defer']) !!}
-{!! Html::script('js/forms/jquery.masks.' . $locale . '.js', ['defer' => 'defer']) !!}
-{!! Html::script('js/forms/app.js', ['defer' => 'defer']) !!}
+{{-- <script src="js/forms/jquery.validate.{{ $locale }}.js"></script>
+<script src="js/forms/jquery.masks.{{ $locale }}.js"></script> --}}
+{{-- <script src="js/forms/app.js"></script> --}}
 {{-- JS CUSTOM INTERNAL PAGES --}}
-{!! Html::script('js/site/pages.js', ['defer' => 'defer']) !!}
+{{-- <script src="js/site/pages.js"></script> --}}

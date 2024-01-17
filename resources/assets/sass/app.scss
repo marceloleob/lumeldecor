@@ -1,18 +1,22 @@
 // Fonts
-@import url("https://fonts.bunny.net/css?family=Nunito");
+@import "fonts";
 
 // Variables
 @import "variables";
 
+@import "icons";
+
 // Bootstrap
-@import "~bootstrap/scss/bootstrap";
-// Bootstrap DatePicker
-@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css";
-// Bootstrap SelectPicker
-@import "~bootstrap-select/sass/bootstrap-select.scss";
+@import "bootstrap/scss/bootstrap";
+
+// // Bootstrap DatePicker
+// @import "bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css";
+
+// // Bootstrap SelectPicker
+// @import "bootstrap-select/sass/bootstrap-select.scss";
 
 // Font Awesome
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/regular";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "@fortawesome/fontawesome-free/scss/brands";

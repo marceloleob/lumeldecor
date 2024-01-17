@@ -4,11 +4,13 @@
 <meta charset="utf-8" />
 {{-- RESPONSIVE TAG --}}
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Language" content="{{ $locale }}" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <title>{!! Config::get('app.name') !!} {!! (!empty($title)) ? ' - ' . implode(' - ', $title) : '' !!}</title>
 
 {{-- METAS TAG --}}
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
 <meta name="author" content="{!! config('constants.DEVELOPER.NAME') . ' <' . config('constants.DEVELOPER.EMAIL') . '>' !!}" />
 <meta name="copyright" content="{!! config('constants.COMPANY.NAME') !!}" />
 <meta name="keywords" content="decoracao, festas, artigos para festas, BH decoracao, MG decoracao, BH decoracoes, festas BH, festas criativas, artigos para festas, decoracao de festas, decor moderna, festa de luxo, festa em casa, loja de festas, festa infantil" />
@@ -19,19 +21,12 @@
 @yield('facebook')
 
 {{-- ICO --}}
-<link rel="shortcut icon" href="{!! asset('favicon.ico') !!}" />
-{{-- <link rel="shortcut icon" type="image/x-icon" href="{!! asset('images/favicon/favicon.png') !!} --}}
+<link rel="shortcut icon" href="{!! asset('favicon.ico') !!}" type="image/x-icon" />
+<link rel="icon" href="{!! asset('favicon.ico') !!}" type="image/x-icon" />
 
-{{-- GOOGLE FONTS --}}
-{!! Html::style('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap') !!}
-{!! Html::style('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap') !!}
 {{-- APIS STYLE --}}
-{!! Html::style('css/app.css') !!}
-{{-- ICON FONT CSS --}}
-{!! Html::style('css/icons.css') !!}
-{{-- ANIMATION CSS --}}
-{!! Html::style('css/site/animate.css') !!}
-{{-- APIS STYLE --}}
-{!! Html::style('css/site/app.css') !!}
-{!! Html::style('css/site/style.css') !!}
-{!! Html::style('css/site/responsive.css') !!}
+@vite([
+    'resources/assets/sass/app.scss',
+    'resources/assets/sass/site/app.scss',
+    'resources/assets/js/app.js'
+])

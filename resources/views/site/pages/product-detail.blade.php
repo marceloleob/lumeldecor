@@ -219,7 +219,7 @@
 							<div class="product">
 								<div class="product_img">
 									<a href="shop-product-detail.html">
-										<img src="{!! asset('images/help/product_img1.jpg') !!}" alt="product_img1">
+										<img src="{!! Vite::asset('resources/assets/images/help/product_img1.jpg') !!}" alt="product_img1">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
@@ -262,7 +262,7 @@
 							<div class="product">
 								<div class="product_img">
 									<a href="shop-product-detail.html">
-										<img src="{!! asset('images/help/product_img2.jpg') !!}" alt="product_img2">
+										<img src="{!! Vite::asset('resources/assets/images/help/product_img2.jpg') !!}" alt="product_img2">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
@@ -306,7 +306,7 @@
 								<span class="pr_flash">New</span>
 								<div class="product_img">
 									<a href="shop-product-detail.html">
-										<img src="{!! asset('images/help/product_img3.jpg') !!}" alt="product_img3">
+										<img src="{!! Vite::asset('resources/assets/images/help/product_img3.jpg') !!}" alt="product_img3">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
@@ -347,7 +347,7 @@
 							<div class="product">
 								<div class="product_img">
 									<a href="shop-product-detail.html">
-										<img src="{!! asset('images/help/product_img4.jpg') !!}" alt="product_img4">
+										<img src="{!! Vite::asset('resources/assets/images/help/product_img4.jpg') !!}" alt="product_img4">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
@@ -390,7 +390,7 @@
 							<div class="product">
 								<div class="product_img">
 									<a href="shop-product-detail.html">
-										<img src="{!! asset('images/help/product_img5.jpg') !!}" alt="product_img5">
+										<img src="{!! Vite::asset('resources/assets/images/help/product_img5.jpg') !!}" alt="product_img5">
 									</a>
 									<div class="product_action_box">
 										<ul class="list_none pr_action_btn">
