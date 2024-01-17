@@ -36,7 +36,7 @@
 .form .required::after {
     position: absolute;
     content: "\f069";
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 6 Free";
     font-weight: 900;
     font-size: 6px;
     color: #bd362f;
@@ -58,7 +58,7 @@
 .has-error .help-block::before {
     position: relative;
     content: "\F00D";
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 6 Free";
     font-weight: 900;
     color: #bd362f;
     padding-right: 8px;

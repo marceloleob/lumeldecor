@@ -8,7 +8,7 @@
                 <img class="logo_dark" src="{{ Vite::asset('resources/assets/images/logo_dark.png') }}" alt="{!! Config::get('app.name') !!}" />
             </a>
             <div class="contact_phone order-md-last">
-                <a href="https://wa.me/553195140615" target="_blank" sdata-toggle="tooltip" sdata-placement="top" sdata-original-title="Nosso WhatsApp"><i class="fa-brands fa-whatsapp"></i> <span>31 99514-0615</span></a>
+                <a href="https://wa.me/553195140615" target="_blank" sdata-toggle="tooltip" sdata-placement="top" sdata-original-title="Nosso WhatsApp"><i class="fab fa-brands fa-whatsapp"></i> <span>31 99514-0615</span></a>
             </div>
             <div class="product_search_form">
                 <div class="input-group">

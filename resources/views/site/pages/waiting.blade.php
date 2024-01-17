@@ -148,9 +148,9 @@
 
             <div class="social">
                 <ul class="social-color">
-                    <li><a href="https://wa.me/553195140615" target="_blank"><i class="fab fa-brands fa-whatsapp"></i></a></li>
-                    <li><a href="https://www.facebook.com/lumelldecor" target="_blank"><i class="fab fa-brands fa-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/lumeldecor" target="_blank"><i class="fab fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://wa.me/553195140615" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+                    <li><a href="https://www.facebook.com/lumelldecor" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/lumeldecor" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                 </ul>
             </div>
 
