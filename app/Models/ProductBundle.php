@@ -46,7 +46,7 @@ class ProductBundle extends Model
 
     public function bundleItems(): HasMany
     {
-        return $this->hasMany(ProductBundleItem::class, 'bundle_id');
+        return $this->hasMany(ProductBundleItem::class, 'product_bundle_id');
     }
 
     public function inventoryMovements(): MorphMany

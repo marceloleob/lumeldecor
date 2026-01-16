@@ -18,26 +18,14 @@ class Product extends Model
         'slug',
         'description',
         'short_description',
-        'price',
-        'compare_price',
-        'cost',
+        'meta_data',
         'is_active',
         'is_featured',
-        'track_inventory',
-        'weight',
-        'width',
-        'height',
-        'length',
-        'meta_data',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
         'is_featured' => 'boolean',
-        'track_inventory' => 'boolean',
-        'price' => 'decimal:2',
-        'compare_price' => 'decimal:2',
-        'cost' => 'decimal:2',
         'meta_data' => 'array',
     ];
 
@@ -57,7 +45,7 @@ class Product extends Model
 
     public function sizes(): HasMany
     {
-        return $this->hasMany(ProductSize::class)->orderBy('order');
+        return $this->hasMany(ProductSize::class);
     }
 
     public function items(): HasMany
@@ -90,22 +78,34 @@ class Product extends Model
     // ACCESSORS
     // ========================================
 
-    public function getHasDiscountAttribute(): bool
-    {
-        return $this->compare_price && $this->compare_price > $this->price;
-    }
-
-    public function getDiscountPercentageAttribute(): ?int
-    {
-        if (!$this->has_discount) {
-            return null;
-        }
-
-        return round((($this->compare_price - $this->price) / $this->compare_price) * 100);
-    }
-
     public function getTotalStockAttribute(): int
     {
         return $this->items()->sum('stock_quantity');
+    }
+
+    public function getLowestPriceAttribute(): ?float
+    {
+        return $this->items()->min('price');
+    }
+
+    public function getHighestPriceAttribute(): ?float
+    {
+        return $this->items()->max('price');
+    }
+
+    public function getPriceRangeAttribute(): ?string
+    {
+        $min = $this->lowest_price;
+        $max = $this->highest_price;
+
+        if (!$min) {
+            return null;
+        }
+
+        if ($min === $max) {
+            return 'R$ ' . number_format($min, 2, ',', '.');
+        }
+
+        return 'R$ ' . number_format($min, 2, ',', '.') . ' - R$ ' . number_format($max, 2, ',', '.');
     }
 }

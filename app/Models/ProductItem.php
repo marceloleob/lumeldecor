@@ -67,7 +67,7 @@ class ProductItem extends Model
     public function collections(): BelongsToMany
     {
         return $this->belongsToMany(Collection::class, 'collection_items')
-            ->withPivot('order', 'is_highlighted')
+            ->withPivot('is_highlighted')
             ->where('is_active', true);
     }
 

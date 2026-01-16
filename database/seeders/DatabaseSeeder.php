@@ -13,10 +13,13 @@ class DatabaseSeeder extends Seeder
             MaterialSeeder::class,
             CategorySeeder::class,
             ShippingMethodSeeder::class,
+            ProductSeeder::class,
+            BundleSeeder::class,
+            CollectionSeeder::class,
         ]);
 
         $this->command->info('');
-        $this->command->info('-> Seeders executados com sucesso!');
+        $this->command->info('🎉 Seeders executados com sucesso!');
         $this->command->info('');
     }
 }

@@ -19,7 +19,7 @@ class ProductBundleItem extends Model
 
     public function bundle(): BelongsTo
     {
-        return $this->belongsTo(ProductBundle::class, 'bundle_id');
+        return $this->belongsTo(ProductBundle::class, 'product_bundle_id');
     }
 
     public function productItem(): BelongsTo
