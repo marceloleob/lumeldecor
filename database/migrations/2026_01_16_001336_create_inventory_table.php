@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->timestamps();
 
-            $table->index(['inventoriable_type', 'inventoriable_id']);
             $table->index('created_at'); // para relatórios por período
         });
     }

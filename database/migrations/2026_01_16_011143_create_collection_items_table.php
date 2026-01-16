@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('is_highlighted')->default(false); // produto destaque da coleção
             $table->timestamps();
 
-            $table->index(['collection_id', 'order']);
+            $table->index(['collection_id']);
             $table->unique(['collection_id', 'product_item_id']); // não repete item na mesma coleção
         });
     }
